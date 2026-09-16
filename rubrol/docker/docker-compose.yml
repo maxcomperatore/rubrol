@@ -1,0 +1,19 @@
+services:
+  rubrol-pdf-engine:
+    build:
+      context: ../..
+      dockerfile: rubrol/docker/Dockerfile
+    container_name: rubrol-sidecar
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      - PORT=8080
+      - HOST=0.0.0.0
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 128M
+        reservations:
+          memory: 32M

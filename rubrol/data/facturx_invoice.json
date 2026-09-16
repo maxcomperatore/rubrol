@@ -1,0 +1,64 @@
+{
+  "invoice_number": "FA-2026-0842",
+  "issued_date": "2026-09-15",
+  "due_date": "2026-10-15",
+  "currency": "EUR",
+  "currency_symbol": "€",
+  "status": "PAID",
+  "reverse_charge": false,
+  "notes": [
+    "Facture émise sous le régime de conformité européenne EN 16931 / Factur-X 1.0.",
+    "Règlement par virement bancaire SEPA."
+  ],
+  "vendor": {
+    "name": "Rubrol Engine Europe SAS",
+    "siret": "98239182000014",
+    "vat_id": "FR82982391820",
+    "address": "10 Rue de la Paix",
+    "postal_code": "75002",
+    "city": "Paris",
+    "country": "FR",
+    "email": "billing@rubrol.io",
+    "iban": "FR76 3000 6000 0112 3456 7890 189",
+    "bic": "BNPAFRPPXXX"
+  },
+  "customer": {
+    "name": "Acme European Cloud Systems GmbH",
+    "siret": "HRB 192847",
+    "vat_id": "DE391048291",
+    "address": "Friedrichstraße 42",
+    "postal_code": "10117",
+    "city": "Berlin",
+    "country": "DE",
+    "email": "invoices@acme-cloud.de"
+  },
+  "payment": {
+    "bank_name": "BNP Paribas Commercial Paris",
+    "iban": "FR76 3000 6000 0112 3456 7890 189",
+    "bic": "BNPAFRPPXXX",
+    "reference": "FA-2026-0842"
+  },
+  "line_items": [
+    {
+      "line_id": 1,
+      "name": "Rubrol Enterprise Engine - Annual Cluster License",
+      "description": "Sub-8ms dynamic Typst sidecar with unlimited nodes & font cache reuse",
+      "qty": 1,
+      "unit_price": 2400.00,
+      "tax_rate": 0.20,
+      "tax_category": "S",
+      "unit_code": "C62"
+    },
+    {
+      "line_id": 2,
+      "name": "Factur-X / ZUGFeRD Turnkey Compliance Suite",
+      "description": "Automated EN 16931 XML embedding with PDF/A-3b container generation",
+      "qty": 1,
+      "unit_price": 490.00,
+      "tax_rate": 0.20,
+      "tax_category": "S",
+      "unit_code": "C62"
+    }
+  ],
+  "tax_rate": 0.20
+}

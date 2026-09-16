@@ -1,0 +1,21 @@
+{
+  "order_number": "ORD-2026-98104",
+  "ship_date": "2026-09-15",
+  "tracking_number": "1Z9999999999999999",
+  "carrier": "FedEx Express Priority",
+  "warehouse": {
+    "name": "Rubrol Logistics Hub West",
+    "location": "Facility Bay 4 - Reno Hub"
+  },
+  "recipient": {
+    "name": "Marcus Vance",
+    "company": "Apex Hardware Systems",
+    "address": "1200 Industrial Parkway, Suite 8",
+    "city": "Austin, TX 78758"
+  },
+  "packages": [
+    { "sku": "PLT-SRV-1U", "description": "Rubrol 1U Rack Engine Appliance", "qty": 2, "weight": "14.2 lbs" },
+    { "sku": "CBL-OPT-10M", "description": "10-Meter OM4 Fiber Patch Cable", "qty": 4, "weight": "1.1 lbs" },
+    { "sku": "SFP-PLUS-10G", "description": "10G SFP+ Optical Transceiver Pair", "qty": 2, "weight": "0.4 lbs" }
+  ]
+}

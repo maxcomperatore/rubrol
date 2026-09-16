@@ -1,0 +1,16 @@
+{
+  "agreement_date": "September 15, 2026",
+  "governing_law": "State of California",
+  "party_a": {
+    "name": "Rubrol Engine Inc.",
+    "jurisdiction": "Delaware",
+    "address": "548 Market Street, Suite 300, San Francisco, CA 94104",
+    "signatory": "Alexander Hayes, Chief Executive Officer"
+  },
+  "party_b": {
+    "name": "Vanguard Analytics Corp.",
+    "jurisdiction": "New York",
+    "address": "350 5th Avenue, 42nd Floor, New York, NY 10118",
+    "signatory": "Evelyn Reed, General Counsel"
+  }
+}

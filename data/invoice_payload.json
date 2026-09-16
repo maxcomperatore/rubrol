@@ -4,10 +4,10 @@
   "due_date": "2026-10-14",
   "status": "PAID",
   "company": {
-    "name": "Platen Systems, Inc.",
+    "name": "Rubrol Systems, Inc.",
     "address": "548 Market Street, Suite 300",
     "city_state": "San Francisco, CA 94104",
-    "email": "billing@platenengine.com"
+    "email": "billing@rubrol.io"
   },
   "customer": {
     "name": "Acme Corp",
@@ -16,7 +16,7 @@
   },
   "line_items": [
     {
-      "description": "Platen Enterprise Annual License (Unlimited Seats)",
+      "description": "Rubrol Enterprise Annual License (Unlimited Seats)",
       "qty": 1,
       "unit_price": 2400.00
     },

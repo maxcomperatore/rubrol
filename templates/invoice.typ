@@ -1,4 +1,4 @@
-// Platen Invoice Template - Modern B2B SaaS / Stripe-style
+// Rubrol Invoice Template - Modern B2B SaaS / Stripe-style
 #let data_raw = sys.inputs.at("data", default: "{}")
 #let data = if type(data_raw) == str { json(bytes(data_raw)) } else { data_raw }
 
