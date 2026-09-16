@@ -1,0 +1,30 @@
+{
+  "invoice_number": "INV-2026-0042",
+  "issued_date": "2026-09-14",
+  "due_date": "2026-10-14",
+  "status": "PAID",
+  "company": {
+    "name": "Platen Systems, Inc.",
+    "address": "548 Market Street, Suite 300",
+    "city_state": "San Francisco, CA 94104",
+    "email": "billing@platenengine.com"
+  },
+  "customer": {
+    "name": "Acme Corp",
+    "tax_id": "US-987654321",
+    "email": "procurement@acmecorp.com"
+  },
+  "line_items": [
+    {
+      "description": "Platen Enterprise Annual License (Unlimited Seats)",
+      "qty": 1,
+      "unit_price": 2400.00
+    },
+    {
+      "description": "Priority 24/7 SLA & Architecture Support",
+      "qty": 1,
+      "unit_price": 100.00
+    }
+  ],
+  "total": 2500.00
+}

@@ -1,0 +1,90 @@
+{
+  "institution": {
+    "name": "Massachusetts Institute of Advanced Technology",
+    "office": "Office of the University Registrar",
+    "address": "77 Massachusetts Avenue, Cambridge, MA 02139",
+    "accreditation": "NECHE Accredited Institution"
+  },
+  "student": {
+    "name": "Marcus Aurelius Vance",
+    "id": "MIT-2022-89410",
+    "dob": "2003-04-12",
+    "program": "Bachelor of Science in Computer Systems Engineering",
+    "conferral_date": "June 05, 2026",
+    "honors": "Summa Cum Laude (Highest Distinction)",
+    "cumulative_gpa": "3.96",
+    "total_credits": 128
+  },
+  "terms": [
+    {
+      "term_name": "Fall 2025 Semester",
+      "courses": [
+        {
+          "code": "CS 450",
+          "title": "Distributed Consensus Algorithms",
+          "credits": 4,
+          "grade": "A",
+          "points": 16.0
+        },
+        {
+          "code": "CS 480",
+          "title": "Compiler Design & Code Generation",
+          "credits": 4,
+          "grade": "A+",
+          "points": 16.0
+        },
+        {
+          "code": "MATH 412",
+          "title": "Abstract Algebra & Category Theory",
+          "credits": 4,
+          "grade": "A",
+          "points": 16.0
+        },
+        {
+          "code": "EE 340",
+          "title": "VLSI Architecture & Microcode",
+          "credits": 4,
+          "grade": "A-",
+          "points": 14.8
+        }
+      ],
+      "term_gpa": "3.92",
+      "term_credits": 16
+    },
+    {
+      "term_name": "Spring 2026 Semester (Final)",
+      "courses": [
+        {
+          "code": "CS 499",
+          "title": "Senior Capstone: High-Throughput Sub-8ms Renderers",
+          "credits": 4,
+          "grade": "A+",
+          "points": 16.0
+        },
+        {
+          "code": "CS 475",
+          "title": "Cryptographic Engineering & Zero-Knowledge",
+          "credits": 4,
+          "grade": "A+",
+          "points": 16.0
+        },
+        {
+          "code": "PHYS 310",
+          "title": "Quantum Information Theory",
+          "credits": 4,
+          "grade": "A",
+          "points": 16.0
+        },
+        {
+          "code": "ECON 320",
+          "title": "Industrial Organization & Tech Monopolies",
+          "credits": 4,
+          "grade": "A",
+          "points": 16.0
+        }
+      ],
+      "term_gpa": "4.00",
+      "term_credits": 16
+    }
+  ]
+}

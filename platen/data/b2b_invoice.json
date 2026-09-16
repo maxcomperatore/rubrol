@@ -1,0 +1,39 @@
+{
+  "invoice_number": "INV-2026-0842",
+  "issued_date": "2026-09-15",
+  "due_date": "2026-10-15",
+  "currency_symbol": "$",
+  "status": "PAID",
+  "vendor": {
+    "name": "Platen Cloud Technologies",
+    "tax_id": "US-849201948",
+    "address": "548 Market Street, Suite 300",
+    "city": "San Francisco, CA 94104",
+    "email": "billing@platenengine.com"
+  },
+  "customer": {
+    "name": "Linear Financial Systems",
+    "tax_id": "EU-481902488",
+    "address": "100 Bishopsgate, Level 18",
+    "city": "London, EC2N 4AG, UK",
+    "email": "finance@linearfin.io"
+  },
+  "line_items": [
+    {
+      "description": "Platen Pro Sidecar Engine - Annual Cluster License (Unlimited Nodes)",
+      "qty": 1,
+      "unit_price": 490.00
+    },
+    {
+      "description": "Turnkey Template Vault (25 Enterprise B2B Typst Templates)",
+      "qty": 1,
+      "unit_price": 350.00
+    },
+    {
+      "description": "Puppeteer Migration Architecture Consultation",
+      "qty": 1,
+      "unit_price": 450.00
+    }
+  ],
+  "tax_rate": 0.00
+}

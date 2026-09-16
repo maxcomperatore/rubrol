@@ -1,0 +1,31 @@
+{
+  "patient": {
+    "name": "Dr. Eleanor Vance",
+    "dob": "1988-04-12",
+    "mrn": "MRN-849204-X",
+    "gender": "Female",
+    "blood_type": "O+"
+  },
+  "provider": {
+    "clinic": "MetroHealth Precision Medical Group",
+    "physician": "Dr. Julian Montgomery, MD",
+    "npi": "1948201942",
+    "encounter_date": "2026-09-15"
+  },
+  "vitals": {
+    "bp": "118/76 mmHg",
+    "hr": "72 bpm",
+    "temp": "98.6 °F",
+    "weight": "68.5 kg",
+    "spo2": "99%"
+  },
+  "diagnoses": [
+    { "code": "E11.9", "description": "Type 2 diabetes mellitus without complications" },
+    { "code": "I10", "description": "Essential (primary) hypertension" },
+    { "code": "Z71.3", "description": "Dietary counseling and surveillance" }
+  ],
+  "medications": [
+    { "name": "Metformin HCl", "dosage": "500 mg", "frequency": "Twice daily with meals" },
+    { "name": "Lisinopril", "dosage": "10 mg", "frequency": "Once daily in morning" }
+  ]
+}

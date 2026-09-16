@@ -1,0 +1,9 @@
+{
+  "recipient": "Stripe Payments International Ltd.",
+  "standard_name": "SOC 2 Type II Security & Data Integrity Standard",
+  "certificate_id": "CERT-2026-9812-SOC2",
+  "issue_date": "September 15, 2026",
+  "valid_until": "September 14, 2027",
+  "audit_firm": "Apex Global Assurance LLP",
+  "verification_hash": "4a7d1ed414474e4033ac29ccb8653d9b048a82d397a73a5a7b8e519ec35bb632"
+}
