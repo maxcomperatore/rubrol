@@ -819,7 +819,7 @@
             <tr>
               <th>Evaluation Parameter</th>
               <th>Headless Chromium</th>
-              <th>Oicana</th>
+              <th>Traditional Engines (Gotenberg/Weasy)</th>
               <th class="active-column">Rubrol Engine</th>
             </tr>
           </thead>
@@ -827,38 +827,38 @@
             <tr>
               <td>Mean Execution Latency</td>
               <td class="spec-muted spec-numeric">1,800ms – 3,200ms</td>
-              <td class="spec-numeric">14ms – 30ms</td>
+              <td class="spec-numeric">450ms – 850ms</td>
               <td class="active-column spec-numeric">5.8ms (Sub-8ms SLA)</td>
             </tr>
             <tr>
               <td>Resident Set Size (RAM)</td>
               <td class="spec-muted spec-numeric">1,600MB – 2,200MB</td>
-              <td class="spec-numeric">35MB</td>
+              <td class="spec-numeric">~480MB</td>
               <td class="active-column spec-numeric">&lt; 28MB</td>
             </tr>
             <tr>
               <td>Licensing Structure</td>
-              <td class="spec-muted">Permissive (Self-Hosted)</td>
-              <td class="spec-muted">PolyForm Commercial (Tiered / Application)</td>
+              <td class="spec-muted">Permissive (High Cloud Infra Bill)</td>
+              <td class="spec-muted">MIT / LGPL (High Maintenance)</td>
               <td class="active-column">Apache 2.0 Open Core</td>
             </tr>
             <tr>
               <td>Integration Boundary</td>
               <td class="spec-muted">Subprocess / Node.js Bridge</td>
-              <td class="spec-muted">Multi-target FFI Bindings</td>
+              <td class="spec-muted">Heavy Web Service Container</td>
               <td class="active-column">Universal HTTP / Sidecar Protocol</td>
             </tr>
             <tr>
               <td>Template Format</td>
               <td class="spec-muted">HTML & CSS Paged Media</td>
-              <td class="spec-muted">Packaged Archive (.zip)</td>
+              <td class="spec-muted">HTML & CSS Paged Media</td>
               <td class="active-column">Versioned Typst Source (.typ)</td>
             </tr>
             <tr>
-              <td>Pre-Engineered Layouts</td>
-              <td class="spec-muted">Unprovided</td>
-              <td class="spec-muted">Unprovided</td>
-              <td class="active-column">25+ Verified Specifications</td>
+              <td>EU Factur-X / ZUGFeRD</td>
+              <td class="spec-muted">Unprovided (Raw HTML)</td>
+              <td class="spec-muted">Unprovided (Manual Scripts)</td>
+              <td class="active-column">Turnkey EN 16931 + PDF/A-3b</td>
             </tr>
           </tbody>
         </table>
@@ -874,8 +874,8 @@
           <div class="benchmark-list">
             <div class="benchmark-item">
               <div class="benchmark-labels">
-                <span class="benchmark-entity">Chromium (Gotenberg)</span>
-                <span class="benchmark-val">480 MB</span>
+                <span class="benchmark-entity">Chromium (Puppeteer)</span>
+                <span class="benchmark-val">1,600 MB</span>
               </div>
               <div class="benchmark-bar-track">
                 <div class="benchmark-bar-fill fill-competitor" style="width: 100%;"></div>
@@ -883,11 +883,11 @@
             </div>
             <div class="benchmark-item">
               <div class="benchmark-labels">
-                <span class="benchmark-entity">Oicana (WASM/FFI)</span>
-                <span class="benchmark-val">45 MB</span>
+                <span class="benchmark-entity">Gotenberg (Chrome)</span>
+                <span class="benchmark-val">480 MB</span>
               </div>
               <div class="benchmark-bar-track">
-                <div class="benchmark-bar-fill fill-mid" style="width: 9.4%;"></div>
+                <div class="benchmark-bar-fill fill-mid" style="width: 30%;"></div>
               </div>
             </div>
             <div class="benchmark-item active-benchmark">
@@ -896,7 +896,7 @@
                 <span class="benchmark-val">22 MB</span>
               </div>
               <div class="benchmark-bar-track">
-                <div class="benchmark-bar-fill fill-rubrol" style="width: 4.6%;"></div>
+                <div class="benchmark-bar-fill fill-rubrol" style="width: 1.4%;"></div>
               </div>
             </div>
           </div>
@@ -910,8 +910,8 @@
           <div class="benchmark-list">
             <div class="benchmark-item">
               <div class="benchmark-labels">
-                <span class="benchmark-entity">Chromium (Gotenberg)</span>
-                <span class="benchmark-val">850 ms</span>
+                <span class="benchmark-entity">Chromium (Puppeteer)</span>
+                <span class="benchmark-val">1,850 ms</span>
               </div>
               <div class="benchmark-bar-track">
                 <div class="benchmark-bar-fill fill-competitor" style="width: 100%;"></div>
@@ -919,11 +919,11 @@
             </div>
             <div class="benchmark-item">
               <div class="benchmark-labels">
-                <span class="benchmark-entity">Oicana</span>
-                <span class="benchmark-val">35 ms</span>
+                <span class="benchmark-entity">Gotenberg (Chrome)</span>
+                <span class="benchmark-val">650 ms</span>
               </div>
               <div class="benchmark-bar-track">
-                <div class="benchmark-bar-fill fill-mid" style="width: 4.1%;"></div>
+                <div class="benchmark-bar-fill fill-mid" style="width: 35.1%;"></div>
               </div>
             </div>
             <div class="benchmark-item active-benchmark">
@@ -932,7 +932,7 @@
                 <span class="benchmark-val">8 ms</span>
               </div>
               <div class="benchmark-bar-track">
-                <div class="benchmark-bar-fill fill-rubrol" style="width: 1.0%;"></div>
+                <div class="benchmark-bar-fill fill-rubrol" style="width: 0.5%;"></div>
               </div>
             </div>
           </div>
@@ -943,14 +943,14 @@
       <div class="benchmark-ascii-wrapper">
         <div class="benchmark-ascii-header">Deterministic Benchmark Profile (Reproducible)</div>
         <pre class="benchmark-ascii-block">RAM Footprint (Lower is better)
-Chromium (Gotenberg)  ████████████████████████████████████████ 480 MB
-Oicana (WASM/FFI)     ████ 45 MB
-Rubrol                ██ 22 MB
+Chromium (Puppeteer)   ████████████████████████████████████████ 1,600 MB
+Gotenberg (Chrome)     ████████████ 480 MB
+Rubrol (Typst Native)  █ 22 MB
 
 Compilation Time (Lower is better)
-Chromium (Gotenberg)  ████████████████████████████████████████ 850 ms
-Oicana                ███ 35 ms
-Rubrol                █ 8 ms</pre>
+Chromium (Puppeteer)   ████████████████████████████████████████ 1,850 ms
+Gotenberg (Chrome)     ████████████ 650 ms
+Rubrol (Typst Native)  █ 8 ms</pre>
       </div>
     </section>
 

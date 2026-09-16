@@ -1,7 +1,7 @@
 <div align="center">
   <img src="assets/logo.png" alt="Rubrol Logo" width="120" height="120" />
   <h1>Rubrol: The Anti-Puppeteer PDF Engine</h1>
-  <p><strong>Sub-8ms dynamic PDF/A documents powered by Apache 2.0 Typst. No Headless Chrome. No Oicana PolyForm "Wrapper Tax".</strong></p>
+  <p><strong>Sub-8ms dynamic PDF/A documents powered by Apache 2.0 Typst. No Headless Chrome. No Chromium bloat.</strong></p>
 
   <p>
     <a href="https://opensource.org/licenses/Apache-2.0"><img src="https://img.shields.io/badge/License-Apache_2.0-blue.svg" alt="License" /></a>
@@ -15,35 +15,36 @@
 
 ## The Villain & The Hero
 
-* **The Villain:** Headless Chrome / Puppeteer / Playwright consuming 2GB RAM per process, suffering cold starts, and crashing production servers during invoice batch runs.
-* **The Alternative Trap (Oicana):** Uses the `PolyForm Noncommercial License 1.0.0`, forcing developers into a €19–€199/month recurring wrapper tax with custom packaging steps (`oicana pack`) and fragile language FFI bindings.
+* **The Villain:** Headless Chrome / Puppeteer / Playwright consuming 2GB RAM per process, suffering slow cold starts, and crashing production Kubernetes nodes during batch invoice runs.
+* **The Legacy Trap:** Monolithic HTML-to-PDF renderers with broken CSS Paged Media pagination, fragile foreign FFI bindings, and zero native PDF/A-3b hybrid electronic invoicing support.
 * **The Hero (Rubrol):** 100% Permissive Open Core + Commercial Pro Template Vault. Runs as an ultra-fast HTTP sidecar responding to any language in $< 8\text{ms}$ with pure Typst templates.
 
 ---
 
 ## Quick Comparison
 
-| Vector | Headless Chrome / Puppeteer | Oicana | **Rubrol Engine** |
+| Vector | Headless Chrome / Puppeteer | Traditional Engines (Gotenberg/Weasy) | **Rubrol Engine** |
 | :--- | :--- | :--- | :--- |
-| **Execution Latency** | 1,200ms – 3,500ms | 12ms – 30ms | **5.8ms (Sub-8ms SLA)** |
-| **RAM Footprint** | 1.5 GB – 2.2 GB | ~35 MB | **< 28 MB** |
-| **Licensing** | MIT / Apache | PolyForm (€19–€199/mo per app) | **Apache 2.0 Open Core** |
-| **Integration** | Heavy Node.js process | 7 foreign FFI bindings | **Universal HTTP Sidecar + CLI** |
-| **Template Packaging** | Raw HTML/CSS bloat | Proprietary `.zip` (`oicana pack`) | **Plain `.typ` files in Git** |
-| **Commercial Pricing** | Self-hosted infra cost | €19 – €199 / month | **$490 / yr or $990 Lifetime** |
+| **Execution Latency** | 1,800ms – 3,500ms | 450ms – 850ms | **5.8ms (Sub-8ms SLA)** |
+| **RAM Footprint** | 1.5 GB – 2.2 GB | ~480 MB | **< 28 MB** |
+| **Licensing** | Apache / Proprietary Infra | MIT / LGPL | **Apache 2.0 Open Core** |
+| **Architecture** | Heavy Node.js / Headless Browser | Monolithic Web Service | **Universal Docker Sidecar + CLI** |
+| **EU e-Invoicing** | None (Raw HTML) | Manual Attachment Scripts | **Turnkey Factur-X / ZUGFeRD 2.2** |
+| **Template Formatting** | Brittle CSS print media | Complex HTML/CSS hacks | **Git-Native Plain `.typ` Files** |
+| **Commercial Pricing** | Ballooning AWS/GCP node bills | Maintenance overhead | **$490 / yr or $990 Lifetime** |
 
 ### Benchmark Resource Profiles
 
 ```
 RAM Footprint (Lower is better)
-Chromium (Gotenberg)  ████████████████████████████████████████ 480 MB
-Oicana (WASM/FFI)     ████ 45 MB
-Rubrol                ██ 22 MB
+Chromium (Puppeteer)   ████████████████████████████████████████ 1,600 MB
+Gotenberg (Chrome)     ████████████ 480 MB
+Rubrol (Typst Native)  █ 22 MB
 
 Compilation Time (Lower is better)
-Chromium (Gotenberg)  ████████████████████████████████████████ 850 ms
-Oicana                ███ 35 ms
-Rubrol                █ 8 ms
+Chromium (Puppeteer)   ████████████████████████████████████████ 1,850 ms
+Gotenberg              ████████████ 650 ms
+Rubrol (Typst Native)  █ 8 ms
 ```
 
 ---
