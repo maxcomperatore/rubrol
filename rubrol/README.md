@@ -1,11 +1,15 @@
-# Rubrol: The Anti-Puppeteer PDF Engine
+<div align="center">
+  <img src="assets/logo.png" alt="Rubrol Logo" width="120" height="120" />
+  <h1>Rubrol: The Anti-Puppeteer PDF Engine</h1>
+  <p><strong>Sub-8ms dynamic PDF/A documents powered by Apache 2.0 Typst. No Headless Chrome. No Oicana PolyForm "Wrapper Tax".</strong></p>
 
-> **Sub-8ms dynamic PDF/A documents powered by Apache 2.0 Typst. No Headless Chrome. No Oicana PolyForm "Wrapper Tax".**
-
-[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-[![Typst](https://img.shields.io/badge/Typst-Native-orange.svg)](https://typst.app/)
-[![Latency](https://img.shields.io/badge/Latency-5.8ms-brightgreen.svg)]()
-[![RAM](https://img.shields.io/badge/RAM-%3C28MB-green.svg)]()
+  <p>
+    <a href="https://opensource.org/licenses/Apache-2.0"><img src="https://img.shields.io/badge/License-Apache_2.0-blue.svg" alt="License" /></a>
+    <a href="https://typst.app/"><img src="https://img.shields.io/badge/Typst-Native-orange.svg" alt="Typst" /></a>
+    <img src="https://img.shields.io/badge/Latency-5.8ms-brightgreen.svg" alt="Latency" />
+    <img src="https://img.shields.io/badge/RAM-%3C28MB-green.svg" alt="RAM" />
+  </p>
+</div>
 
 ---
 
