@@ -72,12 +72,17 @@ class RubrolServerHandler(BaseHTTPRequestHandler):
                 self._send_json(200, {})
 
         else:
-            safe_file = STATIC_DIR / path.lstrip("/")
+            req_path = path.lstrip("/")
+            if req_path.startswith("assets/"):
+                safe_file = ROOT_DIR / req_path
+            else:
+                safe_file = STATIC_DIR / req_path
+
             if safe_file.exists() and safe_file.is_file():
                 mime, _ = mimetypes.guess_type(str(safe_file))
                 self._send_response(200, mime or "application/octet-stream", safe_file.read_bytes())
             else:
-                self.send_error(404, "File Not Found")
+                self.send_error(404, f"File Not Found: {path}")
 
     def do_POST(self):
         parsed = urlparse(self.path)
