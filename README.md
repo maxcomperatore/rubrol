@@ -9,11 +9,11 @@
     <img src="https://img.shields.io/badge/Latency-5.8ms-brightgreen.svg" alt="Latency" />
     <img src="https://img.shields.io/badge/RAM-%3C28MB-green.svg" alt="RAM" />
     <img src="https://img.shields.io/badge/Clients-8_Languages-purple.svg" alt="Clients" />
-    <a href="https://experiment-unstaged-changes.vercel.app"><img src="https://img.shields.io/badge/Demo-Live_Playground-success.svg" alt="Live Demo" /></a>
+    <a href="https://rubrol.com"><img src="https://img.shields.io/badge/Demo-Live_Playground-success.svg" alt="Live Demo" /></a>
   </p>
 
   <p>
-    <a href="https://experiment-unstaged-changes.vercel.app"><strong>🌐 Try Interactive Web Playground & Cost Calculator →</strong></a>
+    <a href="https://rubrol.com"><strong>🌐 Try Interactive Web Playground & Cost Calculator (rubrol.com) →</strong></a>
   </p>
 </div>
 
