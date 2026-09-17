@@ -2084,7 +2084,7 @@
       line-height: 1.45;
     }
 
-    .ai-tabs-container {
+    .ai-tabs-container { display: none;
       display: flex;
       align-items: center;
       gap: 4px;
@@ -2616,10 +2616,7 @@
               If you use an AI coding assistant like <strong>Claude Code</strong>, <strong>Cursor</strong>, or <strong>GitHub Copilot</strong>, you can add sub-millisecond PDF generation to your app in minutes using agent skills.
             </p>
           </div>
-          <div class="ai-tabs-container">
-            <button class="ai-tab-btn active" id="tab-skills" onclick="switchAiTab('skills')">Skills</button>
-            <button class="ai-tab-btn" id="tab-cursor" onclick="switchAiTab('cursor')">Cursor Rules</button>
-          </div>
+          
         </div>
 
         <div class="ai-terminal-box">
@@ -2635,7 +2632,7 @@
 
         <div class="ai-prompt-guidance">
           <span>Once installed, prompt your AI coding assistant with instructions like:</span>
-          <div class="ai-prompt-pill" onclick="copyAiPrompt(this)" title="Click to copy prompt">
+          <div class="ai-prompt-pill" id="ai-prompt-pill" onclick="copyAiPrompt()" title="Click to copy prompt">
             <span>&ldquo;Add Rubrol PDF invoice generation to my Express backend with sub-millisecond latency&rdquo;</span>
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
           </div>
@@ -4555,6 +4552,63 @@ ${err.message}</div>`;
 
     // Initialize
     loadTemplateData('b2b_invoice');
+  
+    // Bulletproof Clipboard Copy (with fallback for all browsers/environments)
+    function copyToClipboard(text) {
+      if (navigator.clipboard && window.isSecureContext) {
+        return navigator.clipboard.writeText(text).catch(() => fallbackCopy(text));
+      }
+      return fallbackCopy(text);
+    }
+
+    function fallbackCopy(text) {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.left = '-9999px';
+      ta.style.top = '-9999px';
+      document.body.appendChild(ta);
+      ta.focus();
+      ta.select();
+      try {
+        document.execCommand('copy');
+      } catch (err) {
+        console.error('Fallback copy failed', err);
+      }
+      document.body.removeChild(ta);
+      return Promise.resolve();
+    }
+
+    function copyAiCmd() {
+      const cmdElem = document.getElementById('ai-cmd-text');
+      const cmdText = cmdElem ? cmdElem.innerText.trim() : 'npx skills add maxcomperatore/rubrol --skill rubrol';
+      copyToClipboard(cmdText).then(() => {
+        const label = document.getElementById('ai-copy-label');
+        if (label) {
+          label.innerText = 'Copied!';
+          label.style.color = '#10b981';
+          setTimeout(() => {
+            label.innerText = 'Copy';
+            label.style.color = '';
+          }, 2000);
+        }
+      });
+    }
+
+    function copyAiPrompt() {
+      const prompt = "Add Rubrol PDF invoice generation to my Express backend with sub-millisecond latency";
+      copyToClipboard(prompt).then(() => {
+        const pill = document.getElementById('ai-prompt-pill');
+        if (pill) {
+          const origHtml = pill.innerHTML;
+          pill.innerHTML = '<span style="color: #10b981; font-weight: 600;">Copied prompt to clipboard!</span>';
+          setTimeout(() => {
+            pill.innerHTML = origHtml;
+          }, 2000);
+        }
+      });
+    }
+
   </script>
 </body>
 </html>
