@@ -121,8 +121,9 @@ resources:
 ## Commercial Licensing
 
 * **Community Core ($0 / Apache 2.0):** CLI compiler, local daemon, unlimited documents, free forever.
-* **Rubrol Pro ($490 / year):** Complete 25+ Template Vault, multi-worker HTTP sidecar, visual regression CLI, priority SLA.
-* **Enterprise Suite ($2,400 / year):** Turnkey EU Factur-X / ZUGFeRD Suite (EN 16931 + PDF/A-3b hybrid container), air-gapped private ECR images, source code escrow, bespoke template design service.
+* **Rubrol Pro ($49/mo or $490/yr):** Complete 25+ Template Vault, multi-worker HTTP sidecar, visual regression CLI, priority SLA.
+* **Enterprise Suite ($2,400/yr):** Turnkey EU Factur-X / ZUGFeRD Suite (EN 16931 + PDF/A-3b hybrid container), air-gapped private ECR images, source code escrow.
+* **Enterprise Scale ($7,200/yr / Custom SLA):** Dedicated Multi-Cluster Kubernetes HA architecture, bespoke Typst template design, 99.99% SLA.
 
 ---
 

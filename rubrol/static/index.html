@@ -2234,6 +2234,92 @@
       margin-top: 6px;
     }
 
+  
+    .pricing-deck {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    @media (max-width: 1100px) {
+      .pricing-deck {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .pricing-deck {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Billing Toggle Switch */
+    .billing-toggle-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin: 0 auto 36px auto;
+    }
+
+    .billing-toggle-btn {
+      position: relative;
+      width: 48px;
+      height: 26px;
+      background: #e2e8f0;
+      border: 1px solid #cbd5e1;
+      border-radius: 13px;
+      cursor: pointer;
+      padding: 2px;
+      transition: background 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .billing-toggle-btn.monthly {
+      background: var(--amber-primary);
+      border-color: #d97706;
+    }
+
+    .billing-toggle-thumb {
+      width: 20px;
+      height: 20px;
+      background: #ffffff;
+      border-radius: 50%;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      transition: transform 0.2s ease;
+      transform: translateX(0);
+    }
+
+    .billing-toggle-btn.monthly .billing-toggle-thumb {
+      transform: translateX(22px);
+    }
+
+    .billing-label {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: #64748b;
+      cursor: pointer;
+      user-select: none;
+      transition: color 0.15s ease;
+    }
+
+    .billing-label.active {
+      color: var(--text-light-head);
+    }
+
+    .billing-save-pill {
+      font-size: 10.5px;
+      font-weight: 700;
+      color: #15803d;
+      background: #dcfce7;
+      border: 1px solid #bbf7d0;
+      border-radius: 10px;
+      padding: 1px 7px;
+      font-family: var(--font-mono);
+      margin-left: 4px;
+    }
+
   </style>
 </head>
 <body>
@@ -3164,59 +3250,73 @@
             <span class="slider-title">Monthly Documents Generated</span>
             <span id="docCountLabel" class="slider-val">50,000 / mo</span>
           </div>
-          <input type="range" id="docSlider" min="2000" max="500000" step="2000" value="50000">
+          <input type="range" id="docSlider" min="2000" max="600000" step="2000" value="50000">
           <div style="display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 11px; color: var(--text-light-muted);">
             <span>2,000 / mo</span>
-            <span>150,000 / mo</span>
+            <span>100,000 / mo</span>
+            <span>250,000 / mo</span>
             <span>500,000+ / mo</span>
           </div>
 
-          <!-- Live Quant Math Breakdown Bar -->
-          <div style="background: var(--bg-parchment-warm); border: 1px solid var(--border-parchment); border-radius: 8px; padding: 12px 14px; margin-top: 10px; font-size: 12px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; text-align: center;">
+          <!-- Comprehensive TCO Value Extraction Grid -->
+          <div style="background: var(--bg-parchment-warm); border: 1px solid var(--border-parchment); border-radius: 8px; padding: 14px; margin-top: 12px; font-size: 12px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; text-align: center;">
             <div>
-              <div style="font-size: 10px; text-transform: uppercase; color: var(--text-light-muted); font-family: var(--font-mono);">Puppeteer Cloud Waste</div>
+              <div style="font-size: 9.5px; text-transform: uppercase; color: var(--text-light-muted); font-family: var(--font-mono); letter-spacing: 0.04em;">Puppeteer Compute Waste</div>
               <div id="quantChromeCost" style="font-weight: 700; color: #b91c1c; font-size: 13.5px; margin-top: 2px;">$4,860/yr</div>
             </div>
             <div>
-              <div style="font-size: 10px; text-transform: uppercase; color: var(--text-light-muted); font-family: var(--font-mono);">Rubrol Engine Cost</div>
-              <div id="quantRubrolCost" style="font-weight: 700; color: #15803d; font-size: 13.5px; margin-top: 2px;">$180/yr</div>
+              <div style="font-size: 9.5px; text-transform: uppercase; color: var(--text-light-muted); font-family: var(--font-mono); letter-spacing: 0.04em;">Senior Dev Hours Saved</div>
+              <div id="quantDevLabor" style="font-weight: 700; color: #15803d; font-size: 13.5px; margin-top: 2px;">$14,400/yr (120 hrs)</div>
             </div>
             <div>
-              <div style="font-size: 10px; text-transform: uppercase; color: var(--text-light-muted); font-family: var(--font-mono);">Net Cloud Compute Saved</div>
-              <div id="quantNetCompute" style="font-weight: 700; color: var(--amber-primary); font-size: 13.5px; margin-top: 2px;">$4,680/yr</div>
+              <div style="font-size: 9.5px; text-transform: uppercase; color: var(--text-light-muted); font-family: var(--font-mono); letter-spacing: 0.04em;">Total Cost of Ownership (TCO) Saved</div>
+              <div id="quantTcoTotal" style="font-weight: 700; color: var(--amber-primary); font-size: 13.5px; margin-top: 2px;">$19,080/yr</div>
             </div>
           </div>
         </div>
 
         <div class="calculator-result">
-          <div class="result-sub">Estimated Annual AWS Compute Savings</div>
-          <div id="savingsAmount" class="result-amount">$4,680</div>
+          <div class="result-sub">Total Annual Cost of Ownership (TCO) Saved</div>
+          <div id="savingsAmount" class="result-amount">$19,080</div>
           <div class="result-desc" id="savingsBreakdown">
-            Based on eliminating 16 Chromium Fargate containers running at $0.0081/doc vs $0.0003/doc with native Typst.
+            Includes AWS Fargate compute savings ($0.0081 vs $0.0003/doc) plus eliminating 120 senior dev hours wasted on broken CSS page breaks and pod crashes.
           </div>
 
           <!-- Dynamic Active Tier Recommendation -->
           <div style="margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--border-parchment); text-align: left;">
             <div style="display: flex; justify-content: space-between; align-items: center;">
-              <span style="font-size: 12.5px; font-weight: 600; color: var(--text-light-head);">Recommended Tier:</span>
+              <span style="font-size: 12px; font-weight: 600; color: var(--text-light-head);">Recommended Tier:</span>
               <span id="calcRecPlan" style="font-family: var(--font-mono); font-size: 13px; font-weight: 700; color: var(--amber-primary);">Pro Vault ($490/yr)</span>
             </div>
             <div id="calcRecRoi" class="quant-roi-badge">
-              Net Positive ROI: +$4,190 / year saved after plan cost
+              Net Positive ROI: +$18,590 / year saved after plan cost
             </div>
           </div>
 
           <div style="margin-top: 14px;">
-            <a id="calcCtaBtn" href="https://buy.stripe.com/00w8wQ0GN1h8ehJ7Wk0Ba09" target="_blank" class="btn-pricing btn-pricing-primary" style="padding: 10px 24px; font-size: 13.5px; display: inline-flex; align-items: center; justify-content: center; gap: 6px; width: 100%;">
+            <a id="calcCtaBtn" href="https://buy.stripe.com/00w8wQ0GN1h8ehJ7Wk0Ba09" target="_blank" class="btn-pricing btn-pricing-primary" style="padding: 10px 24px; font-size: 13px; display: inline-flex; align-items: center; justify-content: center; gap: 6px; width: 100%;">
               <span>Proceed to Stripe Checkout</span> →
             </a>
           </div>
         </div>
       </div>
 
-      <!-- 3-Tier Deck with Dynamic Tier Switching -->
+      <!-- Billing Period Toggle Switch (Monthly vs Annual) -->
+      <div class="billing-toggle-wrap">
+        <span class="billing-label active" id="label-annual" onclick="setBillingPeriod('annual')">
+          Annual Billing <span class="billing-save-pill">Save 17%</span>
+        </span>
+        <div class="billing-toggle-btn" id="billingToggleBtn" onclick="toggleBillingPeriod()">
+          <div class="billing-toggle-thumb"></div>
+        </div>
+        <span class="billing-label" id="label-monthly" onclick="setBillingPeriod('monthly')">
+          Monthly Billing
+        </span>
+      </div>
+
+      <!-- 4-Tier Quant Optimized Deck -->
       <div class="pricing-deck">
-        <!-- Tier 1: Developer -->
+        <!-- Tier 1: Developer Core -->
         <div id="card-developer" class="price-card tier-dimmed">
           <span id="ribbon-developer" class="featured-ribbon" style="display: none; background: #10b981;">Best for Low Volume</span>
           <div>
@@ -3251,11 +3351,11 @@
             <p class="price-plan-desc">For SaaS teams and marketplaces generating customer-facing invoices.</p>
             <div class="price-plan-num">
               <span class="price-currency">$</span>
-              <span class="price-figure">490</span>
-              <span class="price-period">/ year</span>
+              <span class="price-figure" id="price-val-pro">490</span>
+              <span class="price-period" id="price-period-pro">/ year</span>
             </div>
-            <div id="roi-pro" style="font-size: 11.5px; color: #15803d; font-family: var(--font-mono); margin: -10px 0 16px 0;">
-              ● Net ROI: +$4,190/yr after compute savings
+            <div id="roi-pro" style="font-size: 11px; color: #15803d; font-family: var(--font-mono); margin: -10px 0 16px 0;">
+              ● Net TCO ROI: +$18,590/yr
             </div>
             <ul class="price-features">
               <li>All 11 Production Enterprise Templates</li>
@@ -3266,22 +3366,22 @@
             </ul>
           </div>
           <a href="https://buy.stripe.com/00w8wQ0GN1h8ehJ7Wk0Ba09" target="_blank" class="btn-pricing btn-pricing-primary" id="btn-pro">
-            Get Pro Access ($490/yr) →
+            Get Pro Access →
           </a>
         </div>
 
         <!-- Tier 3: Compliance Suite -->
         <div id="card-compliance" class="price-card tier-dimmed">
-          <span id="ribbon-compliance" class="featured-ribbon" style="display: none; background: #ea580c;">Recommended for Scale &amp; Compliance</span>
+          <span id="ribbon-compliance" class="featured-ribbon" style="display: none; background: #ea580c;">Scale &amp; Compliance</span>
           <div>
             <h3 class="price-plan-name">Compliance Suite</h3>
             <p class="price-plan-desc">For European &amp; global enterprises requiring certified e-invoicing.</p>
             <div class="price-plan-num">
               <span class="price-currency">$</span>
-              <span class="price-figure">2,400</span>
-              <span class="price-period">/ year</span>
+              <span class="price-figure" id="price-val-compliance">2,400</span>
+              <span class="price-period" id="price-period-compliance">/ year</span>
             </div>
-            <div id="roi-compliance" style="font-size: 11.5px; color: #15803d; font-family: var(--font-mono); margin: -10px 0 16px 0; display: none;">
+            <div id="roi-compliance" style="font-size: 11px; color: #15803d; font-family: var(--font-mono); margin: -10px 0 16px 0; display: none;">
               ● Avoids €10k+ non-compliance penalties
             </div>
             <ul class="price-features">
@@ -3289,16 +3389,67 @@
               <li>EN 16931 &amp; ISO 19005-2 PDF/A-2b</li>
               <li>Automated CII / UBL Schematron Validator</li>
               <li>Private High-Concurrency Docker Registry</li>
-              <li>Direct Engineer Slack / SLA Channel</li>
+              <li>Direct Engineer Slack Channel</li>
             </ul>
           </div>
           <a href="https://buy.stripe.com/fZudRablrgc2b5x1xW0Ba0a" target="_blank" class="btn-pricing btn-pricing-secondary" id="btn-compliance">
-            Get Compliance Suite ($2,400/yr) →
+            Get Compliance Suite →
+          </a>
+        </div>
+
+        <!-- Tier 4: Enterprise Scale -->
+        <div id="card-scale" class="price-card tier-dimmed">
+          <span id="ribbon-scale" class="featured-ribbon" style="display: none; background: #4f46e5;">Enterprise Dedicated Scale</span>
+          <div>
+            <h3 class="price-plan-name">Enterprise Scale</h3>
+            <p class="price-plan-desc">For high-throughput multi-cluster deployments with bespoke templates.</p>
+            <div class="price-plan-num">
+              <span class="price-currency">$</span>
+              <span class="price-figure" id="price-val-scale">7,200</span>
+              <span class="price-period" id="price-period-scale">/ year</span>
+            </div>
+            <div id="roi-scale" style="font-size: 11px; color: #15803d; font-family: var(--font-mono); margin: -10px 0 16px 0; display: none;">
+              ● Dedicated SLA &amp; HA Architecture
+            </div>
+            <ul class="price-features">
+              <li>Multi-Cluster Kubernetes HA Architecture</li>
+              <li>Bespoke Typst Template Design Service</li>
+              <li>Custom Enterprise Schematron Rule Creation</li>
+              <li>99.99% Uptime SLA &amp; Incident Pager</li>
+              <li>Dedicated Private ECR &amp; Security Escrow</li>
+            </ul>
+          </div>
+          <a href="mailto:enterprise@rubrol.com?subject=Enterprise%20Rubrol%20Scale%20Deployment" target="_blank" class="btn-pricing btn-pricing-secondary" id="btn-scale">
+            Contact Enterprise Engineering →
           </a>
         </div>
       </div>
 
-      <!-- Founder Pass Banner -->
+      <!-- Founder Pass Banner with Urgency Escalator -->
+      <div class="founder-banner">
+        <div>
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px; flex-wrap: wrap;">
+            <span class="editorial-label" style="margin-bottom: 0;">LIMITED FOUNDER ALLOCATION</span>
+            <span style="font-family: var(--font-mono); font-size: 10.5px; font-weight: 700; background: #fee2e2; color: #b91c1c; padding: 3px 10px; border-radius: 12px; border: 1px solid #fca5a5; letter-spacing: 0.04em;">
+              50 LICENSES ONLY • 38 REMAINING
+            </span>
+          </div>
+          <h4 style="font-family: var(--font-serif); font-size: 22px; color: var(--text-light-head);">
+            Lifetime Founder Pass — $990 One-Time
+          </h4>
+          <p style="font-size: 13.5px; color: var(--text-light-body); margin-top: 4px;">
+            Get perpetual commercial engine rights, lifetime access to all current and future Pro templates, private repository updates, and direct founder Slack access with zero recurring fees.
+          </p>
+          <div style="font-family: var(--font-mono); font-size: 11px; color: #b91c1c; margin-top: 6px; font-weight: 600;">
+            Escalator Notice: Price automatically steps up to $1,490 once license #15 is claimed.
+          </div>
+        </div>
+        <a href="https://buy.stripe.com/00w9AU75b6Bsc9BgsQ0Ba0b" target="_blank" class="btn-pill-primary" style="background: #18181b; color: #ffffff; white-space: nowrap;">
+          Claim Founder Pass ($990) →
+        </a>
+      </div>
+    </div>
+  </section>
       <div class="founder-banner">
         <div>
           <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px; flex-wrap: wrap;">
@@ -4143,13 +4294,15 @@ ${err.message}</div>`;
 
     document.getElementById('downloadPdfBtn').addEventListener('click', downloadPdf);
 
-    // Dynamic Tier Switcher & Quant ROI Calculator (Auth0 Style)
+    // Dynamic Tier Switcher & Quant TCO Calculator (4-Tier Max Extraction)
+    let currentBillingPeriod = 'annual'; // 'annual' or 'monthly'
+
     const docSlider = document.getElementById('docSlider');
     const docCountLabel = document.getElementById('docCountLabel');
     const savingsAmount = document.getElementById('savingsAmount');
     const quantChromeCost = document.getElementById('quantChromeCost');
-    const quantRubrolCost = document.getElementById('quantRubrolCost');
-    const quantNetCompute = document.getElementById('quantNetCompute');
+    const quantDevLabor = document.getElementById('quantDevLabor');
+    const quantTcoTotal = document.getElementById('quantTcoTotal');
     const calcRecPlan = document.getElementById('calcRecPlan');
     const calcRecRoi = document.getElementById('calcRecRoi');
     const calcCtaBtn = document.getElementById('calcCtaBtn');
@@ -4157,44 +4310,95 @@ ${err.message}</div>`;
     const cardDev = document.getElementById('card-developer');
     const cardPro = document.getElementById('card-pro');
     const cardComp = document.getElementById('card-compliance');
+    const cardScale = document.getElementById('card-scale');
     const ribbonDev = document.getElementById('ribbon-developer');
     const ribbonPro = document.getElementById('ribbon-pro');
     const ribbonComp = document.getElementById('ribbon-compliance');
+    const ribbonScale = document.getElementById('ribbon-scale');
     const roiDev = document.getElementById('roi-developer');
     const roiPro = document.getElementById('roi-pro');
     const roiComp = document.getElementById('roi-compliance');
+    const roiScale = document.getElementById('roi-scale');
+
+    const priceValPro = document.getElementById('price-val-pro');
+    const pricePeriodPro = document.getElementById('price-period-pro');
+    const priceValComp = document.getElementById('price-val-compliance');
+    const pricePeriodComp = document.getElementById('price-period-compliance');
+    const priceValScale = document.getElementById('price-val-scale');
+    const pricePeriodScale = document.getElementById('price-period-scale');
 
     const STRIPE_PRO_URL = "https://buy.stripe.com/00w8wQ0GN1h8ehJ7Wk0Ba09";
     const STRIPE_COMPLIANCE_URL = "https://buy.stripe.com/fZudRablrgc2b5x1xW0Ba0a";
     const GITHUB_REPO_URL = "https://github.com/maxcomperatore/rubrol";
+    const ENTERPRISE_CONTACT_URL = "mailto:enterprise@rubrol.com?subject=Enterprise%20Rubrol%20Scale%20Deployment";
+
+    function setBillingPeriod(period) {
+      currentBillingPeriod = period;
+      const toggleBtn = document.getElementById('billingToggleBtn');
+      const labelAnnual = document.getElementById('label-annual');
+      const labelMonthly = document.getElementById('label-monthly');
+
+      if (period === 'monthly') {
+        toggleBtn.classList.add('monthly');
+        labelMonthly.classList.add('active');
+        labelAnnual.classList.remove('active');
+        if (priceValPro) priceValPro.innerText = "49";
+        if (pricePeriodPro) pricePeriodPro.innerText = "/ month";
+        if (priceValComp) priceValComp.innerText = "240";
+        if (pricePeriodComp) pricePeriodComp.innerText = "/ month";
+        if (priceValScale) priceValScale.innerText = "690";
+        if (pricePeriodScale) pricePeriodScale.innerText = "/ month";
+      } else {
+        toggleBtn.classList.remove('monthly');
+        labelAnnual.classList.add('active');
+        labelMonthly.classList.remove('active');
+        if (priceValPro) priceValPro.innerText = "490";
+        if (pricePeriodPro) pricePeriodPro.innerText = "/ year";
+        if (priceValComp) priceValComp.innerText = "2,400";
+        if (pricePeriodComp) pricePeriodComp.innerText = "/ year";
+        if (priceValScale) priceValScale.innerText = "7,200";
+        if (pricePeriodScale) pricePeriodScale.innerText = "/ year";
+      }
+      if (docSlider) updatePricingCalculator(parseInt(docSlider.value, 10));
+    }
+
+    function toggleBillingPeriod() {
+      setBillingPeriod(currentBillingPeriod === 'annual' ? 'monthly' : 'annual');
+    }
 
     function updatePricingCalculator(val) {
       docCountLabel.innerText = val >= 500000 ? "500,000+ / mo" : `${val.toLocaleString()} / mo`;
 
-      // Quant Math: Chromium ($0.0081/doc) vs Rubrol ($0.0003/doc)
+      // Quant Math: Compute Waste ($0.0081 vs $0.0003)
       const annualDocs = val * 12;
       const chromeCost = Math.round(annualDocs * 0.0081);
       const rubrolCost = Math.round(annualDocs * 0.0003);
-      const netSavings = chromeCost - rubrolCost;
+      const netComputeSavings = chromeCost - rubrolCost;
 
-      savingsAmount.innerText = `$${netSavings.toLocaleString()}`;
+      // Senior Developer Maintenance Hours Saved (~$120/hr)
+      // Debugging CSS page breaks, restarting crashed Chromium worker pods, manual PDF scripts
+      const devHoursSaved = Math.min(180, Math.max(40, Math.round(val / 2500)));
+      const devLaborSavings = devHoursSaved * 120;
+      const totalTcoSaved = netComputeSavings + devLaborSavings;
+
+      savingsAmount.innerText = `$${totalTcoSaved.toLocaleString()}`;
       quantChromeCost.innerText = `$${chromeCost.toLocaleString()}/yr`;
-      quantRubrolCost.innerText = `$${rubrolCost.toLocaleString()}/yr`;
-      quantNetCompute.innerText = `$${netSavings.toLocaleString()}/yr`;
+      quantDevLabor.innerText = `$${devLaborSavings.toLocaleString()}/yr (${devHoursSaved} hrs)`;
+      quantTcoTotal.innerText = `$${totalTcoSaved.toLocaleString()}/yr`;
 
-      // Reset card states
-      [cardDev, cardPro, cardComp].forEach(c => {
+      // Reset all cards
+      [cardDev, cardPro, cardComp, cardScale].forEach(c => {
         if (c) {
           c.classList.remove('tier-active');
           c.classList.add('tier-dimmed');
         }
       });
-      if (ribbonDev) ribbonDev.style.display = 'none';
-      if (ribbonPro) ribbonPro.style.display = 'none';
-      if (ribbonComp) ribbonComp.style.display = 'none';
-      if (roiDev) roiDev.style.display = 'none';
-      if (roiPro) roiPro.style.display = 'none';
-      if (roiComp) roiComp.style.display = 'none';
+      [ribbonDev, ribbonPro, ribbonComp, ribbonScale].forEach(r => {
+        if (r) r.style.display = 'none';
+      });
+      [roiDev, roiPro, roiComp, roiScale].forEach(ro => {
+        if (ro) ro.style.display = 'none';
+      });
 
       // Tier 1: Developer Core (< 20,000 docs/mo)
       if (val < 20000) {
@@ -4206,12 +4410,12 @@ ${err.message}</div>`;
         if (roiDev) roiDev.style.display = 'block';
         calcRecPlan.innerText = "Developer Core ($0 Free)";
         calcRecPlan.style.color = "#10b981";
-        calcRecRoi.innerHTML = `100% Free Open-Source Core • Run unlimited locally or in Docker`;
+        calcRecRoi.innerHTML = "100% Free Open-Source Core • Run unlimited locally or in Docker";
         calcCtaBtn.href = GITHUB_REPO_URL;
-        calcCtaBtn.innerHTML = `<span>Clone on GitHub (Free)</span> →`;
+        calcCtaBtn.innerHTML = "<span>Clone on GitHub (Free)</span> →";
       }
-      // Tier 2: Pro Vault (20,000 - 150,000 docs/mo)
-      else if (val < 150000) {
+      // Tier 2: Pro Vault (20,000 - 100,000 docs/mo)
+      else if (val < 100000) {
         if (cardPro) {
           cardPro.classList.add('tier-active');
           cardPro.classList.remove('tier-dimmed');
@@ -4219,18 +4423,21 @@ ${err.message}</div>`;
         if (ribbonPro) ribbonPro.style.display = 'block';
         if (roiPro) {
           roiPro.style.display = 'block';
-          const netRoi = netSavings - 490;
-          roiPro.innerText = `● Net ROI: +$${netRoi.toLocaleString()}/yr after compute savings`;
+          const planCost = currentBillingPeriod === 'monthly' ? 588 : 490;
+          const netTco = totalTcoSaved - planCost;
+          roiPro.innerText = `● Net TCO ROI: +$${netTco.toLocaleString()}/yr`;
         }
-        calcRecPlan.innerText = "Pro Vault ($490/yr)";
+        const planStr = currentBillingPeriod === 'monthly' ? "Pro Vault ($49/mo)" : "Pro Vault ($490/yr)";
+        calcRecPlan.innerText = planStr;
         calcRecPlan.style.color = "var(--amber-primary)";
-        const netRoi = netSavings - 490;
-        calcRecRoi.innerHTML = `Net Positive ROI: +$${netRoi.toLocaleString()} / year saved after plan cost`;
+        const planCost = currentBillingPeriod === 'monthly' ? 588 : 490;
+        const netTco = totalTcoSaved - planCost;
+        calcRecRoi.innerHTML = `Net Positive TCO ROI: +$${netTco.toLocaleString()} / year saved after plan cost`;
         calcCtaBtn.href = STRIPE_PRO_URL;
-        calcCtaBtn.innerHTML = `<span>Proceed to Stripe ($490/yr)</span> →`;
+        calcCtaBtn.innerHTML = `<span>Proceed to Stripe (${currentBillingPeriod === 'monthly' ? '$49/mo' : '$490/yr'})</span> →`;
       }
-      // Tier 3: Compliance Suite (>= 150,000 docs/mo)
-      else {
+      // Tier 3: Compliance Suite (100,000 - 250,000 docs/mo)
+      else if (val < 250000) {
         if (cardComp) {
           cardComp.classList.add('tier-active');
           cardComp.classList.remove('tier-dimmed');
@@ -4238,15 +4445,36 @@ ${err.message}</div>`;
         if (ribbonComp) ribbonComp.style.display = 'block';
         if (roiComp) {
           roiComp.style.display = 'block';
-          const netRoi = netSavings - 2400;
-          roiComp.innerText = `● Net ROI: +$${netRoi.toLocaleString()}/yr after compute savings`;
+          const planCost = 2400;
+          const netTco = totalTcoSaved - planCost;
+          roiComp.innerText = `● Net TCO ROI: +$${netTco.toLocaleString()}/yr + certified EN 16931`;
         }
-        calcRecPlan.innerText = "Compliance Suite ($2,400/yr)";
+        const planStr = currentBillingPeriod === 'monthly' ? "Compliance Suite ($240/mo)" : "Compliance Suite ($2,400/yr)";
+        calcRecPlan.innerText = planStr;
         calcRecPlan.style.color = "#ea580c";
-        const netRoi = netSavings - 2400;
-        calcRecRoi.innerHTML = `Net Positive ROI: +$${netRoi.toLocaleString()} / year saved + certified EN 16931`;
+        const netTco = totalTcoSaved - 2400;
+        calcRecRoi.innerHTML = `Net Positive TCO ROI: +$${netTco.toLocaleString()} / year saved + EN 16931 certified`;
         calcCtaBtn.href = STRIPE_COMPLIANCE_URL;
         calcCtaBtn.innerHTML = `<span>Proceed to Stripe ($2,400/yr)</span> →`;
+      }
+      // Tier 4: Enterprise Scale (>= 250,000 docs/mo)
+      else {
+        if (cardScale) {
+          cardScale.classList.add('tier-active');
+          cardScale.classList.remove('tier-dimmed');
+        }
+        if (ribbonScale) ribbonScale.style.display = 'block';
+        if (roiScale) {
+          roiScale.style.display = 'block';
+          const netTco = totalTcoSaved - 7200;
+          roiScale.innerText = `● Net TCO ROI: +$${netTco.toLocaleString()}/yr + 99.99% SLA`;
+        }
+        calcRecPlan.innerText = "Enterprise Scale ($7,200/yr or Custom)";
+        calcRecPlan.style.color = "#4f46e5";
+        const netTco = totalTcoSaved - 7200;
+        calcRecRoi.innerHTML = `Net Positive TCO ROI: +$${netTco.toLocaleString()} / year saved + dedicated SLA`;
+        calcCtaBtn.href = ENTERPRISE_CONTACT_URL;
+        calcCtaBtn.innerHTML = "<span>Contact Enterprise Engineering</span> →";
       }
     }
 
@@ -4254,7 +4482,7 @@ ${err.message}</div>`;
       docSlider.addEventListener('input', (e) => {
         updatePricingCalculator(parseInt(e.target.value, 10));
       });
-      // Trigger initial calculation
+      // Initial call
       updatePricingCalculator(parseInt(docSlider.value, 10));
     }
 

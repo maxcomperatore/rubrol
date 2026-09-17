@@ -671,9 +671,10 @@ Rubrol operates on a transparent Open Core model:
 | Tier | Price | Highlights |
 | :--- | :--- | :--- |
 | **Community Core** | **$0** (Apache 2.0) | Full CLI compiler, local daemon, unlimited documents, open core templates. |
-| **Rubrol Pro** | **$490** / year | Complete 11+ Production Template Vault, multi-worker HTTP sidecar, priority updates. |
-| **Enterprise Suite** | **$2,400** / year | Turnkey EU Factur-X / ZUGFeRD Suite (EN 16931 + PDF/A-3b), air-gapped ECR images, source code escrow, custom template design. |
-| **Founder Lifetime Pass** | **$990** *(50 licenses only)* | Perpetual commercial license, lifetime access to all future template releases, direct engineering Slack channel. |
+| **Rubrol Pro** | **$49** / mo or **$490** / yr | Complete 11+ Production Template Vault, multi-worker HTTP sidecar, priority updates. |
+| **Compliance Suite** | **$240** / mo or **$2,400** / yr | Turnkey EU Factur-X / ZUGFeRD Suite (EN 16931 + PDF/A-3b), air-gapped ECR images, source code escrow, custom template design. |
+| **Enterprise Scale** | **$7,200** / year | Dedicated Multi-Cluster HA Kubernetes manifests, bespoke Typst font/template engineering, 99.99% SLA. |
+| **Founder Lifetime Pass** | **$990** *(Steps to $1,490 at #15)* | Perpetual commercial license, lifetime access to all future template releases, direct engineering Slack channel. |
 
 **[Unlock Pro & Lifetime Licenses via Stripe Checkout](https://buy.stripe.com/00w8wQ0GN1h8ehJ7Wk0Ba09)**
 
