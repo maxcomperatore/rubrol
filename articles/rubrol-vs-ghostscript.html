@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rubrol vs Ghostscript: Why ZUGFeRD via PostScript Scripts Is an Infrastructure Hazard — Rubrol</title>
+  <meta name="description" content="A brutal engineering teardown of Ghostscript's zugferd.ps approach for PDF/A-3 e-invoicing. Learn why AGPL licensing, CVE vulnerabilities, and lack of XML validation make Ghostscript dangerous in production.">
+  <link rel="icon" type="image/png" href="/assets/logo.png">
+
+  <link rel="canonical" href="https://rubrol.com/articles/rubrol-vs-ghostscript">
+  <meta name="keywords" content="Ghostscript ZUGFeRD, Ghostscript PDF/A-3 alternative, Ghostscript zugferd.ps, Artifex ZUGFeRD, Ghostscript security CVE, Ghostscript AGPL license, Rubrol vs Ghostscript">
+  <meta name="author" content="Rubrol Engineering Team">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+  <!-- OpenGraph -->
+  <meta property="og:site_name" content="Rubrol">
+  <meta property="og:title" content="Rubrol vs Ghostscript: Why ZUGFeRD via PostScript Scripts Is an Infrastructure Hazard">
+  <meta property="og:description" content="A brutal engineering teardown of Ghostscript's zugferd.ps approach for PDF/A-3 e-invoicing. Learn why AGPL licensing, CVE vulnerabilities, and lack of XML validation make Ghostscript dangerous in production.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://rubrol.com/articles/rubrol-vs-ghostscript">
+  <meta property="og:image" content="https://rubrol.com/assets/og_image.png">
+  <meta property="article:published_time" content="2026-09-17T12:00:00Z">
+  <meta property="article:author" content="Rubrol Engineering Team">
+  <meta property="article:section" content="Architecture">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Rubrol vs Ghostscript: Why ZUGFeRD via PostScript Scripts Is an Infrastructure Hazard">
+  <meta name="twitter:description" content="A brutal engineering teardown of Ghostscript's zugferd.ps approach for PDF/A-3 e-invoicing. Learn why AGPL licensing, CVE vulnerabilities, and lack of XML validation make Ghostscript dangerous in production.">
+  <meta name="twitter:image" content="https://rubrol.com/assets/og_image.png">
+
+  <!-- Schema.org TechArticle & Breadcrumbs JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "TechArticle",
+        "headline": "Rubrol vs Ghostscript: Why Embedding ZUGFeRD 2.2 with 1990s PostScript Scripts Is an Infrastructure Hazard",
+        "description": "A brutal engineering teardown of Ghostscript's zugferd.ps approach for PDF/A-3 e-invoicing. Learn why AGPL licensing, CVE vulnerabilities, and lack of XML validation make Ghostscript dangerous in production.",
+        "url": "https://rubrol.com/articles/rubrol-vs-ghostscript",
+        "image": "https://rubrol.com/assets/og_image.png",
+        "datePublished": "2026-09-17T12:00:00Z",
+        "dateModified": "2026-09-17T12:00:00Z",
+        "author": {
+          "@type": "Organization",
+          "name": "Rubrol Engineering Team"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Rubrol",
+          "url": "https://rubrol.com",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://rubrol.com/assets/logo.png"
+          }
+        },
+        "mainEntityOfPage": "https://rubrol.com/articles/rubrol-vs-ghostscript",
+        "keywords": "Ghostscript ZUGFeRD, Ghostscript PDF/A-3 alternative, Ghostscript zugferd.ps, Artifex ZUGFeRD, Ghostscript security CVE, Ghostscript AGPL license, Rubrol vs Ghostscript"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://rubrol.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Guides",
+            "item": "https://rubrol.com/#articles"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Rubrol vs Ghostscript: Why ZUGFeRD via PostScript Scripts Is an Infrastructure Hazard",
+            "item": "https://rubrol.com/articles/rubrol-vs-ghostscript"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-dark: #08090c;
+      --bg-card: #10121a;
+      --border: rgba(255, 255, 255, 0.09);
+      --amber: #f59e0b;
+      --amber-dark: #d97706;
+      --red: #ef4444;
+      --green: #10b981;
+      --text-main: #f8fafc;
+      --text-body: #cbd5e1;
+      --text-muted: #64748b;
+      --font-serif: 'Playfair Display', Georgia, serif;
+      --font-display: 'Instrument Serif', Georgia, serif;
+      --font-sans: 'Inter', -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', Consolas, monospace;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg-dark);
+      color: var(--text-body);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--amber); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(8, 9, 12, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 24px;
+    }
+    .nav-inner {
+      max-width: 860px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo {
+      display: flex; align-items: center; gap: 10px;
+      font-weight: 800; font-size: 16px; letter-spacing: 0.08em; color: var(--text-main);
+    }
+    .logo img { width: 26px; height: 26px; border-radius: 6px; }
+    .back-link { font-size: 13.5px; color: var(--text-muted); font-weight: 500; }
+    .back-link:hover { color: var(--text-main); text-decoration: none; }
+    
+    .article-wrap {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 64px 24px 120px 24px;
+    }
+    .tag-strip {
+      display: flex; align-items: center; gap: 8px; margin-bottom: 24px; flex-wrap: wrap;
+    }
+    .tag {
+      font-family: var(--font-mono); font-size: 11px; font-weight: 600;
+      padding: 3px 9px; border-radius: 6px; text-transform: uppercase;
+      background: rgba(245, 158, 11, 0.1); color: var(--amber); border: 1px solid rgba(245, 158, 11, 0.25);
+    }
+    .tag.red {
+      background: rgba(239, 68, 68, 0.1); color: #f87171; border-color: rgba(239, 68, 68, 0.25);
+    }
+    .tag.blue {
+      background: rgba(59, 130, 246, 0.1); color: #60a5fa; border-color: rgba(59, 130, 246, 0.25);
+    }
+    .date-meta { font-size: 13px; color: var(--text-muted); }
+    h1 {
+      font-family: var(--font-serif);
+      font-size: 44px;
+      line-height: 1.2;
+      color: var(--text-main);
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+    }
+    .lead {
+      font-size: 19.5px;
+      line-height: 1.65;
+      color: #94a3b8;
+      margin-bottom: 40px;
+      border-left: 3px solid var(--amber);
+      padding-left: 18px;
+    }
+    .lead.red { border-left-color: #ef4444; }
+    h2 {
+      font-family: var(--font-serif);
+      font-size: 28px;
+      color: var(--text-main);
+      margin: 48px 0 16px 0;
+      letter-spacing: -0.01em;
+    }
+    h3 {
+      font-size: 19px;
+      color: var(--text-main);
+      margin: 32px 0 12px 0;
+      font-weight: 700;
+    }
+    p { margin-bottom: 20px; }
+    ul, ol { margin-bottom: 24px; padding-left: 24px; }
+    li { margin-bottom: 8px; }
+    strong { color: var(--text-main); font-weight: 700; }
+    code {
+      font-family: var(--font-mono);
+      font-size: 13.5px;
+      background: rgba(255, 255, 255, 0.07);
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: #f1f5f9;
+    }
+    pre {
+      background: #0d0f15;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+      overflow-x: auto;
+      margin: 24px 0;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      line-height: 1.6;
+      color: #e2e8f0;
+    }
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 32px 0;
+      font-size: 14px;
+    }
+    .comparison-table th, .comparison-table td {
+      padding: 12px 16px;
+      border: 1px solid var(--border);
+      text-align: left;
+    }
+    .comparison-table th {
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text-main);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .comparison-table tr:nth-child(even) {
+      background: rgba(255, 255, 255, 0.02);
+    }
+    .bad { color: #f87171; font-weight: 600; }
+    .good { color: #4ade80; font-weight: 600; }
+
+    .callout-box {
+      background: rgba(245, 158, 11, 0.06);
+      border: 1px solid rgba(245, 158, 11, 0.25);
+      border-radius: 8px;
+      padding: 24px;
+      margin: 32px 0;
+    }
+    .callout-box.danger {
+      background: rgba(239, 68, 68, 0.06);
+      border-color: rgba(239, 68, 68, 0.25);
+    }
+    .callout-title {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--amber);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+      font-family: var(--font-mono);
+    }
+    .callout-title.danger { color: #ef4444; }
+
+    .cta-banner {
+      background: linear-gradient(135deg, rgba(234, 88, 12, 0.15) 0%, rgba(16, 18, 26, 0.9) 100%);
+      border: 1px solid rgba(234, 88, 12, 0.3);
+      border-radius: 12px;
+      padding: 40px;
+      margin: 56px 0;
+      text-align: center;
+    }
+    .cta-banner h3 { font-family: var(--font-serif); font-size: 28px; margin-bottom: 12px; }
+    .cta-banner p { max-width: 600px; margin: 0 auto 24px auto; color: #94a3b8; }
+    .btn-action {
+      display: inline-block;
+      background: var(--amber);
+      color: #000;
+      font-weight: 700;
+      font-size: 14.5px;
+      padding: 13px 30px;
+      border-radius: 8px;
+      transition: all 0.2s;
+    }
+    .btn-action:hover {
+      background: #fbbf24;
+      text-decoration: none;
+      transform: translateY(-1px);
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="/" class="logo">
+        <img src="/assets/logo.png" alt="Rubrol">
+        RUBROL
+      </a>
+      <a href="/#articles" class="back-link">← Back to Guides</a>
+    </div>
+  </nav>
+
+  <main class="article-wrap">
+    <div class="tag-strip">
+      <span class="tag red">Security & Compliance</span><span class="tag">Ghostscript</span><span class="tag">PDF/A-3</span>
+      <span class="date-meta">September 2026 • by Rubrol Engineering Team</span>
+    </div>
+
+    <h1>Rubrol vs Ghostscript: Why Embedding ZUGFeRD 2.2 with 1990s PostScript Scripts Is an Infrastructure Hazard</h1>
+
+    <p class="lead red">
+      Artifex promotes Ghostscript command lines with zugferd.ps as a turnkey way to produce ZUGFeRD e-invoices. But underneath the hood lies an AGPL-3.0 licensing trap, decades of remote code execution CVEs, and complete silence on EN 16931 validation errors. Here is why modern engineering stacks avoid Ghostscript.
+    </p>
+
+    
+<h2>The 1990s Legacy Meets 2026 Mandates</h2>
+<p>
+  Ghostscript is one of the most venerable pieces of open-source software in existence, dating back to 1988. In recent releases, Artifex introduced the <code>zugferd.ps</code> PostScript wrapper script, allowing developers to convert an existing PDF into a PDF/A-3 container with an embedded XML file.
+</p>
+<p>
+  On paper, it looks like a simple bash command:
+</p>
+<pre><code>gs --permit-file-read=/data/ \
+   -sDEVICE=pdfwrite \
+   -dPDFA=3 \
+   -sColorConversionStrategy=RGB \
+   -sZUGFeRDXMLFile=/data/factur-x.xml \
+   -sZUGFeRDProfile=/data/default_rgb.icc \
+   -o /data/output.pdf \
+   /usr/share/ghostscript/lib/zugferd.ps \
+   /data/input.pdf</code></pre>
+<p>
+  In production cloud architecture, however, this command creates three immediate, critical liabilities.
+</p>
+
+<h2>1. The Security Liability: Decades of RCE Vulnerabilities</h2>
+<p>
+  Ghostscript is a full Turing-complete PostScript language interpreter written in C. Because PostScript allows file manipulation and device interaction, Ghostscript has historically been one of the most targeted binaries for server vulnerabilities:
+</p>
+<ul>
+  <li><strong>CVE-2023-36664</strong>: Ghostscript file permission validation bypass.</li>
+  <li><strong>CVE-2021-3781</strong>: Arbitrary code execution via format string injection.</li>
+  <li><strong>CVE-2019-14811 / CVE-2019-14817</strong>: Multiple <code>-dSAFER</code> sandbox escapes allowing remote code execution when parsing untrusted PDF objects.</li>
+</ul>
+<p>
+  Running Ghostscript inside an automated invoicing pipeline means untrusted input (e.g. customer-uploaded logos, dynamic fonts, or invoice strings) is executed by a complex C engine. 
+</p>
+<p>
+  <strong>Rubrol</strong> eliminates this attack surface entirely. Written in <strong>memory-safe Rust</strong>, Rubrol has no PostScript interpreter, does not execute shell scripts, and does not require sandbox bypass flags like <code>--permit-file-read</code>.
+</p>
+
+<h2>2. Zero EN 16931 Schema & Business Rule Validation</h2>
+<p>
+  Here is the most dangerous failure mode of Ghostscript:
+</p>
+<div class="callout-box danger">
+  <div class="callout-title danger">Ghostscript Embeds Garbage Without Warning</div>
+  <p>
+    Ghostscript treats <code>factur-x.xml</code> as an opaque byte stream. It has zero knowledge of the UN/CEFACT CII syntax, EN 16931 profiles, or Schematron business rules. If your XML has a missing VAT identifier (BR-CO-09) or mismatched decimal totals (BR-CO-15), Ghostscript will happily package it into a PDF/A-3 container and return exit code 0.
+  </p>
+</div>
+<p>
+  When your customer submits that PDF to the French <strong>Portail Public de Facturation (PPF)</strong> or German <strong>DATEV</strong> portal, the invoice is <strong>instantly rejected</strong>, payments are delayed, and tax non-compliance penalties apply.
+</p>
+<p>
+  Rubrol executes strict in-memory schema validation <em>before</em> document assembly. If a calculation fails or a mandatory EU field is absent, Rubrol returns a descriptive JSON error pinpointing the exact rule violation.
+</p>
+
+<h2>3. The AGPL-3.0 Licensing Landmine</h2>
+<p>
+  Ghostscript is licensed under the <strong>GNU Affero General Public License (AGPLv3)</strong>. 
+</p>
+<p>
+  Under AGPLv3, if you run Ghostscript as part of a network-accessible service (like a SaaS billing engine or API), you may be legally required to provide the <strong>complete corresponding source code</strong> of your entire application to all users interacting with that service.
+</p>
+<p>
+  To avoid open-sourcing their proprietary SaaS backends, companies must purchase commercial OEM licenses from Artifex, often costing <strong>\$10,000 to \$30,000+ per year</strong>.
+</p>
+<p>
+  Rubrol gives you commercial peace of mind: an open-source Rust CLI and perpetual, self-hosted <strong>Rubrol Vault</strong> licenses with zero copyleft contagion and no recurring per-seat fees.
+</p>
+
+<table class="comparison-table">
+  <thead>
+    <tr>
+      <th>Comparison Factor</th>
+      <th>Ghostscript (`zugferd.ps`)</th>
+      <th>Rubrol (Native Engine)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Security Model</strong></td>
+      <td class="bad">C codebase / Historic -dSAFER CVEs</td>
+      <td class="good">Memory-safe Rust / Zero PostScript runtime</td>
+    </tr>
+    <tr>
+      <td><strong>XML Compliance Checks</strong></td>
+      <td class="bad">❌ None (Blind byte embedding)</td>
+      <td class="good">✅ Full EN 16931 Schematron validation</td>
+    </tr>
+    <tr>
+      <td><strong>Licensing</strong></td>
+      <td class="bad">Strict AGPL-3.0 or \$10k+ commercial fee</td>
+      <td class="good">Clean perpetual Vault / Open-source core</td>
+    </tr>
+    <tr>
+      <td><strong>PDF Generation</strong></td>
+      <td class="bad">❌ Post-processing only (Needs input PDF)</td>
+      <td class="good">✅ Direct layout compilation via Typst</td>
+    </tr>
+    <tr>
+      <td><strong>Color Profile Handling</strong></td>
+      <td class="bad">Requires external ICC files & PS flags</td>
+      <td class="good">Automatic sRGB IEC61966-2.1 integration</td>
+    </tr>
+    <tr>
+      <td><strong>Execution Speed</strong></td>
+      <td class="bad">350ms – 850ms</td>
+      <td class="good">14ms (25x faster)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>The Verdict</h2>
+<p>
+  Ghostscript is an indispensable tool for printing houses and PostScript prepress workflows. But for modern microservices handling EU e-invoicing compliance, relying on PostScript scripts introduces intolerable security vulnerabilities, license liability, and zero validation protection.
+</p>
+<p>
+  Rubrol is built specifically for 2026: safe, blazing fast, and natively compliant.
+</p>
+
+
+    <div class="cta-banner">
+      <h3>Replace Bloated Invoicing Toolchains with Rubrol</h3>
+      <p>
+        Deploy the atomic Rust Typst engine in under 60 seconds. Eliminate memory leaks, kill subprocessing hacks, and generate certified Factur-X / ZUGFeRD 2.2 PDFs in 14ms.
+      </p>
+      <a href="/#pricing" class="btn-action">Deploy Rubrol Vault →</a>
+    </div>
+
+  </main>
+</body>
+</html>

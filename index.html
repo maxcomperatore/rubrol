@@ -2260,6 +2260,96 @@
             Read Architectural Teardown →
           </a>
         </div>
+        <!-- Guide 3: Rubrol vs Mustangproject -->
+        <div style="background: #11131a; border: 1px solid var(--bg-obsidian-border); border-radius: 12px; padding: 36px; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.2s, border-color 0.2s;">
+          <div>
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px;">
+              <span style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: #a855f7; background: rgba(168, 85, 247, 0.1); border: 1px solid rgba(168, 85, 247, 0.25); padding: 3px 9px; border-radius: 6px; text-transform: uppercase;">
+                JAVA VS RUST
+              </span>
+              <span style="font-size: 12.5px; color: #64748b; font-family: var(--font-mono);">8 MIN READ • RUBROL TEAM</span>
+            </div>
+            
+            <h3 style="font-family: var(--font-serif); font-size: 25px; color: #f8fafc; line-height: 1.3; margin-bottom: 14px;">
+              Rubrol vs Mustangproject: Why Modern Cloud Services Don't Want a 300MB Java JVM
+            </h3>
+            
+            <p style="font-size: 14.5px; color: #94a3b8; line-height: 1.65; margin-bottom: 24px;">
+              Mustangproject is the reference German ZUGFeRD tool. But deploying a heavy JVM with Apache PDFBox in Kubernetes leads to memory leaks, exit code 137 OOM kills, and the fact that Mustangproject cannot even render visual invoices.
+            </p>
+
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 13.5px; color: #cbd5e1; margin-bottom: 28px;">
+              <li>❌ <strong>The Missing Renderer:</strong> Mustangproject only attaches XML to pre-existing PDFs</li>
+              <li>❌ <strong>JVM Memory Spikes:</strong> Why PDFBox DOM buffering triggers container OOM kills</li>
+              <li>⚡ <strong>Atomic Pipeline:</strong> Render visual Typst layout + embed XML in one 14ms pass</li>
+            </ul>
+          </div>
+
+          <a href="/articles/rubrol-vs-mustangproject" style="display: inline-flex; align-items: center; gap: 8px; font-weight: 700; font-size: 14px; color: #c084fc; text-decoration: none;">
+            Read Architectural Comparison →
+          </a>
+        </div>
+
+        <!-- Guide 4: Rubrol vs Ghostscript -->
+        <div style="background: #11131a; border: 1px solid var(--bg-obsidian-border); border-radius: 12px; padding: 36px; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.2s, border-color 0.2s;">
+          <div>
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px;">
+              <span style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: #f43f5e; background: rgba(244, 63, 94, 0.1); border: 1px solid rgba(244, 63, 94, 0.25); padding: 3px 9px; border-radius: 6px; text-transform: uppercase;">
+                SECURITY &amp; COMPLIANCE
+              </span>
+              <span style="font-size: 12.5px; color: #64748b; font-family: var(--font-mono);">7 MIN READ • RUBROL TEAM</span>
+            </div>
+            
+            <h3 style="font-family: var(--font-serif); font-size: 25px; color: #f8fafc; line-height: 1.3; margin-bottom: 14px;">
+              Rubrol vs Ghostscript: Why ZUGFeRD via PostScript Scripts Is an Infrastructure Hazard
+            </h3>
+            
+            <p style="font-size: 14.5px; color: #94a3b8; line-height: 1.65; margin-bottom: 24px;">
+              Artifex recommends Ghostscript command lines with zugferd.ps. But underneath lies AGPL-3.0 copyleft traps, decades of remote code execution CVEs, and complete absence of EN 16931 schema validation.
+            </p>
+
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 13.5px; color: #cbd5e1; margin-bottom: 28px;">
+              <li>❌ <strong>Blind Embedding:</strong> Ghostscript will embed invalid XML without error</li>
+              <li>❌ <strong>AGPL-3.0 Contagion:</strong> Risking proprietary SaaS IP or paying $10k+ OEM fees</li>
+              <li>⚡ <strong>Memory-Safe Rust:</strong> Zero PostScript attack surface with pre-compile validation</li>
+            </ul>
+          </div>
+
+          <a href="/articles/rubrol-vs-ghostscript" style="display: inline-flex; align-items: center; gap: 8px; font-weight: 700; font-size: 14px; color: #fb7185; text-decoration: none;">
+            Read Security Breakdown →
+          </a>
+        </div>
+
+        <!-- Guide 5: Rubrol vs Gotenberg -->
+        <div style="background: #11131a; border: 1px solid var(--bg-obsidian-border); border-radius: 12px; padding: 36px; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.2s, border-color 0.2s;">
+          <div>
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px;">
+              <span style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: #38bdf8; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.25); padding: 3px 9px; border-radius: 6px; text-transform: uppercase;">
+                DEVOPS &amp; SCALE
+              </span>
+              <span style="font-size: 12.5px; color: #64748b; font-family: var(--font-mono);">6 MIN READ • RUBROL TEAM</span>
+            </div>
+            
+            <h3 style="font-family: var(--font-serif); font-size: 25px; color: #f8fafc; line-height: 1.3; margin-bottom: 14px;">
+              Rubrol vs Gotenberg: Why Headless Chromium Clusters Are the Wrong Tool for E-Invoicing
+            </h3>
+            
+            <p style="font-size: 14.5px; color: #94a3b8; line-height: 1.65; margin-bottom: 24px;">
+              Gotenberg requires CHROMIUM_RESTART_AFTER to survive memory leaks and needs 2GB-4GB of RAM per pod. Discover why high-throughput billing systems drop Chromium for 14ms Typst compilation.
+            </p>
+
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 13.5px; color: #cbd5e1; margin-bottom: 28px;">
+              <li>❌ <strong>Memory Leaks:</strong> Periodic browser killing needed to avoid container crashes</li>
+              <li>❌ <strong>Bloated Containers:</strong> 1.8GB image size with Chromium, LibreOffice, and Java</li>
+              <li>⚡ <strong>70x Faster:</strong> 14ms response time, 42MB Docker image, and &lt; 28MB RAM</li>
+            </ul>
+          </div>
+
+          <a href="/articles/rubrol-vs-gotenberg" style="display: inline-flex; align-items: center; gap: 8px; font-weight: 700; font-size: 14px; color: #38bdf8; text-decoration: none;">
+            Read DevOps Benchmark →
+          </a>
+        </div>
+
 
       </div>
     </div>
