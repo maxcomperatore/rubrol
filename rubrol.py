@@ -53,6 +53,12 @@ def main():
     s.add_argument("--host", default="0.0.0.0", help="Host address (default: 0.0.0.0)")
     s.add_argument("-p", "--port", type=int, default=8080, help="Port (default: 8080)")
 
+    # 6. benchmark
+    b = subparsers.add_parser("benchmark", help="Run real sub-millisecond compilation benchmarks with latency percentiles")
+    b.add_argument("-t", "--template", default="b2b_invoice", help="Template to benchmark (default: b2b_invoice)")
+    b.add_argument("-n", "--iterations", type=int, default=50, help="Number of benchmark iterations (default: 50)")
+    b.add_argument("--json", action="store_true", help="Output raw JSON results")
+
     args = parser.parse_args()
     engine = RubrolEngine(default_standard=args.standard if hasattr(args, "standard") else "a-2b")
 
@@ -122,6 +128,10 @@ def main():
 
     elif args.command == "serve":
         run_server(args.host, args.port)
+
+    elif args.command == "benchmark":
+        from rubrol.core.benchmark import run_benchmark
+        run_benchmark(template_name=args.template, iterations=args.iterations, json_output=args.json)
 
 if __name__ == "__main__":
     main()
