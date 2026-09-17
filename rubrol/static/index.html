@@ -2320,6 +2320,34 @@
       margin-left: 4px;
     }
 
+  
+    /* Grok-Style Smooth Rolling Numbers */
+    .price-figure {
+      display: inline-block;
+      overflow: hidden;
+      height: 1.18em;
+      line-height: 1.18em;
+      vertical-align: middle;
+      position: relative;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .rolling-digit {
+      display: inline-block;
+      transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.22s ease;
+      will-change: transform, opacity;
+    }
+
+    .rolling-out-up {
+      transform: translateY(-50%);
+      opacity: 0;
+    }
+
+    .rolling-out-down {
+      transform: translateY(50%);
+      opacity: 0;
+    }
+
   </style>
 </head>
 <body>
@@ -3450,27 +3478,7 @@
       </div>
     </div>
   </section>
-      <div class="founder-banner">
-        <div>
-          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px; flex-wrap: wrap;">
-            <span class="editorial-label" style="margin-bottom: 0;">LIMITED FOUNDER ALLOCATION</span>
-            <span style="font-family: var(--font-mono); font-size: 10.5px; font-weight: 700; background: #fee2e2; color: #b91c1c; padding: 3px 10px; border-radius: 12px; border: 1px solid #fca5a5; letter-spacing: 0.04em;">
-              50 LICENSES ONLY • 38 REMAINING
-            </span>
-          </div>
-          <h4 style="font-family: var(--font-serif); font-size: 22px; color: var(--text-light-head);">
-            Lifetime Founder Pass — $990 One-Time
-          </h4>
-          <p style="font-size: 13.5px; color: var(--text-light-body); margin-top: 4px;">
-            Get perpetual commercial engine rights, lifetime access to all current and future Pro templates, private repository updates, and direct founder Slack access with zero recurring fees.
-          </p>
-        </div>
-        <a href="https://buy.stripe.com/00w9AU75b6Bsc9BgsQ0Ba0b" target="_blank" class="btn-pill-primary" style="background: #18181b; color: #ffffff; white-space: nowrap;">
-          Claim Founder Pass ($990) →
-        </a>
-      </div>
-    </div>
-  </section>
+      
 
   <!-- PRE-FOOTER CTA -->
   <section class="section-prefooter">
@@ -4334,24 +4342,58 @@ ${err.message}</div>`;
     const GITHUB_REPO_URL = "https://github.com/maxcomperatore/rubrol";
     const ENTERPRISE_CONTACT_URL = "mailto:enterprise@rubrol.com?subject=Enterprise%20Rubrol%20Scale%20Deployment";
 
+    // Grok-style smooth vertical rolling numbers animation
+    function rollPriceNumber(elem, newText, direction) {
+      if (!elem || elem.innerText === newText) return;
+
+      const outClass = direction === 'up' ? 'rolling-out-up' : 'rolling-out-down';
+      const inStart = direction === 'up' ? 'translateY(50%)' : 'translateY(-50%)';
+
+      elem.style.transition = 'transform 0.16s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.16s ease';
+      elem.classList.add(outClass);
+
+      setTimeout(() => {
+        elem.innerText = newText;
+        elem.classList.remove(outClass);
+        elem.style.transition = 'none';
+        elem.style.transform = inStart;
+        elem.style.opacity = '0';
+
+        // Force reflow
+        void elem.offsetHeight;
+
+        elem.style.transition = 'transform 0.38s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease';
+        elem.style.transform = 'translateY(0)';
+        elem.style.opacity = '1';
+      }, 160);
+    }
+
     function setBillingPeriod(period) {
+      if (currentBillingPeriod === period) return;
+      const isSwitchingToMonthly = (period === 'monthly');
+      const direction = isSwitchingToMonthly ? 'down' : 'up';
       currentBillingPeriod = period;
+
       const toggleBtn = document.getElementById('billingToggleBtn');
       const labelAnnual = document.getElementById('label-annual');
       const labelMonthly = document.getElementById('label-monthly');
       const btnPro = document.getElementById('btn-pro');
       const btnComp = document.getElementById('btn-compliance');
 
-      if (period === 'monthly') {
+      if (isSwitchingToMonthly) {
         toggleBtn.classList.add('monthly');
         labelMonthly.classList.add('active');
         labelAnnual.classList.remove('active');
-        if (priceValPro) priceValPro.innerText = "49";
+
+        rollPriceNumber(priceValPro, "49", direction);
         if (pricePeriodPro) pricePeriodPro.innerText = "/ month";
-        if (priceValComp) priceValComp.innerText = "300";
+
+        rollPriceNumber(priceValComp, "300", direction);
         if (pricePeriodComp) pricePeriodComp.innerText = "/ month";
-        if (priceValScale) priceValScale.innerText = "690";
+
+        rollPriceNumber(priceValScale, "690", direction);
         if (pricePeriodScale) pricePeriodScale.innerText = "/ month";
+
         if (btnPro) {
           btnPro.href = STRIPE_PRO_MONTHLY_URL;
           btnPro.innerText = "Get Pro Access ($49/mo) →";
@@ -4364,12 +4406,16 @@ ${err.message}</div>`;
         toggleBtn.classList.remove('monthly');
         labelAnnual.classList.add('active');
         labelMonthly.classList.remove('active');
-        if (priceValPro) priceValPro.innerText = "490";
+
+        rollPriceNumber(priceValPro, "490", direction);
         if (pricePeriodPro) pricePeriodPro.innerText = "/ year";
-        if (priceValComp) priceValComp.innerText = "3,600";
+
+        rollPriceNumber(priceValComp, "3,600", direction);
         if (pricePeriodComp) pricePeriodComp.innerText = "/ year";
-        if (priceValScale) priceValScale.innerText = "7,200";
+
+        rollPriceNumber(priceValScale, "7,200", direction);
         if (pricePeriodScale) pricePeriodScale.innerText = "/ year";
+
         if (btnPro) {
           btnPro.href = STRIPE_PRO_ANNUAL_URL;
           btnPro.innerText = "Get Pro Access ($490/yr) →";
