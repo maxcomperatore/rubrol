@@ -45,6 +45,8 @@
   - [Docker Compose](#docker-compose)
   - [Kubernetes Sidecar Pattern](#kubernetes-sidecar-pattern)
 - [Commercial Licensing & Pro Vault](#commercial-licensing--pro-vault)
+- [Community SDK Bounty Program](#-community-sdk-bounty-program-990-reward)
+- [Contributing Guidelines](#contributing-guidelines)
 - [FAQ & Troubleshooting](#faq--troubleshooting)
 
 ---
@@ -604,6 +606,28 @@ Rubrol operates on a transparent Open Core model:
 👉 **[Unlock Pro & Lifetime Licenses via Stripe Checkout](https://buy.stripe.com/00w8wQ0GN1h8ehJ7Wk0Ba09)**
 
 *Note: Upon purchase, you will receive immediate automated access to the private repository [`rubrol-pro-vault`](https://github.com/maxcomperatore/rubrol-pro-vault).*
+
+---
+
+## 🏆 Community SDK Bounty Program ($990 Reward)
+
+We want native, high-performance client libraries in every programming language. 
+
+> **The Bounty:** Build, test, and publish an open-source community client SDK for an unaddressed ecosystem (e.g. Ruby / Rails, Elixir / Phoenix, Java / Kotlin, Swift, Dart / Flutter) → **Receive a complimentary Rubrol Lifetime Founder Pass ($990 value)** and permanent featured listing on [rubrol.com](https://rubrol.com) and in this repository.
+
+See [`CONTRIBUTING.md`](CONTRIBUTING.md) for full eligibility criteria and submission guidelines.
+
+---
+
+## Contributing Guidelines
+
+We welcome pull requests for new open-core document templates, client examples, Docker optimizations, and performance improvements. 
+
+Please review our [**Contributing Guide (`CONTRIBUTING.md`)**](CONTRIBUTING.md) for:
+* Local development setup in under 30 seconds
+* Typst template design conventions and dynamic data binding standards
+* Conventional commit standards (`feat:`, `fix:`, `perf:`, `template:`)
+* Testing against the local HTTP sidecar
 
 ---
 
