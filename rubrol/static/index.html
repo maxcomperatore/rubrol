@@ -2166,6 +2166,40 @@
       background: rgba(245, 158, 11, 0.08);
     }
 
+  
+    /* Dynamic Tier Switching & Quant ROI */
+    .price-card {
+      transition: border-color 0.22s ease, box-shadow 0.22s ease, transform 0.22s ease, opacity 0.22s ease;
+    }
+
+    .price-card.tier-active {
+      border: 2px solid var(--amber-primary) !important;
+      box-shadow: 0 16px 45px -8px rgba(217, 119, 6, 0.22) !important;
+      transform: translateY(-5px);
+    }
+
+    .price-card.tier-dimmed {
+      opacity: 0.75;
+      border: 1px solid var(--border-parchment);
+      box-shadow: none;
+      transform: none;
+    }
+
+    .quant-roi-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #15803d;
+      background: #dcfce7;
+      border: 1px solid #bbf7d0;
+      border-radius: 4px;
+      padding: 2px 7px;
+      font-family: var(--font-mono);
+      margin-top: 6px;
+    }
+
   </style>
 </head>
 <body>
@@ -3241,27 +3275,63 @@
         <div class="slider-group">
           <div class="slider-header">
             <span class="slider-title">Monthly Documents Generated</span>
-            <span id="docCountLabel" class="slider-val">50,000</span>
+            <span id="docCountLabel" class="slider-val">50,000 / mo</span>
           </div>
-          <input type="range" id="docSlider" min="1000" max="500000" step="5000" value="50000">
+          <input type="range" id="docSlider" min="2000" max="500000" step="2000" value="50000">
           <div style="display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 11px; color: var(--text-light-muted);">
-            <span>1,000 / mo</span>
-            <span>250,000 / mo</span>
+            <span>2,000 / mo</span>
+            <span>150,000 / mo</span>
             <span>500,000+ / mo</span>
+          </div>
+
+          <!-- Live Quant Math Breakdown Bar -->
+          <div style="background: var(--bg-parchment-warm); border: 1px solid var(--border-parchment); border-radius: 8px; padding: 12px 14px; margin-top: 10px; font-size: 12px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; text-align: center;">
+            <div>
+              <div style="font-size: 10px; text-transform: uppercase; color: var(--text-light-muted); font-family: var(--font-mono);">Puppeteer Cloud Waste</div>
+              <div id="quantChromeCost" style="font-weight: 700; color: #b91c1c; font-size: 13.5px; margin-top: 2px;">$4,860/yr</div>
+            </div>
+            <div>
+              <div style="font-size: 10px; text-transform: uppercase; color: var(--text-light-muted); font-family: var(--font-mono);">Rubrol Engine Cost</div>
+              <div id="quantRubrolCost" style="font-weight: 700; color: #15803d; font-size: 13.5px; margin-top: 2px;">$180/yr</div>
+            </div>
+            <div>
+              <div style="font-size: 10px; text-transform: uppercase; color: var(--text-light-muted); font-family: var(--font-mono);">Net Cloud Compute Saved</div>
+              <div id="quantNetCompute" style="font-weight: 700; color: var(--amber-primary); font-size: 13.5px; margin-top: 2px;">$4,680/yr</div>
+            </div>
           </div>
         </div>
 
         <div class="calculator-result">
           <div class="result-sub">Estimated Annual AWS Compute Savings</div>
-          <div id="savingsAmount" class="result-amount">$4,860</div>
-          <div class="result-desc">Based on eliminating 16 Chromium Fargate containers running at $0.0081/doc.</div>
+          <div id="savingsAmount" class="result-amount">$4,680</div>
+          <div class="result-desc" id="savingsBreakdown">
+            Based on eliminating 16 Chromium Fargate containers running at $0.0081/doc vs $0.0003/doc with native Typst.
+          </div>
+
+          <!-- Dynamic Active Tier Recommendation -->
+          <div style="margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--border-parchment); text-align: left;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span style="font-size: 12.5px; font-weight: 600; color: var(--text-light-head);">Recommended Tier:</span>
+              <span id="calcRecPlan" style="font-family: var(--font-mono); font-size: 13px; font-weight: 700; color: var(--amber-primary);">Pro Vault ($490/yr)</span>
+            </div>
+            <div id="calcRecRoi" class="quant-roi-badge">
+              ✓ Net Positive ROI: +$4,190 / year saved after plan cost
+            </div>
+          </div>
+
+          <div style="margin-top: 14px;">
+            <a id="calcCtaBtn" href="https://buy.stripe.com/00w8wQ0GN1h8ehJ7Wk0Ba09" target="_blank" class="btn-pricing btn-pricing-primary" style="padding: 10px 24px; font-size: 13.5px; display: inline-flex; align-items: center; justify-content: center; gap: 6px; width: 100%;">
+              <span>Proceed to Stripe Checkout</span> →
+            </a>
+          </div>
         </div>
       </div>
 
-      <!-- 3-Tier Deck -->
+      <!-- 3-Tier Deck with Dynamic Tier Switching -->
       <div class="pricing-deck">
         <!-- Tier 1: Developer -->
-        <div class="price-card">
+        <div id="card-developer" class="price-card tier-dimmed">
+          <span id="ribbon-developer" class="featured-ribbon" style="display: none; background: #10b981;">Best for Low Volume</span>
           <div>
             <h3 class="price-plan-name">Developer Core</h3>
             <p class="price-plan-desc">For indie builders and engineers embedding the engine into internal tools.</p>
@@ -3269,6 +3339,9 @@
               <span class="price-currency">$</span>
               <span class="price-figure">0</span>
               <span class="price-period">/ forever</span>
+            </div>
+            <div id="roi-developer" style="font-size: 11.5px; color: #15803d; font-family: var(--font-mono); margin: -10px 0 16px 0; display: none;">
+              ● 100% Free Open Source Core
             </div>
             <ul class="price-features">
               <li>Apache 2.0 Open Source Core</li>
@@ -3278,14 +3351,14 @@
               <li>Docker Container Image</li>
             </ul>
           </div>
-          <a href="https://github.com/maxcomperatore/rubrol" target="_blank" class="btn-pricing btn-pricing-secondary">
+          <a href="https://github.com/maxcomperatore/rubrol" target="_blank" class="btn-pricing btn-pricing-secondary" id="btn-developer">
             Clone on GitHub
           </a>
         </div>
 
         <!-- Tier 2: Pro Vault -->
-        <div class="price-card featured">
-          <span class="featured-ribbon">Most Popular</span>
+        <div id="card-pro" class="price-card tier-active featured">
+          <span id="ribbon-pro" class="featured-ribbon">★ Recommended for Your Volume</span>
           <div>
             <h3 class="price-plan-name">Pro Template Vault</h3>
             <p class="price-plan-desc">For SaaS teams and marketplaces generating customer-facing invoices.</p>
@@ -3293,6 +3366,9 @@
               <span class="price-currency">$</span>
               <span class="price-figure">490</span>
               <span class="price-period">/ year</span>
+            </div>
+            <div id="roi-pro" style="font-size: 11.5px; color: #15803d; font-family: var(--font-mono); margin: -10px 0 16px 0;">
+              ● Net ROI: +$4,190/yr after compute savings
             </div>
             <ul class="price-features">
               <li>All 11 Production Enterprise Templates</li>
@@ -3302,20 +3378,24 @@
               <li>Quarterly Template Security Updates</li>
             </ul>
           </div>
-          <a href="https://buy.stripe.com/00w8wQ0GN1h8ehJ7Wk0Ba09" target="_blank" class="btn-pricing btn-pricing-primary">
-            Get Pro Access →
+          <a href="https://buy.stripe.com/00w8wQ0GN1h8ehJ7Wk0Ba09" target="_blank" class="btn-pricing btn-pricing-primary" id="btn-pro">
+            Get Pro Access ($490/yr) →
           </a>
         </div>
 
-        <!-- Tier 3: Enterprise Suite -->
-        <div class="price-card">
+        <!-- Tier 3: Compliance Suite -->
+        <div id="card-compliance" class="price-card tier-dimmed">
+          <span id="ribbon-compliance" class="featured-ribbon" style="display: none; background: #ea580c;">★ Recommended for Scale &amp; Compliance</span>
           <div>
             <h3 class="price-plan-name">Compliance Suite</h3>
             <p class="price-plan-desc">For European &amp; global enterprises requiring certified e-invoicing.</p>
             <div class="price-plan-num">
               <span class="price-currency">$</span>
-              <span class="price-figure">2,400</span>
+              <span class="price-figure">3,600</span>
               <span class="price-period">/ year</span>
+            </div>
+            <div id="roi-compliance" style="font-size: 11.5px; color: #15803d; font-family: var(--font-mono); margin: -10px 0 16px 0; display: none;">
+              ● Avoids €10k+ non-compliance penalties
             </div>
             <ul class="price-features">
               <li>Certified EU Factur-X &amp; ZUGFeRD 2.2</li>
@@ -3325,8 +3405,8 @@
               <li>Direct Engineer Slack / SLA Channel</li>
             </ul>
           </div>
-          <a href="https://buy.stripe.com/fZudRablrgc2b5x1xW0Ba0a" target="_blank" class="btn-pricing btn-pricing-secondary">
-            Get Compliance Suite →
+          <a href="https://buy.stripe.com/fZudRablrgc2b5x1xW0Ba0a" target="_blank" class="btn-pricing btn-pricing-secondary" id="btn-compliance">
+            Get Compliance Suite ($3,600/yr) →
           </a>
         </div>
       </div>
@@ -4176,16 +4256,120 @@ ${err.message}</div>`;
 
     document.getElementById('downloadPdfBtn').addEventListener('click', downloadPdf);
 
-    // Amortization Calculator
-    const slider = document.getElementById('docSlider');
-    const label = document.getElementById('docCountLabel');
-    const savings = document.getElementById('savingsAmount');
-    slider.addEventListener('input', (e) => {
-      const val = parseInt(e.target.value, 10);
-      label.innerText = val.toLocaleString();
-      const annualSavings = Math.round((val * 12) * 0.0081);
-      savings.innerText = `$${annualSavings.toLocaleString()}`;
-    });
+    // Dynamic Tier Switcher & Quant ROI Calculator (Auth0 Style)
+    const docSlider = document.getElementById('docSlider');
+    const docCountLabel = document.getElementById('docCountLabel');
+    const savingsAmount = document.getElementById('savingsAmount');
+    const quantChromeCost = document.getElementById('quantChromeCost');
+    const quantRubrolCost = document.getElementById('quantRubrolCost');
+    const quantNetCompute = document.getElementById('quantNetCompute');
+    const calcRecPlan = document.getElementById('calcRecPlan');
+    const calcRecRoi = document.getElementById('calcRecRoi');
+    const calcCtaBtn = document.getElementById('calcCtaBtn');
+
+    const cardDev = document.getElementById('card-developer');
+    const cardPro = document.getElementById('card-pro');
+    const cardComp = document.getElementById('card-compliance');
+    const ribbonDev = document.getElementById('ribbon-developer');
+    const ribbonPro = document.getElementById('ribbon-pro');
+    const ribbonComp = document.getElementById('ribbon-compliance');
+    const roiDev = document.getElementById('roi-developer');
+    const roiPro = document.getElementById('roi-pro');
+    const roiComp = document.getElementById('roi-compliance');
+
+    const STRIPE_PRO_URL = "https://buy.stripe.com/00w8wQ0GN1h8ehJ7Wk0Ba09";
+    const STRIPE_COMPLIANCE_URL = "https://buy.stripe.com/fZudRablrgc2b5x1xW0Ba0a";
+    const GITHUB_REPO_URL = "https://github.com/maxcomperatore/rubrol";
+
+    function updatePricingCalculator(val) {
+      docCountLabel.innerText = val >= 500000 ? "500,000+ / mo" : `${val.toLocaleString()} / mo`;
+
+      // Quant Math: Chromium ($0.0081/doc) vs Rubrol ($0.0003/doc)
+      const annualDocs = val * 12;
+      const chromeCost = Math.round(annualDocs * 0.0081);
+      const rubrolCost = Math.round(annualDocs * 0.0003);
+      const netSavings = chromeCost - rubrolCost;
+
+      savingsAmount.innerText = `$${netSavings.toLocaleString()}`;
+      quantChromeCost.innerText = `$${chromeCost.toLocaleString()}/yr`;
+      quantRubrolCost.innerText = `$${rubrolCost.toLocaleString()}/yr`;
+      quantNetCompute.innerText = `$${netSavings.toLocaleString()}/yr`;
+
+      // Reset card states
+      [cardDev, cardPro, cardComp].forEach(c => {
+        if (c) {
+          c.classList.remove('tier-active');
+          c.classList.add('tier-dimmed');
+        }
+      });
+      if (ribbonDev) ribbonDev.style.display = 'none';
+      if (ribbonPro) ribbonPro.style.display = 'none';
+      if (ribbonComp) ribbonComp.style.display = 'none';
+      if (roiDev) roiDev.style.display = 'none';
+      if (roiPro) roiPro.style.display = 'none';
+      if (roiComp) roiComp.style.display = 'none';
+
+      // Tier 1: Developer Core (< 20,000 docs/mo)
+      if (val < 20000) {
+        if (cardDev) {
+          cardDev.classList.add('tier-active');
+          cardDev.classList.remove('tier-dimmed');
+        }
+        if (ribbonDev) ribbonDev.style.display = 'block';
+        if (roiDev) roiDev.style.display = 'block';
+        calcRecPlan.innerText = "Developer Core ($0 Free)";
+        calcRecPlan.style.color = "#10b981";
+        calcRecRoi.innerHTML = `✓ 100% Free Open-Source Core • Run unlimited locally or in Docker`;
+        calcCtaBtn.href = GITHUB_REPO_URL;
+        calcCtaBtn.innerHTML = `<span>Clone on GitHub (Free)</span> →`;
+      }
+      // Tier 2: Pro Vault (20,000 - 150,000 docs/mo)
+      else if (val < 150000) {
+        if (cardPro) {
+          cardPro.classList.add('tier-active');
+          cardPro.classList.remove('tier-dimmed');
+        }
+        if (ribbonPro) ribbonPro.style.display = 'block';
+        if (roiPro) {
+          roiPro.style.display = 'block';
+          const netRoi = netSavings - 490;
+          roiPro.innerText = `● Net ROI: +$${netRoi.toLocaleString()}/yr after compute savings`;
+        }
+        calcRecPlan.innerText = "Pro Vault ($490/yr)";
+        calcRecPlan.style.color = "var(--amber-primary)";
+        const netRoi = netSavings - 490;
+        calcRecRoi.innerHTML = `✓ Net Positive ROI: +$${netRoi.toLocaleString()} / year saved after plan cost`;
+        calcCtaBtn.href = STRIPE_PRO_URL;
+        calcCtaBtn.innerHTML = `<span>Proceed to Stripe ($490/yr)</span> →`;
+      }
+      // Tier 3: Compliance Suite (>= 150,000 docs/mo)
+      else {
+        if (cardComp) {
+          cardComp.classList.add('tier-active');
+          cardComp.classList.remove('tier-dimmed');
+        }
+        if (ribbonComp) ribbonComp.style.display = 'block';
+        if (roiComp) {
+          roiComp.style.display = 'block';
+          const netRoi = netSavings - 3600;
+          roiComp.innerText = `● Net ROI: +$${netRoi.toLocaleString()}/yr after compute savings`;
+        }
+        calcRecPlan.innerText = "Compliance Suite ($3,600/yr)";
+        calcRecPlan.style.color = "#ea580c";
+        const netRoi = netSavings - 3600;
+        calcRecRoi.innerHTML = `✓ Net Positive ROI: +$${netRoi.toLocaleString()} / year saved + certified EN 16931`;
+        calcCtaBtn.href = STRIPE_COMPLIANCE_URL;
+        calcCtaBtn.innerHTML = `<span>Proceed to Stripe ($3,600/yr)</span> →`;
+      }
+    }
+
+    if (docSlider) {
+      docSlider.addEventListener('input', (e) => {
+        updatePricingCalculator(parseInt(e.target.value, 10));
+      });
+      // Trigger initial calculation
+      updatePricingCalculator(parseInt(docSlider.value, 10));
+    }
 
     // Initialize
     loadTemplateData('b2b_invoice');
