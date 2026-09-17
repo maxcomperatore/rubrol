@@ -13,7 +13,7 @@
   </p>
 
   <p>
-    <a href="https://rubrol.com"><strong>🌐 Try Interactive Web Playground & Cost Calculator (rubrol.com) →</strong></a>
+    <a href="https://rubrol.com"><strong>Try Interactive Web Playground & Cost Calculator (rubrol.com) →</strong></a>
   </p>
 </div>
 
@@ -23,7 +23,7 @@
 
 - [The Problem & The Solution](#the-problem--the-solution)
 - [Performance Benchmarks](#performance-benchmarks)
-- [Use AI to Integrate Rubrol](#-use-ai-to-integrate-rubrol)
+- [Use AI to Integrate Rubrol](#use-ai-to-integrate-rubrol)
 - [Getting Started in 30 Seconds](#getting-started-in-30-seconds)
 - [HTTP Sidecar API Reference](#http-sidecar-api-reference)
   - [Core Document Endpoints](#core-document-endpoints)
@@ -91,7 +91,7 @@ Rubrol (Typst Native)  █ 5.8 ms
 
 ---
 
-## 🤖 Use AI to Integrate Rubrol
+## Use AI to Integrate Rubrol
 
 If you use an AI coding assistant like **Cursor**, **Claude Code**, or **GitHub Copilot**, you can add Rubrol sub-millisecond PDF generation to your application in minutes using agent skills or cursor rules.
 
@@ -99,7 +99,7 @@ If you use an AI coding assistant like **Cursor**, **Claude Code**, or **GitHub 
 <tr>
 <td width="50%" valign="top">
 
-### ⚡ Option 1: Agent Skills (`npx skills`)
+### Option 1: Agent Skills (`npx skills`)
 *Compatible with Claude Code, GitHub Copilot CLI, Amp, Codex, and open agents*
 
 ```bash
@@ -109,7 +109,7 @@ npx skills add maxcomperatore/rubrol --skill rubrol
 </td>
 <td width="50%" valign="top">
 
-### 🎯 Option 2: Cursor Rules (`.cursorrules`)
+### Option 2: Cursor Rules (`.cursorrules`)
 *Compatible with Cursor, Windsurf, Roo Code, and VS Code Copilot*
 
 ```bash
@@ -122,7 +122,7 @@ curl -fsSL https://raw.githubusercontent.com/maxcomperatore/rubrol/main/.cursorr
 
 Once installed, simply prompt your AI coding assistant with instructions like:
 
-> 💬 *"Add Rubrol PDF invoice generation to my Express / FastAPI / Next.js backend with sub-millisecond latency and dynamic line items."*
+> *"Add Rubrol PDF invoice generation to my Express / FastAPI / Next.js backend with sub-millisecond latency and dynamic line items."*
 
 #### What the AI Assistant Does Automatically:
 1. **Container Orchestration**: Adds Rubrol (`ghcr.io/maxcomperatore/rubrol:latest`) to your `docker-compose.yml` or Kubernetes deployment manifests.
@@ -446,11 +446,11 @@ io.Copy(outFile, resp.Body)
 
 You can inspect precompiled sample PDFs in [`examples/output/`](examples/output):
 
-* 📄 [**`b2b_invoice.pdf`**](examples/output/b2b_invoice.pdf) — Stripe/Linear-style SaaS billing invoice.
-* 📄 [**`saas_receipt.pdf`**](examples/output/saas_receipt.pdf) — Clean payment receipt with transaction ID and card brand.
-* 📄 [**`facturx_invoice.pdf`**](examples/output/facturx_invoice.pdf) — EU Factur-X / ZUGFeRD 2.2 hybrid container with embedded `factur-x.xml`.
-* 📄 [**`board_financial_report.pdf`**](examples/output/board_financial_report.pdf) — Multi-column executive financial briefing.
-* 📄 [**`compliance_certificate.pdf`**](examples/output/compliance_certificate.pdf) — Cryptographically styled SOC 2 / ISO 27001 certificate.
+* [**`b2b_invoice.pdf`**](examples/output/b2b_invoice.pdf) — Stripe/Linear-style SaaS billing invoice.
+* [**`saas_receipt.pdf`**](examples/output/saas_receipt.pdf) — Clean payment receipt with transaction ID and card brand.
+* [**`facturx_invoice.pdf`**](examples/output/facturx_invoice.pdf) — EU Factur-X / ZUGFeRD 2.2 hybrid container with embedded `factur-x.xml`.
+* [**`board_financial_report.pdf`**](examples/output/board_financial_report.pdf) — Multi-column executive financial briefing.
+* [**`compliance_certificate.pdf`**](examples/output/compliance_certificate.pdf) — Cryptographically styled SOC 2 / ISO 27001 certificate.
 
 ---
 
@@ -528,7 +528,7 @@ Rubrol can bundle system fonts or local font directories:
 
 ---
 
-## 📦 Built-in Enterprise Compliance: EU Factur-X & ZUGFeRD (EN 16931)
+## Built-in Enterprise Compliance: EU Factur-X & ZUGFeRD (EN 16931)
 
 > [!NOTE]
 > **Universal Document Engine with Built-in European Compliance**
@@ -672,16 +672,16 @@ Rubrol operates on a transparent Open Core model:
 | :--- | :--- | :--- |
 | **Community Core** | **$0** (Apache 2.0) | Full CLI compiler, local daemon, unlimited documents, open core templates. |
 | **Rubrol Pro** | **$490** / year | Complete 11+ Production Template Vault, multi-worker HTTP sidecar, priority updates. |
-| **Enterprise Suite** | **$3,600** / year | Turnkey EU Factur-X / ZUGFeRD Suite (EN 16931 + PDF/A-3b), air-gapped ECR images, source code escrow, custom template design. |
+| **Enterprise Suite** | **$2,400** / year | Turnkey EU Factur-X / ZUGFeRD Suite (EN 16931 + PDF/A-3b), air-gapped ECR images, source code escrow, custom template design. |
 | **Founder Lifetime Pass** | **$990** *(50 licenses only)* | Perpetual commercial license, lifetime access to all future template releases, direct engineering Slack channel. |
 
-👉 **[Unlock Pro & Lifetime Licenses via Stripe Checkout](https://buy.stripe.com/00w8wQ0GN1h8ehJ7Wk0Ba09)**
+**[Unlock Pro & Lifetime Licenses via Stripe Checkout](https://buy.stripe.com/00w8wQ0GN1h8ehJ7Wk0Ba09)**
 
 *Note: Upon purchase, you will receive immediate automated access to the private repository [`rubrol-pro-vault`](https://github.com/maxcomperatore/rubrol-pro-vault).*
 
 ---
 
-## 🏆 Community SDK Bounty Program ($990 Reward)
+## Community SDK Bounty Program ($990 Reward)
 
 We want native, high-performance client libraries in every programming language. 
 

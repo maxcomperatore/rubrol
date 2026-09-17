@@ -122,11 +122,11 @@ resources:
 
 * **Community Core ($0 / Apache 2.0):** CLI compiler, local daemon, unlimited documents, free forever.
 * **Rubrol Pro ($490 / year):** Complete 25+ Template Vault, multi-worker HTTP sidecar, visual regression CLI, priority SLA.
-* **Enterprise Suite ($3,600 / year):** Turnkey EU Factur-X / ZUGFeRD Suite (EN 16931 + PDF/A-3b hybrid container), air-gapped private ECR images, source code escrow, bespoke template design service.
+* **Enterprise Suite ($2,400 / year):** Turnkey EU Factur-X / ZUGFeRD Suite (EN 16931 + PDF/A-3b hybrid container), air-gapped private ECR images, source code escrow, bespoke template design service.
 
 ---
 
-## 🇪🇺 Enterprise Tier: EU Factur-X / ZUGFeRD Turnkey Suite
+## Enterprise Tier: EU Factur-X / ZUGFeRD Turnkey Suite
 
 > **Solve the 2026/2027 French & German B2B E-Invoicing Legal Mandate overnight.**
 

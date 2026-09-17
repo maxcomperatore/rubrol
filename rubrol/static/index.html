@@ -1677,7 +1677,7 @@
     }
 
     .price-features li::before {
-      content: "✓";
+      content: "";
       color: var(--amber-primary);
       font-weight: 700;
     }
@@ -1953,6 +1953,9 @@
     }
 
     .compact-item-icon {
+      font-size: 10px;
+      font-weight: 700;
+      font-family: var(--font-mono);
       width: 26px;
       height: 26px;
       border-radius: 6px;
@@ -1968,6 +1971,9 @@
     }
 
     .compact-dropdown-item:hover .compact-item-icon {
+      font-size: 10px;
+      font-weight: 700;
+      font-family: var(--font-mono);
       background: rgba(245, 158, 11, 0.15);
       border-color: rgba(245, 158, 11, 0.35);
       color: #fbbf24;
@@ -2250,42 +2256,42 @@
           </button>
           <div class="compact-dropdown-menu" role="menu">
             <a href="#studio" class="compact-dropdown-item">
-              <span class="compact-item-icon">⚡</span>
+              <span class="compact-item-icon">CLI</span>
               <div class="compact-item-body">
                 <div class="compact-item-title">Live Studio <span class="compact-item-badge">Interactive</span></div>
                 <div class="compact-item-desc">Interactive browser editor with real-time SVG &amp; PDF preview</div>
               </div>
             </a>
             <a href="https://github.com/maxcomperatore/rubrol#http-sidecar-api-reference" target="_blank" class="compact-dropdown-item">
-              <span class="compact-item-icon">🌐</span>
+              <span class="compact-item-icon">API</span>
               <div class="compact-item-body">
                 <div class="compact-item-title">HTTP Sidecar API</div>
                 <div class="compact-item-desc">REST endpoints, telemetry headers, and payloads</div>
               </div>
             </a>
             <a href="https://github.com/maxcomperatore/rubrol#multi-language-client-examples" target="_blank" class="compact-dropdown-item">
-              <span class="compact-item-icon">🔌</span>
+              <span class="compact-item-icon">SDK</span>
               <div class="compact-item-body">
                 <div class="compact-item-title">Client SDKs &amp; Examples</div>
                 <div class="compact-item-desc">Zero-dep clients in Python, Node.js, Go, Rust, PHP, and C#</div>
               </div>
             </a>
             <a href="https://github.com/maxcomperatore/rubrol/pkgs/container/rubrol" target="_blank" class="compact-dropdown-item">
-              <span class="compact-item-icon">📦</span>
+              <span class="compact-item-icon">HUB</span>
               <div class="compact-item-body">
                 <div class="compact-item-title">Docker Container</div>
                 <div class="compact-item-desc">ghcr.io/maxcomperatore/rubrol:latest</div>
               </div>
             </a>
             <a href="https://github.com/maxcomperatore/rubrol#template-authoring-guide" target="_blank" class="compact-dropdown-item">
-              <span class="compact-item-icon">📐</span>
+              <span class="compact-item-icon">TYP</span>
               <div class="compact-item-body">
                 <div class="compact-item-title">Typst Template Guide</div>
                 <div class="compact-item-desc">Dynamic data injection, tables, and pagination</div>
               </div>
             </a>
             <a href="#ai-integration" class="compact-dropdown-item">
-              <span class="compact-item-icon">🤖</span>
+              <span class="compact-item-icon">AI</span>
               <div class="compact-item-body">
                 <div class="compact-item-title">AI Agent Skills &amp; Rules <span class="compact-item-badge">Cursor</span></div>
                 <div class="compact-item-desc">Integrate via Claude Code, Cursor, and Copilot</div>
@@ -2302,42 +2308,42 @@
           </button>
           <div class="compact-dropdown-menu" role="menu">
             <a href="#benchmarks" class="compact-dropdown-item">
-              <span class="compact-item-icon">📊</span>
+              <span class="compact-item-icon">OPS</span>
               <div class="compact-item-body">
                 <div class="compact-item-title">Performance Benchmarks <span class="compact-item-badge">5.8ms</span></div>
                 <div class="compact-item-desc">318x faster &amp; 57x less memory than Headless Chrome</div>
               </div>
             </a>
             <a href="articles/why-puppeteer-fails-en16931.html" class="compact-dropdown-item">
-              <span class="compact-item-icon">🚨</span>
+              <span class="compact-item-icon">OOM</span>
               <div class="compact-item-body">
                 <div class="compact-item-title">Why Puppeteer Fails</div>
                 <div class="compact-item-desc">V8 memory leaks and OOM crashes during batch runs</div>
               </div>
             </a>
             <a href="articles/rubrol-vs-gotenberg.html" class="compact-dropdown-item">
-              <span class="compact-item-icon">⚖️</span>
+              <span class="compact-item-icon">VS</span>
               <div class="compact-item-body">
                 <div class="compact-item-title">Rubrol vs Gotenberg</div>
                 <div class="compact-item-desc">Architectural teardown: Chromium vs native Typst</div>
               </div>
             </a>
             <a href="articles/rubrol-vs-mustangproject.html" class="compact-dropdown-item">
-              <span class="compact-item-icon">☕</span>
+              <span class="compact-item-icon">JVM</span>
               <div class="compact-item-body">
                 <div class="compact-item-title">Rubrol vs Mustangproject</div>
                 <div class="compact-item-desc">Sub-millisecond Rust core vs heavy Java JVM tooling</div>
               </div>
             </a>
             <a href="articles/rubrol-vs-ghostscript.html" class="compact-dropdown-item">
-              <span class="compact-item-icon">🛡️</span>
+              <span class="compact-item-icon">PDF</span>
               <div class="compact-item-body">
                 <div class="compact-item-title">Rubrol vs Ghostscript</div>
                 <div class="compact-item-desc">PDF/A-3b vector fidelity vs rasterization artifacts</div>
               </div>
             </a>
             <a href="#calculator" class="compact-dropdown-item">
-              <span class="compact-item-icon">💰</span>
+              <span class="compact-item-icon">ROI</span>
               <div class="compact-item-body">
                 <div class="compact-item-title">Cloud Cost Calculator</div>
                 <div class="compact-item-desc">Compute annual AWS Fargate compute savings</div>
@@ -2354,28 +2360,28 @@
           </button>
           <div class="compact-dropdown-menu" role="menu">
             <a href="articles/stripe-facturx-zugferd.html" class="compact-dropdown-item">
-              <span class="compact-item-icon">🇪🇺</span>
+              <span class="compact-item-icon">EU</span>
               <div class="compact-item-body">
                 <div class="compact-item-title">Stripe + Factur-X Guide <span class="compact-item-badge">EN 16931</span></div>
                 <div class="compact-item-desc">French &amp; German legally compliant hybrid e-invoicing</div>
               </div>
             </a>
             <a href="https://github.com/maxcomperatore/rubrol#precompiled-sample-output-pdfs" target="_blank" class="compact-dropdown-item">
-              <span class="compact-item-icon">📑</span>
+              <span class="compact-item-icon">DOC</span>
               <div class="compact-item-body">
                 <div class="compact-item-title">Sample PDF Gallery</div>
                 <div class="compact-item-desc">Precompiled B2B invoices, receipts, and reports</div>
               </div>
             </a>
             <a href="https://typst.app/universe/package/rubrol-invoice" target="_blank" class="compact-dropdown-item">
-              <span class="compact-item-icon">🪐</span>
+              <span class="compact-item-icon">PKG</span>
               <div class="compact-item-body">
                 <div class="compact-item-title">Typst Universe Package</div>
                 <div class="compact-item-desc">Official @preview/rubrol-invoice package</div>
               </div>
             </a>
             <a href="https://github.com/maxcomperatore/rubrol#-community-sdk-bounty-program-990-reward" target="_blank" class="compact-dropdown-item">
-              <span class="compact-item-icon">🎁</span>
+              <span class="compact-item-icon">BOUNTY</span>
               <div class="compact-item-body">
                 <div class="compact-item-title">SDK Bounty Program <span class="compact-item-badge">$990</span></div>
                 <div class="compact-item-desc">Cash rewards for community client libraries</div>
@@ -2490,7 +2496,7 @@
       <div id="ai-integration" class="ai-hero-card">
         <div class="ai-card-header">
           <div>
-            <span class="ai-card-badge">🤖 AI Assistant Skills &amp; Rules</span>
+            <span class="ai-card-badge">AI Assistant Skills &amp; Rules</span>
             <h3 class="ai-card-title">Use AI to integrate Rubrol</h3>
             <p class="ai-card-subtitle">
               If you use an AI coding assistant like <strong>Claude Code</strong>, <strong>Cursor</strong>, or <strong>GitHub Copilot</strong>, you can add sub-millisecond PDF generation to your app in minutes using agent skills.
@@ -2585,10 +2591,10 @@
             Every invoice generated via Puppeteer spins up a full WebKit/Blink layout engine, executing JavaScript, evaluating CSS cascades, and allocating huge DOM node trees before rasterizing to print media.
           </p>
           <ul style="list-style: none; display: flex; flex-direction: column; gap: 10px; font-size: 13.5px; color: var(--text-light-body);">
-            <li>❌ <strong>250MB–400MB RAM</strong> per concurrent worker</li>
-            <li>❌ <strong>1,800ms–3,500ms</strong> p95 cold start latency</li>
-            <li>❌ Frequent out-of-memory container crashes under batch loads</li>
-            <li>❌ Non-deterministic line breaking across Linux distributions</li>
+            <li><strong>250MB–400MB RAM</strong> per concurrent worker</li>
+            <li><strong>1,800ms–3,500ms</strong> p95 cold start latency</li>
+            <li>Frequent out-of-memory container crashes under batch loads</li>
+            <li>Non-deterministic line breaking across Linux distributions</li>
           </ul>
         </div>
 
@@ -2789,7 +2795,7 @@
         </div>
         <div class="case-metrics-column">
           <div class="case-metric-item">
-            <span class="case-metric-val">2,400ms ➔ 5.8ms</span>
+            <span class="case-metric-val">2,400ms to 5.8ms</span>
             <span class="case-metric-label">p99 Latency Drop (413× Faster)</span>
           </div>
           <div class="case-metric-item">
@@ -2850,17 +2856,17 @@
         <div class="pipeline-bus-track"></div>
         <div class="pipeline-bus-row">
           <div class="pipeline-node">
-            <span class="pipeline-node-icon">🐳</span>
+            <span class="pipeline-node-icon">DOCKER</span>
             <span class="pipeline-node-name">Docker</span>
             <span class="pipeline-node-sub">ghcr.io image</span>
           </div>
           <div class="pipeline-node">
-            <span class="pipeline-node-icon">☸️</span>
+            <span class="pipeline-node-icon">K8S</span>
             <span class="pipeline-node-name">Kubernetes</span>
             <span class="pipeline-node-sub">Micro-Sidecar</span>
           </div>
           <div class="pipeline-node">
-            <span class="pipeline-node-icon">🐍</span>
+            <span class="pipeline-node-icon">PYTHON</span>
             <span class="pipeline-node-name">Python</span>
             <span class="pipeline-node-sub">FastAPI Async</span>
           </div>
@@ -2877,12 +2883,12 @@
             <span class="pipeline-node-sub">TypeScript SDK</span>
           </div>
           <div class="pipeline-node">
-            <span class="pipeline-node-icon">🐹</span>
+            <span class="pipeline-node-icon">GO</span>
             <span class="pipeline-node-name">Go</span>
             <span class="pipeline-node-sub">gRPC / HTTP/2</span>
           </div>
           <div class="pipeline-node">
-            <span class="pipeline-node-icon">🦀</span>
+            <span class="pipeline-node-icon">RUST</span>
             <span class="pipeline-node-name">Rust</span>
             <span class="pipeline-node-sub">Native FFI</span>
           </div>
@@ -2944,9 +2950,9 @@
             </p>
 
             <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 13.5px; color: #cbd5e1; margin-bottom: 28px;">
-              <li>⚡ <strong>The Lie:</strong> Why European ERPs (SAP, DATEV) reject standard Stripe PDFs</li>
-              <li>⚡ <strong>The Code:</strong> Copy-paste Node.js/Express webhook to generate PDF/A-3b</li>
-              <li>⚡ <strong>Zero Bloat:</strong> Full ISO 19005-3 validation in under 160ms</li>
+              <li><strong>The Lie:</strong> Why European ERPs (SAP, DATEV) reject standard Stripe PDFs</li>
+              <li><strong>The Code:</strong> Copy-paste Node.js/Express webhook to generate PDF/A-3b</li>
+              <li><strong>Zero Bloat:</strong> Full ISO 19005-3 validation in under 160ms</li>
             </ul>
           </div>
 
@@ -2974,9 +2980,9 @@
             </p>
 
             <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 13.5px; color: #cbd5e1; margin-bottom: 28px;">
-              <li>❌ <strong>Skia Engine Flaw:</strong> Zero native support for PDF/A-3b or ICC profiles</li>
-              <li>❌ <strong>Catalog Attachment:</strong> Why Puppeteer cannot create valid <code>/AFRelationship</code></li>
-              <li>⚡ <strong>The Alternative:</strong> Sub-15ms Rust Typst compilation with 96% less RAM</li>
+              <li><strong>Skia Engine Flaw:</strong> Zero native support for PDF/A-3b or ICC profiles</li>
+              <li><strong>Catalog Attachment:</strong> Why Puppeteer cannot create valid <code>/AFRelationship</code></li>
+              <li><strong>The Alternative:</strong> Sub-15ms Rust Typst compilation with 96% less RAM</li>
             </ul>
           </div>
 
@@ -3003,9 +3009,9 @@
             </p>
 
             <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 13.5px; color: #cbd5e1; margin-bottom: 28px;">
-              <li>❌ <strong>The Missing Renderer:</strong> Mustangproject only attaches XML to pre-existing PDFs</li>
-              <li>❌ <strong>JVM Memory Spikes:</strong> Why PDFBox DOM buffering triggers container OOM kills</li>
-              <li>⚡ <strong>Atomic Pipeline:</strong> Render visual Typst layout + embed XML in one 14ms pass</li>
+              <li><strong>The Missing Renderer:</strong> Mustangproject only attaches XML to pre-existing PDFs</li>
+              <li><strong>JVM Memory Spikes:</strong> Why PDFBox DOM buffering triggers container OOM kills</li>
+              <li><strong>Atomic Pipeline:</strong> Render visual Typst layout + embed XML in one 14ms pass</li>
             </ul>
           </div>
 
@@ -3033,9 +3039,9 @@
             </p>
 
             <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 13.5px; color: #cbd5e1; margin-bottom: 28px;">
-              <li>❌ <strong>Blind Embedding:</strong> Ghostscript will embed invalid XML without error</li>
-              <li>❌ <strong>AGPL-3.0 Contagion:</strong> Risking proprietary SaaS IP or paying $10k+ OEM fees</li>
-              <li>⚡ <strong>Memory-Safe Rust:</strong> Zero PostScript attack surface with pre-compile validation</li>
+              <li><strong>Blind Embedding:</strong> Ghostscript will embed invalid XML without error</li>
+              <li><strong>AGPL-3.0 Contagion:</strong> Risking proprietary SaaS IP or paying $10k+ OEM fees</li>
+              <li><strong>Memory-Safe Rust:</strong> Zero PostScript attack surface with pre-compile validation</li>
             </ul>
           </div>
 
@@ -3063,9 +3069,9 @@
             </p>
 
             <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 13.5px; color: #cbd5e1; margin-bottom: 28px;">
-              <li>❌ <strong>Memory Leaks:</strong> Periodic browser killing needed to avoid container crashes</li>
-              <li>❌ <strong>Bloated Containers:</strong> 1.8GB image size with Chromium, LibreOffice, and Java</li>
-              <li>⚡ <strong>70x Faster:</strong> 14ms response time, 42MB Docker image, and &lt; 28MB RAM</li>
+              <li><strong>Memory Leaks:</strong> Periodic browser killing needed to avoid container crashes</li>
+              <li><strong>Bloated Containers:</strong> 1.8GB image size with Chromium, LibreOffice, and Java</li>
+              <li><strong>70x Faster:</strong> 14ms response time, 42MB Docker image, and &lt; 28MB RAM</li>
             </ul>
           </div>
 
@@ -3099,7 +3105,7 @@
               <span class="studio-select-label">Template:</span>
               <select id="templateSelect">
                 <option value="b2b_invoice" selected>b2b_invoice — Stripe SaaS Billing Invoice</option>
-                <option value="facturx_invoice">facturx_invoice — 🇪🇺 EU Factur-X / ZUGFeRD 2.2 EN 16931</option>
+                <option value="facturx_invoice">facturx_invoice — EU Factur-X / ZUGFeRD 2.2 EN 16931</option>
                 <option value="saas_receipt">saas_receipt — Consumer &amp; Developer Receipt</option>
                 <option value="purchase_order">purchase_order — Enterprise Procurement Order</option>
                 <option value="packing_slip">packing_slip — Multi-Box Logistics Packing Slip</option>
@@ -3196,7 +3202,7 @@
               <span id="calcRecPlan" style="font-family: var(--font-mono); font-size: 13px; font-weight: 700; color: var(--amber-primary);">Pro Vault ($490/yr)</span>
             </div>
             <div id="calcRecRoi" class="quant-roi-badge">
-              ✓ Net Positive ROI: +$4,190 / year saved after plan cost
+              Net Positive ROI: +$4,190 / year saved after plan cost
             </div>
           </div>
 
@@ -3239,7 +3245,7 @@
 
         <!-- Tier 2: Pro Vault -->
         <div id="card-pro" class="price-card tier-active featured">
-          <span id="ribbon-pro" class="featured-ribbon">★ Recommended for Your Volume</span>
+          <span id="ribbon-pro" class="featured-ribbon">Recommended for Your Volume</span>
           <div>
             <h3 class="price-plan-name">Pro Template Vault</h3>
             <p class="price-plan-desc">For SaaS teams and marketplaces generating customer-facing invoices.</p>
@@ -3266,13 +3272,13 @@
 
         <!-- Tier 3: Compliance Suite -->
         <div id="card-compliance" class="price-card tier-dimmed">
-          <span id="ribbon-compliance" class="featured-ribbon" style="display: none; background: #ea580c;">★ Recommended for Scale &amp; Compliance</span>
+          <span id="ribbon-compliance" class="featured-ribbon" style="display: none; background: #ea580c;">Recommended for Scale &amp; Compliance</span>
           <div>
             <h3 class="price-plan-name">Compliance Suite</h3>
             <p class="price-plan-desc">For European &amp; global enterprises requiring certified e-invoicing.</p>
             <div class="price-plan-num">
               <span class="price-currency">$</span>
-              <span class="price-figure">3,600</span>
+              <span class="price-figure">2,400</span>
               <span class="price-period">/ year</span>
             </div>
             <div id="roi-compliance" style="font-size: 11.5px; color: #15803d; font-family: var(--font-mono); margin: -10px 0 16px 0; display: none;">
@@ -3287,7 +3293,7 @@
             </ul>
           </div>
           <a href="https://buy.stripe.com/fZudRablrgc2b5x1xW0Ba0a" target="_blank" class="btn-pricing btn-pricing-secondary" id="btn-compliance">
-            Get Compliance Suite ($3,600/yr) →
+            Get Compliance Suite ($2,400/yr) →
           </a>
         </div>
       </div>
@@ -4200,7 +4206,7 @@ ${err.message}</div>`;
         if (roiDev) roiDev.style.display = 'block';
         calcRecPlan.innerText = "Developer Core ($0 Free)";
         calcRecPlan.style.color = "#10b981";
-        calcRecRoi.innerHTML = `✓ 100% Free Open-Source Core • Run unlimited locally or in Docker`;
+        calcRecRoi.innerHTML = `100% Free Open-Source Core • Run unlimited locally or in Docker`;
         calcCtaBtn.href = GITHUB_REPO_URL;
         calcCtaBtn.innerHTML = `<span>Clone on GitHub (Free)</span> →`;
       }
@@ -4219,7 +4225,7 @@ ${err.message}</div>`;
         calcRecPlan.innerText = "Pro Vault ($490/yr)";
         calcRecPlan.style.color = "var(--amber-primary)";
         const netRoi = netSavings - 490;
-        calcRecRoi.innerHTML = `✓ Net Positive ROI: +$${netRoi.toLocaleString()} / year saved after plan cost`;
+        calcRecRoi.innerHTML = `Net Positive ROI: +$${netRoi.toLocaleString()} / year saved after plan cost`;
         calcCtaBtn.href = STRIPE_PRO_URL;
         calcCtaBtn.innerHTML = `<span>Proceed to Stripe ($490/yr)</span> →`;
       }
@@ -4232,15 +4238,15 @@ ${err.message}</div>`;
         if (ribbonComp) ribbonComp.style.display = 'block';
         if (roiComp) {
           roiComp.style.display = 'block';
-          const netRoi = netSavings - 3600;
+          const netRoi = netSavings - 2400;
           roiComp.innerText = `● Net ROI: +$${netRoi.toLocaleString()}/yr after compute savings`;
         }
-        calcRecPlan.innerText = "Compliance Suite ($3,600/yr)";
+        calcRecPlan.innerText = "Compliance Suite ($2,400/yr)";
         calcRecPlan.style.color = "#ea580c";
-        const netRoi = netSavings - 3600;
-        calcRecRoi.innerHTML = `✓ Net Positive ROI: +$${netRoi.toLocaleString()} / year saved + certified EN 16931`;
+        const netRoi = netSavings - 2400;
+        calcRecRoi.innerHTML = `Net Positive ROI: +$${netRoi.toLocaleString()} / year saved + certified EN 16931`;
         calcCtaBtn.href = STRIPE_COMPLIANCE_URL;
-        calcCtaBtn.innerHTML = `<span>Proceed to Stripe ($3,600/yr)</span> →`;
+        calcCtaBtn.innerHTML = `<span>Proceed to Stripe ($2,400/yr)</span> →`;
       }
     }
 
