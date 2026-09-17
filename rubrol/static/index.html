@@ -2514,7 +2514,7 @@
           Live Interactive Compilation Studio
         </h2>
         <p style="font-size: 16px; color: #94a3b8; max-width: 680px; margin: 0 auto;">
-          Edit live JSON variables on the left. Watch the local Rubrol engine recompile vector SVG in real time. Download PDF/A-2b compliant binaries instantly.
+          Edit live JSON variables on the left. Watch the local Rubrol engine recompile vector SVG in real time. Download certified ISO 19005-3 PDF/A-3b & ISO 19005-2 PDF/A-2b binaries instantly.
         </p>
       </div>
 
@@ -2547,7 +2547,7 @@
               <span>●</span> 5.2ms
             </div>
             <button id="downloadPdfBtn" class="btn-pill-primary" style="padding: 7px 18px; font-size: 12.5px;">
-              Download PDF/A-2b ↓
+              Download PDF/A-3b
             </button>
           </div>
         </div>
@@ -2603,7 +2603,7 @@
         <div class="parchment-card" style="border-left: 4px solid var(--amber-primary);">
           <h3 class="parchment-card-title">The Rubrol Architecture</h3>
           <p class="parchment-card-text">
-            Rubrol compiles structured documents into native vector PDF/A-2b and SVG. Zero browser overhead, zero Node.js bridging, and native ISO 19005-2 compliance built directly into the binary.
+            Rubrol compiles structured documents into native vector PDF/A-3b, PDF/A-2b, and SVG. Zero browser overhead, zero Node.js bridging, and native ISO 19005-3 & ISO 19005-2 compliance built directly into the binary.
           </p>
           <table class="comp-table">
             <thead>
@@ -2630,7 +2630,7 @@
                 <td><span class="badge-win">1,200 req/s</span></td>
               </tr>
               <tr class="highlight">
-                <td>PDF/A-2b &amp; Factur-X</td>
+                <td>PDF/A-3b &amp; Factur-X (ISO 19005-3)</td>
                 <td>Requires 3rd party CLI</td>
                 <td>Native Zero-Copy</td>
               </tr>
@@ -2653,13 +2653,13 @@
           <div class="ledger-row">
             <span class="ledger-col-id">INV-2026-9041</span>
             <span style="color: #cbd5e1;">Acme Corp SaaS</span>
-            <span class="ledger-col-status">VALIDATED EN 16931</span>
+            <span class="ledger-col-status">PDF/A-3b EN 16931</span>
             <span class="ledger-col-time">5.2ms</span>
           </div>
           <div class="ledger-row">
             <span class="ledger-col-id">REC-2026-8819</span>
             <span style="color: #cbd5e1;">Stripe Checkout</span>
-            <span class="ledger-col-status">PDF/A-2b VERIFIED</span>
+            <span class="ledger-col-status">PDF/A-2b ARCHIVAL</span>
             <span class="ledger-col-time">4.8ms</span>
           </div>
           <div class="ledger-row">
@@ -2749,7 +2749,7 @@
         </div>
         <div class="submetric-box">
           <div class="submetric-value">100%</div>
-          <div class="submetric-label">EN 16931 &amp; ISO 19005-2 PDF/A compliance validation</div>
+          <div class="submetric-label">EN 16931 &amp; ISO 19005-3 PDF/A-3b compliance validation</div>
         </div>
       </div>
     </div>
@@ -2814,7 +2814,7 @@
         </div>
         <div class="pillar-card">
           <h4 class="pillar-title">Embedded Factur-X &amp; CII</h4>
-          <p class="pillar-text">Automatically packages syntactically validated Cross-Industry Invoice XML directly into the PDF/A-2b catalog stream.</p>
+          <p class="pillar-text">Automatically packages syntactically validated Cross-Industry Invoice XML directly into the PDF/A-3b catalog stream.</p>
         </div>
         <div class="pillar-card">
           <h4 class="pillar-title">Mathematical Determinism</h4>
@@ -3153,7 +3153,7 @@
             </div>
             <ul class="price-features">
               <li>Certified EU Factur-X &amp; ZUGFeRD 2.2</li>
-              <li>EN 16931 &amp; ISO 19005-2 PDF/A-2b</li>
+              <li>EN 16931 &amp; ISO 19005-3 PDF/A-3b</li>
               <li>Automated CII / UBL Schematron Validator</li>
               <li>Private High-Concurrency Docker Registry</li>
               <li>Direct Engineer Slack Channel</li>
@@ -3241,7 +3241,7 @@
         <div>
           <div class="footer-brand-title">RUBROL</div>
           <p class="footer-brand-desc">
-            High-throughput document compilation engine built in native Rust. Certified PDF/A-2b and European EN 16931 Factur-X sidecar.
+            High-throughput document compilation engine built in native Rust. Certified ISO 19005-3 PDF/A-3b & ISO 19005-2 PDF/A-2b European EN 16931 Factur-X sidecar.
           </p>
           <div style="margin-top: 16px; font-family: var(--font-mono); font-size: 11.5px; color: #10b981;">
             ● ALL SYSTEMS OPERATIONAL • ENGINE V1.0
@@ -3264,7 +3264,7 @@
             <li><a href="/articles/stripe-facturx-zugferd">Stripe to Factur-X in 5 Min</a></li>
             <li><a href="/articles/why-puppeteer-fails-en16931">Why Puppeteer Fails EN 16931</a></li>
             <li><a href="#compliance">Factur-X 1.0 &amp; ZUGFeRD 2.2</a></li>
-            <li><a href="#compliance">PDF/A-2b &amp; ISO 19005-3</a></li>
+            <li><a href="#compliance">PDF/A-3b (ISO 19005-3) &amp; PDF/A-2b</a></li>
           </ul>
         </div>
 
@@ -4036,6 +4036,10 @@ ${err.message}</div>`;
     // Event Bindings
     document.getElementById('templateSelect').addEventListener('change', (e) => {
       currentTemplate = e.target.value;
+      const downloadBtn = document.getElementById('downloadPdfBtn');
+      if (downloadBtn) {
+        downloadBtn.innerText = (currentTemplate === 'facturx_invoice') ? 'Download PDF/A-3b' : 'Download PDF/A-2b';
+      }
       loadTemplateData(currentTemplate);
     });
 
