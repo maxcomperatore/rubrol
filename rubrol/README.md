@@ -1,6 +1,7 @@
 <div align="center">
   <img src="assets/logo.png" alt="Rubrol Logo" width="120" height="120" />
   <h1>Rubrol: The Anti-Puppeteer PDF Engine</h1>
+  <h2>PDF Generation Is No Longer a Background Job.</h2>
   <p><strong>Sub-8ms dynamic PDF/A documents powered by Apache 2.0 Typst. No Headless Chrome. No Chromium bloat.</strong></p>
 
   <p>
@@ -10,6 +11,36 @@
     <img src="https://img.shields.io/badge/RAM-%3C28MB-green.svg" alt="RAM" />
   </p>
 </div>
+
+---
+
+# PDF Generation Is No Longer a Background Job.
+
+Every engineering team has built the same accidental infrastructure:
+
+```
+User clicks "Download Invoice"
+  [1] API enqueues task into Redis / BullMQ / Celery / SQS
+  [2] Heavy Headless Chrome container spins up (1.5 GB RAM, 2,500ms cold start)
+  [3] PDF uploaded to S3 bucket / blob storage
+  [4] Polling endpoint or email webhook notifies user: "Your invoice is ready"
+```
+
+**Because Chromium was slow, memory-leaking, and prone to OOM crashes, we were forced to treat document generation as an asynchronous queue problem.**
+
+Rubrol changes the physics:
+* **5.8ms Compilation Latency:** Faster than a SQLite query or Redis read.
+* **< 28MB Resident RAM:** Zero Chrome browser processes, zero zombie renderer leaks.
+* **Synchronous HTTP Streaming:** Render and return binary `application/pdf` directly in your request/response cycle.
+
+```
+User clicks "Download Invoice"
+  [1] API makes local call to Rubrol Sidecar (< 6ms)
+  [2] Instant binary PDF stream returned to user (< 15ms total round-trip)
+```
+
+> **Delete your Redis queues, Celery workers, BullMQ listeners, and S3 polling loops.**
+> With Rubrol, document generation is now an instantaneous synchronous HTTP response.
 
 ---
 
