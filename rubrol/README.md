@@ -1,8 +1,9 @@
 <div align="center">
   <img src="assets/logo.png" alt="Rubrol Logo" width="120" height="120" />
-  <h1>Rubrol: The Anti-Puppeteer PDF Engine</h1>
-  <h2>PDF Generation Is No Longer a Background Job.</h2>
-  <p><strong>Sub-8ms dynamic PDF/A documents powered by Apache 2.0 Typst. No Headless Chrome. No Chromium bloat.</strong></p>
+  <h1>Rubrol</h1>
+  <h3>The Anti-Puppeteer Document Infrastructure</h3>
+  <p><strong>PDF generation is no longer a background job.</strong></p>
+  <p>Sub-8ms dynamic PDF/A documents powered by Apache 2.0 Typst. No Headless Chrome. No Chromium bloat.</p>
 
   <p>
     <a href="https://opensource.org/licenses/Apache-2.0"><img src="https://img.shields.io/badge/License-Apache_2.0-blue.svg" alt="License" /></a>
@@ -14,7 +15,7 @@
 
 ---
 
-# PDF Generation Is No Longer a Background Job.
+## The Architecture Shift: Eliminating Background Queues
 
 Every engineering team has built the same accidental infrastructure:
 

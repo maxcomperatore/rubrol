@@ -1,8 +1,9 @@
 <div align="center">
   <img src="assets/logo.png" alt="Rubrol Logo" width="120" height="120" />
-  <h1>Rubrol: Sub-millisecond PDF Engine</h1>
-  <h2>PDF Generation Is No Longer a Background Job.</h2>
-  <p><strong>Sub-8ms dynamic PDF/A documents powered by Apache 2.0 Typst. Universal document engine for SaaS invoices, executive reports, and payment receipts. No Headless Chrome. No Chromium bloat.</strong></p>
+  <h1>Rubrol</h1>
+  <h3>The Sub-millisecond PDF Engine</h3>
+  <p><strong>PDF generation is no longer a background job.</strong></p>
+  <p>Sub-8ms dynamic PDF/A documents powered by Apache 2.0 Typst. Universal document engine for SaaS invoices, executive reports, and payment receipts. No Headless Chrome. No Chromium bloat.</p>
 
   <p>
     <a href="https://opensource.org/licenses/Apache-2.0"><img src="https://img.shields.io/badge/License-Apache_2.0-blue.svg" alt="License" /></a>
@@ -20,7 +21,7 @@
 
 ---
 
-# PDF Generation Is No Longer a Background Job.
+## The Architecture Shift: Eliminating Background Queues
 
 Every engineering team has built the same accidental infrastructure:
 
@@ -52,7 +53,7 @@ User clicks "Download Invoice"
 
 ## Table of Contents
 
-- [PDF Generation Is No Longer a Background Job](#pdf-generation-is-no-longer-a-background-job)
+- [The Architecture Shift: Eliminating Background Queues](#the-architecture-shift-eliminating-background-queues)
 - [The Problem & The Solution](#the-problem--the-solution)
 - [Performance Benchmarks](#performance-benchmarks)
 - [Use AI to Integrate Rubrol](#use-ai-to-integrate-rubrol)
@@ -778,7 +779,7 @@ Rubrol operates on a transparent Open Core model:
 
 We want native, high-performance client libraries in every programming language. 
 
-> **The Bounty:** Build, test, and publish an open-source community client SDK for an unaddressed ecosystem (e.g. Ruby / Rails, Elixir / Phoenix, Java / Kotlin, Swift, Dart / Flutter) → **Receive a complimentary Rubrol Lifetime Founder Pass ($990 value)** and permanent featured listing on [rubrol.com](https://rubrol.com) and in this repository.
+> **The Bounty:** Build, test, and publish an open-source community client SDK for an unaddressed ecosystem (e.g. Ruby / Rails, Elixir / Phoenix, Java / Kotlin, Swift, Dart / Flutter) — **Receive a complimentary Rubrol Lifetime Founder Pass ($990 value)** and permanent featured listing on [rubrol.com](https://rubrol.com) and in this repository.
 
 See [`CONTRIBUTING.md`](CONTRIBUTING.md) for full eligibility criteria and submission guidelines.
 
