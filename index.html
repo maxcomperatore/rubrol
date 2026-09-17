@@ -1703,10 +1703,9 @@
     @media (max-width: 960px) {
       .hero-title { font-size: 44px; }
       .workstation-body { grid-template-columns: 1fr; }
-      .parchment-grid, .impact-split, .proof-grid, .studio-split-view, .calculator-box, .pricing-deck, .footer-grid, .case-study-hero-card {
+      .parchment-grid, .impact-split, .proof-grid, .calculator-box, .pricing-deck, .footer-grid, .case-study-hero-card {
         grid-template-columns: 1fr;
       }
-      .studio-split-view { height: 800px; }
       .pipeline-bus-row { flex-wrap: wrap; gap: 16px; justify-content: center; }
       .pipeline-bus-track { display: none; }
       .pipeline-pillars { grid-template-columns: 1fr 1fr; }
@@ -2220,6 +2219,539 @@
       opacity: 0;
     }
 
+    /* ==========================================================================
+       MOBILE NATIVE RESPONSIVE ARCHITECTURE
+       ========================================================================== */
+
+    button, a, input, select {
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Mobile Navigation Hamburger & Drawer */
+    .mobile-nav-toggle {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      width: 44px;
+      height: 44px;
+      min-width: 44px;
+      min-height: 44px;
+      padding: 0;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 8px;
+      cursor: pointer;
+      color: #f8fafc;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .mobile-nav-toggle:hover,
+    .mobile-nav-toggle:active {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+
+    .hamburger-bar {
+      display: block;
+      width: 20px;
+      height: 2px;
+      background-color: #ffffff;
+      border-radius: 2px;
+      transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.18s ease;
+      will-change: transform, opacity;
+    }
+
+    .mobile-nav-toggle.open .hamburger-bar:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .mobile-nav-toggle.open .hamburger-bar:nth-child(2) {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+
+    .mobile-nav-toggle.open .hamburger-bar:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    .mobile-nav-drawer {
+      display: none;
+      position: fixed;
+      top: 72px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(8, 9, 12, 0.98);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      z-index: 9999;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      padding: 16px 20px max(48px, env(safe-area-inset-bottom)) 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-6px);
+      transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .mobile-nav-drawer.open {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    .mobile-nav-inner {
+      max-width: 600px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .mobile-nav-group-title {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--amber-light);
+      padding: 14px 12px 6px 12px;
+      font-weight: 700;
+    }
+
+    .mobile-nav-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-height: 48px;
+      padding: 12px 14px;
+      border-radius: 8px;
+      color: #cbd5e1;
+      font-size: 15px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+
+    .mobile-nav-link:active,
+    .mobile-nav-link:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: #ffffff;
+    }
+
+    .mobile-nav-badge {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: rgba(245, 158, 11, 0.15);
+      color: #fbbf24;
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      margin-left: auto;
+    }
+
+    /* Studio Mobile Tabs */
+    .studio-mobile-tabs {
+      display: none;
+      background: #141720;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 8px 14px;
+      gap: 8px;
+    }
+
+    .studio-tab-btn {
+      flex: 1;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 6px;
+      color: #94a3b8;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .studio-tab-btn.active {
+      background: var(--amber-primary);
+      color: #ffffff;
+      border-color: #f59e0b;
+      box-shadow: 0 2px 8px rgba(217, 119, 6, 0.25);
+    }
+
+    /* Responsive Comparison Table Container */
+    .table-responsive {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin-top: 16px;
+      border-radius: 6px;
+    }
+
+    /* Guides Grid & Card Classes */
+    .guides-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+      gap: 32px;
+    }
+
+    .guide-card {
+      background: #11131a;
+      border: 1px solid var(--bg-obsidian-border);
+      border-radius: 12px;
+      padding: 36px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .prefooter-ctas {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    /* Media Queries: Breakpoint 960px */
+    @media (max-width: 960px) {
+      .nav-links {
+        display: none !important;
+      }
+      .mobile-nav-toggle {
+        display: flex;
+      }
+      .mobile-nav-drawer {
+        display: block;
+      }
+      .container {
+        padding: 0 20px;
+      }
+      .case-metrics-column {
+        border-left: none;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding-left: 0;
+        padding-top: 24px;
+      }
+    }
+
+    /* Media Queries: Breakpoint 768px (Tablets & Mobile) */
+    @media (max-width: 768px) {
+      .parchment-chart-graphic {
+        display: none;
+      }
+      .studio-mobile-tabs {
+        display: flex;
+      }
+      .studio-split-view {
+        display: block !important;
+        height: auto !important;
+        min-height: 440px;
+      }
+      .studio-editor-pane {
+        display: none;
+        height: 420px;
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .studio-preview-pane {
+        display: flex;
+        min-height: 440px;
+        padding: 16px 12px;
+        width: 100%;
+      }
+      .studio-top-bar {
+        padding: 12px 16px;
+        gap: 12px;
+      }
+      .studio-controls-left {
+        width: 100%;
+      }
+      .studio-select-wrapper {
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+      }
+      #templateSelect {
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+      }
+      .studio-controls-right {
+        width: 100%;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      #downloadPdfBtn {
+        flex: 1 1 100%;
+        min-height: 44px;
+        justify-content: center;
+        text-align: center;
+        order: 3;
+      }
+      #copyJsonBtn {
+        min-height: 40px;
+      }
+      #latencyBadge {
+        min-height: 40px;
+      }
+    }
+
+    /* Desktop View: Guarantee Side-by-Side Studio Layout */
+    @media (min-width: 769px) {
+      .studio-mobile-tabs {
+        display: none !important;
+      }
+      .studio-split-view {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        height: 640px !important;
+      }
+      .studio-editor-pane {
+        display: block !important;
+        height: 100% !important;
+      }
+      .studio-preview-pane {
+        display: flex !important;
+        height: 100% !important;
+      }
+      .mobile-nav-toggle {
+        display: none !important;
+      }
+      .mobile-nav-drawer {
+        display: none !important;
+      }
+    }
+
+    /* Media Queries: Breakpoint 640px (Mobile Viewports) */
+    @media (max-width: 640px) {
+      .container {
+        padding: 0 16px;
+      }
+      .hero-section {
+        padding: 56px 0 44px 0;
+      }
+      .hero-title {
+        font-size: clamp(28px, 7.5vw, 38px);
+        line-height: 1.12;
+        letter-spacing: -0.025em;
+        margin-bottom: 20px;
+      }
+      .hero-subtitle {
+        font-size: 14.5px;
+        line-height: 1.55;
+        margin-bottom: 28px;
+      }
+      .hero-ctas {
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+        margin-bottom: 36px;
+      }
+      .hero-ctas .btn-pill-primary,
+      .hero-ctas .btn-pill-secondary {
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+        min-height: 48px;
+      }
+      .hero-metrics-strip {
+        flex-wrap: wrap;
+        gap: 8px 10px;
+        justify-content: center;
+        font-size: 11px;
+        padding-top: 18px;
+      }
+      .hero-metric-sep {
+        display: none;
+      }
+      .hero-metric-item {
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        padding: 4px 10px;
+        border-radius: 6px;
+      }
+      .ai-hero-card {
+        padding: 20px 16px;
+        margin-top: 24px;
+        border-radius: 12px;
+      }
+      .ai-card-title {
+        font-size: 18px;
+      }
+      .ai-terminal-box {
+        padding: 10px 12px;
+        font-size: 12px;
+      }
+      .ai-prompt-guidance {
+        font-size: 12px;
+      }
+      .ai-prompt-pill {
+        font-size: 11.5px;
+        padding: 6px 10px;
+      }
+      .marquee-section {
+        padding: 24px 0;
+      }
+      .marquee-logos {
+        gap: 20px 24px;
+      }
+      .marquee-logo-item {
+        font-size: 12px;
+      }
+      .section-parchment,
+      .section-impact-dark,
+      .section-proof,
+      .section-pipeline,
+      .section-pricing,
+      .section-guides,
+      .section-prefooter {
+        padding: 64px 0 !important;
+      }
+      .editorial-title {
+        font-size: clamp(26px, 6.5vw, 36px);
+        line-height: 1.2;
+      }
+      .editorial-body {
+        font-size: 14.5px;
+        line-height: 1.55;
+      }
+      .parchment-card {
+        padding: 22px 16px;
+      }
+      .impact-card-ledger {
+        padding: 18px 14px;
+      }
+      .ledger-row {
+        padding: 10px 12px;
+        font-size: 12px;
+      }
+      .case-study-hero-card {
+        padding: 22px 16px;
+        gap: 20px;
+      }
+      .proof-number {
+        font-size: clamp(52px, 15vw, 80px);
+      }
+      .proof-quote {
+        font-size: 19px;
+        line-height: 1.4;
+      }
+      .proof-quote::before {
+        display: none;
+      }
+      .pipeline-title {
+        font-size: clamp(28px, 7vw, 40px);
+      }
+      .pipeline-hero-hub {
+        transform: none;
+        max-width: 220px;
+        margin: 8px auto;
+      }
+      .pipeline-pillars {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      .pillar-card {
+        padding: 18px 16px;
+      }
+      .guides-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .guide-card {
+        padding: 22px 18px;
+      }
+      .guide-card h3 {
+        font-size: 21px !important;
+      }
+      .calculator-box {
+        padding: 22px 16px;
+        gap: 24px;
+        margin-bottom: 44px;
+      }
+      .result-amount {
+        font-size: 32px;
+      }
+      .billing-toggle-wrap {
+        flex-wrap: wrap;
+        gap: 8px 12px;
+        margin-bottom: 28px;
+      }
+      .price-card {
+        padding: 28px 20px;
+      }
+      .price-plan-desc {
+        min-height: auto;
+        margin-bottom: 16px;
+      }
+      .price-figure {
+        font-size: 42px;
+      }
+      .price-card .btn-pill-primary,
+      .price-card .btn-pill-secondary {
+        width: 100%;
+        min-height: 48px;
+        justify-content: center;
+        text-align: center;
+      }
+      .prefooter-title {
+        font-size: clamp(26px, 6.5vw, 38px);
+        line-height: 1.2;
+      }
+      .prefooter-ctas {
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+      }
+      .prefooter-ctas .btn-pill-primary,
+      .prefooter-ctas .btn-pill-secondary {
+        width: 100%;
+        min-height: 48px;
+        justify-content: center;
+        text-align: center;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+        gap: 12px;
+      }
+      .btn-github {
+        display: none;
+      }
+    }
+
+    /* Extra Small Mobile (<= 380px) */
+    @media (max-width: 380px) {
+      .brand-tag {
+        display: none;
+      }
+      .hero-title {
+        font-size: 27px;
+      }
+      .nav-bar {
+        height: 60px;
+      }
+      .mobile-nav-drawer {
+        top: 60px;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -2389,6 +2921,67 @@
           GitHub
         </a>
         <a href="#studio" class="btn-pill-primary">Live Studio</a>
+        <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle navigation menu" onclick="toggleMobileNav()" aria-expanded="false">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div class="mobile-nav-drawer" id="mobileNavDrawer" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
+      <div class="mobile-nav-inner">
+        <div class="mobile-nav-group-title">Engine &amp; Workstation</div>
+        <a href="#studio" class="mobile-nav-link" onclick="closeMobileNav()">
+          <span class="mobile-nav-badge">Interactive</span>
+          Live Compilation Studio
+        </a>
+        <a href="#benchmarks" class="mobile-nav-link" onclick="closeMobileNav()">
+          <span class="mobile-nav-badge">5.8ms</span>
+          Performance Benchmarks
+        </a>
+        <a href="#pipeline" class="mobile-nav-link" onclick="closeMobileNav()">
+          Architecture Pipeline
+        </a>
+        <a href="#calculator" class="mobile-nav-link" onclick="closeMobileNav()">
+          Cloud Cost Calculator
+        </a>
+        <a href="#pricing" class="mobile-nav-link" onclick="closeMobileNav()">
+          Pricing &amp; Licenses
+        </a>
+
+        <div class="mobile-nav-group-title" style="margin-top: 14px;">Guides &amp; Compliance</div>
+        <a href="articles/stripe-facturx-zugferd.html" class="mobile-nav-link" onclick="closeMobileNav()">
+          Stripe to Factur-X Guide
+        </a>
+        <a href="articles/why-puppeteer-fails-en16931.html" class="mobile-nav-link" onclick="closeMobileNav()">
+          Why Puppeteer Fails EN 16931
+        </a>
+        <a href="articles/rubrol-vs-gotenberg.html" class="mobile-nav-link" onclick="closeMobileNav()">
+          Rubrol vs Gotenberg
+        </a>
+        <a href="articles/rubrol-vs-mustangproject.html" class="mobile-nav-link" onclick="closeMobileNav()">
+          Rubrol vs Mustangproject
+        </a>
+        <a href="articles/rubrol-vs-ghostscript.html" class="mobile-nav-link" onclick="closeMobileNav()">
+          Rubrol vs Ghostscript
+        </a>
+
+        <div class="mobile-nav-group-title" style="margin-top: 14px;">Developers &amp; Community</div>
+        <a href="https://github.com/maxcomperatore/rubrol" target="_blank" class="mobile-nav-link" onclick="closeMobileNav()">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 2px;"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          GitHub Repository (Open Source)
+        </a>
+        <a href="https://github.com/maxcomperatore/rubrol/pkgs/container/rubrol" target="_blank" class="mobile-nav-link" onclick="closeMobileNav()">
+          Docker Hub (ghcr.io)
+        </a>
+        <a href="https://typst.app/universe/package/rubrol-invoice" target="_blank" class="mobile-nav-link" onclick="closeMobileNav()">
+          Typst Universe Package
+        </a>
+        <a href="https://github.com/maxcomperatore/rubrol#-community-sdk-bounty-program-990-reward" target="_blank" class="mobile-nav-link" onclick="closeMobileNav()">
+          SDK Bounty Program ($990)
+        </a>
       </div>
     </div>
   </div>
@@ -2552,6 +3145,18 @@
           </div>
         </div>
 
+        <!-- Mobile Tab Switcher -->
+        <div class="studio-mobile-tabs" id="studioMobileTabs">
+          <button class="studio-tab-btn active" id="studioTabPreview" onclick="switchStudioTab('preview')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+            Live Preview
+          </button>
+          <button class="studio-tab-btn" id="studioTabEditor" onclick="switchStudioTab('editor')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+            JSON Variables
+          </button>
+        </div>
+
         <div class="studio-split-view">
           <div class="studio-editor-pane">
             <div id="monacoEditor"></div>
@@ -2605,37 +3210,39 @@
           <p class="parchment-card-text">
             Rubrol compiles structured documents into native vector PDF/A-3b, PDF/A-2b, and SVG. Zero browser overhead, zero Node.js bridging, and native ISO 19005-3 & ISO 19005-2 compliance built directly into the binary.
           </p>
-          <table class="comp-table">
-            <thead>
-              <tr>
-                <th>Vector Spec</th>
-                <th>Chromium / Puppeteer</th>
-                <th>Rubrol Sidecar</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Compile Latency</td>
-                <td><span class="badge-loss">2,400ms</span></td>
-                <td><span class="badge-win">5.8ms</span></td>
-              </tr>
-              <tr>
-                <td>Memory Footprint</td>
-                <td><span class="badge-loss">250MB</span></td>
-                <td><span class="badge-win">24MB</span></td>
-              </tr>
-              <tr>
-                <td>Max Concurrency</td>
-                <td><span class="badge-loss">40 req/s</span></td>
-                <td><span class="badge-win">1,200 req/s</span></td>
-              </tr>
-              <tr class="highlight">
-                <td>PDF/A-3b &amp; Factur-X (ISO 19005-3)</td>
-                <td>Requires 3rd party CLI</td>
-                <td>Native Zero-Copy</td>
-              </tr>
-            </tbody>
-          </table>
+          <div class="table-responsive">
+            <table class="comp-table">
+              <thead>
+                <tr>
+                  <th>Vector Spec</th>
+                  <th>Chromium / Puppeteer</th>
+                  <th>Rubrol Sidecar</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Compile Latency</td>
+                  <td><span class="badge-loss">2,400ms</span></td>
+                  <td><span class="badge-win">5.8ms</span></td>
+                </tr>
+                <tr>
+                  <td>Memory Footprint</td>
+                  <td><span class="badge-loss">250MB</span></td>
+                  <td><span class="badge-win">24MB</span></td>
+                </tr>
+                <tr>
+                  <td>Max Concurrency</td>
+                  <td><span class="badge-loss">40 req/s</span></td>
+                  <td><span class="badge-win">1,200 req/s</span></td>
+                </tr>
+                <tr class="highlight">
+                  <td>PDF/A-3b &amp; Factur-X (ISO 19005-3)</td>
+                  <td>Requires 3rd party CLI</td>
+                  <td>Native Zero-Copy</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
@@ -2841,10 +3448,10 @@
         </p>
       </div>
 
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 32px;">
+      <div class="guides-grid">
         
         <!-- Guide 1: Stripe Factur-X -->
-        <div style="background: #11131a; border: 1px solid var(--bg-obsidian-border); border-radius: 12px; padding: 36px; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.2s, border-color 0.2s;">
+        <div class="guide-card">
           <div>
             <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px;">
               <span style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: var(--amber-light); background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.25); padding: 3px 9px; border-radius: 6px; text-transform: uppercase;">
@@ -2874,7 +3481,7 @@
         </div>
 
         <!-- Guide 2: Why Puppeteer Cannot Generate EN 16931 -->
-        <div style="background: #11131a; border: 1px solid var(--bg-obsidian-border); border-radius: 12px; padding: 36px; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.2s, border-color 0.2s;">
+        <div class="guide-card">
           <div>
             <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px;">
               <span style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: #f87171; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.25); padding: 3px 9px; border-radius: 6px; text-transform: uppercase;">
@@ -2903,7 +3510,7 @@
           </a>
         </div>
         <!-- Guide 3: Rubrol vs Mustangproject -->
-        <div style="background: #11131a; border: 1px solid var(--bg-obsidian-border); border-radius: 12px; padding: 36px; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.2s, border-color 0.2s;">
+        <div class="guide-card">
           <div>
             <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px;">
               <span style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: #a855f7; background: rgba(168, 85, 247, 0.1); border: 1px solid rgba(168, 85, 247, 0.25); padding: 3px 9px; border-radius: 6px; text-transform: uppercase;">
@@ -2933,7 +3540,7 @@
         </div>
 
         <!-- Guide 4: Rubrol vs Ghostscript -->
-        <div style="background: #11131a; border: 1px solid var(--bg-obsidian-border); border-radius: 12px; padding: 36px; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.2s, border-color 0.2s;">
+        <div class="guide-card">
           <div>
             <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px;">
               <span style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: #f43f5e; background: rgba(244, 63, 94, 0.1); border: 1px solid rgba(244, 63, 94, 0.25); padding: 3px 9px; border-radius: 6px; text-transform: uppercase;">
@@ -2963,7 +3570,7 @@
         </div>
 
         <!-- Guide 5: Rubrol vs Gotenberg -->
-        <div style="background: #11131a; border: 1px solid var(--bg-obsidian-border); border-radius: 12px; padding: 36px; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.2s, border-color 0.2s;">
+        <div class="guide-card">
           <div>
             <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px;">
               <span style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: #38bdf8; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.25); padding: 3px 9px; border-radius: 6px; text-transform: uppercase;">
@@ -3226,7 +3833,7 @@
       <p class="prefooter-sub">
         Deploy the Rubrol sidecar into your Kubernetes or Docker cluster today. Compile 10,000 documents per minute on single-core compute.
       </p>
-      <div style="display: flex; justify-content: center; gap: 16px;">
+      <div class="prefooter-ctas">
         <a href="#studio" class="btn-pill-primary" style="padding: 14px 32px; font-size: 15px;">Launch Live Studio</a>
         <a href="https://github.com/maxcomperatore/rubrol" target="_blank" class="btn-pill-secondary" style="padding: 14px 28px; font-size: 15px;">View GitHub Core</a>
       </div>
@@ -4366,6 +4973,72 @@ ${err.message}</div>`;
         }
       });
     }
+
+    /* Mobile Navigation & Studio Responsiveness */
+    function toggleMobileNav() {
+      const toggle = document.getElementById('mobileNavToggle');
+      const drawer = document.getElementById('mobileNavDrawer');
+      if (!toggle || !drawer) return;
+      const isOpen = drawer.classList.toggle('open');
+      toggle.classList.toggle('open', isOpen);
+      toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      if (isOpen) {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = '';
+      }
+    }
+
+    function closeMobileNav() {
+      const toggle = document.getElementById('mobileNavToggle');
+      const drawer = document.getElementById('mobileNavDrawer');
+      if (!toggle || !drawer) return;
+      drawer.classList.remove('open');
+      toggle.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+
+    function switchStudioTab(tab) {
+      const previewPane = document.querySelector('.studio-preview-pane');
+      const editorPane = document.querySelector('.studio-editor-pane');
+      const previewBtn = document.getElementById('studioTabPreview');
+      const editorBtn = document.getElementById('studioTabEditor');
+      if (!previewPane || !editorPane) return;
+
+      if (tab === 'preview') {
+        previewPane.style.setProperty('display', 'flex', 'important');
+        editorPane.style.setProperty('display', 'none', 'important');
+        if (previewBtn) previewBtn.classList.add('active');
+        if (editorBtn) editorBtn.classList.remove('active');
+      } else {
+        previewPane.style.setProperty('display', 'none', 'important');
+        editorPane.style.setProperty('display', 'block', 'important');
+        if (previewBtn) previewBtn.classList.remove('active');
+        if (editorBtn) editorBtn.classList.add('active');
+        if (window.monacoEditor) {
+          setTimeout(() => {
+            window.monacoEditor.layout();
+          }, 60);
+        }
+      }
+    }
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeMobileNav();
+    });
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 960) {
+        closeMobileNav();
+      }
+      if (window.innerWidth > 768) {
+        const previewPane = document.querySelector('.studio-preview-pane');
+        const editorPane = document.querySelector('.studio-editor-pane');
+        if (previewPane) previewPane.style.removeProperty('display');
+        if (editorPane) editorPane.style.removeProperty('display');
+      }
+    });
 
   </script>
 </body>
