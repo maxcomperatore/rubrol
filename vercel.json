@@ -7,6 +7,14 @@
       "destination": "/rubrol/static/index.html"
     },
     {
+      "source": "/previews/:path*",
+      "destination": "/rubrol/static/previews/:path*"
+    },
+    {
+      "source": "/examples/:path*",
+      "destination": "/examples/:path*"
+    },
+    {
       "source": "/assets/:path*",
       "destination": "/assets/:path*"
     },
@@ -26,6 +34,15 @@
         {
           "key": "Cache-Control",
           "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/previews/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
         }
       ]
     }
