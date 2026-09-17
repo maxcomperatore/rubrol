@@ -635,120 +635,6 @@
       color: rgba(255, 255, 255, 0.15);
     }
 
-    /* Hero Workstation Inset Frame */
-    .hero-workstation-preview {
-      margin-top: 60px;
-      background: #0d0f15;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 14px;
-      box-shadow: 0 25px 70px -15px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.05);
-      overflow: hidden;
-      text-align: left;
-    }
-
-    .hero-workstation-bar {
-      background: #12141c;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      padding: 12px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .workstation-dots {
-      display: flex;
-      gap: 7px;
-    }
-
-    .workstation-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-    }
-    .dot-red { background: #ef4444; }
-    .dot-amber { background: #f59e0b; }
-    .dot-green { background: #10b981; }
-
-    .workstation-tabs {
-      display: flex;
-      gap: 8px;
-    }
-
-    .workstation-tab {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      color: #94a3b8;
-      background: rgba(255, 255, 255, 0.04);
-      padding: 4px 12px;
-      border-radius: 6px;
-      border: 1px solid rgba(255, 255, 255, 0.06);
-    }
-
-    .workstation-tab.active {
-      color: #ffffff;
-      background: rgba(217, 119, 6, 0.12);
-      border-color: var(--amber-border);
-    }
-
-    .workstation-body {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      min-height: 240px;
-    }
-
-    .hero-code-pane {
-      background: #09090b;
-      padding: 24px;
-      font-family: var(--font-mono);
-      font-size: 12px;
-      line-height: 1.7;
-      color: #94a3b8;
-      border-right: 1px solid rgba(255, 255, 255, 0.06);
-    }
-
-    .hero-code-pane .c-key { color: #93c5fd; }
-    .hero-code-pane .c-val { color: #86efac; }
-    .hero-code-pane .c-num { color: #fb923c; }
-    .hero-code-pane .c-com { color: #64748b; font-style: italic; }
-
-    .hero-doc-pane {
-      background: #141720;
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-    }
-
-    .hero-mini-sheet {
-      width: 220px;
-      height: 180px;
-      background: #ffffff;
-      border-radius: 4px;
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
-      padding: 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .sheet-line {
-      height: 6px;
-      border-radius: 2px;
-      background: #e2e8f0;
-    }
-    .sheet-line-brand { background: var(--amber-primary); width: 45%; height: 8px; }
-    .sheet-line-dark { background: #1e293b; width: 75%; }
-    .sheet-table {
-      margin-top: 10px;
-      border-top: 1px solid #cbd5e1;
-      padding-top: 8px;
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-    }
-
     /* MARQUEE SECTION */
     .marquee-section {
       background: #090a0e;
@@ -2575,48 +2461,6 @@
         <div class="hero-metric-item">● <strong>Zero</strong> V8 Virtualization</div>
       </div>
 
-      <!-- Hero Workstation Inset Mockup -->
-      <div class="hero-workstation-preview">
-        <div class="hero-workstation-bar">
-          <div class="workstation-dots">
-            <span class="workstation-dot dot-red"></span>
-            <span class="workstation-dot dot-amber"></span>
-            <span class="workstation-dot dot-green"></span>
-          </div>
-          <div class="workstation-tabs">
-            <span class="workstation-tab active">payload.json</span>
-            <span class="workstation-tab">b2b_invoice.typ</span>
-            <span class="workstation-tab">output.pdf/a</span>
-          </div>
-          <div style="font-family: var(--font-mono); font-size: 11px; color: #10b981;">
-            ● COMPILED IN 5.2ms
-          </div>
-        </div>
-        <div class="workstation-body">
-          <div class="hero-code-pane">
-            <div class="c-com">// Microsecond Ingestion Pipeline</div>
-            <div>&#123;</div>
-            <div style="padding-left: 16px;"><span class="c-key">"invoice_number"</span>: <span class="c-val">"INV-2026-8891"</span>,</div>
-            <div style="padding-left: 16px;"><span class="c-key">"amount_total"</span>: <span class="c-num">14850.00</span>,</div>
-            <div style="padding-left: 16px;"><span class="c-key">"compliance"</span>: <span class="c-val">"PDF/A-2b ISO 19005-2"</span>,</div>
-            <div style="padding-left: 16px;"><span class="c-key">"en_16931_valid"</span>: <span class="c-num">true</span></div>
-            <div>&#125;</div>
-          </div>
-          <div class="hero-doc-pane">
-            <div class="hero-mini-sheet">
-              <div class="sheet-line sheet-line-brand"></div>
-              <div class="sheet-line sheet-line-dark" style="margin-top: 6px;"></div>
-              <div class="sheet-line" style="width: 50%;"></div>
-              <div class="sheet-table">
-                <div class="sheet-line" style="width: 100%; height: 4px;"></div>
-                <div class="sheet-line" style="width: 90%; height: 4px;"></div>
-                <div class="sheet-line" style="width: 95%; height: 4px;"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <!-- Auth0-Style AI Agent Integration Card -->
       <div id="ai-integration" class="ai-hero-card">
         <div class="ai-card-header">
@@ -2659,28 +2503,89 @@
       <div class="marquee-label">ENGINEERED FOR PRODUCTION RUNS REQUIRING ABSOLUTE DETERMINISM</div>
       <div class="marquee-logos">
         <div class="marquee-logo-item">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M13.976 9.15c-2.172-.806-3.356-1.426-3.356-2.409 0-.831.683-1.305 1.901-1.305 2.227 0 4.515.858 6.09 1.631l.89-5.494C18.252.975 15.697.4 12.532.4 6.643.4 2.5 3.518 2.5 8.784c0 4.962 4.148 6.46 8.544 8.04 2.534.908 3.583 1.657 3.583 2.656 0 .979-.87 1.488-2.316 1.488-2.43 0-5.378-1.079-7.29-2.072l-.92 5.578c1.868.978 5.034 1.526 8.354 1.526 6.183 0 10.55-3.033 10.55-8.498 0-4.996-3.896-6.613-9.029-8.352z"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.976 9.15c-2.172-.806-3.356-1.426-3.356-2.409 0-.831.683-1.305 1.901-1.305 2.227 0 4.515.858 6.09 1.631l.89-5.494C18.252.975 15.697 0 12.165 0 9.667 0 7.589.654 6.104 1.872 4.56 3.147 3.757 4.992 3.757 7.218c0 4.039 2.467 5.76 6.476 7.219 2.585.92 3.445 1.574 3.445 2.583 0 .98-.84 1.545-2.354 1.545-1.875 0-4.965-.921-6.99-2.109l-.9 5.555C5.175 22.99 8.385 24 11.714 24c2.641 0 4.843-.624 6.328-1.813 1.664-1.305 2.525-3.236 2.525-5.732 0-4.128-2.524-5.851-6.594-7.305h.003z"/></svg>
           STRIPE SAAS
         </div>
         <div class="marquee-logo-item">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          <svg width="22" height="18" viewBox="0 0 128 128" fill="currentColor" aria-hidden="true"><path d="M108.59 26.148c-1.852 0-3.622.211-5.305.715-1.684.504-3.117 1.223-4.379 2.188a10.829 10.829 0 0 0-3.031 3.453c-.757 1.348-1.137 2.906-1.137 4.676 0 2.187.716 4.25 2.106 6.105 1.386 1.895 3.66 3.324 6.734 4.293l6.106 1.895c2.062.675 3.496 1.391 4.254 2.191.757.801 1.136 1.765 1.136 2.945 0 1.726-.758 3.074-2.191 4-1.43.925-3.492 1.391-6.145 1.391-1.687 0-3.328-.168-5.011-.504a23.102 23.102 0 0 1-4.633-1.476c-.421-.168-.801-.336-1.051-.418a2.357 2.357 0 0 0-.758-.13c-.634 0-.969.423-.969 1.305v2.149a2.919 2.919 0 0 0 .254 1.18c.168.38.629.8 1.305 1.18 1.094.628 2.734 1.179 4.84 1.683 2.105.504 4.297.758 6.484.758 2.15 0 4.129-.297 6.024-.883 1.808-.551 3.367-1.309 4.672-2.36 1.304-1.01 2.316-2.273 3.074-3.707.714-1.429 1.094-3.07 1.094-4.882 0-2.188-.633-4.168-1.938-5.895-1.304-1.727-3.491-3.074-6.523-4.043l-5.98-1.895c-2.23-.713-3.79-1.516-4.634-2.316-.84-.797-1.261-1.808-1.261-2.988 0-1.726.671-2.95 1.98-3.746 1.305-.801 3.199-1.18 5.598-1.18 2.988 0 5.683.547 8.086 1.64.714.337 1.261.508 1.597.508.633 0 .969-.463.969-1.347v-1.98c0-.59-.125-1.051-.379-1.391-.25-.378-.672-.715-1.262-1.051-.422-.254-1.011-.504-1.77-.758a32.528 32.528 0 0 0-2.398-.676c-.886-.168-1.769-.336-2.738-.46a21.347 21.347 0 0 0-2.82-.169zm-86.822.082c-2.316 0-4.508.254-6.57.801-2.063.505-3.831 1.137-5.303 1.895-.59.297-.97.59-1.18.883-.211.296-.293.8-.293 1.476v2.063c0 .882.293 1.304.883 1.304.168 0 .378-.043.674-.125.293-.086.796-.254 1.472-.547a33.416 33.416 0 0 1 4.547-1.433A19.176 19.176 0 0 1 20.547 32c3.242 0 5.513.633 6.863 1.938 1.304 1.303 1.98 3.534 1.98 6.734v3.074c-1.683-.379-3.283-.715-4.843-.926-1.558-.21-3.031-.336-4.461-.336-4.34 0-7.75 1.094-10.316 3.286-2.571 2.187-3.832 5.093-3.832 8.671 0 3.368 1.05 6.063 3.113 8.086 2.066 2.02 4.887 3.032 8.422 3.032 4.97 0 9.097-1.938 12.379-5.813a34.153 34.153 0 0 0 1.304 2.484 13.28 13.28 0 0 0 1.516 1.98c.422.38.844.59 1.266.59.334 0 .714-.128 1.093-.378l2.653-1.77c.546-.42.8-.843.8-1.261a1.86 1.86 0 0 0-.293-.97 22.469 22.469 0 0 1-1.347-3.03c-.297-.925-.465-2.19-.465-3.75h-.086V40c0-4.633-1.176-8.086-3.492-10.36-2.36-2.273-6.025-3.41-11.033-3.41zm19.58 1.012c-.676 0-1.012.379-1.012 1.051 0 .297.129.844.379 1.687l9.894 32.547c.254.8.547 1.387.887 1.641.336.297.84.422 1.598.422h3.62c.759 0 1.347-.125 1.684-.422.34-.293.591-.84.801-1.684l6.485-27.117 6.527 27.16c.168.84.46 1.387.8 1.684.337.292.883.422 1.684.422h3.621c.715 0 1.262-.167 1.598-.422.34-.253.633-.8.887-1.64L90.949 30.02c.168-.46.25-.797.293-1.051.043-.254.086-.466.086-.676 0-.715-.379-1.05-1.055-1.05H86.36c-.757 0-1.308.166-1.644.421-.293.25-.59.8-.84 1.64L76.59 57.517l-6.653-28.211c-.166-.8-.464-1.39-.8-1.64-.336-.298-.884-.423-1.684-.423h-3.367c-.758 0-1.348.167-1.688.422-.335.25-.588.8-.796 1.64l-6.57 27.876-7.075-27.875c-.25-.8-.504-1.39-.84-1.64-.297-.298-.844-.423-1.644-.423h-4.125zM21.64 47.496a31.816 31.816 0 0 1 3.96.25 34.401 34.401 0 0 1 3.872.719v1.765c0 1.435-.168 2.653-.422 3.665-.25 1.01-.758 1.895-1.43 2.695-1.137 1.262-2.484 2.187-4 2.695-1.516.504-2.949.758-4.336.758-1.937 0-3.41-.508-4.422-1.559-1.054-1.01-1.558-2.484-1.558-4.464 0-2.106.675-3.704 2.062-4.84 1.391-1.137 3.454-1.684 6.274-1.684zM118 73.348c-4.432.063-9.664 1.052-13.621 3.832-1.223.883-1.012 2.062.336 1.894 4.508-.547 14.44-1.726 16.21.547 1.77 2.23-1.976 11.62-3.663 15.79-.504 1.26.59 1.769 1.726.8 7.41-6.231 9.348-19.242 7.832-21.137-.757-.925-4.388-1.79-8.82-1.726zM1.63 75.859c-.926.116-1.347 1.236-.368 2.121 16.508 14.902 38.359 23.872 62.613 23.872 17.305 0 37.43-5.43 51.281-15.66 2.273-1.689.298-4.254-2.02-3.204-15.533 6.57-32.421 9.77-47.788 9.77-22.778 0-44.8-6.273-62.653-16.633-.39-.231-.755-.304-1.064-.266z"/></svg>
           AWS FARGATE
         </div>
         <div class="marquee-logo-item">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 4.5a7.5 7.5 0 110 15 7.5 7.5 0 010-15z"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.57 17.04l-1.997-1.316-1.665 2.782-1.937-.567-1.706 2.604.087.82 9.274-1.71-.538-5.794zm-8.649-2.498l1.488-.204c.241.108.409.15.697.223.45.117.97.23 1.741-.16.18-.088.553-.43.704-.625l6.096-1.106.622 7.527-10.444 1.882zm11.325-2.712l-.602.115L20.488 0 .789 2.285l2.427 19.693 2.306-.334c-.184-.263-.471-.581-.96-.989-.68-.564-.44-1.522-.039-2.127.53-1.022 3.26-2.322 3.106-3.956-.056-.594-.15-1.368-.702-1.898-.02.22.017.432.017.432s-.227-.289-.34-.683c-.112-.15-.2-.199-.319-.4-.085.233-.073.503-.073.503s-.186-.437-.216-.807c-.11.166-.137.48-.137.48s-.241-.69-.186-1.062c-.11-.323-.436-.965-.343-2.424.6.421 1.924.321 2.44-.439.171-.251.288-.939-.086-2.293-.24-.868-.835-2.16-1.066-2.651l-.028.02c.122.395.374 1.223.47 1.625.293 1.218.372 1.642.234 2.204-.116.488-.397.808-1.107 1.165-.71.358-1.653-.514-1.713-.562-.69-.55-1.224-1.447-1.284-1.883-.062-.477.275-.763.445-1.153-.243.07-.514.192-.514.192s.323-.334.722-.624c.165-.109.262-.178.436-.323a9.762 9.762 0 0 0-.456.003s.42-.227.855-.392c-.318-.014-.623-.003-.623-.003s.937-.419 1.678-.727c.509-.208 1.006-.147 1.286.257.367.53.752.817 1.569.996.501-.223.653-.337 1.284-.509.554-.61.99-.688.99-.688s-.216.198-.274.51c.314-.249.66-.455.66-.455s-.134.164-.259.426l.03.043c.366-.22.797-.394.797-.394s-.123.156-.268.358c.277-.002.838.012 1.056.037 1.285.028 1.552-1.374 2.045-1.55.618-.22.894-.353 1.947.68.903.888 1.609 2.477 1.259 2.833-.294.295-.874-.115-1.516-.916a3.466 3.466 0 0 1-.716-1.562 1.533 1.533 0 0 0-.497-.85s.23.51.23.96c0 .246.03 1.165.424 1.68-.039.076-.057.374-.1.43-.458-.554-1.443-.95-1.604-1.067.544.445 1.793 1.468 2.273 2.449.453.927.186 1.777.416 1.997.065.063.976 1.197 1.15 1.767.306.994.019 2.038-.381 2.685l-1.117.174c-.163-.045-.273-.068-.42-.153.08-.143.241-.5.243-.572l-.063-.111c-.348.492-.93.97-1.414 1.245-.633.359-1.363.304-1.838.156-1.348-.415-2.623-1.327-2.93-1.566 0 0-.01.191.048.234.34.383 1.119 1.077 1.872 1.56l-1.605.177.759 5.908c-.337.048-.39.071-.757.124-.325-1.147-.946-1.895-1.624-2.332-.599-.384-1.424-.47-2.214-.314l-.05.059a2.851 2.851 0 0 1 1.863.444c.654.413 1.181 1.481 1.375 2.124.248.822.42 1.7-.248 2.632-.476.662-1.864 1.028-2.986.237.3.481.705.876 1.25.95.809.11 1.577-.03 2.106-.574.452-.464.69-1.434.628-2.456l.714-.104.258 1.834 11.827-1.424zM15.05 6.848c-.034.075-.085.125-.007.37l.004.014.013.032.032.073c.14.287.295.558.552.696.067-.011.136-.019.207-.023.242-.01.395.028.492.08.009-.048.01-.119.005-.222-.018-.364.072-.982-.626-1.308-.264-.122-.634-.084-.757.068a.302.302 0 0 1 .058.013c.186.066.06.13.027.207m1.958 3.392c-.092-.05-.52-.03-.821.005-.574.068-1.193.267-1.328.372-.247.191-.135.523.047.66.511.382.96.638 1.432.575.29-.038.546-.497.728-.914.124-.288.124-.598-.058-.698m-5.077-2.942c.162-.154-.805-.355-1.556.156-.554.378-.571 1.187-.041 1.646.053.046.096.078.137.104a4.77 4.77 0 0 1 1.396-.412c.113-.125.243-.345.21-.745-.044-.542-.455-.456-.146-.749"/></svg>
           DATADOG APM
         </div>
         <div class="marquee-logo-item">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L1 21h22L12 2zm0 4.5l7.5 13H4.5L12 6.5z"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 22.525H0l12-21.05 12 21.05z"/></svg>
           VERCEL EDGE
         </div>
         <div class="marquee-logo-item">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm1 14.5h-2v-2h2v2zm0-4h-2V7h2v5.5z"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11.9 1.036c-.015-.986-1.26-1.41-1.874-.637L.764 12.05C-.33 13.427.65 15.455 2.409 15.455h9.579l.113 7.51c.014.985 1.259 1.408 1.873.636l9.262-11.653c1.093-1.375.113-3.403-1.645-3.403h-9.642z"/></svg>
           SUPABASE DB
         </div>
         <div class="marquee-logo-item">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.5088 16.8447c.1475-.5068.0908-.9707-.1553-1.3154-.2246-.3164-.6045-.499-1.0615-.5205l-8.6592-.1123a.1559.1559 0 0 1-.1333-.0713c-.0283-.042-.0351-.0986-.021-.1553.0278-.084.1123-.1484.2036-.1562l8.7359-.1123c1.0351-.0489 2.1601-.8868 2.5537-1.9136l.499-1.3013c.0215-.0561.0293-.1128.0147-.168-.5625-2.5463-2.835-4.4453-5.5499-4.4453-2.5039 0-4.6284 1.6177-5.3876 3.8614-.4927-.3658-1.1187-.5625-1.794-.499-1.2026.119-2.1665 1.083-2.2861 2.2856-.0283.31-.0069.6128.0635.894C1.5683 13.171 0 14.7754 0 16.752c0 .1748.0142.3515.0352.5273.0141.083.0844.1475.1689.1475h15.9814c.0909 0 .1758-.0645.2032-.1553l.12-.4268zm2.7568-5.5634c-.0771 0-.1611 0-.2383.0112-.0566 0-.1054.0415-.127.0976l-.3378 1.1744c-.1475.5068-.0918.9707.1543 1.3164.2256.3164.6055.498 1.0625.5195l1.8437.1133c.0557 0 .1055.0263.1329.0703.0283.043.0351.1074.0214.1562-.0283.084-.1132.1485-.204.1553l-1.921.1123c-1.041.0488-2.1582.8867-2.5527 1.914l-.1406.3585c-.0283.0713.0215.1416.0986.1416h6.5977c.0771 0 .1474-.0489.169-.126.1122-.4082.1757-.837.1757-1.2803 0-2.6025-2.125-4.727-4.7344-4.727"/></svg>
           CLOUDFLARE
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- LIVE MONACO STUDIO WORKSTATION -->
+  <section id="studio" class="section-studio">
+    <div class="container">
+      <div style="text-align: center; margin-bottom: 48px;">
+        <span class="editorial-label" style="color: var(--amber-light);">INTERACTIVE ENGINE WORKSTATION</span>
+        <h2 style="font-family: var(--font-serif); font-size: 46px; color: #ffffff; margin-bottom: 14px;">
+          Live Interactive Compilation Studio
+        </h2>
+        <p style="font-size: 16px; color: #94a3b8; max-width: 680px; margin: 0 auto;">
+          Edit live JSON variables on the left. Watch the local Rubrol engine recompile vector SVG in real time. Download PDF/A-2b compliant binaries instantly.
+        </p>
+      </div>
+
+      <div class="studio-console-card">
+        <div class="studio-top-bar">
+          <div class="studio-controls-left">
+            <div class="studio-select-wrapper">
+              <span class="studio-select-label">Template:</span>
+              <select id="templateSelect">
+                <option value="b2b_invoice" selected>b2b_invoice — Stripe SaaS Billing Invoice</option>
+                <option value="facturx_invoice">facturx_invoice — EU Factur-X / ZUGFeRD 2.2 EN 16931</option>
+                <option value="saas_receipt">saas_receipt — Consumer &amp; Developer Receipt</option>
+                <option value="purchase_order">purchase_order — Enterprise Procurement Order</option>
+                <option value="packing_slip">packing_slip — Multi-Box Logistics Packing Slip</option>
+                <option value="paystub_statement">paystub_statement — Itemized Payroll Statement</option>
+                <option value="board_financial_report">board_financial_report — Executive Board Financial Update</option>
+                <option value="compliance_certificate">compliance_certificate — SOC 2 &amp; ISO 27001 Certificate</option>
+                <option value="medical_intake">medical_intake — HIPAA Clinical Intake Record</option>
+                <option value="nda_agreement">nda_agreement — Mutual Non-Disclosure Agreement</option>
+                <option value="academic_transcript">academic_transcript — Official University Transcript</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="studio-controls-right">
+            <button id="copyJsonBtn" class="btn-copy-json" onclick="copyJsonPayload()">
+              Copy JSON
+            </button>
+            <div id="latencyBadge" class="latency-badge">
+              <span>●</span> 5.2ms
+            </div>
+            <button id="downloadPdfBtn" class="btn-pill-primary" style="padding: 7px 18px; font-size: 12.5px;">
+              Download PDF/A-2b ↓
+            </button>
+          </div>
+        </div>
+
+        <div class="studio-split-view">
+          <div class="studio-editor-pane">
+            <div id="monacoEditor"></div>
+          </div>
+          <div class="studio-preview-pane">
+            <div id="svgContainer" class="preview-sheet mode-fit-width">
+              <!-- Rendered SVG will be injected here -->
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -3206,68 +3111,6 @@
       </div>
     </div>
   </section>
-
-  <!-- LIVE MONACO STUDIO WORKSTATION -->
-  <section id="studio" class="section-studio">
-    <div class="container">
-      <div style="text-align: center; margin-bottom: 48px;">
-        <span class="editorial-label" style="color: var(--amber-light);">INTERACTIVE ENGINE WORKSTATION</span>
-        <h2 style="font-family: var(--font-serif); font-size: 46px; color: #ffffff; margin-bottom: 14px;">
-          Live Interactive Compilation Studio
-        </h2>
-        <p style="font-size: 16px; color: #94a3b8; max-width: 680px; margin: 0 auto;">
-          Edit live JSON variables on the left. Watch the local Rubrol engine recompile vector SVG in real time. Download PDF/A-2b compliant binaries instantly.
-        </p>
-      </div>
-
-      <div class="studio-console-card">
-        <div class="studio-top-bar">
-          <div class="studio-controls-left">
-            <div class="studio-select-wrapper">
-              <span class="studio-select-label">Template:</span>
-              <select id="templateSelect">
-                <option value="b2b_invoice" selected>b2b_invoice — Stripe SaaS Billing Invoice</option>
-                <option value="facturx_invoice">facturx_invoice — EU Factur-X / ZUGFeRD 2.2 EN 16931</option>
-                <option value="saas_receipt">saas_receipt — Consumer &amp; Developer Receipt</option>
-                <option value="purchase_order">purchase_order — Enterprise Procurement Order</option>
-                <option value="packing_slip">packing_slip — Multi-Box Logistics Packing Slip</option>
-                <option value="paystub_statement">paystub_statement — Itemized Payroll Statement</option>
-                <option value="board_financial_report">board_financial_report — Executive Board Financial Update</option>
-                <option value="compliance_certificate">compliance_certificate — SOC 2 &amp; ISO 27001 Certificate</option>
-                <option value="medical_intake">medical_intake — HIPAA Clinical Intake Record</option>
-                <option value="nda_agreement">nda_agreement — Mutual Non-Disclosure Agreement</option>
-                <option value="academic_transcript">academic_transcript — Official University Transcript</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="studio-controls-right">
-            <button id="copyJsonBtn" class="btn-copy-json" onclick="copyJsonPayload()">
-              Copy JSON
-            </button>
-            <div id="latencyBadge" class="latency-badge">
-              <span>●</span> 5.2ms
-            </div>
-            <button id="downloadPdfBtn" class="btn-pill-primary" style="padding: 7px 18px; font-size: 12.5px;">
-              Download PDF/A-2b ↓
-            </button>
-          </div>
-        </div>
-
-        <div class="studio-split-view">
-          <div class="studio-editor-pane">
-            <div id="monacoEditor"></div>
-          </div>
-          <div class="studio-preview-pane">
-            <div id="svgContainer" class="preview-sheet mode-fit-width">
-              <!-- Rendered SVG will be injected here -->
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- PRICING & ROI AMORTIZATION DECK -->
   <section id="pricing" class="section-pricing">
     <div class="container">
