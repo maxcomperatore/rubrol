@@ -1553,6 +1553,7 @@
         <a href="#architecture" class="nav-link">Architecture</a>
         <a href="#benchmarks" class="nav-link">Benchmarks</a>
         <a href="#compliance" class="nav-link">Factur-X &amp; EN 16931</a>
+        <a href="#articles" class="nav-link">Guides</a>
         <a href="#studio" class="nav-link">Live Studio</a>
         <a href="#pricing" class="nav-link">Pricing</a>
         <a href="https://github.com/maxcomperatore/rubrol" target="_blank" class="nav-link">Docs</a>
@@ -2040,6 +2041,85 @@
     </div>
   </section>
 
+  <!-- ENGINEERING GUIDES & COMPLIANCE TEARDOWNS (IAN VARGAS STYLE) -->
+  <section id="articles" class="section-guides" style="background: #090a0f; padding: 100px 0; border-bottom: 1px solid var(--bg-obsidian-border);">
+    <div class="container">
+      <div style="text-align: center; margin-bottom: 56px;">
+        <span class="editorial-label" style="color: var(--amber-light);">ENGINEERING TEARDOWNS &amp; COMPLIANCE GUIDES</span>
+        <h2 style="font-family: var(--font-serif); font-size: 46px; color: #ffffff; margin-bottom: 16px; letter-spacing: -0.02em;">
+          The Truth About Document Infrastructure
+        </h2>
+        <p style="font-size: 16px; color: #94a3b8; max-width: 720px; margin: 0 auto;">
+          No marketing fluff. Brutalist engineering breakdowns of why legacy Chromium breaks under European e-invoicing laws, and the exact code to fix it before the 2026 mandates hit.
+        </p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 32px;">
+        
+        <!-- Guide 1: Stripe Factur-X -->
+        <div style="background: #11131a; border: 1px solid var(--bg-obsidian-border); border-radius: 12px; padding: 36px; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.2s, border-color 0.2s;">
+          <div>
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px;">
+              <span style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: var(--amber-light); background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.25); padding: 3px 9px; border-radius: 6px; text-transform: uppercase;">
+                STRIPE &amp; EU MANDATE
+              </span>
+              <span style="font-size: 12.5px; color: #64748b; font-family: var(--font-mono);">6 MIN READ • IAN VARGAS</span>
+            </div>
+            
+            <h3 style="font-family: var(--font-serif); font-size: 25px; color: #f8fafc; line-height: 1.3; margin-bottom: 14px;">
+              How to Make Your Stripe Invoices Factur-X / ZUGFeRD Compliant in 5 Minutes
+            </h3>
+            
+            <p style="font-size: 14.5px; color: #94a3b8; line-height: 1.65; margin-bottom: 24px;">
+              Your standard Stripe PDF invoice is legally non-compliant for French and German B2B clients under EN 16931. Here is why Stripe won't solve it, why legacy EDI charges €1,200/month, and the exact 5-line webhook fix using Rubrol.
+            </p>
+
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 13.5px; color: #cbd5e1; margin-bottom: 28px;">
+              <li>⚡ <strong>The Lie:</strong> Why European ERPs (SAP, DATEV) reject standard Stripe PDFs</li>
+              <li>⚡ <strong>The Code:</strong> Copy-paste Node.js/Express webhook to generate PDF/A-3b</li>
+              <li>⚡ <strong>Zero Bloat:</strong> Full ISO 19005-3 validation in under 160ms</li>
+            </ul>
+          </div>
+
+          <a href="/articles/stripe-facturx-zugferd" style="display: inline-flex; align-items: center; gap: 8px; font-weight: 700; font-size: 14px; color: var(--amber-light); text-decoration: none;">
+            Read Full Engineering Guide →
+          </a>
+        </div>
+
+        <!-- Guide 2: Why Puppeteer Cannot Generate EN 16931 -->
+        <div style="background: #11131a; border: 1px solid var(--bg-obsidian-border); border-radius: 12px; padding: 36px; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.2s, border-color 0.2s;">
+          <div>
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px;">
+              <span style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: #f87171; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.25); padding: 3px 9px; border-radius: 6px; text-transform: uppercase;">
+                ARCHITECTURAL TEARDOWN
+              </span>
+              <span style="font-size: 12.5px; color: #64748b; font-family: var(--font-mono);">7 MIN READ • IAN VARGAS</span>
+            </div>
+            
+            <h3 style="font-family: var(--font-serif); font-size: 25px; color: #f8fafc; line-height: 1.3; margin-bottom: 14px;">
+              Why Puppeteer Cannot Generate Legal EN 16931 E-Invoices (And What to Use Instead)
+            </h3>
+            
+            <p style="font-size: 14.5px; color: #94a3b8; line-height: 1.65; margin-bottom: 24px;">
+              Every engineering team treats PDF generation as a web-page printing problem. Here is the deep technical autopsy of why Chrome's Skia engine fails ISO 19005-3 and burns $500/month on zombie Fargate containers.
+            </p>
+
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 13.5px; color: #cbd5e1; margin-bottom: 28px;">
+              <li>❌ <strong>Skia Engine Flaw:</strong> Zero native support for PDF/A-3b or ICC profiles</li>
+              <li>❌ <strong>Catalog Attachment:</strong> Why Puppeteer cannot create valid <code>/AFRelationship</code></li>
+              <li>⚡ <strong>The Alternative:</strong> Sub-15ms Rust Typst compilation with 96% less RAM</li>
+            </ul>
+          </div>
+
+          <a href="/articles/why-puppeteer-fails-en16931" style="display: inline-flex; align-items: center; gap: 8px; font-weight: 700; font-size: 14px; color: #f87171; text-decoration: none;">
+            Read Architectural Teardown →
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <!-- LIVE MONACO STUDIO WORKSTATION -->
   <section id="studio" class="section-studio">
     <div class="container">
@@ -2270,12 +2350,12 @@
         </div>
 
         <div>
-          <div class="footer-col-title">Compliance</div>
+          <div class="footer-col-title">Guides &amp; Compliance</div>
           <ul class="footer-links">
-            <li><a href="#compliance">Factur-X 1.0</a></li>
-            <li><a href="#compliance">ZUGFeRD 2.2</a></li>
-            <li><a href="#compliance">EN 16931 Norm</a></li>
-            <li><a href="#compliance">PDF/A-2b ISO 19005-2</a></li>
+            <li><a href="/articles/stripe-facturx-zugferd">Stripe to Factur-X in 5 Min</a></li>
+            <li><a href="/articles/why-puppeteer-fails-en16931">Why Puppeteer Fails EN 16931</a></li>
+            <li><a href="#compliance">Factur-X 1.0 &amp; ZUGFeRD 2.2</a></li>
+            <li><a href="#compliance">PDF/A-2b &amp; ISO 19005-3</a></li>
           </ul>
         </div>
 

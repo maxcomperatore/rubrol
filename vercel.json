@@ -23,6 +23,10 @@
       "destination": "/assets/logo.png"
     },
     {
+      "source": "/articles/:slug",
+      "destination": "/rubrol/static/articles/:slug.html"
+    },
+    {
       "source": "/:path*",
       "destination": "/rubrol/static/:path*"
     }

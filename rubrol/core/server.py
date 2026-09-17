@@ -79,6 +79,8 @@ class RubrolServerHandler(BaseHTTPRequestHandler):
                 safe_file = ROOT_DIR / req_path
             else:
                 safe_file = STATIC_DIR / req_path
+                if not safe_file.exists() and (STATIC_DIR / f"{req_path}.html").exists():
+                    safe_file = STATIC_DIR / f"{req_path}.html"
 
             if safe_file.exists() and safe_file.is_file():
                 mime, _ = mimetypes.guess_type(str(safe_file))
