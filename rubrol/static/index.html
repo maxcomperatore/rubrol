@@ -882,32 +882,6 @@
       color: #f59e0b;
     }
 
-    /* PARCHMENT SECTION 3: UNBOXED ISOMETRIC ARCHITECTURE */
-    .section-isometric {
-      background-color: #fbfaf8;
-      color: var(--text-light-head);
-      padding: 112px 0;
-      position: relative;
-      border-bottom: 1px solid var(--border-parchment);
-      overflow: hidden;
-    }
-
-    .isometric-split {
-      display: grid;
-      grid-template-columns: 1fr 1.15fr;
-      gap: 40px;
-      align-items: center;
-    }
-
-    /* Floating freely directly on parchment canvas — NO white box! */
-    .isometric-graphic-free {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-      width: 100%;
-    }
-
     /* PROOF NUMBERS & ENTERPRISE CASE STUDY CARD */
     .section-proof {
       background-color: var(--bg-parchment);
@@ -1729,7 +1703,7 @@
     @media (max-width: 960px) {
       .hero-title { font-size: 44px; }
       .workstation-body { grid-template-columns: 1fr; }
-      .parchment-grid, .impact-split, .isometric-split, .proof-grid, .studio-split-view, .calculator-box, .pricing-deck, .footer-grid, .case-study-hero-card {
+      .parchment-grid, .impact-split, .proof-grid, .studio-split-view, .calculator-box, .pricing-deck, .footer-grid, .case-study-hero-card {
         grid-template-columns: 1fr;
       }
       .studio-split-view { height: 800px; }
@@ -2716,96 +2690,6 @@
     </div>
   </section>
 
-  <!-- PARCHMENT SECTION 3: UNBOXED ISOMETRIC ARCHITECTURE -->
-  <section id="architecture" class="section-isometric">
-    <div class="container isometric-split">
-      <div>
-        <span class="editorial-label">ISOMETRIC CORE PIPELINE</span>
-        <h2 class="editorial-title">Native Vector Layout Engine: Zero-Copy Sidecar.</h2>
-        <p class="editorial-body" style="margin-bottom: 28px;">
-          Rubrol operates as a high-density microservice or native shared library. Instead of rendering HTML pages into rasterized print buffers, it builds an Abstract Syntax Tree of the document model directly in memory, calculating typesetting grids, kerning, and pagination in pure mathematics before outputting certified PDF/A-2b.
-        </p>
-        <div style="display: flex; gap: 14px;">
-          <a href="#studio" class="btn-pill-primary" style="background: #18181b; color: #ffffff;">Launch Live Console</a>
-          <a href="https://github.com/maxcomperatore/rubrol" target="_blank" class="btn-pill-secondary" style="background: transparent; color: #18181b; border-color: var(--border-parchment);">View Engine Source</a>
-        </div>
-      </div>
-
-      <!-- Free-floating isometric architectural blueprint — NO white box container -->
-      <div class="isometric-graphic-free">
-        <svg width="560" height="380" viewBox="0 0 560 380" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <!-- Subtle Perspective Floor Grid -->
-          <g stroke="#d97706" stroke-width="0.75" stroke-opacity="0.18" stroke-dasharray="3 3">
-            <line x1="80" y1="310" x2="280" y2="190"/>
-            <line x1="180" y1="360" x2="380" y2="240"/>
-            <line x1="280" y1="370" x2="480" y2="250"/>
-            <line x1="480" y1="310" x2="280" y2="190"/>
-            <line x1="380" y1="360" x2="180" y2="240"/>
-          </g>
-
-          <!-- Central Isometric Assembly -->
-          <g transform="translate(280, 185)">
-            <!-- Central Ochre Highlighted Cube (Typst Core) -->
-            <!-- Top Face -->
-            <polygon points="0,-48 84,-96 0,-144 -84,-96" fill="url(#amberGradHero)" stroke="#ea580c" stroke-width="1.8"/>
-            <!-- Left Face -->
-            <polygon points="-84,-96 0,-48 0,48 -84,0" fill="#fef3c7" stroke="#ea580c" stroke-width="1.8"/>
-            <!-- Right Face -->
-            <polygon points="0,-48 84,-96 84,0 0,48" fill="#fde68a" stroke="#ea580c" stroke-width="1.8"/>
-
-            <!-- Engraved Rubrol Core Typography -->
-            <text x="0" y="-92" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="700" fill="#7c2d12" text-anchor="middle" letter-spacing="0.1em">RUBROL CORE</text>
-            <text x="0" y="-76" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="600" fill="#9a3412" text-anchor="middle">COMPILER CORE</text>
-
-            <!-- Node 1: Ingestion Pipeline (Left) -->
-            <g transform="translate(-140, 50)">
-              <polygon points="0,-30 52,-60 0,-90 -52,-60" fill="#faf8f5" stroke="#d97706" stroke-width="1.4" stroke-dasharray="3 3"/>
-              <polygon points="-52,-60 0,-30 0,30 -52,0" fill="#fffbeb" stroke="#d97706" stroke-width="1.4"/>
-              <polygon points="0,-30 52,-60 52,0 0,30" fill="#fef3c7" stroke="#d97706" stroke-width="1.4"/>
-              <text x="0" y="-58" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="700" fill="#b45309" text-anchor="middle">JSON STREAM</text>
-              <text x="0" y="-44" font-family="'JetBrains Mono', monospace" font-size="8" fill="#92400e" text-anchor="middle">Zero-Copy Buffer</text>
-            </g>
-
-            <!-- Node 2: Factur-X XML Embedding (Right) -->
-            <g transform="translate(140, 50)">
-              <polygon points="0,-30 52,-60 0,-90 -52,-60" fill="#faf8f5" stroke="#d97706" stroke-width="1.4" stroke-dasharray="3 3"/>
-              <polygon points="-52,-60 0,-30 0,30 -52,0" fill="#fffbeb" stroke="#d97706" stroke-width="1.4"/>
-              <polygon points="0,-30 52,-60 52,0 0,30" fill="#fef3c7" stroke="#d97706" stroke-width="1.4"/>
-              <text x="0" y="-58" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="700" fill="#b45309" text-anchor="middle">FACTUR-X XML</text>
-              <text x="0" y="-44" font-family="'JetBrains Mono', monospace" font-size="8" fill="#92400e" text-anchor="middle">EN 16931 Validated</text>
-            </g>
-
-            <!-- Node 3: Deterministic PDF/A-2b Output (Bottom) -->
-            <g transform="translate(0, 115)">
-              <polygon points="0,-30 52,-60 0,-90 -52,-60" fill="#fef3c7" stroke="#ea580c" stroke-width="1.4"/>
-              <polygon points="-52,-60 0,-30 0,30 -52,0" fill="#faf8f5" stroke="#ea580c" stroke-width="1.4"/>
-              <polygon points="0,-30 52,-60 52,0 0,30" fill="#fffbeb" stroke="#ea580c" stroke-width="1.4"/>
-              <text x="0" y="-58" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="700" fill="#b45309" text-anchor="middle">PDF/A-2b / SVG</text>
-              <text x="0" y="-44" font-family="'JetBrains Mono', monospace" font-size="8" fill="#92400e" text-anchor="middle">ISO 19005-2 Certified</text>
-            </g>
-
-            <!-- Heavy Precision Data Conduits -->
-            <line x1="-84" y1="0" x2="-140" y2="20" stroke="#ea580c" stroke-width="2"/>
-            <line x1="84" y1="0" x2="140" y2="20" stroke="#ea580c" stroke-width="2"/>
-            <line x1="0" y1="48" x2="0" y2="85" stroke="#ea580c" stroke-width="2"/>
-
-            <!-- Connection Node Hubs (Solid, Static) -->
-            <circle cx="-140" cy="20" r="4" fill="#ea580c"/>
-            <circle cx="140" cy="20" r="4" fill="#ea580c"/>
-            <circle cx="0" cy="85" r="4" fill="#ea580c"/>
-          </g>
-
-          <defs>
-            <linearGradient id="amberGradHero" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#fbbf24"/>
-              <stop offset="50%" stop-color="#f59e0b"/>
-              <stop offset="100%" stop-color="#ea580c"/>
-            </linearGradient>
-          </defs>
-        </svg>
-      </div>
-    </div>
-  </section>
 
   <!-- SECTION 4: ENTERPRISE CASE STUDY & PROOF NUMBERS -->
   <section class="section-proof">
@@ -2872,7 +2756,7 @@
   </section>
 
   <!-- DARK PIPELINE SECTION: Point, Click & Connect WITH CENTRAL ILLUMINATED HERO BUS -->
-  <section class="section-pipeline">
+  <section id="pipeline" class="section-pipeline">
     <div class="container">
       <h2 class="pipeline-title">Point, Click, &amp; Connect.</h2>
       <p class="pipeline-subtitle">
@@ -3367,7 +3251,7 @@
         <div>
           <div class="footer-col-title">Engine</div>
           <ul class="footer-links">
-            <li><a href="#architecture">Architecture</a></li>
+            <li><a href="#pipeline">Pipeline</a></li>
             <li><a href="#benchmarks">Benchmarks</a></li>
             <li><a href="#studio">Live Studio</a></li>
             <li><a href="https://github.com/maxcomperatore/rubrol" target="_blank">Docker Registry</a></li>
