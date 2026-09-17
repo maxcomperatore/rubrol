@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rubrol — Sub-millisecond PDF Engine &amp; EU Factur-X Suite</title>
-  <meta name="description" content="The sub-10ms dynamic PDF/A compilation engine replacing Headless Chrome and Gotenberg. Turnkey European EN 16931 Factur-X / ZUGFeRD 2.2 Suite with 96% less memory.">
+  <title>Rubrol — Sub-millisecond PDF Engine | Universal Document Infrastructure</title>
+  <meta name="description" content="The sub-10ms dynamic PDF/A compilation engine replacing Headless Chrome and Gotenberg. Compile pixel-perfect SaaS invoices, board reports, statements, and receipts in <6ms with 96% less memory. Includes turnkey EU Factur-X compliance.">
   <meta name="keywords" content="Rubrol, Typst PDF, Factur-X, ZUGFeRD 2.2, EN 16931, e-invoicing API, PDF/A-3b, Puppeteer alternative, Gotenberg alternative, sub-10ms PDF generator, Rust PDF engine">
   <meta name="author" content="Max Comperatore">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
@@ -17,8 +17,8 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://rubrol.com/">
   <meta property="og:site_name" content="Rubrol">
-  <meta property="og:title" content="Rubrol — Sub-millisecond PDF Engine &amp; EU Factur-X Suite">
-  <meta property="og:description" content="Sub-10ms dynamic PDF/A compilation replacing Headless Chrome and Gotenberg. Turnkey European EN 16931 Factur-X e-invoicing sidecar.">
+  <meta property="og:title" content="Rubrol — Sub-millisecond PDF Engine | The Anti-Puppeteer Document Infrastructure">
+  <meta property="og:description" content="Sub-10ms dynamic PDF/A compilation replacing Headless Chrome and Gotenberg. Universal high-throughput document engine with turnkey EU Factur-X e-invoicing.">
   <meta property="og:image" content="https://rubrol.com/assets/og_image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -28,7 +28,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="https://rubrol.com/">
   <meta name="twitter:title" content="Rubrol — Sub-millisecond PDF Engine">
-  <meta name="twitter:description" content="The sub-10ms document engine replacing Headless Chrome and Gotenberg. Turnkey European EN 16931 Factur-X / ZUGFeRD 2.2 Suite.">
+  <meta name="twitter:description" content="The sub-10ms document engine replacing Headless Chrome and Gotenberg. Universal high-throughput document engine with turnkey EU Factur-X compliance.">
   <meta name="twitter:image" content="https://rubrol.com/assets/og_image.png">
 
   <!-- Google Rich Results / Schema.org JSON-LD -->
@@ -279,18 +279,177 @@
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 28px;
+      gap: 24px;
     }
 
     .nav-link {
-      font-size: 13.5px;
+      font-size: 14px;
       font-weight: 500;
-      color: #94a3b8;
+      color: #cbd5e1;
       transition: color 0.2s;
+      cursor: pointer;
     }
 
     .nav-link:hover {
       color: #ffffff;
+    }
+
+    /* Dropdown Component */
+    .nav-item-dropdown {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      height: 72px;
+    }
+
+    .nav-dropdown-trigger {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #cbd5e1;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 6px 0;
+      font-family: inherit;
+      transition: color 0.2s ease;
+    }
+
+    .nav-item-dropdown:hover .nav-dropdown-trigger,
+    .nav-dropdown-trigger:hover {
+      color: #ffffff;
+    }
+
+    .nav-chevron {
+      width: 10px;
+      height: 10px;
+      stroke: currentColor;
+      stroke-width: 2.2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+      transition: transform 0.2s ease, stroke 0.2s ease;
+      opacity: 0.75;
+      margin-top: 1px;
+    }
+
+    .nav-item-dropdown:hover .nav-chevron {
+      transform: rotate(180deg);
+      opacity: 1;
+      stroke: #f59e0b;
+    }
+
+    /* Invisible bridge to prevent mouse leaving hover zone */
+    .nav-dropdown-bridge {
+      position: absolute;
+      top: 60px;
+      left: -20px;
+      right: -20px;
+      height: 25px;
+      display: none;
+    }
+    .nav-item-dropdown:hover .nav-dropdown-bridge {
+      display: block;
+    }
+
+    .nav-dropdown-menu {
+      position: absolute;
+      top: 68px;
+      left: 50%;
+      transform: translateX(-50%) translateY(8px);
+      background: #0d0f17;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 12px;
+      padding: 10px;
+      min-width: 320px;
+      box-shadow: 0 24px 50px -12px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.04);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.18s cubic-bezier(0.16, 1, 0.3, 1), transform 0.18s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.18s;
+      z-index: 200;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .nav-item-dropdown:hover .nav-dropdown-menu,
+    .nav-item-dropdown:focus-within .nav-dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .dropdown-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 10px 12px;
+      border-radius: 8px;
+      transition: background 0.15s ease;
+      text-decoration: none;
+    }
+
+    .dropdown-item:hover {
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .dropdown-item-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #f59e0b;
+      font-size: 13px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .dropdown-item:hover .dropdown-item-icon {
+      background: rgba(217, 119, 6, 0.15);
+      border-color: rgba(217, 119, 6, 0.3);
+      color: #fbbf24;
+    }
+
+    .dropdown-item-content {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .dropdown-item-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .dropdown-item-desc {
+      font-size: 11.5px;
+      color: #94a3b8;
+      line-height: 1.35;
+    }
+
+    .dropdown-badge {
+      font-size: 9px;
+      font-weight: 700;
+      padding: 1px 5px;
+      border-radius: 3px;
+      background: rgba(245, 158, 11, 0.12);
+      color: #fbbf24;
+      border: 1px solid rgba(245, 158, 11, 0.25);
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
     }
 
     .nav-actions {
@@ -1681,6 +1840,332 @@
       .pipeline-pillars { grid-template-columns: 1fr 1fr; }
       .proof-submetrics { grid-template-columns: 1fr; }
     }
+  
+    /* Mega Dropdowns & AI Hero Integration Card */
+    .mega-menu-panel {
+      position: absolute;
+      top: 66px;
+      left: 50%;
+      transform: translateX(-50%) translateY(8px);
+      background: #090a10;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 14px;
+      padding: 24px;
+      box-shadow: 0 30px 70px -15px rgba(0, 0, 0, 0.95), 0 0 0 1px rgba(255, 255, 255, 0.05);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.18s cubic-bezier(0.16, 1, 0.3, 1), transform 0.18s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.18s;
+      z-index: 300;
+      width: 880px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .nav-item-dropdown:hover .mega-menu-panel,
+    .nav-item-dropdown:focus-within .mega-menu-panel {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .mega-col {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .mega-col-title {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #94a3b8;
+      padding-bottom: 6px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .mega-links-list {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .mega-link-item {
+      display: flex;
+      flex-direction: column;
+      padding: 7px 9px;
+      border-radius: 7px;
+      text-decoration: none;
+      transition: background 0.15s ease, transform 0.12s ease;
+    }
+
+    .mega-link-item:hover {
+      background: rgba(255, 255, 255, 0.06);
+      transform: translateX(2px);
+    }
+
+    .mega-link-head {
+      font-size: 13px;
+      font-weight: 600;
+      color: #f1f5f9;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .mega-link-item:hover .mega-link-head {
+      color: #fbbf24;
+    }
+
+    .mega-link-sub {
+      font-size: 11px;
+      color: #64748b;
+      line-height: 1.35;
+      margin-top: 2px;
+    }
+
+    .mega-highlight-card {
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.09) 0%, rgba(234, 88, 12, 0.05) 100%);
+      border: 1px solid rgba(245, 158, 11, 0.24);
+      border-radius: 10px;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .mega-highlight-badge {
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #f59e0b;
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      padding: 2px 6px;
+      border-radius: 4px;
+      align-self: flex-start;
+      font-family: var(--font-mono);
+    }
+
+    .mega-highlight-title {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.35;
+    }
+
+    .mega-highlight-desc {
+      font-size: 11px;
+      color: #94a3b8;
+      line-height: 1.35;
+    }
+
+    .mega-highlight-cta {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #f59e0b;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 4px;
+      transition: color 0.15s;
+    }
+
+    .mega-highlight-cta:hover {
+      color: #fbbf24;
+      text-decoration: underline;
+    }
+
+    /* Auth0-Style AI Integration Card */
+    .ai-hero-card {
+      background: linear-gradient(180deg, #0d0f17 0%, #08090d 100%);
+      border: 1px solid rgba(255, 255, 255, 0.13);
+      border-radius: 16px;
+      padding: 28px 32px;
+      margin: 38px auto 0 auto;
+      max-width: 860px;
+      box-shadow: 0 24px 50px -12px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(245, 158, 11, 0.12);
+      position: relative;
+      overflow: hidden;
+      text-align: left;
+    }
+
+    .ai-hero-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 15%;
+      right: 15%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(245, 158, 11, 0.65), transparent);
+    }
+
+    .ai-card-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .ai-card-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #f59e0b;
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(245, 158, 11, 0.28);
+      border-radius: 20px;
+      padding: 3px 10px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-family: var(--font-mono);
+    }
+
+    .ai-card-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 8px 0 6px 0;
+    }
+
+    .ai-card-subtitle {
+      font-size: 13.5px;
+      color: #94a3b8;
+      max-width: 560px;
+      line-height: 1.45;
+    }
+
+    .ai-tabs-container {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      padding: 3px;
+    }
+
+    .ai-tab-btn {
+      background: none;
+      border: none;
+      color: #94a3b8;
+      font-size: 12.5px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      font-family: inherit;
+    }
+
+    .ai-tab-btn.active {
+      background: #1e2230;
+      color: #ffffff;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    }
+
+    .ai-tab-btn:hover:not(.active) {
+      color: #e2e8f0;
+    }
+
+    .ai-terminal-box {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #050608;
+      border: 1px solid rgba(255, 255, 255, 0.11);
+      border-radius: 10px;
+      padding: 12px 18px;
+      font-family: var(--font-mono);
+      font-size: 13.5px;
+      color: #38bdf8;
+      position: relative;
+    }
+
+    .ai-terminal-cmd {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+
+    .ai-terminal-prompt {
+      color: #64748b;
+      user-select: none;
+    }
+
+    .ai-copy-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #cbd5e1;
+      border-radius: 6px;
+      padding: 6px 12px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s ease;
+      flex-shrink: 0;
+      font-family: inherit;
+    }
+
+    .ai-copy-btn:hover {
+      background: rgba(245, 158, 11, 0.18);
+      border-color: rgba(245, 158, 11, 0.4);
+      color: #fbbf24;
+    }
+
+    .ai-prompt-guidance {
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      color: #94a3b8;
+    }
+
+    .ai-prompt-pill {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 6px;
+      padding: 5px 10px;
+      font-family: var(--font-mono);
+      color: #e2e8f0;
+      font-size: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .ai-prompt-pill:hover {
+      border-color: #f59e0b;
+      color: #ffffff;
+      background: rgba(245, 158, 11, 0.08);
+    }
+
   </style>
 </head>
 <body>
@@ -1694,14 +2179,301 @@
         <span class="brand-tag">APACHE 2.0</span>
       </div>
 
-      <div class="nav-links">
-        <a href="#architecture" class="nav-link">Architecture</a>
-        <a href="#benchmarks" class="nav-link">Benchmarks</a>
-        <a href="#compliance" class="nav-link">Factur-X &amp; EN 16931</a>
-        <a href="#articles" class="nav-link">Guides</a>
-        <a href="#studio" class="nav-link">Live Studio</a>
+            <div class="nav-links">
+        <!-- Build Dropdown (Mega Menu) -->
+        <div class="nav-item-dropdown">
+          <div class="nav-dropdown-bridge"></div>
+          <button class="nav-dropdown-trigger" aria-haspopup="true" aria-expanded="false">
+            Build <svg class="nav-chevron" viewBox="0 0 12 12"><path d="M2.5 4.5L6 8L9.5 4.5"/></svg>
+          </button>
+          <div class="mega-menu-panel" role="menu">
+            <!-- Col 1: Documentation -->
+            <div class="mega-col">
+              <div class="mega-col-title">Documentation</div>
+              <div class="mega-links-list">
+                <a href="https://github.com/maxcomperatore/rubrol#getting-started-in-30-seconds" target="_blank" class="mega-link-item">
+                  <div class="mega-link-head">Getting Started</div>
+                  <div class="mega-link-sub">Set up sidecar container and compile in 30 seconds</div>
+                </a>
+                <a href="#architecture" class="mega-link-item">
+                  <div class="mega-link-head">Architecture</div>
+                  <div class="mega-link-sub">Stateless Rust &amp; Typst vector core with zero V8</div>
+                </a>
+                <a href="https://github.com/maxcomperatore/rubrol#template-authoring-guide" target="_blank" class="mega-link-item">
+                  <div class="mega-link-head">Typst Templates</div>
+                  <div class="mega-link-sub">Dynamic sys.inputs, layouts, tables, and pagination</div>
+                </a>
+                <a href="https://github.com/maxcomperatore/rubrol#http-sidecar-api-reference" target="_blank" class="mega-link-item">
+                  <div class="mega-link-head">HTTP Sidecar API</div>
+                  <div class="mega-link-sub">REST endpoints, telemetry headers, and payloads</div>
+                </a>
+              </div>
+            </div>
+
+            <!-- Col 2: Quickstarts & SDKs -->
+            <div class="mega-col">
+              <div class="mega-col-title">Quickstarts</div>
+              <div class="mega-links-list">
+                <a href="https://github.com/maxcomperatore/rubrol#1-nodejs--typescript-native-fetch" target="_blank" class="mega-link-item">
+                  <div class="mega-link-head">Node.js &amp; TypeScript</div>
+                  <div class="mega-link-sub">Express, Fastify, NestJS &amp; Next.js integration</div>
+                </a>
+                <a href="https://github.com/maxcomperatore/rubrol#2-python-httpx--requests" target="_blank" class="mega-link-item">
+                  <div class="mega-link-head">Python (FastAPI)</div>
+                  <div class="mega-link-sub">Async httpx sidecar client for Django &amp; FastAPI</div>
+                </a>
+                <a href="https://github.com/maxcomperatore/rubrol#3-go-nethttp" target="_blank" class="mega-link-item">
+                  <div class="mega-link-head">Go Microservices</div>
+                  <div class="mega-link-sub">Zero-allocation net/http binary pipeline</div>
+                </a>
+                <a href="https://github.com/maxcomperatore/rubrol#multi-language-client-examples" target="_blank" class="mega-link-item">
+                  <div class="mega-link-head">Rust, PHP, C# (.NET)</div>
+                  <div class="mega-link-sub">Zero-dep clients across 8 major languages</div>
+                </a>
+              </div>
+            </div>
+
+            <!-- Col 3: Developer Tools -->
+            <div class="mega-col">
+              <div class="mega-col-title">Developer Tools</div>
+              <div class="mega-links-list">
+                <a href="#studio" class="mega-link-item">
+                  <div class="mega-link-head">Live Studio <span class="dropdown-badge">Interactive</span></div>
+                  <div class="mega-link-sub">Real-time split editor with instant SVG preview</div>
+                </a>
+                <a href="https://github.com/maxcomperatore/rubrol/pkgs/container/rubrol" target="_blank" class="mega-link-item">
+                  <div class="mega-link-head">Docker Container</div>
+                  <div class="mega-link-sub">ghcr.io/maxcomperatore/rubrol:latest</div>
+                </a>
+                <a href="https://github.com/maxcomperatore/rubrol#3-compile-via-cli" target="_blank" class="mega-link-item">
+                  <div class="mega-link-head">CLI Compiler</div>
+                  <div class="mega-link-sub">Standalone CLI for CI/CD and batch runs</div>
+                </a>
+                <a href="https://github.com/maxcomperatore/rubrol#precompiled-sample-output-pdfs" target="_blank" class="mega-link-item">
+                  <div class="mega-link-head">Sample PDF Gallery</div>
+                  <div class="mega-link-sub">Precompiled invoices, receipts, and reports</div>
+                </a>
+              </div>
+            </div>
+
+            <!-- Col 4: Connect & Ecosystem -->
+            <div class="mega-col">
+              <div class="mega-col-title">Connect</div>
+              <div class="mega-highlight-card">
+                <span class="mega-highlight-badge">🤖 AI First</span>
+                <div class="mega-highlight-title">Integrate with Agent Skills</div>
+                <div class="mega-highlight-desc">Add Rubrol to Cursor, Claude Code, or Copilot in 10 seconds.</div>
+                <a href="#ai-integration" class="mega-highlight-cta">View AI Quickstart →</a>
+              </div>
+              <div class="mega-links-list" style="margin-top: 4px;">
+                <a href="https://github.com/maxcomperatore/rubrol#-community-sdk-bounty-program-990-reward" target="_blank" class="mega-link-item">
+                  <div class="mega-link-head">SDK Bounty Program <span class="dropdown-badge">$990</span></div>
+                  <div class="mega-link-sub">Cash rewards for community client libraries</div>
+                </a>
+                <a href="https://typst.app/universe/package/rubrol-invoice" target="_blank" class="mega-link-item">
+                  <div class="mega-link-head">Typst Universe Package</div>
+                  <div class="mega-link-sub">Official @preview/rubrol-invoice</div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product Dropdown (Mega Menu) -->
+        <div class="nav-item-dropdown">
+          <div class="nav-dropdown-bridge"></div>
+          <button class="nav-dropdown-trigger" aria-haspopup="true" aria-expanded="false">
+            Product <svg class="nav-chevron" viewBox="0 0 12 12"><path d="M2.5 4.5L6 8L9.5 4.5"/></svg>
+          </button>
+          <div class="mega-menu-panel" role="menu">
+            <!-- Col 1: Core Engine -->
+            <div class="mega-col">
+              <div class="mega-col-title">Core Engine</div>
+              <div class="mega-links-list">
+                <a href="#benchmarks" class="mega-link-item">
+                  <div class="mega-link-head">Sub-8ms Compilation</div>
+                  <div class="mega-link-sub">318x faster than Headless Chrome &amp; Puppeteer</div>
+                </a>
+                <a href="#architecture" class="mega-link-item">
+                  <div class="mega-link-head">Zero-V8 Virtualization</div>
+                  <div class="mega-link-sub">No browser engines, no Chromium zombie processes</div>
+                </a>
+                <a href="#benchmarks" class="mega-link-item">
+                  <div class="mega-link-head">&lt; 28MB Resident RAM</div>
+                  <div class="mega-link-sub">Runs cleanly on microscopic microservice pods</div>
+                </a>
+                <a href="#benchmarks" class="mega-link-item">
+                  <div class="mega-link-head">120+ docs/sec Throughput</div>
+                  <div class="mega-link-sub">Massive concurrency on a single shared CPU core</div>
+                </a>
+              </div>
+            </div>
+
+            <!-- Col 2: Document Standards -->
+            <div class="mega-col">
+              <div class="mega-col-title">Document Standards</div>
+              <div class="mega-links-list">
+                <a href="#benchmarks" class="mega-link-item">
+                  <div class="mega-link-head">PDF/A-2b Archival</div>
+                  <div class="mega-link-sub">ISO 19005-2 certified permanent legal documents</div>
+                </a>
+                <a href="articles/stripe-facturx-zugferd.html" class="mega-link-item">
+                  <div class="mega-link-head">PDF/A-3b Hybrid</div>
+                  <div class="mega-link-sub">ISO 19005-3 with machine-readable XML attachments</div>
+                </a>
+                <a href="#studio" class="mega-link-item">
+                  <div class="mega-link-head">Instant SVG Vector Preview</div>
+                  <div class="mega-link-sub">Sub-millisecond vector rendering for browser UIs</div>
+                </a>
+                <a href="#architecture" class="mega-link-item">
+                  <div class="mega-link-head">Multi-Page Pagination</div>
+                  <div class="mega-link-sub">Pixel-perfect page breaking with zero CSS bugs</div>
+                </a>
+              </div>
+            </div>
+
+            <!-- Col 3: Compliance Suite -->
+            <div class="mega-col">
+              <div class="mega-col-title">Compliance Suite</div>
+              <div class="mega-links-list">
+                <a href="articles/stripe-facturx-zugferd.html" class="mega-link-item">
+                  <div class="mega-link-head">EU Factur-X &amp; ZUGFeRD <span class="dropdown-badge">EN 16931</span></div>
+                  <div class="mega-link-sub">Turnkey hybrid e-invoicing for France &amp; Germany</div>
+                </a>
+                <a href="articles/stripe-facturx-zugferd.html" class="mega-link-item">
+                  <div class="mega-link-head">German E-Rechnung 2025</div>
+                  <div class="mega-link-sub">Mandatory B2B compliance (Wachstumschancengesetz)</div>
+                </a>
+                <a href="articles/stripe-facturx-zugferd.html" class="mega-link-item">
+                  <div class="mega-link-head">French Chorus Pro Ready</div>
+                  <div class="mega-link-sub">Ready for 2026 French PDP e-invoicing rollout</div>
+                </a>
+                <a href="https://github.com/maxcomperatore/rubrol#-eu-factur-x--zugferd-turnkey-suite-en-16931" target="_blank" class="mega-link-item">
+                  <div class="mega-link-head">EN 16931 Validator</div>
+                  <div class="mega-link-sub">Strict XML extraction and Schematron validation</div>
+                </a>
+              </div>
+            </div>
+
+            <!-- Col 4: Deployment Models -->
+            <div class="mega-col">
+              <div class="mega-col-title">Deployment</div>
+              <div class="mega-links-list">
+                <a href="https://github.com/maxcomperatore/rubrol#docker-container" target="_blank" class="mega-link-item">
+                  <div class="mega-link-head">Docker Microservice</div>
+                  <div class="mega-link-sub">Ready-to-run container sidecar for any stack</div>
+                </a>
+                <a href="https://github.com/maxcomperatore/rubrol#kubernetes-sidecar-pattern" target="_blank" class="mega-link-item">
+                  <div class="mega-link-head">Kubernetes Pod Sidecar</div>
+                  <div class="mega-link-sub">Zero network hop IPC over localhost pod networking</div>
+                </a>
+                <a href="#pricing" class="mega-link-item">
+                  <div class="mega-link-head">Cost Savings Calculator</div>
+                  <div class="mega-link-sub">Compute ROI vs Puppeteer cluster infrastructure</div>
+                </a>
+                <a href="https://github.com/maxcomperatore/rubrol" target="_blank" class="mega-link-item">
+                  <div class="mega-link-head">Air-Gapped / On-Premise</div>
+                  <div class="mega-link-sub">100% offline, zero telemetry, full privacy</div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Solutions Dropdown (Mega Menu) -->
+        <div class="nav-item-dropdown">
+          <div class="nav-dropdown-bridge"></div>
+          <button class="nav-dropdown-trigger" aria-haspopup="true" aria-expanded="false">
+            Solutions <svg class="nav-chevron" viewBox="0 0 12 12"><path d="M2.5 4.5L6 8L9.5 4.5"/></svg>
+          </button>
+          <div class="mega-menu-panel" role="menu">
+            <!-- Col 1: Use Cases -->
+            <div class="mega-col">
+              <div class="mega-col-title">Use Cases</div>
+              <div class="mega-links-list">
+                <a href="#studio" class="mega-link-item">
+                  <div class="mega-link-head">B2B SaaS Invoicing</div>
+                  <div class="mega-link-sub">Stripe, Paddle, and chargebee subscription bills</div>
+                </a>
+                <a href="#studio" class="mega-link-item">
+                  <div class="mega-link-head">Wealth &amp; Bank Statements</div>
+                  <div class="mega-link-sub">High-density multi-page accounting statements</div>
+                </a>
+                <a href="#studio" class="mega-link-item">
+                  <div class="mega-link-head">Transactional Receipts</div>
+                  <div class="mega-link-sub">Sub-millisecond checkout receipts &amp; tickets</div>
+                </a>
+                <a href="articles/stripe-facturx-zugferd.html" class="mega-link-item">
+                  <div class="mega-link-head">EU E-Invoicing Compliance</div>
+                  <div class="mega-link-sub">Audit-proof PDF/A-3b with hybrid XML</div>
+                </a>
+              </div>
+            </div>
+
+            <!-- Col 2: Who It's For -->
+            <div class="mega-col">
+              <div class="mega-col-title">Who It's For</div>
+              <div class="mega-links-list">
+                <a href="#benchmarks" class="mega-link-item">
+                  <div class="mega-link-head">Backend Engineers</div>
+                  <div class="mega-link-sub">Eliminate flaky Puppeteer timeouts and OOM panics</div>
+                </a>
+                <a href="#benchmarks" class="mega-link-item">
+                  <div class="mega-link-head">Platform &amp; DevOps</div>
+                  <div class="mega-link-sub">Slash cluster memory footprints from 2GB to 25MB</div>
+                </a>
+                <a href="articles/stripe-facturx-zugferd.html" class="mega-link-item">
+                  <div class="mega-link-head">Fintech &amp; ERP Architects</div>
+                  <div class="mega-link-sub">Turnkey EN 16931 compliance without foreign DLLs</div>
+                </a>
+                <a href="#pricing" class="mega-link-item">
+                  <div class="mega-link-head">CTOs &amp; Engineering VPs</div>
+                  <div class="mega-link-sub">Permissive Apache 2.0 open-source independence</div>
+                </a>
+              </div>
+            </div>
+
+            <!-- Col 3: Migrations -->
+            <div class="mega-col">
+              <div class="mega-col-title">Migrations</div>
+              <div class="mega-links-list">
+                <a href="#benchmarks" class="mega-link-item">
+                  <div class="mega-link-head">Replace Puppeteer / Chrome</div>
+                  <div class="mega-link-sub">Drop 1,600MB memory to 22MB and 318x lower latency</div>
+                </a>
+                <a href="#benchmarks" class="mega-link-item">
+                  <div class="mega-link-head">Replace Gotenberg</div>
+                  <div class="mega-link-sub">Eliminate LibreOffice/Chromium JVM overhead</div>
+                </a>
+                <a href="#benchmarks" class="mega-link-item">
+                  <div class="mega-link-head">Replace WeasyPrint</div>
+                  <div class="mega-link-sub">Fix Cairo memory leaks and slow CSS paged media</div>
+                </a>
+                <a href="#benchmarks" class="mega-link-item">
+                  <div class="mega-link-head">Replace wkhtmltopdf</div>
+                  <div class="mega-link-sub">Upgrade from abandoned 2018 QtWebKit engine</div>
+                </a>
+              </div>
+            </div>
+
+            <!-- Col 4: Featured Benchmark -->
+            <div class="mega-col">
+              <div class="mega-col-title">Featured Benchmark</div>
+              <div class="mega-highlight-card">
+                <span class="mega-highlight-badge">318x Faster</span>
+                <div class="mega-highlight-title">SaaS Billing at Scale: 120 docs/sec on 1 CPU</div>
+                <div class="mega-highlight-desc">Mean latency 5.8ms vs 1,850ms. Zero cold starts. Saves $14,000/mo on large Kubernetes clusters.</div>
+                <a href="#benchmarks" class="mega-highlight-cta">Inspect Benchmarks &amp; ROI →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Library Link -->
+        <a href="#articles" class="nav-link">Guides &amp; Compliance</a>
+
+        <!-- Pricing Direct Link -->
         <a href="#pricing" class="nav-link">Pricing</a>
-        <a href="https://github.com/maxcomperatore/rubrol" target="_blank" class="nav-link">Docs</a>
       </div>
 
       <div class="nav-actions">
@@ -1730,7 +2502,7 @@
     <div class="container hero-content">
       <div class="eyebrow-pill">
         <span class="eyebrow-dot"></span>
-        HIGH-THROUGHPUT DOCUMENT ENGINE FOR ENTERPRISE
+        UNIVERSAL HIGH-THROUGHPUT DOCUMENT ENGINE
       </div>
 
       <h1 class="hero-title">
@@ -1739,7 +2511,7 @@
       </h1>
 
       <p class="hero-subtitle">
-        The sub-millisecond document engine replacing Headless Chrome and Gotenberg. Native PDF/A-2b compliance, European EN 16931 Factur-X e-invoicing, and sub-6ms compilation on 96% less compute.
+        The sub-millisecond document engine replacing Headless Chrome, Puppeteer, and Gotenberg. Compile pixel-perfect SaaS billing invoices, reports, statements, and receipts in &lt;6ms on 96% less compute. Includes turnkey EU Factur-X / ZUGFeRD compliance out of the box.
       </p>
 
       <div class="hero-ctas">
@@ -1752,7 +2524,7 @@
         <span class="hero-metric-sep">|</span>
         <div class="hero-metric-item">● <strong>&lt; 28MB</strong> Resident Memory</div>
         <span class="hero-metric-sep">|</span>
-        <div class="hero-metric-item">● <strong>100%</strong> EN 16931 Validated</div>
+        <div class="hero-metric-item">● <strong>Native</strong> PDF/A Archival (2b/3b)</div>
         <span class="hero-metric-sep">|</span>
         <div class="hero-metric-item">● <strong>Zero</strong> V8 Virtualization</div>
       </div>
@@ -1798,6 +2570,43 @@
           </div>
         </div>
       </div>
+
+      <!-- Auth0-Style AI Agent Integration Card -->
+      <div id="ai-integration" class="ai-hero-card">
+        <div class="ai-card-header">
+          <div>
+            <span class="ai-card-badge">🤖 AI Assistant Skills &amp; Rules</span>
+            <h3 class="ai-card-title">Use AI to integrate Rubrol</h3>
+            <p class="ai-card-subtitle">
+              If you use an AI coding assistant like <strong>Claude Code</strong>, <strong>Cursor</strong>, or <strong>GitHub Copilot</strong>, you can add sub-millisecond PDF generation to your app in minutes using agent skills.
+            </p>
+          </div>
+          <div class="ai-tabs-container">
+            <button class="ai-tab-btn active" id="tab-skills" onclick="switchAiTab('skills')">Skills</button>
+            <button class="ai-tab-btn" id="tab-cursor" onclick="switchAiTab('cursor')">Cursor Rules</button>
+          </div>
+        </div>
+
+        <div class="ai-terminal-box">
+          <div class="ai-terminal-cmd">
+            <span class="ai-terminal-prompt">$</span>
+            <span id="ai-cmd-text">npx skills add maxcomperatore/rubrol --skill rubrol</span>
+          </div>
+          <button class="ai-copy-btn" id="ai-copy-btn" onclick="copyAiCmd()" title="Copy command">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+            <span id="ai-copy-label">Copy</span>
+          </button>
+        </div>
+
+        <div class="ai-prompt-guidance">
+          <span>Once installed, prompt your AI coding assistant with instructions like:</span>
+          <div class="ai-prompt-pill" onclick="copyAiPrompt(this)" title="Click to copy prompt">
+            <span>&ldquo;Add Rubrol PDF invoice generation to my Express backend with sub-millisecond latency&rdquo;</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 

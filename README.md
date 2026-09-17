@@ -1,7 +1,7 @@
 <div align="center">
   <img src="assets/logo.png" alt="Rubrol Logo" width="120" height="120" />
   <h1>Rubrol: Sub-millisecond PDF Engine</h1>
-  <p><strong>Sub-8ms dynamic PDF/A documents powered by Apache 2.0 Typst. No Headless Chrome. No Chromium bloat.</strong></p>
+  <p><strong>Sub-8ms dynamic PDF/A documents powered by Apache 2.0 Typst. Universal document engine for SaaS invoices, executive reports, and payment receipts. No Headless Chrome. No Chromium bloat.</strong></p>
 
   <p>
     <a href="https://opensource.org/licenses/Apache-2.0"><img src="https://img.shields.io/badge/License-Apache_2.0-blue.svg" alt="License" /></a>
@@ -23,15 +23,18 @@
 
 - [The Problem & The Solution](#the-problem--the-solution)
 - [Performance Benchmarks](#performance-benchmarks)
+- [Use AI to Integrate Rubrol](#-use-ai-to-integrate-rubrol)
 - [Getting Started in 30 Seconds](#getting-started-in-30-seconds)
 - [HTTP Sidecar API Reference](#http-sidecar-api-reference)
-  - [`POST /v1/render`](#1-post-v1render)
-  - [`POST /v1/render/raw`](#2-post-v1renderraw)
-  - [`POST /v1/facturx/render`](#3-post-v1facturxrender-eu-hybrid-e-invoice)
-  - [`POST /v1/facturx/validate`](#4-post-v1facturxvalidate)
-  - [`POST /v1/facturx/extract`](#5-post-v1facturxextract)
-  - [`GET /health`](#6-get-health)
-  - [`GET /v1/templates`](#7-get-v1templates)
+  - [Core Document Endpoints](#core-document-endpoints)
+    - [`POST /v1/render`](#1-post-v1render)
+    - [`POST /v1/render/raw`](#2-post-v1renderraw)
+    - [`GET /v1/templates`](#3-get-v1templates)
+    - [`GET /health`](#4-get-health)
+  - [Built-in Compliance & E-Invoicing Suite (Optional)](#built-in-compliance--e-invoicing-suite-optional)
+    - [`POST /v1/facturx/render`](#5-post-v1facturxrender-eu-hybrid-e-invoice)
+    - [`POST /v1/facturx/validate`](#6-post-v1facturxvalidate)
+    - [`POST /v1/facturx/extract`](#7-post-v1facturxextract)
 - [Multi-Language Client Examples](#multi-language-client-examples)
 - [Precompiled Sample Output PDFs](#precompiled-sample-output-pdfs)
 - [Template Authoring Guide](#template-authoring-guide)
@@ -70,7 +73,7 @@ Tested on single c6i.xlarge (4 vCPU, 8GB RAM), rendering standard 2-page SaaS in
 | **RAM Footprint** | 1,600 MB | 480 MB | 160 MB | **< 28 MB** *(57x less RAM)* |
 | **Throughput (1 CPU)** | ~0.5 docs/sec | ~1.5 docs/sec | ~2 docs/sec | **> 120 docs/sec** |
 | **PDF/A Standard** | Manual / Brittle | Manual Scripts | Partial | **Native PDF/A-2b & PDF/A-3b** |
-| **EU Factur-X / ZUGFeRD** | None | Third-party glue | Third-party glue | **Turnkey Automated Container** |
+| **Turnkey E-Invoicing (Factur-X)** | None | Third-party glue | Third-party glue | **Built-in Native Module** |
 
 ```
 RAM Footprint (Lower is better)
@@ -85,6 +88,46 @@ Gotenberg              ████████████ 650 ms
 WeasyPrint             ████████ 480 ms
 Rubrol (Typst Native)  █ 5.8 ms
 ```
+
+---
+
+## 🤖 Use AI to Integrate Rubrol
+
+If you use an AI coding assistant like **Cursor**, **Claude Code**, or **GitHub Copilot**, you can add Rubrol sub-millisecond PDF generation to your application in minutes using agent skills or cursor rules.
+
+<table>
+<tr>
+<td width="50%" valign="top">
+
+### ⚡ Option 1: Agent Skills (`npx skills`)
+*Compatible with Claude Code, GitHub Copilot CLI, Amp, Codex, and open agents*
+
+```bash
+npx skills add maxcomperatore/rubrol --skill rubrol
+```
+
+</td>
+<td width="50%" valign="top">
+
+### 🎯 Option 2: Cursor Rules (`.cursorrules`)
+*Compatible with Cursor, Windsurf, Roo Code, and VS Code Copilot*
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/maxcomperatore/rubrol/main/.cursorrules > .cursorrules
+```
+
+</td>
+</tr>
+</table>
+
+Once installed, simply prompt your AI coding assistant with instructions like:
+
+> 💬 *"Add Rubrol PDF invoice generation to my Express / FastAPI / Next.js backend with sub-millisecond latency and dynamic line items."*
+
+#### What the AI Assistant Does Automatically:
+1. **Container Orchestration**: Adds Rubrol (`ghcr.io/maxcomperatore/rubrol:latest`) to your `docker-compose.yml` or Kubernetes deployment manifests.
+2. **Dynamic Typst Templates**: Generates clean `.typ` document templates with native `#table` layouts, headers, and footers driven by `sys.inputs`.
+3. **HTTP Client Integration**: Injects zero-dependency API calls to `POST /v1/render` or `POST /v1/facturx/render` returning binary PDF streams directly to your users.
 
 ---
 
@@ -130,18 +173,23 @@ curl -X POST http://localhost:8080/v1/render \
 
 The Rubrol HTTP sidecar listens on port `8080` by default and responds with binary documents, real-time telemetry headers, and strict JSON error bodies.
 
-### Summary Table
+### Core Document Endpoints
 
 | Method | Endpoint | Description | Input | Output |
 | :--- | :--- | :--- | :--- | :--- |
 | `POST` | `/v1/render` | Render pre-registered template with JSON data | JSON Body | `application/pdf` (or `image/svg+xml`) |
 | `POST` | `/v1/render/raw` | Compile arbitrary Typst markup on the fly | JSON Body | `application/pdf` (or `image/svg+xml`) |
+| `GET` | `/v1/templates` | List all discovered templates in registry | None | `application/json` |
+| `GET` | `/health` | Liveness & readiness probe | None | `application/json` |
+| `GET` | `/api/sample-data` | Retrieve sample payload for a template | Query `?template=` | `application/json` |
+
+### Built-in Compliance & E-Invoicing Suite (Optional)
+
+| Method | Endpoint | Description | Input | Output |
+| :--- | :--- | :--- | :--- | :--- |
 | `POST` | `/v1/facturx/render` | Generate hybrid PDF/A-3b + EN 16931 XML invoice | JSON Body | `application/pdf` |
 | `POST` | `/v1/facturx/validate`| Validate compliance of a PDF or JSON payload | Binary PDF / JSON | JSON Diagnostic Report |
 | `POST` | `/v1/facturx/extract` | Extract embedded `factur-x.xml` from PDF | Binary PDF | `text/xml` |
-| `GET` | `/health` | Liveness & readiness probe | None | `application/json` |
-| `GET` | `/v1/templates` | List all discovered templates in registry | None | `application/json` |
-| `GET` | `/api/sample-data` | Retrieve sample payload for a template | Query `?template=` | `application/json` |
 
 ---
 
@@ -210,7 +258,42 @@ Compiles arbitrary Typst source code provided dynamically in the request payload
 
 ---
 
-### 3. `POST /v1/facturx/render` (EU Hybrid E-Invoice)
+### 3. `GET /v1/templates`
+
+Lists all `.typ` templates currently registered in the engine.
+
+```json
+{
+  "templates": [
+    "b2b_invoice",
+    "saas_receipt"
+  ]
+}
+```
+
+---
+
+### 4. `GET /health`
+
+Kubernetes readiness & liveness probe returning server health, loaded templates, and Factur-X engine status.
+
+```json
+{
+  "status": "healthy",
+  "service": "rubrol-engine",
+  "version": "1.0.0",
+  "templates_loaded": 2,
+  "cached_compilers": 1,
+  "facturx_suite": true,
+  "facturx_version": "1.0.07 / ZUGFeRD 2.2 (EN 16931)"
+}
+```
+
+---
+
+## Built-in Compliance & E-Invoicing Suite (Optional)
+
+### 5. `POST /v1/facturx/render` (EU Hybrid E-Invoice)
 
 Generates a fully compliant, legal **Factur-X / ZUGFeRD 2.2** hybrid electronic invoice compliant with European Standard **EN 16931**. It compiles a visual PDF/A-3b document, validates the accounting calculations, generates the UN/CEFACT CII XML stream (`factur-x.xml`), and embeds it into the PDF container with `/AFRelationship /Alternative` metadata.
 
@@ -259,7 +342,7 @@ X-Render-Time-Ms: 16.80
 
 ---
 
-### 4. `POST /v1/facturx/validate`
+### 6. `POST /v1/facturx/validate`
 
 Validates any binary PDF or JSON payload against EN 16931 and Factur-X specifications.
 
@@ -284,7 +367,7 @@ Validates any binary PDF or JSON payload against EN 16931 and Factur-X specifica
 
 ---
 
-### 5. `POST /v1/facturx/extract`
+### 7. `POST /v1/facturx/extract`
 
 Extracts the embedded `factur-x.xml` attachment directly from any compliant PDF container.
 
@@ -293,39 +376,6 @@ curl -X POST http://localhost:8080/v1/facturx/extract \
   -H "Content-Type: application/pdf" \
   --data-binary @invoice.pdf \
   -o factur-x.xml
-```
-
----
-
-### 6. `GET /health`
-
-Kubernetes readiness & liveness probe returning server health, loaded templates, and Factur-X engine status.
-
-```json
-{
-  "status": "healthy",
-  "service": "rubrol-engine",
-  "version": "1.0.0",
-  "templates_loaded": 2,
-  "cached_compilers": 1,
-  "facturx_suite": true,
-  "facturx_version": "1.0.07 / ZUGFeRD 2.2 (EN 16931)"
-}
-```
-
----
-
-### 7. `GET /v1/templates`
-
-Lists all `.typ` templates currently registered in the engine.
-
-```json
-{
-  "templates": [
-    "b2b_invoice",
-    "saas_receipt"
-  ]
-}
 ```
 
 ---
@@ -478,9 +528,13 @@ Rubrol can bundle system fonts or local font directories:
 
 ---
 
-## 🇪🇺 EU Factur-X / ZUGFeRD Turnkey Suite (EN 16931)
+## 📦 Built-in Enterprise Compliance: EU Factur-X & ZUGFeRD (EN 16931)
 
-Starting in **2026/2027**, European B2B transactions legally mandate hybrid electronic invoices compliant with **EN 16931** (Factur-X in France, ZUGFeRD in Germany).
+> [!NOTE]
+> **Universal Document Engine with Built-in European Compliance**
+> While Rubrol is designed as a universal, high-throughput document compiler for any document (SaaS billing, executive reports, certificates, and receipts worldwide), it includes first-class turnkey compliance for organizations billing European customers under **EN 16931** (Factur-X in France, ZUGFeRD in Germany) without requiring third-party JVM tools or complex glue scripts.
+
+Starting in **2026/2027**, European B2B transactions legally mandate hybrid electronic invoices compliant with **EN 16931**.
 
 Rubrol automates this end-to-end:
 1. **Visual Layer**: Compiles human-readable PDF/A-3b conforming to ISO 19005-3.
