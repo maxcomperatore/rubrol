@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rubrol"
+version = "1.0.0"
+description = "Sub-10ms dynamic PDF/A compilation engine powered by Apache 2.0 Typst. Includes turnkey EU Factur-X / ZUGFeRD 2.2 Suite."
+readme = "README.md"
+requires-python = ">=3.9"
+license = "Apache-2.0"
+authors = [
+    { name = "Max Comperatore" }
+]
+dependencies = [
+    "typst>=0.12.0",
+    "pypdf>=4.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+]
+
+[project.scripts]
+rubrol = "rubrol:main"
+
+[tool.setuptools.packages.find]
+include = ["rubrol*"]
+
+[tool.setuptools.package-data]
+"*" = ["*.typ", "*.json", "*.html", "*.css", "*.js", "*.svg", "*.png"]
