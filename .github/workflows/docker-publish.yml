@@ -33,14 +33,28 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Log in to Docker Hub (Optional)
+        if: "${{ secrets.DOCKERHUB_TOKEN != '' }}"
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
       - name: Extract Docker metadata
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          images: |
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+            ${{ secrets.DOCKERHUB_USERNAME != '' && format('{0}/rubrol', secrets.DOCKERHUB_USERNAME) || '' }}
           tags: |
             type=raw,value=latest
             type=sha,format=short
+          labels: |
+            org.opencontainers.image.title=Rubrol
+            org.opencontainers.image.description=High-performance Typst document generation engine and certified EU Factur-X / ZUGFeRD 2.2 e-invoicing sidecar.
+            org.opencontainers.image.url=https://rubrol.com
+            org.opencontainers.image.source=https://github.com/maxcomperatore/rubrol
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v5

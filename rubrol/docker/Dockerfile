@@ -3,6 +3,16 @@
 # Turnkey EU Factur-X / ZUGFeRD 2.2 Suite
 FROM python:3.12-slim
 
+# OCI Standard Image Metadata & Search Engine Indexing
+LABEL org.opencontainers.image.title="Rubrol" \
+      org.opencontainers.image.description="High-performance Typst document engine & turnkey EU Factur-X / ZUGFeRD 2.2 sidecar. Sub-15ms compilation, zero Chromium." \
+      org.opencontainers.image.url="https://rubrol.com" \
+      org.opencontainers.image.documentation="https://rubrol.com/articles/stripe-facturx-zugferd" \
+      org.opencontainers.image.source="https://github.com/maxcomperatore/rubrol" \
+      org.opencontainers.image.vendor="Rubrol" \
+      org.opencontainers.image.licenses="Apache-2.0" \
+      org.opencontainers.image.keywords="factur-x,zugferd,en16931,typst,e-invoice,e-invoicing,pdfa3,pdf-generator,gotenberg-alternative,puppeteer-alternative"
+
 WORKDIR /app
 
 # Install dependencies
