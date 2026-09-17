@@ -11,3 +11,5 @@ build/
 .DS_Store
 Thumbs.db
 *.pdf
+!examples/output/*.pdf
+.vercel

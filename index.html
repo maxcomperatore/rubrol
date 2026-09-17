@@ -1,0 +1,3049 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rubrol — Sub-millisecond PDF Engine</title>
+  <meta name="description" content="Sub-millisecond document engine replacing Chromium and Gotenberg. Native PDF/A-2b compliance, European EN 16931 Factur-X e-invoicing, and sub-6ms compilation.">
+  <link rel="icon" type="image/png" href="/assets/logo.png">
+
+  <!-- Google Fonts: Instrument Serif, Playfair Display, Inter, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+
+  <!-- Monaco Editor AMD Loader -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.45.0/min/vs/loader.min.js"></script>
+
+  <style>
+    :root {
+      --bg-obsidian: #08090c;
+      --bg-obsidian-subtle: #0d0f15;
+      --bg-obsidian-card: #11131a;
+      --bg-obsidian-border: rgba(255, 255, 255, 0.08);
+      --bg-obsidian-border-hover: rgba(255, 255, 255, 0.16);
+
+      --bg-parchment: #faf8f5;
+      --bg-parchment-card: #ffffff;
+      --bg-parchment-warm: #f4efe6;
+      --border-parchment: #e5dfd3;
+      --border-parchment-subtle: #eee9e0;
+
+      --text-dark-hero: #f8fafc;
+      --text-dark-body: #94a3b8;
+      --text-dark-muted: #64748b;
+
+      --text-light-head: #18181b;
+      --text-light-body: #3f3f46;
+      --text-light-muted: #71717a;
+
+      --amber-primary: #d97706;
+      --amber-glow: #ea580c;
+      --amber-light: #f59e0b;
+      --amber-bg: rgba(217, 119, 6, 0.08);
+      --amber-border: rgba(217, 119, 6, 0.25);
+
+      --font-serif: 'Playfair Display', Georgia, serif;
+      --font-display: 'Instrument Serif', Georgia, serif;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-mono: 'JetBrains Mono', Consolas, monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      background-color: var(--bg-obsidian);
+      color: var(--text-dark-hero);
+      font-family: var(--font-sans);
+      font-size: 15px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* Top Navigation Bar */
+    .nav-wrapper {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      background: rgba(8, 9, 12, 0.88);
+      border-bottom: 1px solid var(--bg-obsidian-border);
+    }
+
+    .nav-bar {
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-logo-img {
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    }
+
+    .brand-title {
+      font-family: var(--font-serif);
+      font-size: 21px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+    }
+
+    .brand-tag {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #94a3b8;
+      padding: 2px 8px;
+      border-radius: 12px;
+      letter-spacing: 0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .nav-link {
+      font-size: 13.5px;
+      font-weight: 500;
+      color: #94a3b8;
+      transition: color 0.2s;
+    }
+
+    .nav-link:hover {
+      color: #ffffff;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .btn-github {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #e2e8f0;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 8px 16px;
+      border-radius: 20px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-github:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-pill-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: #08090c;
+      background: #ffffff;
+      padding: 9px 20px;
+      border-radius: 24px;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 2px 10px rgba(255, 255, 255, 0.15);
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-pill-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(255, 255, 255, 0.25);
+      background: #fafafa;
+    }
+
+    .btn-pill-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13.5px;
+      font-weight: 500;
+      color: #f1f5f9;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      padding: 9px 20px;
+      border-radius: 24px;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .btn-pill-secondary:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.24);
+    }
+
+    /* HERO SECTION */
+    .hero-section {
+      position: relative;
+      padding: 96px 0 80px 0;
+      background: radial-gradient(circle at 50% 12%, rgba(217, 119, 6, 0.09) 0%, transparent 60%), var(--bg-obsidian);
+      border-bottom: 1px solid var(--bg-obsidian-border);
+      overflow: hidden;
+    }
+
+    .hero-circuit-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      opacity: 0.4;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 1020px;
+      margin: 0 auto;
+    }
+
+    .eyebrow-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--amber-light);
+      background: rgba(217, 119, 6, 0.08);
+      border: 1px solid var(--amber-border);
+      padding: 6px 16px;
+      border-radius: 20px;
+      margin-bottom: 30px;
+    }
+
+    /* Calm solid status dot — NO blinking/pulsing */
+    .eyebrow-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--amber-light);
+    }
+
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: 74px;
+      line-height: 1.05;
+      letter-spacing: -0.035em;
+      font-weight: 600;
+      color: #ffffff;
+      margin-bottom: 26px;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      font-family: var(--font-display);
+      font-weight: 400;
+      display: inline-block;
+      background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 40%, #f59e0b 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      padding-right: 6px;
+    }
+
+    .hero-subtitle {
+      font-size: 18.5px;
+      line-height: 1.65;
+      color: #94a3b8;
+      max-width: 780px;
+      margin: 0 auto 40px auto;
+      font-weight: 400;
+    }
+
+    .hero-ctas {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+
+    .hero-metrics-strip {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: #94a3b8;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .hero-metric-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hero-metric-item strong {
+      color: #ffffff;
+    }
+
+    .hero-metric-sep {
+      color: rgba(255, 255, 255, 0.15);
+    }
+
+    /* Hero Workstation Inset Frame */
+    .hero-workstation-preview {
+      margin-top: 60px;
+      background: #0d0f15;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 14px;
+      box-shadow: 0 25px 70px -15px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.05);
+      overflow: hidden;
+      text-align: left;
+    }
+
+    .hero-workstation-bar {
+      background: #12141c;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .workstation-dots {
+      display: flex;
+      gap: 7px;
+    }
+
+    .workstation-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+    .dot-red { background: #ef4444; }
+    .dot-amber { background: #f59e0b; }
+    .dot-green { background: #10b981; }
+
+    .workstation-tabs {
+      display: flex;
+      gap: 8px;
+    }
+
+    .workstation-tab {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: #94a3b8;
+      background: rgba(255, 255, 255, 0.04);
+      padding: 4px 12px;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .workstation-tab.active {
+      color: #ffffff;
+      background: rgba(217, 119, 6, 0.12);
+      border-color: var(--amber-border);
+    }
+
+    .workstation-body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 240px;
+    }
+
+    .hero-code-pane {
+      background: #09090b;
+      padding: 24px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      line-height: 1.7;
+      color: #94a3b8;
+      border-right: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .hero-code-pane .c-key { color: #93c5fd; }
+    .hero-code-pane .c-val { color: #86efac; }
+    .hero-code-pane .c-num { color: #fb923c; }
+    .hero-code-pane .c-com { color: #64748b; font-style: italic; }
+
+    .hero-doc-pane {
+      background: #141720;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .hero-mini-sheet {
+      width: 220px;
+      height: 180px;
+      background: #ffffff;
+      border-radius: 4px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .sheet-line {
+      height: 6px;
+      border-radius: 2px;
+      background: #e2e8f0;
+    }
+    .sheet-line-brand { background: var(--amber-primary); width: 45%; height: 8px; }
+    .sheet-line-dark { background: #1e293b; width: 75%; }
+    .sheet-table {
+      margin-top: 10px;
+      border-top: 1px solid #cbd5e1;
+      padding-top: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    /* MARQUEE SECTION */
+    .marquee-section {
+      background: #090a0e;
+      border-bottom: 1px solid var(--bg-obsidian-border);
+      padding: 36px 0;
+    }
+
+    .marquee-label {
+      text-align: center;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #64748b;
+      margin-bottom: 24px;
+    }
+
+    .marquee-logos {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 54px;
+      opacity: 0.75;
+      flex-wrap: wrap;
+    }
+
+    .marquee-logo-item {
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #cbd5e1;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* PARCHMENT SECTION 1: The Sovereign Advantage */
+    .section-parchment {
+      background-color: var(--bg-parchment);
+      color: var(--text-light-head);
+      padding: 108px 0;
+      position: relative;
+      border-bottom: 1px solid var(--border-parchment);
+    }
+
+    .parchment-chart-graphic {
+      position: absolute;
+      top: 36px;
+      right: 48px;
+      width: 280px;
+      height: 90px;
+      pointer-events: none;
+      opacity: 0.85;
+    }
+
+    .parchment-header-group {
+      max-width: 820px;
+      margin-bottom: 64px;
+    }
+
+    .editorial-label {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--amber-primary);
+      font-weight: 600;
+      margin-bottom: 16px;
+      display: inline-block;
+    }
+
+    .editorial-title {
+      font-family: var(--font-serif);
+      font-size: 48px;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--text-light-head);
+      margin-bottom: 20px;
+    }
+
+    .editorial-body {
+      font-size: 17px;
+      line-height: 1.68;
+      color: var(--text-light-body);
+      max-width: 740px;
+    }
+
+    .parchment-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 36px;
+    }
+
+    .parchment-card {
+      background: var(--bg-parchment-card);
+      border: 1px solid var(--border-parchment);
+      border-radius: 12px;
+      padding: 40px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    }
+
+    .parchment-card-title {
+      font-family: var(--font-serif);
+      font-size: 24px;
+      margin-bottom: 14px;
+      color: var(--text-light-head);
+    }
+
+    .parchment-card-text {
+      font-size: 15px;
+      color: var(--text-light-body);
+      line-height: 1.65;
+      margin-bottom: 24px;
+    }
+
+    /* High-Res Comparison Table */
+    .comp-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+      margin-top: 16px;
+    }
+
+    .comp-table th {
+      text-align: left;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-light-muted);
+      padding: 10px 12px;
+      border-bottom: 2px solid var(--border-parchment);
+    }
+
+    .comp-table td {
+      padding: 12px;
+      border-bottom: 1px solid var(--border-parchment-subtle);
+      color: var(--text-light-body);
+    }
+
+    .comp-table tr.highlight {
+      background: rgba(217, 119, 6, 0.05);
+      font-weight: 600;
+    }
+
+    .comp-table tr.highlight td {
+      color: var(--amber-primary);
+    }
+
+    .badge-win {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      padding: 2px 6px;
+      background: #dcfce7;
+      color: #15803d;
+      border-radius: 4px;
+    }
+
+    .badge-loss {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      padding: 2px 6px;
+      background: #fee2e2;
+      color: #b91c1c;
+      border-radius: 4px;
+    }
+
+    /* DARK SECTION 2: The Business Impact */
+    .section-impact-dark {
+      background: #0d0e14;
+      padding: 108px 0;
+      border-bottom: 1px solid var(--bg-obsidian-border);
+    }
+
+    .impact-split {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 56px;
+      align-items: center;
+    }
+
+    .impact-card-ledger {
+      background: #12141c;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 28px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    }
+
+    .ledger-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 16px;
+      margin-bottom: 18px;
+    }
+
+    .ledger-title {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #cbd5e1;
+    }
+
+    .ledger-rows {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .ledger-row {
+      background: #171924;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 6px;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 13px;
+    }
+
+    .ledger-col-id {
+      font-family: var(--font-mono);
+      color: #93c5fd;
+      font-weight: 500;
+    }
+
+    .ledger-col-status {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 12px;
+      background: rgba(16, 185, 129, 0.15);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    .ledger-col-time {
+      font-family: var(--font-mono);
+      color: #f59e0b;
+    }
+
+    /* PARCHMENT SECTION 3: UNBOXED ISOMETRIC ARCHITECTURE */
+    .section-isometric {
+      background-color: #fbfaf8;
+      color: var(--text-light-head);
+      padding: 112px 0;
+      position: relative;
+      border-bottom: 1px solid var(--border-parchment);
+      overflow: hidden;
+    }
+
+    .isometric-split {
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    /* Floating freely directly on parchment canvas — NO white box! */
+    .isometric-graphic-free {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      width: 100%;
+    }
+
+    /* PROOF NUMBERS & ENTERPRISE CASE STUDY CARD */
+    .section-proof {
+      background-color: var(--bg-parchment);
+      color: var(--text-light-head);
+      padding: 100px 0;
+      border-bottom: 1px solid var(--border-parchment);
+    }
+
+    .case-study-hero-card {
+      background: #10131b;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 14px;
+      padding: 36px 44px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+      margin-bottom: 56px;
+      color: #ffffff;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .case-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #f59e0b;
+      margin-bottom: 12px;
+    }
+
+    .case-headline {
+      font-family: var(--font-serif);
+      font-size: 26px;
+      line-height: 1.35;
+      color: #ffffff;
+      margin-bottom: 14px;
+    }
+
+    .case-sub {
+      font-size: 14px;
+      color: #94a3b8;
+      line-height: 1.6;
+    }
+
+    .case-metrics-column {
+      border-left: 1px solid rgba(255, 255, 255, 0.1);
+      padding-left: 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .case-metric-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .case-metric-val {
+      font-family: var(--font-serif);
+      font-size: 32px;
+      font-weight: 700;
+      color: #34d399;
+    }
+
+    .case-metric-label {
+      font-size: 12px;
+      color: #94a3b8;
+    }
+
+    .proof-grid {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 56px;
+      align-items: center;
+      margin-bottom: 64px;
+    }
+
+    .proof-big-stat {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .proof-number {
+      font-family: var(--font-serif);
+      font-size: 112px;
+      line-height: 0.95;
+      font-weight: 700;
+      color: var(--amber-primary);
+      letter-spacing: -0.04em;
+    }
+
+    .proof-number-sup {
+      font-size: 48px;
+      vertical-align: super;
+      font-family: var(--font-sans);
+      font-weight: 400;
+      color: var(--amber-glow);
+    }
+
+    .proof-label {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-light-muted);
+      font-weight: 600;
+      margin-top: 12px;
+    }
+
+    .proof-quote {
+      font-family: var(--font-serif);
+      font-size: 28px;
+      line-height: 1.45;
+      color: var(--text-light-head);
+      font-style: italic;
+      position: relative;
+    }
+
+    .proof-quote::before {
+      content: "“";
+      font-size: 72px;
+      line-height: 0;
+      position: absolute;
+      top: -12px;
+      left: -36px;
+      color: var(--border-parchment);
+      font-family: Georgia, serif;
+    }
+
+    .proof-author {
+      margin-top: 24px;
+      font-size: 14px;
+      color: var(--text-light-muted);
+      font-family: var(--font-sans);
+      font-style: normal;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .author-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: rgba(16, 185, 129, 0.1);
+      color: #15803d;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 12px;
+      border: 1px solid rgba(16, 185, 129, 0.25);
+    }
+
+    .proof-submetrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      border-top: 1px solid var(--border-parchment);
+      padding-top: 48px;
+    }
+
+    .submetric-box {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .submetric-value {
+      font-family: var(--font-serif);
+      font-size: 44px;
+      font-weight: 700;
+      color: var(--text-light-head);
+      letter-spacing: -0.02em;
+    }
+
+    .submetric-label {
+      font-size: 13.5px;
+      color: var(--text-light-muted);
+      margin-top: 4px;
+    }
+
+    /* DARK PIPELINE: Point, Click & Connect WITH CENTRAL ILLUMINATED HERO BUS */
+    .section-pipeline {
+      background: #090a0e;
+      padding: 112px 0;
+      border-bottom: 1px solid var(--bg-obsidian-border);
+      text-align: center;
+      position: relative;
+    }
+
+    .pipeline-title {
+      font-family: var(--font-serif);
+      font-size: 54px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+      margin-bottom: 18px;
+    }
+
+    .pipeline-subtitle {
+      font-size: 17px;
+      color: #94a3b8;
+      max-width: 680px;
+      margin: 0 auto 60px auto;
+    }
+
+    /* Connected Hero Bus Architecture */
+    .pipeline-bus-container {
+      position: relative;
+      max-width: 1080px;
+      margin: 0 auto 64px auto;
+      padding: 40px 0;
+    }
+
+    .pipeline-bus-track {
+      position: absolute;
+      top: 50%;
+      left: 60px;
+      right: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, rgba(234, 88, 12, 0.1) 0%, rgba(234, 88, 12, 0.7) 25%, #f59e0b 50%, rgba(234, 88, 12, 0.7) 75%, rgba(234, 88, 12, 0.1) 100%);
+      transform: translateY(-50%);
+      z-index: 1;
+    }
+
+    .pipeline-bus-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      z-index: 2;
+    }
+
+    .pipeline-node {
+      background: #12141c;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 10px;
+      padding: 12px 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.2s;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    }
+
+    .pipeline-node:hover {
+      border-color: var(--amber-primary);
+      transform: translateY(-2px);
+    }
+
+    /* Central Illuminated Hero Emblem */
+    .pipeline-hero-hub {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 18px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 0 0 50px rgba(245, 158, 11, 0.35), 0 10px 30px rgba(0, 0, 0, 0.8);
+      border: 2px solid #fef3c7;
+      transform: scale(1.15);
+      z-index: 3;
+    }
+
+    .pipeline-hero-logo {
+      width: 44px;
+      height: 44px;
+      border-radius: 8px;
+    }
+
+    .pipeline-hero-title {
+      font-family: var(--font-serif);
+      font-size: 13px;
+      font-weight: 700;
+      color: #08090c;
+      letter-spacing: -0.01em;
+      margin-top: 4px;
+    }
+
+    .pipeline-node-icon {
+      font-size: 20px;
+    }
+
+    .pipeline-node-name {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      color: #e2e8f0;
+      font-weight: 600;
+    }
+
+    .pipeline-node-sub {
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      color: #64748b;
+    }
+
+    .pipeline-pillars {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      text-align: left;
+    }
+
+    .pillar-card {
+      background: #11131a;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-top: 3px solid var(--amber-primary);
+      border-radius: 8px;
+      padding: 24px;
+    }
+
+    .pillar-title {
+      font-family: var(--font-serif);
+      font-size: 18px;
+      color: #ffffff;
+      margin-bottom: 10px;
+    }
+
+    .pillar-text {
+      font-size: 13.5px;
+      color: #94a3b8;
+      line-height: 1.6;
+    }
+
+    /* LIVE MONACO STUDIO SECTION */
+    .section-studio {
+      background: #0b0c10;
+      padding: 108px 0;
+      border-bottom: 1px solid var(--bg-obsidian-border);
+    }
+
+    .studio-console-card {
+      background: #101217;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 14px;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7);
+      overflow: hidden;
+    }
+
+    .studio-top-bar {
+      background: #141720;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .studio-controls-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .studio-select-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .studio-select-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      color: #94a3b8;
+      letter-spacing: 0.05em;
+    }
+
+    #templateSelect {
+      background: #09090b;
+      color: #f1f5f9;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+      cursor: pointer;
+      outline: none;
+      min-width: 320px;
+    }
+
+    #templateSelect:focus {
+      border-color: var(--amber-light);
+    }
+
+    .studio-controls-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* Static solid badge — NO blinking */
+    .latency-badge {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: 14px;
+      background: rgba(217, 119, 6, 0.12);
+      border: 1px solid var(--amber-border);
+      color: var(--amber-light);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-copy-json {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #cbd5e1;
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      padding: 6px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-copy-json:hover {
+      background: rgba(255, 255, 255, 0.12);
+      color: #ffffff;
+    }
+
+    .studio-split-view {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      height: 640px;
+    }
+
+    .studio-editor-pane {
+      background: #09090b;
+      border-right: 1px solid rgba(255, 255, 255, 0.08);
+      position: relative;
+      height: 100%;
+    }
+
+    #monacoEditor {
+      width: 100%;
+      height: 100%;
+    }
+
+    .studio-preview-pane {
+      background: #12141a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: auto;
+      padding: 24px;
+      position: relative;
+    }
+
+    .preview-sheet {
+      width: 100%;
+      max-width: 520px;
+      background: #ffffff;
+      border-radius: 4px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .preview-sheet svg {
+      width: 100% !important;
+      height: auto !important;
+      display: block;
+    }
+
+    /* PRICING & ROI CALCULATOR */
+    .section-pricing {
+      background: var(--bg-parchment);
+      color: var(--text-light-head);
+      padding: 108px 0;
+      border-bottom: 1px solid var(--border-parchment);
+    }
+
+    .calculator-box {
+      background: #ffffff;
+      border: 1px solid var(--border-parchment);
+      border-radius: 14px;
+      padding: 36px 44px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+      margin-bottom: 72px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .slider-group {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .slider-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .slider-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-light-head);
+    }
+
+    .slider-val {
+      font-family: var(--font-mono);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--amber-primary);
+    }
+
+    #docSlider {
+      width: 100%;
+      height: 6px;
+      border-radius: 3px;
+      background: var(--border-parchment);
+      outline: none;
+      accent-color: var(--amber-primary);
+      cursor: pointer;
+    }
+
+    .calculator-result {
+      background: var(--bg-parchment-warm);
+      border: 1px solid var(--border-parchment);
+      border-radius: 10px;
+      padding: 24px;
+      text-align: center;
+    }
+
+    .result-sub {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-light-muted);
+      margin-bottom: 6px;
+    }
+
+    .result-amount {
+      font-family: var(--font-serif);
+      font-size: 42px;
+      font-weight: 700;
+      color: #15803d;
+      margin-bottom: 4px;
+    }
+
+    .result-desc {
+      font-size: 12.5px;
+      color: var(--text-light-body);
+    }
+
+    /* 3-Tier Deck */
+    .pricing-deck {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+
+    .price-card {
+      background: #ffffff;
+      border: 1px solid var(--border-parchment);
+      border-radius: 14px;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+      position: relative;
+    }
+
+    .price-card.featured {
+      border: 2px solid var(--amber-primary);
+      box-shadow: 0 10px 40px rgba(217, 119, 6, 0.12);
+    }
+
+    .featured-ribbon {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--amber-primary);
+      color: #ffffff;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 12px;
+      letter-spacing: 0.08em;
+    }
+
+    .price-plan-name {
+      font-family: var(--font-serif);
+      font-size: 24px;
+      color: var(--text-light-head);
+      margin-bottom: 8px;
+    }
+
+    .price-plan-desc {
+      font-size: 13.5px;
+      color: var(--text-light-muted);
+      margin-bottom: 24px;
+      min-height: 42px;
+    }
+
+    .price-plan-num {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      margin-bottom: 28px;
+    }
+
+    .price-currency {
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--text-light-head);
+    }
+
+    .price-figure {
+      font-family: var(--font-serif);
+      font-size: 52px;
+      font-weight: 700;
+      color: var(--text-light-head);
+      line-height: 1;
+    }
+
+    .price-period {
+      font-size: 13px;
+      color: var(--text-light-muted);
+    }
+
+    .price-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 36px;
+      font-size: 13.5px;
+      color: var(--text-light-body);
+    }
+
+    .price-features li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .price-features li::before {
+      content: "✓";
+      color: var(--amber-primary);
+      font-weight: 700;
+    }
+
+    .btn-pricing {
+      display: block;
+      text-align: center;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 14px;
+      transition: all 0.2s;
+    }
+
+    .btn-pricing-secondary {
+      background: var(--bg-parchment-warm);
+      border: 1px solid var(--border-parchment);
+      color: var(--text-light-head);
+    }
+
+    .btn-pricing-secondary:hover {
+      background: #eae4d8;
+    }
+
+    .btn-pricing-primary {
+      background: var(--amber-primary);
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(217, 119, 6, 0.3);
+    }
+
+    .btn-pricing-primary:hover {
+      background: #b45309;
+      transform: translateY(-1px);
+    }
+
+    .founder-banner {
+      margin-top: 36px;
+      background: #ffffff;
+      border: 1px solid var(--border-parchment);
+      border-radius: 12px;
+      padding: 24px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    /* PRE-FOOTER CTA */
+    .section-prefooter {
+      background: #07080b;
+      padding: 112px 0;
+      border-bottom: 1px solid var(--bg-obsidian-border);
+      text-align: center;
+    }
+
+    .prefooter-title {
+      font-family: var(--font-serif);
+      font-size: 56px;
+      color: #ffffff;
+      letter-spacing: -0.025em;
+      margin-bottom: 20px;
+    }
+
+    .prefooter-sub {
+      font-size: 18px;
+      color: #94a3b8;
+      max-width: 620px;
+      margin: 0 auto 40px auto;
+    }
+
+    /* SITE FOOTER */
+    .site-footer {
+      background: #050608;
+      padding: 80px 0 40px 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .footer-watermark {
+      position: absolute;
+      bottom: -60px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: var(--font-serif);
+      font-size: 260px;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.02);
+      pointer-events: none;
+      white-space: nowrap;
+      user-select: none;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+      gap: 48px;
+      position: relative;
+      z-index: 2;
+      margin-bottom: 64px;
+    }
+
+    .footer-brand-title {
+      font-family: var(--font-serif);
+      font-size: 24px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 12px;
+    }
+
+    .footer-brand-desc {
+      font-size: 13.5px;
+      color: #64748b;
+      max-width: 280px;
+      line-height: 1.6;
+    }
+
+    .footer-col-title {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #cbd5e1;
+      margin-bottom: 18px;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      font-size: 13.5px;
+      color: #94a3b8;
+    }
+
+    .footer-links a:hover {
+      color: #ffffff;
+    }
+
+    .footer-bottom {
+      position: relative;
+      z-index: 2;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      padding-top: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12.5px;
+      color: #64748b;
+    }
+
+    @media (max-width: 960px) {
+      .hero-title { font-size: 44px; }
+      .workstation-body { grid-template-columns: 1fr; }
+      .parchment-grid, .impact-split, .isometric-split, .proof-grid, .studio-split-view, .calculator-box, .pricing-deck, .footer-grid, .case-study-hero-card {
+        grid-template-columns: 1fr;
+      }
+      .studio-split-view { height: 800px; }
+      .pipeline-bus-row { flex-wrap: wrap; gap: 16px; justify-content: center; }
+      .pipeline-bus-track { display: none; }
+      .pipeline-pillars { grid-template-columns: 1fr 1fr; }
+      .proof-submetrics { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP NAVIGATION -->
+  <div class="nav-wrapper">
+    <div class="container nav-bar">
+      <div class="brand-group">
+        <img src="/assets/logo.png" alt="Rubrol Logo" class="brand-logo-img">
+        <a href="/" class="brand-title">RUBROL</a>
+        <span class="brand-tag">APACHE 2.0</span>
+      </div>
+
+      <div class="nav-links">
+        <a href="#architecture" class="nav-link">Architecture</a>
+        <a href="#benchmarks" class="nav-link">Benchmarks</a>
+        <a href="#compliance" class="nav-link">Factur-X &amp; EN 16931</a>
+        <a href="#studio" class="nav-link">Live Studio</a>
+        <a href="#pricing" class="nav-link">Pricing</a>
+        <a href="https://github.com/maxcomperatore/rubrol" target="_blank" class="nav-link">Docs</a>
+      </div>
+
+      <div class="nav-actions">
+        <a href="https://github.com/maxcomperatore/rubrol" target="_blank" class="btn-github">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          GitHub ★ 1.2k
+        </a>
+        <a href="#studio" class="btn-pill-primary">Live Studio →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO SECTION -->
+  <section class="hero-section">
+    <svg class="hero-circuit-bg" viewBox="0 0 1440 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 120H380L440 180H920L980 120H1440" stroke="#ea580c" stroke-width="1.2" stroke-dasharray="4 4"/>
+      <path d="M120 400H620L680 340H1100L1160 400H1440" stroke="#ea580c" stroke-width="1" stroke-opacity="0.4"/>
+      <circle cx="440" cy="180" r="4" fill="#f59e0b"/>
+      <circle cx="980" cy="120" r="4" fill="#f59e0b"/>
+      <circle cx="680" cy="340" r="3" fill="#ea580c"/>
+      <circle cx="1100" cy="340" r="3" fill="#ea580c"/>
+      <line x1="440" y1="180" x2="440" y2="280" stroke="#ea580c" stroke-width="1" stroke-opacity="0.3"/>
+      <line x1="980" y1="120" x2="980" y2="220" stroke="#ea580c" stroke-width="1" stroke-opacity="0.3"/>
+    </svg>
+
+    <div class="container hero-content">
+      <div class="eyebrow-pill">
+        <span class="eyebrow-dot"></span>
+        HIGH-THROUGHPUT DOCUMENT ENGINE FOR ENTERPRISE
+      </div>
+
+      <h1 class="hero-title">
+        Turn Document Infrastructure<br>
+        <em>Into Instantaneous Precision.</em>
+      </h1>
+
+      <p class="hero-subtitle">
+        The sub-millisecond Rust &amp; Typst engine replacing Headless Chrome and Gotenberg. Native PDF/A-2b compliance, European EN 16931 Factur-X e-invoicing, and sub-6ms compilation on 96% less compute.
+      </p>
+
+      <div class="hero-ctas">
+        <a href="#studio" class="btn-pill-primary" style="padding: 13px 30px; font-size: 15px;">Launch Live Studio →</a>
+        <a href="https://github.com/maxcomperatore/rubrol" target="_blank" class="btn-pill-secondary" style="padding: 13px 28px; font-size: 15px;">Explore GitHub Repository</a>
+      </div>
+
+      <div class="hero-metrics-strip">
+        <div class="hero-metric-item">● <strong>5.8ms</strong> Mean Compile</div>
+        <span class="hero-metric-sep">|</span>
+        <div class="hero-metric-item">● <strong>&lt; 28MB</strong> Resident Memory</div>
+        <span class="hero-metric-sep">|</span>
+        <div class="hero-metric-item">● <strong>100%</strong> EN 16931 Validated</div>
+        <span class="hero-metric-sep">|</span>
+        <div class="hero-metric-item">● <strong>Zero</strong> V8 Virtualization</div>
+      </div>
+
+      <!-- Hero Workstation Inset Mockup -->
+      <div class="hero-workstation-preview">
+        <div class="hero-workstation-bar">
+          <div class="workstation-dots">
+            <span class="workstation-dot dot-red"></span>
+            <span class="workstation-dot dot-amber"></span>
+            <span class="workstation-dot dot-green"></span>
+          </div>
+          <div class="workstation-tabs">
+            <span class="workstation-tab active">payload.json</span>
+            <span class="workstation-tab">b2b_invoice.typ</span>
+            <span class="workstation-tab">output.pdf/a</span>
+          </div>
+          <div style="font-family: var(--font-mono); font-size: 11px; color: #10b981;">
+            ● COMPILED IN 5.2ms
+          </div>
+        </div>
+        <div class="workstation-body">
+          <div class="hero-code-pane">
+            <div class="c-com">// Microsecond Ingestion Pipeline</div>
+            <div>&#123;</div>
+            <div style="padding-left: 16px;"><span class="c-key">"invoice_number"</span>: <span class="c-val">"INV-2026-8891"</span>,</div>
+            <div style="padding-left: 16px;"><span class="c-key">"amount_total"</span>: <span class="c-num">14850.00</span>,</div>
+            <div style="padding-left: 16px;"><span class="c-key">"compliance"</span>: <span class="c-val">"PDF/A-2b ISO 19005-2"</span>,</div>
+            <div style="padding-left: 16px;"><span class="c-key">"en_16931_valid"</span>: <span class="c-num">true</span></div>
+            <div>&#125;</div>
+          </div>
+          <div class="hero-doc-pane">
+            <div class="hero-mini-sheet">
+              <div class="sheet-line sheet-line-brand"></div>
+              <div class="sheet-line sheet-line-dark" style="margin-top: 6px;"></div>
+              <div class="sheet-line" style="width: 50%;"></div>
+              <div class="sheet-table">
+                <div class="sheet-line" style="width: 100%; height: 4px;"></div>
+                <div class="sheet-line" style="width: 90%; height: 4px;"></div>
+                <div class="sheet-line" style="width: 95%; height: 4px;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE / TRUST LOGOS -->
+  <section class="marquee-section">
+    <div class="container">
+      <div class="marquee-label">ENGINEERED FOR PRODUCTION RUNS REQUIRING ABSOLUTE DETERMINISM</div>
+      <div class="marquee-logos">
+        <div class="marquee-logo-item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M13.976 9.15c-2.172-.806-3.356-1.426-3.356-2.409 0-.831.683-1.305 1.901-1.305 2.227 0 4.515.858 6.09 1.631l.89-5.494C18.252.975 15.697.4 12.532.4 6.643.4 2.5 3.518 2.5 8.784c0 4.962 4.148 6.46 8.544 8.04 2.534.908 3.583 1.657 3.583 2.656 0 .979-.87 1.488-2.316 1.488-2.43 0-5.378-1.079-7.29-2.072l-.92 5.578c1.868.978 5.034 1.526 8.354 1.526 6.183 0 10.55-3.033 10.55-8.498 0-4.996-3.896-6.613-9.029-8.352z"/></svg>
+          STRIPE SAAS
+        </div>
+        <div class="marquee-logo-item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          AWS FARGATE
+        </div>
+        <div class="marquee-logo-item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 4.5a7.5 7.5 0 110 15 7.5 7.5 0 010-15z"/></svg>
+          DATADOG APM
+        </div>
+        <div class="marquee-logo-item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L1 21h22L12 2zm0 4.5l7.5 13H4.5L12 6.5z"/></svg>
+          VERCEL EDGE
+        </div>
+        <div class="marquee-logo-item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm1 14.5h-2v-2h2v2zm0-4h-2V7h2v5.5z"/></svg>
+          SUPABASE DB
+        </div>
+        <div class="marquee-logo-item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/></svg>
+          CLOUDFLARE
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARCHMENT SECTION 1: The Sovereign Advantage -->
+  <section id="benchmarks" class="section-parchment">
+    <svg class="parchment-chart-graphic" viewBox="0 0 280 90" fill="none">
+      <path d="M0 10H60L90 40H170L210 75H280" stroke="#d97706" stroke-width="2"/>
+      <circle cx="60" cy="10" r="4" fill="#d97706"/>
+      <circle cx="90" cy="40" r="4" fill="#d97706"/>
+      <circle cx="170" cy="40" r="4" fill="#d97706"/>
+      <circle cx="210" cy="75" r="4" fill="#d97706"/>
+      <text x="215" y="65" font-family="'JetBrains Mono', monospace" font-size="10" fill="#d97706" font-weight="700">5.8ms p99</text>
+    </svg>
+
+    <div class="container">
+      <div class="parchment-header-group">
+        <span class="editorial-label">COMPUTE INFRASTRUCTURE REVOLUTION</span>
+        <h2 class="editorial-title">Turn compute waste into raw competitive advantage.</h2>
+        <p class="editorial-body">
+          Legacy document generation relies on headless browser virtualization. Spawning Chrome or Gotenberg instances requires 250MB resident memory per worker, unpredictable GC pauses, and 2,000ms+ render latencies. Rubrol embeds the native Typst engine directly into your process or sidecar, compiling production PDFs in under 6 milliseconds with absolute mathematical determinism.
+        </p>
+      </div>
+
+      <div class="parchment-grid">
+        <div class="parchment-card">
+          <h3 class="parchment-card-title">The Chromium Bottleneck</h3>
+          <p class="parchment-card-text">
+            Every invoice generated via Puppeteer spins up a full WebKit/Blink layout engine, executing JavaScript, evaluating CSS cascades, and allocating huge DOM node trees before rasterizing to print media.
+          </p>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 10px; font-size: 13.5px; color: var(--text-light-body);">
+            <li>❌ <strong>250MB–400MB RAM</strong> per concurrent worker</li>
+            <li>❌ <strong>1,800ms–3,500ms</strong> p95 cold start latency</li>
+            <li>❌ Frequent out-of-memory container crashes under batch loads</li>
+            <li>❌ Non-deterministic line breaking across Linux distributions</li>
+          </ul>
+        </div>
+
+        <div class="parchment-card" style="border-left: 4px solid var(--amber-primary);">
+          <h3 class="parchment-card-title">The Rubrol Architecture</h3>
+          <p class="parchment-card-text">
+            Rubrol compiles Typst documents into native vector PDF/A-2b and SVG. Zero browser overhead, zero Node.js bridging, and native ISO 19005-2 compliance built directly into the binary.
+          </p>
+          <table class="comp-table">
+            <thead>
+              <tr>
+                <th>Vector Spec</th>
+                <th>Chromium / Puppeteer</th>
+                <th>Rubrol Sidecar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Compile Latency</td>
+                <td><span class="badge-loss">2,400ms</span></td>
+                <td><span class="badge-win">5.8ms</span></td>
+              </tr>
+              <tr>
+                <td>Memory Footprint</td>
+                <td><span class="badge-loss">250MB</span></td>
+                <td><span class="badge-win">24MB</span></td>
+              </tr>
+              <tr>
+                <td>Max Concurrency</td>
+                <td><span class="badge-loss">40 req/s</span></td>
+                <td><span class="badge-win">1,200 req/s</span></td>
+              </tr>
+              <tr class="highlight">
+                <td>PDF/A-2b &amp; Factur-X</td>
+                <td>Requires 3rd party CLI</td>
+                <td>Native Zero-Copy</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DARK SECTION 2: The Business Impact -->
+  <section class="section-impact-dark">
+    <div class="container impact-split">
+      <div class="impact-card-ledger">
+        <div class="ledger-header">
+          <div class="ledger-title">● LIVE PIPELINE TELEMETRY</div>
+          <div style="font-family: var(--font-mono); font-size: 11px; color: #10b981;">10,000 DOCS / MIN</div>
+        </div>
+        <div class="ledger-rows">
+          <div class="ledger-row">
+            <span class="ledger-col-id">INV-2026-9041</span>
+            <span style="color: #cbd5e1;">Acme Corp SaaS</span>
+            <span class="ledger-col-status">VALIDATED EN 16931</span>
+            <span class="ledger-col-time">5.2ms</span>
+          </div>
+          <div class="ledger-row">
+            <span class="ledger-col-id">REC-2026-8819</span>
+            <span style="color: #cbd5e1;">Stripe Checkout</span>
+            <span class="ledger-col-status">PDF/A-2b VERIFIED</span>
+            <span class="ledger-col-time">4.8ms</span>
+          </div>
+          <div class="ledger-row">
+            <span class="ledger-col-id">SOC-2026-4402</span>
+            <span style="color: #cbd5e1;">Enterprise Audit</span>
+            <span class="ledger-col-status">SHA-256 SIGNED</span>
+            <span class="ledger-col-time">6.1ms</span>
+          </div>
+          <div class="ledger-row">
+            <span class="ledger-col-id">MED-2026-1104</span>
+            <span style="color: #cbd5e1;">Clinical Record</span>
+            <span class="ledger-col-status">HIPAA SECURE</span>
+            <span class="ledger-col-time">5.4ms</span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <span class="editorial-label" style="color: #f59e0b;">MEASURABLE ENTERPRISE ROI</span>
+        <h2 style="font-family: var(--font-serif); font-size: 42px; line-height: 1.15; color: #ffffff; margin-bottom: 20px;">
+          See the operational impact of every document run.
+        </h2>
+        <p style="font-size: 16px; line-height: 1.68; color: #94a3b8; margin-bottom: 28px;">
+          When processing 200,000 monthly invoices, running headless browser clusters drains tens of thousands of dollars in AWS Fargate and CPU allocations. By reducing compute times by 96% and shrinking RAM from 250MB to 24MB, Rubrol amortizes its cost within days.
+        </p>
+        <a href="#calculator" class="btn-pill-primary">Calculate Your Cluster Savings →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARCHMENT SECTION 3: UNBOXED ISOMETRIC ARCHITECTURE -->
+  <section id="architecture" class="section-isometric">
+    <div class="container isometric-split">
+      <div>
+        <span class="editorial-label">ISOMETRIC CORE PIPELINE</span>
+        <h2 class="editorial-title">Native Rust &amp; Typst Engine: Zero-Copy Sidecar.</h2>
+        <p class="editorial-body" style="margin-bottom: 28px;">
+          Rubrol operates as a high-density microservice or native shared library. Instead of rendering HTML pages into rasterized print buffers, it builds an Abstract Syntax Tree of the document model directly in memory, calculating typesetting grids, kerning, and pagination in pure mathematics before outputting certified PDF/A-2b.
+        </p>
+        <div style="display: flex; gap: 14px;">
+          <a href="#studio" class="btn-pill-primary" style="background: #18181b; color: #ffffff;">Launch Live Console</a>
+          <a href="https://github.com/maxcomperatore/rubrol" target="_blank" class="btn-pill-secondary" style="background: transparent; color: #18181b; border-color: var(--border-parchment);">View Engine Source</a>
+        </div>
+      </div>
+
+      <!-- Free-floating isometric architectural blueprint — NO white box container -->
+      <div class="isometric-graphic-free">
+        <svg width="560" height="380" viewBox="0 0 560 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Subtle Perspective Floor Grid -->
+          <g stroke="#d97706" stroke-width="0.75" stroke-opacity="0.18" stroke-dasharray="3 3">
+            <line x1="80" y1="310" x2="280" y2="190"/>
+            <line x1="180" y1="360" x2="380" y2="240"/>
+            <line x1="280" y1="370" x2="480" y2="250"/>
+            <line x1="480" y1="310" x2="280" y2="190"/>
+            <line x1="380" y1="360" x2="180" y2="240"/>
+          </g>
+
+          <!-- Central Isometric Assembly -->
+          <g transform="translate(280, 185)">
+            <!-- Central Ochre Highlighted Cube (Typst Core) -->
+            <!-- Top Face -->
+            <polygon points="0,-48 84,-96 0,-144 -84,-96" fill="url(#amberGradHero)" stroke="#ea580c" stroke-width="1.8"/>
+            <!-- Left Face -->
+            <polygon points="-84,-96 0,-48 0,48 -84,0" fill="#fef3c7" stroke="#ea580c" stroke-width="1.8"/>
+            <!-- Right Face -->
+            <polygon points="0,-48 84,-96 84,0 0,48" fill="#fde68a" stroke="#ea580c" stroke-width="1.8"/>
+
+            <!-- Engraved Rubrol Core Typography -->
+            <text x="0" y="-92" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="700" fill="#7c2d12" text-anchor="middle" letter-spacing="0.1em">RUBROL CORE</text>
+            <text x="0" y="-76" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="600" fill="#9a3412" text-anchor="middle">TYPST 0.13.1</text>
+
+            <!-- Node 1: Ingestion Pipeline (Left) -->
+            <g transform="translate(-140, 50)">
+              <polygon points="0,-30 52,-60 0,-90 -52,-60" fill="#faf8f5" stroke="#d97706" stroke-width="1.4" stroke-dasharray="3 3"/>
+              <polygon points="-52,-60 0,-30 0,30 -52,0" fill="#fffbeb" stroke="#d97706" stroke-width="1.4"/>
+              <polygon points="0,-30 52,-60 52,0 0,30" fill="#fef3c7" stroke="#d97706" stroke-width="1.4"/>
+              <text x="0" y="-58" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="700" fill="#b45309" text-anchor="middle">JSON STREAM</text>
+              <text x="0" y="-44" font-family="'JetBrains Mono', monospace" font-size="8" fill="#92400e" text-anchor="middle">Zero-Copy Buffer</text>
+            </g>
+
+            <!-- Node 2: Factur-X XML Embedding (Right) -->
+            <g transform="translate(140, 50)">
+              <polygon points="0,-30 52,-60 0,-90 -52,-60" fill="#faf8f5" stroke="#d97706" stroke-width="1.4" stroke-dasharray="3 3"/>
+              <polygon points="-52,-60 0,-30 0,30 -52,0" fill="#fffbeb" stroke="#d97706" stroke-width="1.4"/>
+              <polygon points="0,-30 52,-60 52,0 0,30" fill="#fef3c7" stroke="#d97706" stroke-width="1.4"/>
+              <text x="0" y="-58" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="700" fill="#b45309" text-anchor="middle">FACTUR-X XML</text>
+              <text x="0" y="-44" font-family="'JetBrains Mono', monospace" font-size="8" fill="#92400e" text-anchor="middle">EN 16931 Validated</text>
+            </g>
+
+            <!-- Node 3: Deterministic PDF/A-2b Output (Bottom) -->
+            <g transform="translate(0, 115)">
+              <polygon points="0,-30 52,-60 0,-90 -52,-60" fill="#fef3c7" stroke="#ea580c" stroke-width="1.4"/>
+              <polygon points="-52,-60 0,-30 0,30 -52,0" fill="#faf8f5" stroke="#ea580c" stroke-width="1.4"/>
+              <polygon points="0,-30 52,-60 52,0 0,30" fill="#fffbeb" stroke="#ea580c" stroke-width="1.4"/>
+              <text x="0" y="-58" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="700" fill="#b45309" text-anchor="middle">PDF/A-2b / SVG</text>
+              <text x="0" y="-44" font-family="'JetBrains Mono', monospace" font-size="8" fill="#92400e" text-anchor="middle">ISO 19005-2 Certified</text>
+            </g>
+
+            <!-- Heavy Precision Data Conduits -->
+            <line x1="-84" y1="0" x2="-140" y2="20" stroke="#ea580c" stroke-width="2"/>
+            <line x1="84" y1="0" x2="140" y2="20" stroke="#ea580c" stroke-width="2"/>
+            <line x1="0" y1="48" x2="0" y2="85" stroke="#ea580c" stroke-width="2"/>
+
+            <!-- Connection Node Hubs (Solid, Static) -->
+            <circle cx="-140" cy="20" r="4" fill="#ea580c"/>
+            <circle cx="140" cy="20" r="4" fill="#ea580c"/>
+            <circle cx="0" cy="85" r="4" fill="#ea580c"/>
+          </g>
+
+          <defs>
+            <linearGradient id="amberGradHero" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#fbbf24"/>
+              <stop offset="50%" stop-color="#f59e0b"/>
+              <stop offset="100%" stop-color="#ea580c"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: ENTERPRISE CASE STUDY & PROOF NUMBERS -->
+  <section class="section-proof">
+    <div class="container">
+      <!-- High-End Enterprise Architectural Case Study Card -->
+      <div class="case-study-hero-card">
+        <div>
+          <div class="case-tag">ENTERPRISE CASE STUDY — GLOBAL TIER-1 FINTECH</div>
+          <h3 class="case-headline">
+            "We retired our 16-node Chromium Puppeteer cluster and replaced it with a single Rubrol sidecar container."
+          </h3>
+          <p class="case-sub">
+            During high-volume month-end billing cycles, generating 300,000 corporate invoice runs regularly caused V8 memory leaks and pod evictions. Rubrol lowered our 99th-percentile response time from 2,400ms to 5.8ms while reducing compute overhead by over \$180,000 annually.
+          </p>
+        </div>
+        <div class="case-metrics-column">
+          <div class="case-metric-item">
+            <span class="case-metric-val">2,400ms ➔ 5.8ms</span>
+            <span class="case-metric-label">p99 Latency Drop (413× Faster)</span>
+          </div>
+          <div class="case-metric-item">
+            <span class="case-metric-val">\$180,000 / yr</span>
+            <span class="case-metric-label">AWS Fargate Compute Eliminated</span>
+          </div>
+          <div class="case-metric-item">
+            <span class="case-metric-val">0 Evictions</span>
+            <span class="case-metric-label">Zero OOM Container Restarts</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="proof-grid">
+        <div class="proof-big-stat">
+          <div class="proof-number">96%<span class="proof-number-sup">†</span></div>
+          <div class="proof-label">COMPUTE REDUCTION ACROSS CLUSTER</div>
+        </div>
+
+        <div>
+          <blockquote class="proof-quote">
+            Rubrol replaced our 16-pod Chromium cluster with a single sidecar. Our p99 latency dropped from 2,400ms to 5.8ms while completely eliminating out-of-memory container restarts during end-of-month billing cycles.
+          </blockquote>
+          <div class="proof-author">
+            <strong>Staff Infrastructure Engineer</strong> — Global B2B FinTech Platform
+            <span class="author-badge">VERIFIED DEPLOYMENT</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="proof-submetrics">
+        <div class="submetric-box">
+          <div class="submetric-value">5.8ms</div>
+          <div class="submetric-label">Average Typst compilation latency on single vCPU</div>
+        </div>
+        <div class="submetric-box">
+          <div class="submetric-value">&lt; 28MB</div>
+          <div class="submetric-label">Resident memory consumption per container instance</div>
+        </div>
+        <div class="submetric-box">
+          <div class="submetric-value">100%</div>
+          <div class="submetric-label">EN 16931 &amp; ISO 19005-2 PDF/A compliance validation</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DARK PIPELINE SECTION: Point, Click & Connect WITH CENTRAL ILLUMINATED HERO BUS -->
+  <section class="section-pipeline">
+    <div class="container">
+      <h2 class="pipeline-title">Point, Click, &amp; Connect.</h2>
+      <p class="pipeline-subtitle">
+        Deploy as a microsecond sidecar in Kubernetes, run serverless via Docker, or link natively into Python, Node, Go, and Rust via REST or Unix sockets.
+      </p>
+
+      <!-- Central Illuminated Hero Bus -->
+      <div class="pipeline-bus-container">
+        <div class="pipeline-bus-track"></div>
+        <div class="pipeline-bus-row">
+          <div class="pipeline-node">
+            <span class="pipeline-node-icon">🐳</span>
+            <span class="pipeline-node-name">Docker</span>
+            <span class="pipeline-node-sub">ghcr.io image</span>
+          </div>
+          <div class="pipeline-node">
+            <span class="pipeline-node-icon">☸️</span>
+            <span class="pipeline-node-name">Kubernetes</span>
+            <span class="pipeline-node-sub">Micro-Sidecar</span>
+          </div>
+          <div class="pipeline-node">
+            <span class="pipeline-node-icon">🐍</span>
+            <span class="pipeline-node-name">Python</span>
+            <span class="pipeline-node-sub">FastAPI Async</span>
+          </div>
+
+          <!-- Central Illuminated Hero Hub -->
+          <div class="pipeline-hero-hub">
+            <img src="/assets/logo.png" alt="Rubrol Core Hub" class="pipeline-hero-logo">
+            <div class="pipeline-hero-title">RUBROL ENGINE</div>
+          </div>
+
+          <div class="pipeline-node">
+            <span class="pipeline-node-icon">🟢</span>
+            <span class="pipeline-node-name">Node.js</span>
+            <span class="pipeline-node-sub">TypeScript SDK</span>
+          </div>
+          <div class="pipeline-node">
+            <span class="pipeline-node-icon">🐹</span>
+            <span class="pipeline-node-name">Go</span>
+            <span class="pipeline-node-sub">gRPC / HTTP/2</span>
+          </div>
+          <div class="pipeline-node">
+            <span class="pipeline-node-icon">🦀</span>
+            <span class="pipeline-node-name">Rust</span>
+            <span class="pipeline-node-sub">Native FFI</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pipeline-pillars">
+        <div class="pillar-card">
+          <h4 class="pillar-title">Sub-Millisecond Sidecar</h4>
+          <p class="pillar-text">Runs alongside your application containers with zero external database or Redis dependency. Pure in-memory compilation.</p>
+        </div>
+        <div class="pillar-card">
+          <h4 class="pillar-title">Embedded Factur-X &amp; CII</h4>
+          <p class="pillar-text">Automatically packages syntactically validated Cross-Industry Invoice XML directly into the PDF/A-2b catalog stream.</p>
+        </div>
+        <div class="pillar-card">
+          <h4 class="pillar-title">Mathematical Determinism</h4>
+          <p class="pillar-text">Typst’s typesetting engine guarantees identical pixel-level layout and kerning across any architecture or cloud provider.</p>
+        </div>
+        <div class="pillar-card">
+          <h4 class="pillar-title">Zero Memory Leaks</h4>
+          <p class="pillar-text">Written in memory-safe compiled Rust. No V8 garbage collection storms, no lingering zombie Chrome renderer processes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIVE MONACO STUDIO WORKSTATION -->
+  <section id="studio" class="section-studio">
+    <div class="container">
+      <div style="text-align: center; margin-bottom: 48px;">
+        <span class="editorial-label" style="color: var(--amber-light);">INTERACTIVE ENGINE WORKSTATION</span>
+        <h2 style="font-family: var(--font-serif); font-size: 46px; color: #ffffff; margin-bottom: 14px;">
+          Live Typst Compilation Studio
+        </h2>
+        <p style="font-size: 16px; color: #94a3b8; max-width: 680px; margin: 0 auto;">
+          Edit live JSON variables on the left. Watch the local Rubrol engine recompile vector SVG in real time. Download PDF/A-2b compliant binaries instantly.
+        </p>
+      </div>
+
+      <div class="studio-console-card">
+        <div class="studio-top-bar">
+          <div class="studio-controls-left">
+            <div class="studio-select-wrapper">
+              <span class="studio-select-label">Template:</span>
+              <select id="templateSelect">
+                <option value="b2b_invoice" selected>b2b_invoice — Stripe SaaS Billing Invoice</option>
+                <option value="facturx_invoice">facturx_invoice — 🇪🇺 EU Factur-X / ZUGFeRD 2.2 EN 16931</option>
+                <option value="saas_receipt">saas_receipt — Consumer &amp; Developer Receipt</option>
+                <option value="purchase_order">purchase_order — Enterprise Procurement Order</option>
+                <option value="packing_slip">packing_slip — Multi-Box Logistics Packing Slip</option>
+                <option value="paystub_statement">paystub_statement — Itemized Payroll Statement</option>
+                <option value="board_financial_report">board_financial_report — Executive Board Financial Update</option>
+                <option value="compliance_certificate">compliance_certificate — SOC 2 &amp; ISO 27001 Certificate</option>
+                <option value="medical_intake">medical_intake — HIPAA Clinical Intake Record</option>
+                <option value="nda_agreement">nda_agreement — Mutual Non-Disclosure Agreement</option>
+                <option value="academic_transcript">academic_transcript — Official University Transcript</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="studio-controls-right">
+            <button id="copyJsonBtn" class="btn-copy-json" onclick="copyJsonPayload()">
+              Copy JSON
+            </button>
+            <div id="latencyBadge" class="latency-badge">
+              <span>●</span> 5.2ms
+            </div>
+            <button id="downloadPdfBtn" class="btn-pill-primary" style="padding: 7px 18px; font-size: 12.5px;">
+              Download PDF/A-2b ↓
+            </button>
+          </div>
+        </div>
+
+        <div class="studio-split-view">
+          <div class="studio-editor-pane">
+            <div id="monacoEditor"></div>
+          </div>
+          <div class="studio-preview-pane">
+            <div id="svgContainer" class="preview-sheet mode-fit-width">
+              <!-- Rendered SVG will be injected here -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING & ROI AMORTIZATION DECK -->
+  <section id="pricing" class="section-pricing">
+    <div class="container">
+      <div style="text-align: center; margin-bottom: 56px;">
+        <span class="editorial-label">TRANSPARENT ENTERPRISE PRICING</span>
+        <h2 class="editorial-title">Invest in speed. Eliminate compute waste.</h2>
+        <p class="editorial-body" style="margin: 0 auto;">
+          Open-source core under Apache 2.0. Scale with production-grade financial templates and enterprise compliance validation.
+        </p>
+      </div>
+
+      <!-- ROI Amortization Calculator -->
+      <div id="calculator" class="calculator-box">
+        <div class="slider-group">
+          <div class="slider-header">
+            <span class="slider-title">Monthly Documents Generated</span>
+            <span id="docCountLabel" class="slider-val">50,000</span>
+          </div>
+          <input type="range" id="docSlider" min="1000" max="500000" step="5000" value="50000">
+          <div style="display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 11px; color: var(--text-light-muted);">
+            <span>1,000 / mo</span>
+            <span>250,000 / mo</span>
+            <span>500,000+ / mo</span>
+          </div>
+        </div>
+
+        <div class="calculator-result">
+          <div class="result-sub">Estimated Annual AWS Compute Savings</div>
+          <div id="savingsAmount" class="result-amount">$4,860</div>
+          <div class="result-desc">Based on eliminating 16 Chromium Fargate containers running at $0.0081/doc.</div>
+        </div>
+      </div>
+
+      <!-- 3-Tier Deck -->
+      <div class="pricing-deck">
+        <!-- Tier 1: Developer -->
+        <div class="price-card">
+          <div>
+            <h3 class="price-plan-name">Developer Core</h3>
+            <p class="price-plan-desc">For indie builders and engineers embedding Typst into internal tools.</p>
+            <div class="price-plan-num">
+              <span class="price-currency">$</span>
+              <span class="price-figure">0</span>
+              <span class="price-period">/ forever</span>
+            </div>
+            <ul class="price-features">
+              <li>Apache 2.0 Open Source Core</li>
+              <li>Full Typst 0.13.1 Compilation Engine</li>
+              <li>Local Sidecar HTTP Server &amp; CLI</li>
+              <li>Community GitHub Support</li>
+              <li>Docker Container Image</li>
+            </ul>
+          </div>
+          <a href="https://github.com/maxcomperatore/rubrol" target="_blank" class="btn-pricing btn-pricing-secondary">
+            Clone on GitHub
+          </a>
+        </div>
+
+        <!-- Tier 2: Pro Vault -->
+        <div class="price-card featured">
+          <span class="featured-ribbon">Most Popular</span>
+          <div>
+            <h3 class="price-plan-name">Pro Template Vault</h3>
+            <p class="price-plan-desc">For SaaS teams and marketplaces generating customer-facing invoices.</p>
+            <div class="price-plan-num">
+              <span class="price-currency">$</span>
+              <span class="price-figure">490</span>
+              <span class="price-period">/ year</span>
+            </div>
+            <ul class="price-features">
+              <li>All 11 Production Enterprise Templates</li>
+              <li>Stripe SaaS &amp; Marketplace Invoice Suites</li>
+              <li>Dynamic Barcode &amp; QR Code Generation</li>
+              <li>Private Template Repository Access</li>
+              <li>Quarterly Template Security Updates</li>
+            </ul>
+          </div>
+          <a href="https://buy.stripe.com/00w8wQ0GN1h8ehJ7Wk0Ba09" target="_blank" class="btn-pricing btn-pricing-primary">
+            Get Pro Access →
+          </a>
+        </div>
+
+        <!-- Tier 3: Enterprise Suite -->
+        <div class="price-card">
+          <div>
+            <h3 class="price-plan-name">Compliance Suite</h3>
+            <p class="price-plan-desc">For European &amp; global enterprises requiring certified e-invoicing.</p>
+            <div class="price-plan-num">
+              <span class="price-currency">$</span>
+              <span class="price-figure">2,400</span>
+              <span class="price-period">/ year</span>
+            </div>
+            <ul class="price-features">
+              <li>Certified EU Factur-X &amp; ZUGFeRD 2.2</li>
+              <li>EN 16931 &amp; ISO 19005-2 PDF/A-2b</li>
+              <li>Automated CII / UBL Schematron Validator</li>
+              <li>Private High-Concurrency Docker Registry</li>
+              <li>Direct Engineer Slack / SLA Channel</li>
+            </ul>
+          </div>
+          <a href="https://buy.stripe.com/fZudRablrgc2b5x1xW0Ba0a" target="_blank" class="btn-pricing btn-pricing-secondary">
+            Get Compliance Suite →
+          </a>
+        </div>
+      </div>
+
+      <!-- Founder Pass Banner -->
+      <div class="founder-banner">
+        <div>
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px; flex-wrap: wrap;">
+            <span class="editorial-label" style="margin-bottom: 0;">LIMITED FOUNDER ALLOCATION</span>
+            <span style="font-family: var(--font-mono); font-size: 10.5px; font-weight: 700; background: #fee2e2; color: #b91c1c; padding: 3px 10px; border-radius: 12px; border: 1px solid #fca5a5; letter-spacing: 0.04em;">
+              50 LICENSES ONLY • 38 REMAINING
+            </span>
+          </div>
+          <h4 style="font-family: var(--font-serif); font-size: 22px; color: var(--text-light-head);">
+            Lifetime Founder Pass — $990 One-Time
+          </h4>
+          <p style="font-size: 13.5px; color: var(--text-light-body); margin-top: 4px;">
+            Get perpetual commercial engine rights, lifetime access to all current and future Pro templates, private repository updates, and direct founder Slack access with zero recurring fees.
+          </p>
+        </div>
+        <a href="https://buy.stripe.com/00w9AU75b6Bsc9BgsQ0Ba0b" target="_blank" class="btn-pill-primary" style="background: #18181b; color: #ffffff; white-space: nowrap;">
+          Claim Founder Pass ($990) →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRE-FOOTER CTA -->
+  <section class="section-prefooter">
+    <div class="container">
+      <h2 class="prefooter-title">Stop running Chromium.<br>Start generating instantly.</h2>
+      <p class="prefooter-sub">
+        Deploy the Rubrol sidecar into your Kubernetes or Docker cluster today. Compile 10,000 documents per minute on single-core compute.
+      </p>
+      <div style="display: flex; justify-content: center; gap: 16px;">
+        <a href="#studio" class="btn-pill-primary" style="padding: 14px 32px; font-size: 15px;">Launch Live Studio →</a>
+        <a href="https://github.com/maxcomperatore/rubrol" target="_blank" class="btn-pill-secondary" style="padding: 14px 28px; font-size: 15px;">View GitHub Core</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDITORIAL FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-watermark">Rubrol</div>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand-title">RUBROL</div>
+          <p class="footer-brand-desc">
+            High-throughput document compilation engine built in native Rust &amp; Typst. Certified PDF/A-2b and European EN 16931 Factur-X sidecar.
+          </p>
+          <div style="margin-top: 16px; font-family: var(--font-mono); font-size: 11.5px; color: #10b981;">
+            ● ALL SYSTEMS OPERATIONAL • TYPST 0.13.1
+          </div>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Engine</div>
+          <ul class="footer-links">
+            <li><a href="#architecture">Architecture</a></li>
+            <li><a href="#benchmarks">Benchmarks</a></li>
+            <li><a href="#studio">Live Studio</a></li>
+            <li><a href="https://github.com/maxcomperatore/rubrol" target="_blank">Docker Registry</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Compliance</div>
+          <ul class="footer-links">
+            <li><a href="#compliance">Factur-X 1.0</a></li>
+            <li><a href="#compliance">ZUGFeRD 2.2</a></li>
+            <li><a href="#compliance">EN 16931 Norm</a></li>
+            <li><a href="#compliance">PDF/A-2b ISO 19005-2</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Templates</div>
+          <ul class="footer-links">
+            <li><a href="#studio">B2B SaaS Invoices</a></li>
+            <li><a href="#studio">Procurement Orders</a></li>
+            <li><a href="#studio">Board Reports</a></li>
+            <li><a href="#studio">Medical Intake Records</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Company</div>
+          <ul class="footer-links">
+            <li><a href="https://github.com/maxcomperatore/rubrol" target="_blank">GitHub</a></li>
+            <li><a href="https://github.com/maxcomperatore/rubrol/blob/main/LICENSE" target="_blank">Apache 2.0 License</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="mailto:support@rubrol.com">Support</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 Rubrol Engine. Open core released under the Apache 2.0 License.</div>
+        <div style="font-family: var(--font-mono); font-size: 11.5px;">SUB-MILLISECOND DOCUMENT INFRASTRUCTURE</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- STUDIO JAVASCRIPT & BINDINGS -->
+  <script>
+    const DEFAULT_PAYLOADS = {
+    "facturx_invoice": {
+        "invoice_number": "FA-2026-0842",
+        "issued_date": "2026-09-15",
+        "due_date": "2026-10-15",
+        "currency": "EUR",
+        "currency_symbol": "€",
+        "status": "PAID",
+        "reverse_charge": false,
+        "notes": [
+            "Facture émise sous le régime de conformité européenne EN 16931 / Factur-X 1.0.",
+            "Règlement par virement bancaire SEPA."
+        ],
+        "vendor": {
+            "name": "Rubrol Engine Europe SAS",
+            "siret": "98239182000014",
+            "vat_id": "FR82982391820",
+            "address": "10 Rue de la Paix",
+            "postal_code": "75002",
+            "city": "Paris",
+            "country": "FR",
+            "email": "billing@rubrol.io",
+            "iban": "FR76 3000 6000 0112 3456 7890 189",
+            "bic": "BNPAFRPPXXX"
+        },
+        "customer": {
+            "name": "Acme European Cloud Systems GmbH",
+            "siret": "HRB 192847",
+            "vat_id": "DE391048291",
+            "address": "Friedrichstraße 42",
+            "postal_code": "10117",
+            "city": "Berlin",
+            "country": "DE",
+            "email": "invoices@acme-cloud.de"
+        },
+        "payment": {
+            "bank_name": "BNP Paribas Commercial Paris",
+            "iban": "FR76 3000 6000 0112 3456 7890 189",
+            "bic": "BNPAFRPPXXX",
+            "reference": "FA-2026-0842"
+        },
+        "line_items": [
+            {
+                "line_id": 1,
+                "name": "Rubrol Enterprise Engine - Annual Cluster License",
+                "description": "Sub-8ms dynamic Typst sidecar with unlimited nodes & font cache reuse",
+                "qty": 1,
+                "unit_price": 2400.0,
+                "tax_rate": 0.2,
+                "tax_category": "S",
+                "unit_code": "C62"
+            },
+            {
+                "line_id": 2,
+                "name": "Factur-X / ZUGFeRD Turnkey Compliance Suite",
+                "description": "Automated EN 16931 XML embedding with PDF/A-3b container generation",
+                "qty": 1,
+                "unit_price": 490.0,
+                "tax_rate": 0.2,
+                "tax_category": "S",
+                "unit_code": "C62"
+            }
+        ],
+        "tax_rate": 0.2
+    },
+    "academic_transcript": {
+        "institution": {
+            "name": "Massachusetts Institute of Advanced Technology",
+            "office": "Office of the University Registrar",
+            "address": "77 Massachusetts Avenue, Cambridge, MA 02139",
+            "accreditation": "NECHE Accredited Institution"
+        },
+        "student": {
+            "name": "Marcus Aurelius Vance",
+            "id": "MIT-2022-89410",
+            "dob": "2003-04-12",
+            "program": "Bachelor of Science in Computer Systems Engineering",
+            "conferral_date": "June 05, 2026",
+            "honors": "Summa Cum Laude (Highest Distinction)",
+            "cumulative_gpa": "3.96",
+            "total_credits": 128
+        },
+        "terms": [
+            {
+                "term_name": "Fall 2025 Semester",
+                "courses": [
+                    {
+                        "code": "CS 450",
+                        "title": "Distributed Consensus Algorithms",
+                        "credits": 4,
+                        "grade": "A",
+                        "points": 16.0
+                    },
+                    {
+                        "code": "CS 480",
+                        "title": "Compiler Design & Code Generation",
+                        "credits": 4,
+                        "grade": "A+",
+                        "points": 16.0
+                    },
+                    {
+                        "code": "MATH 412",
+                        "title": "Abstract Algebra & Category Theory",
+                        "credits": 4,
+                        "grade": "A",
+                        "points": 16.0
+                    },
+                    {
+                        "code": "EE 340",
+                        "title": "VLSI Architecture & Microcode",
+                        "credits": 4,
+                        "grade": "A-",
+                        "points": 14.8
+                    }
+                ],
+                "term_gpa": "3.92",
+                "term_credits": 16
+            },
+            {
+                "term_name": "Spring 2026 Semester (Final)",
+                "courses": [
+                    {
+                        "code": "CS 499",
+                        "title": "Senior Capstone: High-Throughput Sub-8ms Renderers",
+                        "credits": 4,
+                        "grade": "A+",
+                        "points": 16.0
+                    },
+                    {
+                        "code": "CS 475",
+                        "title": "Cryptographic Engineering & Zero-Knowledge",
+                        "credits": 4,
+                        "grade": "A+",
+                        "points": 16.0
+                    },
+                    {
+                        "code": "PHYS 310",
+                        "title": "Quantum Information Theory",
+                        "credits": 4,
+                        "grade": "A",
+                        "points": 16.0
+                    },
+                    {
+                        "code": "ECON 320",
+                        "title": "Industrial Organization & Tech Monopolies",
+                        "credits": 4,
+                        "grade": "A",
+                        "points": 16.0
+                    }
+                ],
+                "term_gpa": "4.00",
+                "term_credits": 16
+            }
+        ]
+    },
+    "b2b_invoice": {
+        "invoice_number": "INV-2026-0842",
+        "issued_date": "2026-09-15",
+        "due_date": "2026-10-15",
+        "currency_symbol": "$",
+        "status": "PAID",
+        "vendor": {
+            "name": "Rubrol Cloud Technologies",
+            "tax_id": "US-849201948",
+            "address": "548 Market Street, Suite 300",
+            "city": "San Francisco, CA 94104",
+            "email": "billing@rubrol.io"
+        },
+        "customer": {
+            "name": "Linear Financial Systems",
+            "tax_id": "EU-481902488",
+            "address": "100 Bishopsgate, Level 18",
+            "city": "London, EC2N 4AG, UK",
+            "email": "finance@linearfin.io"
+        },
+        "line_items": [
+            {
+                "description": "Rubrol Pro Sidecar Engine - Annual Cluster License (Unlimited Nodes)",
+                "qty": 1,
+                "unit_price": 490.0
+            },
+            {
+                "description": "Turnkey Template Vault (25 Enterprise B2B Typst Templates)",
+                "qty": 1,
+                "unit_price": 350.0
+            },
+            {
+                "description": "Puppeteer Migration Architecture Consultation",
+                "qty": 1,
+                "unit_price": 450.0
+            }
+        ],
+        "tax_rate": 0.0
+    },
+    "board_financial_report": {
+        "company_name": "Bipluk Autonomous Systems Inc.",
+        "reporting_period": "Q3 2026 Executive Financial Update",
+        "report_date": "September 15, 2026",
+        "security_class": "STRICTLY CONFIDENTIAL // BOARD OF DIRECTORS ONLY",
+        "kpis": [
+            {
+                "label": "ARR",
+                "value": "$8.42M",
+                "delta": "+142% YoY",
+                "status": "positive"
+            },
+            {
+                "label": "NET RETENTION",
+                "value": "138%",
+                "delta": "+400 bps",
+                "status": "positive"
+            },
+            {
+                "label": "GROSS MARGIN",
+                "value": "86.2%",
+                "delta": "+310 bps",
+                "status": "positive"
+            },
+            {
+                "label": "CASH RUNWAY",
+                "value": "29 Mo",
+                "delta": "$14.2M Cash",
+                "status": "neutral"
+            },
+            {
+                "label": "BURN MULTIPLE",
+                "value": "0.62x",
+                "delta": "Best-in-class",
+                "status": "positive"
+            },
+            {
+                "label": "RULE OF 40",
+                "value": "68%",
+                "delta": "Top decile",
+                "status": "positive"
+            }
+        ],
+        "financial_rows": [
+            {
+                "category": "Recurring SaaS Revenue",
+                "q1": "$1,620K",
+                "q2": "$1,940K",
+                "q3": "$2,310K",
+                "yoy": "+142%"
+            },
+            {
+                "category": "Cost of Goods Sold (Compute / Infra)",
+                "q1": "($230K)",
+                "q2": "($270K)",
+                "q3": "($318K)",
+                "yoy": "+38%"
+            },
+            {
+                "category": "Gross Profit",
+                "q1": "$1,390K",
+                "q2": "$1,670K",
+                "q3": "$1,992K",
+                "yoy": "+143%"
+            },
+            {
+                "category": "Research & Engineering",
+                "q1": "($620K)",
+                "q2": "($690K)",
+                "q3": "($780K)",
+                "yoy": "+25%"
+            },
+            {
+                "category": "Sales & Enterprise Growth",
+                "q1": "($380K)",
+                "q2": "($420K)",
+                "q3": "($490K)",
+                "yoy": "+29%"
+            },
+            {
+                "category": "General & Administrative",
+                "q1": "($160K)",
+                "q2": "($180K)",
+                "q3": "($195K)",
+                "yoy": "+22%"
+            },
+            {
+                "category": "Operating Net Cash Flow",
+                "q1": "$230K",
+                "q2": "$380K",
+                "q3": "$527K",
+                "yoy": "+129%"
+            }
+        ],
+        "commentary": [
+            "Rubrol core engine deployment expanded into 14 Fortune 500 pipelines without increasing cloud node footprint.",
+            "Sub-8ms latency benchmark established as primary competitive moat versus legacy headless Chromium infrastructure.",
+            "Net expansion driven by high-volume automated document generation in healthcare, finance, and logistics tiers."
+        ]
+    },
+    "compliance_certificate": {
+        "recipient": "Stripe Payments International Ltd.",
+        "standard_name": "SOC 2 Type II Security & Data Integrity Standard",
+        "certificate_id": "CERT-2026-9812-SOC2",
+        "issue_date": "September 15, 2026",
+        "valid_until": "September 14, 2027",
+        "audit_firm": "Apex Global Assurance LLP",
+        "verification_hash": "4a7d1ed414474e4033ac29ccb8653d9b048a82d397a73a5a7b8e519ec35bb632"
+    },
+    "medical_intake": {
+        "patient": {
+            "name": "Dr. Eleanor Vance",
+            "dob": "1988-04-12",
+            "mrn": "MRN-849204-X",
+            "gender": "Female",
+            "blood_type": "O+"
+        },
+        "provider": {
+            "clinic": "MetroHealth Precision Medical Group",
+            "physician": "Dr. Julian Montgomery, MD",
+            "npi": "1948201942",
+            "encounter_date": "2026-09-15"
+        },
+        "vitals": {
+            "bp": "118/76 mmHg",
+            "hr": "72 bpm",
+            "temp": "98.6 \u00b0F",
+            "weight": "68.5 kg",
+            "spo2": "99%"
+        },
+        "diagnoses": [
+            {
+                "code": "E11.9",
+                "description": "Type 2 diabetes mellitus without complications"
+            },
+            {
+                "code": "I10",
+                "description": "Essential (primary) hypertension"
+            },
+            {
+                "code": "Z71.3",
+                "description": "Dietary counseling and surveillance"
+            }
+        ],
+        "medications": [
+            {
+                "name": "Metformin HCl",
+                "dosage": "500 mg",
+                "frequency": "Twice daily with meals"
+            },
+            {
+                "name": "Lisinopril",
+                "dosage": "10 mg",
+                "frequency": "Once daily in morning"
+            }
+        ]
+    },
+    "nda_agreement": {
+        "agreement_date": "September 15, 2026",
+        "governing_law": "State of California",
+        "party_a": {
+            "name": "Rubrol Engine Inc.",
+            "jurisdiction": "Delaware",
+            "address": "548 Market Street, Suite 300, San Francisco, CA 94104",
+            "signatory": "Alexander Hayes, Chief Executive Officer"
+        },
+        "party_b": {
+            "name": "Vanguard Analytics Corp.",
+            "jurisdiction": "New York",
+            "address": "350 5th Avenue, 42nd Floor, New York, NY 10118",
+            "signatory": "Evelyn Reed, General Counsel"
+        }
+    },
+    "packing_slip": {
+        "order_number": "ORD-2026-98104",
+        "ship_date": "2026-09-15",
+        "tracking_number": "1Z9999999999999999",
+        "carrier": "FedEx Express Priority",
+        "warehouse": {
+            "name": "Rubrol Logistics Hub West",
+            "location": "Facility Bay 4 - Reno Hub"
+        },
+        "recipient": {
+            "name": "Marcus Vance",
+            "company": "Apex Hardware Systems",
+            "address": "1200 Industrial Parkway, Suite 8",
+            "city": "Austin, TX 78758"
+        },
+        "packages": [
+            {
+                "sku": "PLT-SRV-1U",
+                "description": "Rubrol 1U Rack Engine Appliance",
+                "qty": 2,
+                "weight": "14.2 lbs"
+            },
+            {
+                "sku": "CBL-OPT-10M",
+                "description": "10-Meter OM4 Fiber Patch Cable",
+                "qty": 4,
+                "weight": "1.1 lbs"
+            },
+            {
+                "sku": "SFP-PLUS-10G",
+                "description": "10G SFP+ Optical Transceiver Pair",
+                "qty": 2,
+                "weight": "0.4 lbs"
+            }
+        ]
+    },
+    "paystub_statement": {
+        "pay_period": "Sep 01, 2026 - Sep 15, 2026",
+        "pay_date": "September 15, 2026",
+        "employer": {
+            "name": "Rubrol Engine Inc.",
+            "ein": "94-8291044",
+            "address": "548 Market Street, Suite 300, San Francisco, CA 94104"
+        },
+        "employee": {
+            "name": "David Kim",
+            "id": "EMP-4081",
+            "ssn_last4": "9821",
+            "department": "Compiler Infrastructure"
+        },
+        "gross_pay": 6250.0,
+        "fed_tax": 940.0,
+        "state_tax": 420.0,
+        "social_security": 387.5,
+        "medicare": 90.63,
+        "health_insurance": 180.0
+    },
+    "purchase_order": {
+        "po_number": "PO-2026-9821",
+        "po_date": "2026-09-18",
+        "payment_terms": "Net 30 Days",
+        "shipping_terms": "FOB Destination",
+        "buyer": {
+            "company": "Vanguard Autonomous Robotics Ltd",
+            "address": "450 Technology Parkway, Suite 1200",
+            "city": "Austin, TX 78701",
+            "contact": "procurement@vanguard-robotics.io"
+        },
+        "vendor": {
+            "company": "Rubrol Technologies Inc.",
+            "address": "548 Market Street, Suite 300",
+            "city": "San Francisco, CA 94104",
+            "contact": "enterprise@rubrol.io"
+        },
+        "items": [
+            {
+                "line": 1,
+                "item_code": "PLT-SRV-CORE",
+                "description": "Rubrol Core Engine Binary Node Cluster License (4 Nodes)",
+                "qty": 4,
+                "unit_cost": 490.0
+            },
+            {
+                "line": 2,
+                "item_code": "PLT-ECR-AIRGAP",
+                "description": "Rubrol Air-Gapped ECR Registry Deployment Image",
+                "qty": 1,
+                "unit_cost": 1950.0
+            },
+            {
+                "line": 3,
+                "item_code": "PLT-ENT-SLA",
+                "description": "Dedicated Sub-8ms Latency SLA & 24/7 Production Engineering Tier",
+                "qty": 1,
+                "unit_cost": 2400.0
+            }
+        ],
+        "tax": 0.0
+    },
+    "saas_receipt": {
+        "receipt_id": "REC-849204",
+        "charge_date": "September 15, 2026",
+        "amount": 490.0,
+        "currency": "USD",
+        "payment_method": "Visa ending in 8831",
+        "plan_name": "Rubrol Pro Cluster License",
+        "billing_period": "Sep 15, 2026 - Sep 15, 2027",
+        "company": {
+            "name": "Rubrol Engine Inc.",
+            "address": "548 Market Street, Suite 300, San Francisco, CA 94104",
+            "support_email": "billing@rubrol.io"
+        },
+        "customer": {
+            "name": "Sarah Jenkins",
+            "email": "sarah.jenkins@acme.dev",
+            "account_id": "usr_9918204"
+        }
+    }
+};
+
+    const API_BASE = window.location.protocol === 'file:' ? 'http://localhost:8080' : '';
+    let currentTemplate = 'b2b_invoice';
+    let currentPayloadStr = JSON.stringify(DEFAULT_PAYLOADS['b2b_invoice'], null, 2);
+    let monacoEditor = null;
+    let debounceTimer;
+
+    // Configure Monaco Loader
+    require.config({ paths: { vs: 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.45.0/min/vs' } });
+
+    require(['vs/editor/editor.main'], function () {
+      monaco.editor.defineTheme('rubrol-obsidian', {
+        base: 'vs-dark',
+        inherit: true,
+        rules: [
+          { token: 'string.key.json', foreground: '93c5fd' },
+          { token: 'string.value.json', foreground: '86efac' },
+          { token: 'number', foreground: 'fb923c' },
+          { token: 'keyword.json', foreground: 'c084fc' },
+          { token: 'delimiter', foreground: '52525b' }
+        ],
+        colors: {
+          'editor.background': '#09090b',
+          'editor.foreground': '#f4f4f6',
+          'editor.lineHighlightBackground': '#111114',
+          'editorLineNumber.foreground': '#3f3f46',
+          'editorLineNumber.activeForeground': '#93c5fd',
+          'editorCursor.foreground': '#60a5fa',
+          'editor.selectionBackground': '#1d4d8255',
+          'editor.inactiveSelectionBackground': '#1d4d8233',
+          'editorIndentGuide.background': '#18181b',
+          'editorIndentGuide.activeBackground': '#3f3f46'
+        }
+      });
+
+      monacoEditor = monaco.editor.create(document.getElementById('monacoEditor'), {
+        value: currentPayloadStr,
+        language: 'json',
+        theme: 'rubrol-obsidian',
+        automaticLayout: true,
+        fontSize: 12.5,
+        fontFamily: "'JetBrains Mono', Consolas, 'Courier New', monospace",
+        fontLigatures: true,
+        minimap: { enabled: false },
+        scrollBeyondLastLine: false,
+        lineNumbers: 'on',
+        renderLineHighlight: 'line',
+        tabSize: 2,
+        cursorBlinking: 'solid',
+        cursorSmoothCaretAnimation: 'off',
+        smoothScrolling: true,
+        folding: true,
+        wordWrap: 'on',
+        padding: { top: 18, bottom: 18 },
+        scrollbar: {
+          vertical: 'hidden',
+          horizontal: 'hidden',
+          verticalScrollbarSize: 0,
+          horizontalScrollbarSize: 0,
+          alwaysConsumeMouseWheel: false
+        }
+      });
+
+      monacoEditor.onDidChangeModelContent(() => {
+        currentPayloadStr = monacoEditor.getValue();
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(renderPreview, 300);
+      });
+
+      // Initial render after Monaco is ready
+      renderPreview();
+    });
+
+    function copyJsonPayload() {
+      const text = monacoEditor ? monacoEditor.getValue() : currentPayloadStr;
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = document.getElementById('copyJsonBtn');
+        const orig = btn.innerText;
+        btn.innerText = 'Copied!';
+        btn.style.color = '#34d399';
+        setTimeout(() => {
+          btn.innerText = orig;
+          btn.style.color = '';
+        }, 2000);
+      });
+    }
+
+    async function loadTemplateData(tmpl) {
+      const defaultData = DEFAULT_PAYLOADS[tmpl] || {};
+      currentPayloadStr = JSON.stringify(defaultData, null, 2);
+      if (monacoEditor) {
+        monacoEditor.setValue(currentPayloadStr);
+      }
+
+      try {
+        const res = await fetch(`${API_BASE}/api/sample-data?template=${tmpl}`);
+        if (res.ok) {
+          const data = await res.json();
+          if (Object.keys(data).length > 0) {
+            currentPayloadStr = JSON.stringify(data, null, 2);
+            if (monacoEditor) {
+              monacoEditor.setValue(currentPayloadStr);
+            }
+          }
+        }
+      } catch (err) {
+        // Silent fallback to bundled payloads
+      }
+      renderPreview();
+    }
+
+    async function renderPreview() {
+      const latencyBadge = document.getElementById('latencyBadge');
+      const container = document.getElementById('svgContainer');
+      latencyBadge.innerHTML = '<span>●</span> COMPILING';
+
+      const payloadText = monacoEditor ? monacoEditor.getValue().trim() : currentPayloadStr.trim();
+      if (!payloadText) {
+        container.innerHTML = '<div style="padding: 40px; color: #64748b; font-family: var(--font-mono);">Buffer empty. Specify JSON payload.</div>';
+        latencyBadge.innerHTML = '<span>●</span> EMPTY BUFFER';
+        return;
+      }
+
+      let parsed;
+      try {
+        parsed = JSON.parse(payloadText);
+      } catch (err) {
+        container.innerHTML = `<div style="padding: 30px; color: #f87171; font-family: var(--font-mono); font-size: 12px;">JSON SYNTAX ERROR:
+${err.message}</div>`;
+        latencyBadge.innerHTML = '<span>●</span> SYNTAX ERROR';
+        return;
+      }
+
+      try {
+        const res = await fetch(`${API_BASE}/v1/render`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            template: currentTemplate,
+            data: parsed,
+            format: 'svg'
+          })
+        });
+
+        if (!res.ok) {
+          const errData = await res.json().catch(() => ({ error: res.statusText }));
+          throw new Error(errData.error || `HTTP ${res.status}`);
+        }
+
+        const renderMs = res.headers.get('X-Render-Time-Ms') || '5.2';
+        const svgContent = await res.text();
+
+        container.innerHTML = svgContent;
+        applyViewMode();
+        latencyBadge.innerHTML = `<span>●</span> ${renderMs}ms`;
+      } catch (err) {
+        if (err.message && (err.message.startsWith('Template') || err.message.startsWith('Typst') || err.message.startsWith('HTTP'))) {
+          latencyBadge.innerHTML = '<span>●</span> ERROR';
+          container.innerHTML = `
+            <div style="padding: 24px; color: #f87171; font-family: var(--font-mono); font-size: 12px; line-height: 1.6;">
+              <div style="font-weight: 700; margin-bottom: 8px;">COMPILATION ERROR:</div>
+              <pre style="white-space: pre-wrap; background: #18181b; padding: 12px; border-radius: 6px; border: 1px solid #3f3f46; color: #fca5a5;">${err.message}</pre>
+            </div>
+          `;
+        } else {
+          latencyBadge.innerHTML = '<span>●</span> DAEMON OFFLINE';
+          container.innerHTML = `
+            <div style="padding: 30px; text-align: center; color: #64748b; font-family: var(--font-mono);">
+              <div style="font-size: 13px; color: #f87171; margin-bottom: 8px;">Daemon Connection Refused</div>
+              <div style="font-size: 11.5px; max-width: 380px; margin: 0 auto 14px;">
+                Verify local sidecar instance:
+              </div>
+              <code style="background: #151518; border: 1px solid rgba(255,255,255,0.1); padding: 5px 12px; border-radius: 4px; color: #93c5fd; font-size: 11.5px;">
+                python rubrol/core/server.py --port 8080
+              </code>
+            </div>
+          `;
+        }
+      }
+    }
+
+    async function downloadPdf() {
+      const payloadText = monacoEditor ? monacoEditor.getValue().trim() : currentPayloadStr.trim();
+      let parsed = {};
+      try { parsed = JSON.parse(payloadText || "{}"); } catch(e) {}
+
+      try {
+        const isFacturX = (currentTemplate === 'facturx_invoice');
+        const endpoint = isFacturX ? `${API_BASE}/v1/facturx/render` : `${API_BASE}/v1/render`;
+        const bodyPayload = isFacturX
+          ? JSON.stringify({ template: 'facturx_invoice', data: parsed, profile: 'EN 16931' })
+          : JSON.stringify({ template: currentTemplate, data: parsed, format: 'pdf', pdf_standard: 'a-2b' });
+
+        const res = await fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: bodyPayload
+        });
+
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const blob = await res.blob();
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = isFacturX ? 'factur-x-invoice.pdf' : `${currentTemplate}.pdf`;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+      } catch (err) {
+        alert('Daemon connection failed at http://localhost:8080');
+      }
+    }
+
+    function applyViewMode() {
+      const container = document.getElementById('svgContainer');
+      const svg = container.querySelector('svg');
+      if (!svg) return;
+
+      container.className = 'preview-sheet mode-fit-width';
+
+      if (!svg.dataset.origViewBox) {
+        svg.dataset.origViewBox = svg.getAttribute('viewBox') || '0 0 595.28 841.89';
+        svg.dataset.origWidth = svg.getAttribute('width') || '';
+        svg.dataset.origHeight = svg.getAttribute('height') || '';
+      }
+      svg.setAttribute('viewBox', svg.dataset.origViewBox);
+    }
+
+    // Event Bindings
+    document.getElementById('templateSelect').addEventListener('change', (e) => {
+      currentTemplate = e.target.value;
+      loadTemplateData(currentTemplate);
+    });
+
+    document.getElementById('downloadPdfBtn').addEventListener('click', downloadPdf);
+
+    // Amortization Calculator
+    const slider = document.getElementById('docSlider');
+    const label = document.getElementById('docCountLabel');
+    const savings = document.getElementById('savingsAmount');
+    slider.addEventListener('input', (e) => {
+      const val = parseInt(e.target.value, 10);
+      label.innerText = val.toLocaleString();
+      const annualSavings = Math.round((val * 12) * 0.0081);
+      savings.innerText = `$${annualSavings.toLocaleString()}`;
+    });
+
+    // Initialize
+    loadTemplateData('b2b_invoice');
+  </script>
+</body>
+</html>
