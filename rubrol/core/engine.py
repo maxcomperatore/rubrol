@@ -41,7 +41,8 @@ class RubrolEngine:
         
         # Fallback aliases for legacy or alternate naming
         aliases = {
-            "facturx_zugferd_invoice": "facturx_invoice",
+            "facturx_zugferd_invoice": "b2b_invoice",
+            "facturx_invoice": "b2b_invoice",
             "b2b_saas_invoice": "b2b_invoice",
             "proforma_invoice": "b2b_invoice",
             "standard_invoice": "b2b_invoice"
@@ -60,6 +61,11 @@ class RubrolEngine:
         alt_typ = BUILTIN_TEMPLATES_DIR / f"{template_ident}.typ"
         if alt_typ.exists():
             return alt_typ.resolve()
+
+        if p.stem in self.template_registry:
+            return self.template_registry[p.stem]
+        if p.stem in aliases and aliases[p.stem] in self.template_registry:
+            return self.template_registry[aliases[p.stem]]
 
         # Check if requested template is part of the Rubrol Pro Vault
         pro_vault_catalog = {

@@ -199,7 +199,7 @@ Compiles arbitrary Typst source code provided dynamically in the request payload
 #### Request Body Schema
 ```json
 {
-  "template_src": "= Hello Rubrol\nThis document was generated in #sys.inputs.at("speed", default: "5ms").",
+  "template_src": "= Hello Rubrol\\nThis document was generated in #sys.inputs.at(\\\"speed\\\", default: \\\"5ms\\\").",
   "data": {
     "speed": "6.1ms"
   },
@@ -217,7 +217,7 @@ Generates a fully compliant, legal **Factur-X / ZUGFeRD 2.2** hybrid electronic 
 #### Request Body Schema
 ```json
 {
-  "template": "facturx_invoice",
+  "template": "b2b_invoice",
   "profile": "EN 16931",
   "data": {
     "invoice_number": "FA-2026-0042",
@@ -232,8 +232,17 @@ Generates a fully compliant, legal **Factur-X / ZUGFeRD 2.2** hybrid electronic 
       "vat_id": "DE987654321",
       "country": "DE"
     },
-    "grand_total": 1200.00,
-    "currency": "EUR"
+    "currency": "EUR",
+    "line_items": [
+      {
+        "line_id": 1,
+        "name": "Rubrol Enterprise License",
+        "qty": 1,
+        "unit_price": 1000.00,
+        "tax_rate": 0.20
+      }
+    ],
+    "grand_total": 1200.00
   }
 }
 ```
@@ -297,8 +306,8 @@ Kubernetes readiness & liveness probe returning server health, loaded templates,
   "status": "healthy",
   "service": "rubrol-engine",
   "version": "1.0.0",
-  "templates_loaded": 11,
-  "cached_compilers": 2,
+  "templates_loaded": 2,
+  "cached_compilers": 1,
   "facturx_suite": true,
   "facturx_version": "1.0.07 / ZUGFeRD 2.2 (EN 16931)"
 }
@@ -481,13 +490,16 @@ Rubrol automates this end-to-end:
 ### Factur-X CLI Tools
 
 ```bash
-# 1. Compile Factur-X container
+# 1. Compile Factur-X container (uses default b2b_invoice.typ & facturx_invoice.json)
+python rubrol.py facturx --output invoice_facturx.pdf
+
+# Or specify custom template and data payload:
 python rubrol.py facturx \
-  --template rubrol/templates/facturx_invoice.typ \
+  --template rubrol/templates/b2b_invoice.typ \
   --data rubrol/data/facturx_invoice.json \
   --output invoice_facturx.pdf
 
-# 2. Validate PDF container compliance
+# 2. Validate PDF container compliance against EN 16931
 python rubrol.py validate-facturx invoice_facturx.pdf
 
 # 3. Extract embedded XML

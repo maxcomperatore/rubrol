@@ -35,9 +35,9 @@ def validate_facturx_payload(data: Dict[str, Any]) -> List[str]:
         errors.append(f"Invalid ISO 4217 currency code '{currency}' (BT-5)")
 
     # 3. Seller (Vendor)
-    vendor = data.get("vendor")
+    vendor = data.get("vendor") or data.get("seller")
     if not vendor or not isinstance(vendor, dict):
-        errors.append("Missing mandatory 'vendor' object (BG-4)")
+        errors.append("Missing mandatory 'vendor' or 'seller' object (BG-4)")
     else:
         if not vendor.get("name"):
             errors.append("Missing vendor 'name' (BT-27)")
@@ -47,9 +47,9 @@ def validate_facturx_payload(data: Dict[str, Any]) -> List[str]:
             errors.append("Missing vendor tax registration (VAT ID or SIRET/Tax ID) (BT-31 / BT-32)")
 
     # 4. Buyer (Customer)
-    customer = data.get("customer")
+    customer = data.get("customer") or data.get("buyer")
     if not customer or not isinstance(customer, dict):
-        errors.append("Missing mandatory 'customer' object (BG-7)")
+        errors.append("Missing mandatory 'customer' or 'buyer' object (BG-7)")
     else:
         if not customer.get("name"):
             errors.append("Missing customer 'name' (BT-44)")

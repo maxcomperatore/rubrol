@@ -90,7 +90,7 @@ class RubrolServerHandler(BaseHTTPRequestHandler):
         parsed = urlparse(self.path)
         path = parsed.path
 
-        if path == "/v1/render":
+        if path in ("/v1/render", "/v1/render/raw"):
             self._handle_render()
         elif path == "/v1/facturx/render":
             self._handle_facturx_render()

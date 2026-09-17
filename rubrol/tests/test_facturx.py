@@ -7,7 +7,12 @@ import json
 import os
 import unittest
 import xml.etree.ElementTree as ET
+import sys
 from pathlib import Path
+
+ROOT_DIR = Path(__file__).resolve().parent.parent.parent
+if str(ROOT_DIR) not in sys.path:
+    sys.path.insert(0, str(ROOT_DIR))
 
 from rubrol.facturx.generator import generate_facturx_xml, FacturXProfile, PROFILE_URNS
 from rubrol.facturx.packager import package_facturx_pdf, extract_facturx_xml

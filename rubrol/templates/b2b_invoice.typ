@@ -8,31 +8,34 @@
 #let currency_symbol = data.at("currency_symbol", default: "$")
 #let status = data.at("status", default: "PAID")
 
-#let vendor = data.at("vendor", default: (
-  name: "Rubrol Engine Inc.",
-  tax_id: "US-849201948",
-  address: "548 Market Street, Suite 300",
-  city: "San Francisco, CA 94104",
-  email: "billing@rubrol.io"
-))
+#let vendor = data.at("vendor", default: data.at("seller", default: (:)))
+#let customer = data.at("customer", default: data.at("buyer", default: (:)))
 
-#let customer = data.at("customer", default: (
-  name: "Acme Technologies LLC",
-  tax_id: "EU-987654321",
-  address: "742 Evergreen Terrace",
-  city: "Springfield, OR 97477",
-  email: "accounts@acme.com"
-))
+#let vendor_name = vendor.at("name", default: "Rubrol Engine Inc.")
+#let vendor_tax = vendor.at("tax_id", default: vendor.at("vat_id", default: vendor.at("siret", default: "N/A")))
+#let vendor_address = vendor.at("address", default: "548 Market Street, Suite 300")
+#let vendor_city = vendor.at("city", default: "San Francisco, CA 94104")
+#let vendor_email = vendor.at("email", default: "billing@rubrol.io")
+
+#let customer_name = customer.at("name", default: "Acme Technologies LLC")
+#let customer_tax = customer.at("tax_id", default: customer.at("vat_id", default: customer.at("siret", default: "N/A")))
+#let customer_address = customer.at("address", default: "742 Evergreen Terrace")
+#let customer_city = customer.at("city", default: "Springfield, OR 97477")
+#let customer_email = customer.at("email", default: "accounts@acme.com")
 
 #let line_items = data.at("line_items", default: (
   (description: "Rubrol Pro Annual License (Unlimited Nodes)", qty: 1, unit_price: 490.00),
   (description: "Priority SLA & Custom Template Engineering", qty: 1, unit_price: 250.00)
 ))
 
-#let subtotal = line_items.fold(0.0, (sum, item) => sum + (item.at("qty", default: 1) * item.at("unit_price", default: 0.0)))
-#let tax_rate = data.at("tax_rate", default: 0.0)
-#let tax_amount = subtotal * tax_rate
-#let total = subtotal + tax_amount
+#let get_desc(item) = item.at("description", default: item.at("name", default: "Item"))
+#let get_qty(item) = float(item.at("qty", default: 1))
+#let get_price(item) = float(item.at("unit_price", default: 0.0))
+
+#let subtotal = line_items.fold(0.0, (sum, item) => sum + (get_qty(item) * get_price(item)))
+#let tax_rate = float(data.at("tax_rate", default: if line_items.len() > 0 { line_items.at(0).at("tax_rate", default: 0.0) } else { 0.0 }))
+#let tax_amount = float(data.at("tax_amount", default: subtotal * tax_rate))
+#let total = float(data.at("total", default: data.at("grand_total", default: subtotal + tax_amount)))
 
 #set page(
   paper: "a4",
@@ -43,7 +46,7 @@
     #v(2mm)
     #grid(
       columns: (1fr, 1fr),
-      align(left)[#vendor.name | Tax ID: #vendor.tax_id],
+      align(left)[#vendor_name | Tax ID: #vendor_tax],
       context align(right)[Page #counter(page).display("1 of 1", both: true)]
     )
   ]
@@ -55,12 +58,12 @@
 #grid(
   columns: (1fr, 1fr),
   align(left)[
-    #text(size: 20pt, weight: "black", fill: rgb("#0f172a"))[#vendor.name]
+    #text(size: 20pt, weight: "black", fill: rgb("#0f172a"))[#vendor_name]
     #v(1mm)
     #text(size: 9pt, fill: rgb("#64748b"))[
-      #vendor.address\
-      #vendor.city\
-      #vendor.email
+      #vendor_address\
+      #vendor_city\
+      #vendor_email
     ]
   ],
   align(right)[
@@ -92,16 +95,16 @@
   rect(width: 100%, fill: rgb("#f8fafc"), stroke: 0.5pt + rgb("#e2e8f0"), radius: 6pt, inset: 10pt)[
     #text(size: 7.5pt, weight: "bold", fill: rgb("#94a3b8"))[BILLED FROM]
     #v(1mm)
-    #text(weight: "bold", fill: rgb("#0f172a"))[#vendor.name]\
-    #text(size: 8.5pt, fill: rgb("#475569"))[Tax ID: #vendor.tax_id]
+    #text(weight: "bold", fill: rgb("#0f172a"))[#vendor_name]\
+    #text(size: 8.5pt, fill: rgb("#475569"))[Tax ID: #vendor_tax]
   ],
   rect(width: 100%, fill: rgb("#f8fafc"), stroke: 0.5pt + rgb("#e2e8f0"), radius: 6pt, inset: 10pt)[
     #text(size: 7.5pt, weight: "bold", fill: rgb("#94a3b8"))[BILLED TO]
     #v(1mm)
-    #text(weight: "bold", fill: rgb("#0f172a"))[#customer.name]\
+    #text(weight: "bold", fill: rgb("#0f172a"))[#customer_name]\
     #text(size: 8.5pt, fill: rgb("#475569"))[
-      #customer.address, #customer.city\
-      Tax ID: #customer.tax_id
+      #customer_address, #customer_city\
+      Tax ID: #customer_tax
     ]
   ]
 )
@@ -116,12 +119,17 @@
   align: (col, row) => (if col == 0 { left } else if col == 1 { center } else { right }),
   inset: (x: 10pt, y: 8pt),
   table.header([*Description*], [*Qty*], [*Unit Price*], [*Amount*]),
-  ..line_items.map(item => (
-    [#item.description],
-    [#str(item.qty)],
-    [#currency_symbol#str(item.unit_price)],
-    [#currency_symbol#str(item.qty * item.unit_price)]
-  )).flatten()
+  ..line_items.map(item => {
+    let desc = get_desc(item)
+    let q = get_qty(item)
+    let p = get_price(item)
+    (
+      [#desc],
+      [#str(q)],
+      [#currency_symbol#str(p)],
+      [#currency_symbol#str(q * p)]
+    )
+  }).flatten()
 )
 
 #v(2mm)
@@ -148,6 +156,7 @@
 #rect(width: 100%, stroke: (left: 3pt + rgb("#2563eb")), fill: rgb("#eff6ff"), inset: 10pt)[
   #text(size: 8.5pt, fill: rgb("#1e40af"))[
     *Payment Instructions:* Settlement accepted via Wire Transfer, ACH, or Corporate Credit Card.\
-    Reference invoice *#invoice_number* on all remittances. Remit inquiries to #vendor.email.
+    Reference invoice *#invoice_number* on all remittances. Remit inquiries to #vendor_email.
   ]
 ]
+

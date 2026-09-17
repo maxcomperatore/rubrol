@@ -107,8 +107,8 @@ def generate_facturx_xml(
 
     currency = str(data.get("currency", "EUR")).upper()
     line_items = data.get("line_items", [])
-    vendor = data.get("vendor", {})
-    customer = data.get("customer", {})
+    vendor = data.get("vendor") or data.get("seller") or {}
+    customer = data.get("customer") or data.get("buyer") or {}
 
     # 3.1 Line Items (Only for BASIC, EN_16931, EXTENDED, XRECHNUNG)
     has_lines = profile in (FacturXProfile.BASIC, FacturXProfile.EN_16931, FacturXProfile.EXTENDED, FacturXProfile.XRECHNUNG)
