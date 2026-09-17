@@ -98,8 +98,21 @@ class RubrolServerHandler(BaseHTTPRequestHandler):
             self._handle_facturx_validate()
         elif path == "/v1/facturx/extract":
             self._handle_facturx_extract()
+        elif path in ("/api/webhooks/stripe", "/v1/webhooks/stripe"):
+            self._handle_stripe_webhook()
         else:
             self.send_error(404, f"Endpoint '{path}' not found")
+
+    def _handle_stripe_webhook(self):
+        try:
+            length = int(self.headers.get("Content-Length", 0))
+            raw_body = self.rfile.read(length).decode("utf-8")
+            event = json.loads(raw_body) if raw_body else {}
+            from rubrol.webhooks.stripe_fulfillment import process_stripe_event
+            result = process_stripe_event(event)
+            self._send_json(200, result)
+        except Exception as e:
+            self._send_json(400, {"error": str(e)})
 
     def _handle_render(self):
         try:

@@ -29,6 +29,10 @@ class RubrolEngine:
         if BUILTIN_TEMPLATES_DIR.exists():
             for f in BUILTIN_TEMPLATES_DIR.glob("*.typ"):
                 self.template_registry[f.stem] = f
+            vault_dir = BUILTIN_TEMPLATES_DIR / "vault"
+            if vault_dir.exists():
+                for f in vault_dir.glob("*.typ"):
+                    self.template_registry[f.stem] = f
 
     def resolve_template(self, template_ident: str) -> Path:
         # Check alias in registry
@@ -56,6 +60,24 @@ class RubrolEngine:
         alt_typ = BUILTIN_TEMPLATES_DIR / f"{template_ident}.typ"
         if alt_typ.exists():
             return alt_typ.resolve()
+
+        # Check if requested template is part of the Rubrol Pro Vault
+        pro_vault_catalog = {
+            "facturx_invoice": "European Standard EN 16931 / Factur-X 1.0 E-Invoice",
+            "board_financial_report": "Executive Board Financial Update",
+            "compliance_certificate": "SOC 2 & ISO 27001 Certificate",
+            "medical_intake": "HIPAA Clinical Intake Record",
+            "nda_agreement": "Mutual Non-Disclosure Agreement",
+            "academic_transcript": "University Academic Transcript",
+            "packing_slip": "Multi-Box Logistics Packing Slip",
+            "paystub_statement": "Itemized Payroll Statement",
+            "purchase_order": "Enterprise Procurement Order"
+        }
+        if template_ident in pro_vault_catalog:
+            raise FileNotFoundError(
+                f"Template '{template_ident}' ({pro_vault_catalog[template_ident]}) is part of the private Rubrol Pro Vault.\n"
+                f"Unlock access at https://buy.stripe.com/00w8wQ0GN1h8ehJ7Wk0Ba09 (or clone https://github.com/maxcomperatore/rubrol-pro-vault into rubrol/templates/vault/)."
+            )
 
         raise FileNotFoundError(f"Template '{template_ident}' not found in registry or filesystem.")
 
