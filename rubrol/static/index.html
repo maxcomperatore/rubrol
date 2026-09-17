@@ -3378,7 +3378,7 @@
             <p class="price-plan-desc">For European &amp; global enterprises requiring certified e-invoicing.</p>
             <div class="price-plan-num">
               <span class="price-currency">$</span>
-              <span class="price-figure" id="price-val-compliance">2,400</span>
+              <span class="price-figure" id="price-val-compliance">3,600</span>
               <span class="price-period" id="price-period-compliance">/ year</span>
             </div>
             <div id="roi-compliance" style="font-size: 11px; color: #15803d; font-family: var(--font-mono); margin: -10px 0 16px 0; display: none;">
@@ -3392,7 +3392,7 @@
               <li>Direct Engineer Slack Channel</li>
             </ul>
           </div>
-          <a href="https://buy.stripe.com/fZudRablrgc2b5x1xW0Ba0a" target="_blank" class="btn-pricing btn-pricing-secondary" id="btn-compliance">
+          <a href="https://buy.stripe.com/14A5kE1KR8JA2z1dgE0Ba0c" target="_blank" class="btn-pricing btn-pricing-secondary" id="btn-compliance">
             Get Compliance Suite →
           </a>
         </div>
@@ -4327,8 +4327,10 @@ ${err.message}</div>`;
     const priceValScale = document.getElementById('price-val-scale');
     const pricePeriodScale = document.getElementById('price-period-scale');
 
-    const STRIPE_PRO_URL = "https://buy.stripe.com/00w8wQ0GN1h8ehJ7Wk0Ba09";
-    const STRIPE_COMPLIANCE_URL = "https://buy.stripe.com/fZudRablrgc2b5x1xW0Ba0a";
+    const STRIPE_PRO_ANNUAL_URL = "https://buy.stripe.com/00w8wQ0GN1h8ehJ7Wk0Ba09";
+    const STRIPE_PRO_MONTHLY_URL = "https://buy.stripe.com/aFaaEY4X31h86Ph90o0Ba0d";
+    const STRIPE_COMPLIANCE_ANNUAL_URL = "https://buy.stripe.com/14A5kE1KR8JA2z1dgE0Ba0c";
+    const STRIPE_COMPLIANCE_MONTHLY_URL = "https://buy.stripe.com/28E7sMahn5xoddFekI0Ba0e";
     const GITHUB_REPO_URL = "https://github.com/maxcomperatore/rubrol";
     const ENTERPRISE_CONTACT_URL = "mailto:enterprise@rubrol.com?subject=Enterprise%20Rubrol%20Scale%20Deployment";
 
@@ -4337,6 +4339,8 @@ ${err.message}</div>`;
       const toggleBtn = document.getElementById('billingToggleBtn');
       const labelAnnual = document.getElementById('label-annual');
       const labelMonthly = document.getElementById('label-monthly');
+      const btnPro = document.getElementById('btn-pro');
+      const btnComp = document.getElementById('btn-compliance');
 
       if (period === 'monthly') {
         toggleBtn.classList.add('monthly');
@@ -4344,20 +4348,36 @@ ${err.message}</div>`;
         labelAnnual.classList.remove('active');
         if (priceValPro) priceValPro.innerText = "49";
         if (pricePeriodPro) pricePeriodPro.innerText = "/ month";
-        if (priceValComp) priceValComp.innerText = "240";
+        if (priceValComp) priceValComp.innerText = "300";
         if (pricePeriodComp) pricePeriodComp.innerText = "/ month";
         if (priceValScale) priceValScale.innerText = "690";
         if (pricePeriodScale) pricePeriodScale.innerText = "/ month";
+        if (btnPro) {
+          btnPro.href = STRIPE_PRO_MONTHLY_URL;
+          btnPro.innerText = "Get Pro Access ($49/mo) →";
+        }
+        if (btnComp) {
+          btnComp.href = STRIPE_COMPLIANCE_MONTHLY_URL;
+          btnComp.innerText = "Get Compliance Suite ($300/mo) →";
+        }
       } else {
         toggleBtn.classList.remove('monthly');
         labelAnnual.classList.add('active');
         labelMonthly.classList.remove('active');
         if (priceValPro) priceValPro.innerText = "490";
         if (pricePeriodPro) pricePeriodPro.innerText = "/ year";
-        if (priceValComp) priceValComp.innerText = "2,400";
+        if (priceValComp) priceValComp.innerText = "3,600";
         if (pricePeriodComp) pricePeriodComp.innerText = "/ year";
         if (priceValScale) priceValScale.innerText = "7,200";
         if (pricePeriodScale) pricePeriodScale.innerText = "/ year";
+        if (btnPro) {
+          btnPro.href = STRIPE_PRO_ANNUAL_URL;
+          btnPro.innerText = "Get Pro Access ($490/yr) →";
+        }
+        if (btnComp) {
+          btnComp.href = STRIPE_COMPLIANCE_ANNUAL_URL;
+          btnComp.innerText = "Get Compliance Suite ($3,600/yr) →";
+        }
       }
       if (docSlider) updatePricingCalculator(parseInt(docSlider.value, 10));
     }
@@ -4433,7 +4453,7 @@ ${err.message}</div>`;
         const planCost = currentBillingPeriod === 'monthly' ? 588 : 490;
         const netTco = totalTcoSaved - planCost;
         calcRecRoi.innerHTML = `Net Positive TCO ROI: +$${netTco.toLocaleString()} / year saved after plan cost`;
-        calcCtaBtn.href = STRIPE_PRO_URL;
+        calcCtaBtn.href = currentBillingPeriod === "monthly" ? STRIPE_PRO_MONTHLY_URL : STRIPE_PRO_ANNUAL_URL;
         calcCtaBtn.innerHTML = `<span>Proceed to Stripe (${currentBillingPeriod === 'monthly' ? '$49/mo' : '$490/yr'})</span> →`;
       }
       // Tier 3: Compliance Suite (100,000 - 250,000 docs/mo)
@@ -4445,17 +4465,18 @@ ${err.message}</div>`;
         if (ribbonComp) ribbonComp.style.display = 'block';
         if (roiComp) {
           roiComp.style.display = 'block';
-          const planCost = 2400;
+          const planCost = currentBillingPeriod === "monthly" ? 3600 : 3600;
           const netTco = totalTcoSaved - planCost;
           roiComp.innerText = `● Net TCO ROI: +$${netTco.toLocaleString()}/yr + certified EN 16931`;
         }
-        const planStr = currentBillingPeriod === 'monthly' ? "Compliance Suite ($240/mo)" : "Compliance Suite ($2,400/yr)";
+        const planStr = currentBillingPeriod === 'monthly' ? "Compliance Suite ($300/mo)" : "Compliance Suite ($3,600/yr)";
         calcRecPlan.innerText = planStr;
         calcRecPlan.style.color = "#ea580c";
-        const netTco = totalTcoSaved - 2400;
+        const planCostComp = currentBillingPeriod === "monthly" ? 3600 : 3600;
+        const netTco = totalTcoSaved - planCostComp;
         calcRecRoi.innerHTML = `Net Positive TCO ROI: +$${netTco.toLocaleString()} / year saved + EN 16931 certified`;
-        calcCtaBtn.href = STRIPE_COMPLIANCE_URL;
-        calcCtaBtn.innerHTML = `<span>Proceed to Stripe ($2,400/yr)</span> →`;
+        calcCtaBtn.href = currentBillingPeriod === "monthly" ? STRIPE_COMPLIANCE_MONTHLY_URL : STRIPE_COMPLIANCE_ANNUAL_URL;
+        calcCtaBtn.innerHTML = `<span>Proceed to Stripe (${currentBillingPeriod === "monthly" ? "$300/mo" : "$3,600/yr"})</span> →`;
       }
       // Tier 4: Enterprise Scale (>= 250,000 docs/mo)
       else {
