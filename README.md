@@ -512,10 +512,16 @@ python rubrol.py extract-facturx invoice_facturx.pdf -o factur-x.xml
 
 ### Docker Container
 
-Build and run the official hardened Docker image:
+Run the official pre-built multi-arch image from GitHub Container Registry:
 
 ```bash
-docker build -f rubrol/docker/Dockerfile -t rubrol:latest .
+docker run -d -p 8080:8080 --name rubrol-sidecar ghcr.io/maxcomperatore/rubrol:latest
+```
+
+Or build locally from source:
+
+```bash
+docker build -t rubrol:latest .
 docker run -d -p 8080:8080 --name rubrol-sidecar rubrol:latest
 ```
 

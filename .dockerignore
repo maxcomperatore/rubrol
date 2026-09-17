@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+*$py.class
+.git/
+.github/
+.vscode/
+.idea/
+.pytest_cache/
+node_modules/
+*.pdf
+*.xml
+*.png
+*.svg
+scratch/
+test_*.py
