@@ -73,7 +73,9 @@ class RubrolServerHandler(BaseHTTPRequestHandler):
 
         else:
             req_path = path.lstrip("/")
-            if req_path.startswith("assets/"):
+            if req_path in ("favicon.ico", "assets/logo.png"):
+                safe_file = ROOT_DIR / "assets" / "logo.png"
+            elif req_path.startswith("assets/"):
                 safe_file = ROOT_DIR / req_path
             else:
                 safe_file = STATIC_DIR / req_path
