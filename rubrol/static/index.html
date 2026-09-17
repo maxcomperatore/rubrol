@@ -2869,7 +2869,7 @@
           </div>
 
           <a href="/articles/stripe-facturx-zugferd" style="display: inline-flex; align-items: center; gap: 8px; font-weight: 700; font-size: 14px; color: var(--amber-light); text-decoration: none;">
-            Read Full Engineering Guide →
+            Read Full Engineering Guide
           </a>
         </div>
 
@@ -2899,7 +2899,7 @@
           </div>
 
           <a href="/articles/why-puppeteer-fails-en16931" style="display: inline-flex; align-items: center; gap: 8px; font-weight: 700; font-size: 14px; color: #f87171; text-decoration: none;">
-            Read Architectural Teardown →
+            Read Architectural Teardown
           </a>
         </div>
         <!-- Guide 3: Rubrol vs Mustangproject -->
@@ -2928,7 +2928,7 @@
           </div>
 
           <a href="/articles/rubrol-vs-mustangproject" style="display: inline-flex; align-items: center; gap: 8px; font-weight: 700; font-size: 14px; color: #c084fc; text-decoration: none;">
-            Read Architectural Comparison →
+            Read Architectural Comparison
           </a>
         </div>
 
@@ -2958,7 +2958,7 @@
           </div>
 
           <a href="/articles/rubrol-vs-ghostscript" style="display: inline-flex; align-items: center; gap: 8px; font-weight: 700; font-size: 14px; color: #fb7185; text-decoration: none;">
-            Read Security Breakdown →
+            Read Security Breakdown
           </a>
         </div>
 
@@ -2988,7 +2988,7 @@
           </div>
 
           <a href="/articles/rubrol-vs-gotenberg" style="display: inline-flex; align-items: center; gap: 8px; font-weight: 700; font-size: 14px; color: #38bdf8; text-decoration: none;">
-            Read DevOps Benchmark →
+            Read DevOps Benchmark
           </a>
         </div>
 
@@ -3068,7 +3068,7 @@
       <!-- Billing Period Toggle Switch (Monthly vs Annual) -->
       <div class="billing-toggle-wrap">
         <span class="billing-label active" id="label-annual" onclick="setBillingPeriod('annual')">
-          Annual Billing <span class="billing-save-pill">Save 17%</span>
+          Annual Billing <span class="billing-save-pill">Save up to 31% • 2 Months Free</span>
         </span>
         <div class="billing-toggle-btn" id="billingToggleBtn" onclick="toggleBillingPeriod()">
           <div class="billing-toggle-thumb"></div>
@@ -4075,9 +4075,9 @@ ${err.message}</div>`;
     const pricePeriodScale = document.getElementById('price-period-scale');
 
     const STRIPE_PRO_ANNUAL_URL = "https://buy.stripe.com/00w8wQ0GN1h8ehJ7Wk0Ba09";
-    const STRIPE_PRO_MONTHLY_URL = "https://buy.stripe.com/aFaaEY4X31h86Ph90o0Ba0d";
+    const STRIPE_PRO_MONTHLY_URL = "https://buy.stripe.com/7sY4gA2OV0d45Ld7Wk0Ba0f";
     const STRIPE_COMPLIANCE_ANNUAL_URL = "https://buy.stripe.com/14A5kE1KR8JA2z1dgE0Ba0c";
-    const STRIPE_COMPLIANCE_MONTHLY_URL = "https://buy.stripe.com/28E7sMahn5xoddFekI0Ba0e";
+    const STRIPE_COMPLIANCE_MONTHLY_URL = "https://buy.stripe.com/5kQ6oIexD8JAa1t7Wk0Ba0g";
     const GITHUB_REPO_URL = "https://github.com/maxcomperatore/rubrol";
     const ENTERPRISE_CONTACT_URL = "mailto:enterprise@rubrol.com?subject=Enterprise%20Rubrol%20Scale%20Deployment";
 
@@ -4124,10 +4124,10 @@ ${err.message}</div>`;
         labelMonthly.classList.add('active');
         labelAnnual.classList.remove('active');
 
-        rollPriceNumber(priceValPro, "49", direction);
+        rollPriceNumber(priceValPro, "59", direction);
         if (pricePeriodPro) pricePeriodPro.innerText = "/ month";
 
-        rollPriceNumber(priceValComp, "300", direction);
+        rollPriceNumber(priceValComp, "360", direction);
         if (pricePeriodComp) pricePeriodComp.innerText = "/ month";
 
         rollPriceNumber(priceValScale, "690", direction);
@@ -4135,11 +4135,17 @@ ${err.message}</div>`;
 
         if (btnPro) {
           btnPro.href = STRIPE_PRO_MONTHLY_URL;
-          btnPro.innerText = "Get Pro Access ($49/mo)";
+          btnPro.innerText = "Get Pro Access ($59/mo)";
         }
         if (btnComp) {
           btnComp.href = STRIPE_COMPLIANCE_MONTHLY_URL;
-          btnComp.innerText = "Get Compliance Suite ($300/mo)";
+          btnComp.innerText = "Get Compliance Suite ($360/mo)";
+        }
+        if (roiPro && !cardPro.classList.contains('tier-active')) {
+          roiPro.innerText = "● Monthly Flexibility (Annual saves $218/yr)";
+        }
+        if (roiComp && !cardComp.classList.contains('tier-active')) {
+          roiComp.innerText = "● Monthly Flexibility (Annual saves $720/yr)";
         }
       } else {
         toggleBtn.classList.remove('monthly');
@@ -4162,6 +4168,12 @@ ${err.message}</div>`;
         if (btnComp) {
           btnComp.href = STRIPE_COMPLIANCE_ANNUAL_URL;
           btnComp.innerText = "Get Compliance Suite ($3,600/yr)";
+        }
+        if (roiPro && !cardPro.classList.contains('tier-active')) {
+          roiPro.innerText = "● Net TCO ROI: +$18,590/yr";
+        }
+        if (roiComp && !cardComp.classList.contains('tier-active')) {
+          roiComp.innerText = "● Avoids €10k+ non-compliance penalties";
         }
       }
       if (docSlider) updatePricingCalculator(parseInt(docSlider.value, 10));
@@ -4228,18 +4240,18 @@ ${err.message}</div>`;
         if (ribbonPro) ribbonPro.style.display = 'block';
         if (roiPro) {
           roiPro.style.display = 'block';
-          const planCost = currentBillingPeriod === 'monthly' ? 588 : 490;
+          const planCost = currentBillingPeriod === 'monthly' ? 708 : 490;
           const netTco = totalTcoSaved - planCost;
           roiPro.innerText = `● Net TCO ROI: +$${netTco.toLocaleString()}/yr`;
         }
-        const planStr = currentBillingPeriod === 'monthly' ? "Pro Vault ($49/mo)" : "Pro Vault ($490/yr)";
+        const planStr = currentBillingPeriod === 'monthly' ? "Pro Vault ($59/mo)" : "Pro Vault ($490/yr)";
         calcRecPlan.innerText = planStr;
         calcRecPlan.style.color = "var(--amber-primary)";
-        const planCost = currentBillingPeriod === 'monthly' ? 588 : 490;
+        const planCost = currentBillingPeriod === 'monthly' ? 708 : 490;
         const netTco = totalTcoSaved - planCost;
         calcRecRoi.innerHTML = `Net Positive TCO ROI: +$${netTco.toLocaleString()} / year saved after plan cost`;
         calcCtaBtn.href = currentBillingPeriod === "monthly" ? STRIPE_PRO_MONTHLY_URL : STRIPE_PRO_ANNUAL_URL;
-        calcCtaBtn.innerHTML = `<span>Proceed to Stripe (${currentBillingPeriod === 'monthly' ? '$49/mo' : '$490/yr'})</span>`;
+        calcCtaBtn.innerHTML = `<span>Proceed to Stripe (${currentBillingPeriod === 'monthly' ? '$59/mo' : '$490/yr'})</span>`;
       }
       // Tier 3: Compliance Suite (100,000 - 250,000 docs/mo)
       else if (val < 250000) {
@@ -4250,18 +4262,18 @@ ${err.message}</div>`;
         if (ribbonComp) ribbonComp.style.display = 'block';
         if (roiComp) {
           roiComp.style.display = 'block';
-          const planCost = currentBillingPeriod === "monthly" ? 3600 : 3600;
-          const netTco = totalTcoSaved - planCost;
+          const planCostComp = currentBillingPeriod === "monthly" ? 4320 : 3600;
+          const netTco = totalTcoSaved - planCostComp;
           roiComp.innerText = `● Net TCO ROI: +$${netTco.toLocaleString()}/yr + certified EN 16931`;
         }
-        const planStr = currentBillingPeriod === 'monthly' ? "Compliance Suite ($300/mo)" : "Compliance Suite ($3,600/yr)";
+        const planStr = currentBillingPeriod === 'monthly' ? "Compliance Suite ($360/mo)" : "Compliance Suite ($3,600/yr)";
         calcRecPlan.innerText = planStr;
         calcRecPlan.style.color = "#ea580c";
-        const planCostComp = currentBillingPeriod === "monthly" ? 3600 : 3600;
+        const planCostComp = currentBillingPeriod === "monthly" ? 4320 : 3600;
         const netTco = totalTcoSaved - planCostComp;
         calcRecRoi.innerHTML = `Net Positive TCO ROI: +$${netTco.toLocaleString()} / year saved + EN 16931 certified`;
         calcCtaBtn.href = currentBillingPeriod === "monthly" ? STRIPE_COMPLIANCE_MONTHLY_URL : STRIPE_COMPLIANCE_ANNUAL_URL;
-        calcCtaBtn.innerHTML = `<span>Proceed to Stripe (${currentBillingPeriod === "monthly" ? "$300/mo" : "$3,600/yr"})</span>`;
+        calcCtaBtn.innerHTML = `<span>Proceed to Stripe (${currentBillingPeriod === "monthly" ? "$360/mo" : "$3,600/yr"})</span>`;
       }
       // Tier 4: Enterprise Scale (>= 250,000 docs/mo)
       else {
