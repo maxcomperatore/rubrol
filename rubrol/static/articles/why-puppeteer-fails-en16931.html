@@ -7,11 +7,83 @@
   <meta name="description" content="A brutal teardown of why Headless Chrome, Puppeteer, and Gotenberg fail European e-invoicing compliance (Factur-X / ZUGFeRD 2.2 / PDF/A-3b) and what engineers should use instead.">
   <link rel="icon" type="image/png" href="/assets/logo.png">
 
+  <link rel="canonical" href="https://rubrol.com/articles/why-puppeteer-fails-en16931">
+  <meta name="keywords" content="Puppeteer PDF/A-3, Headless Chrome Factur-X, EN 16931 Puppeteer failure, Gotenberg alternative, Typst PDF compiler, ISO 19005-3">
+  <meta name="author" content="Ian Vargas">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
   <!-- OpenGraph -->
+  <meta property="og:site_name" content="Rubrol">
   <meta property="og:title" content="Why Puppeteer Cannot Generate Legal EN 16931 E-Invoices (And What to Use Instead)">
   <meta property="og:description" content="Every dev thinks Puppeteer page.pdf() solves document generation until they hit ISO 19005-3 and European EN 16931 mandates. Here is the technical reality.">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://rubrol.com/articles/why-puppeteer-fails-en16931">
+  <meta property="og:image" content="https://rubrol.com/assets/og_image.png">
+  <meta property="article:published_time" content="2026-09-17T12:00:00Z">
+  <meta property="article:author" content="Ian Vargas">
+  <meta property="article:section" content="Architecture">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Why Puppeteer Cannot Generate Legal EN 16931 E-Invoices (And What to Use Instead)">
+  <meta name="twitter:description" content="Why Chrome fails ISO 19005-3 PDF/A-3 and what high-performance teams are replacing it with.">
+  <meta name="twitter:image" content="https://rubrol.com/assets/og_image.png">
+
+  <!-- Schema.org TechArticle & Breadcrumbs JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "TechArticle",
+        "headline": "Why Puppeteer Cannot Generate Legal EN 16931 E-Invoices (And What to Use Instead)",
+        "description": "A technical breakdown of why Chrome's Skia engine fails ISO 19005-3 and European EN 16931 e-invoicing compliance.",
+        "url": "https://rubrol.com/articles/why-puppeteer-fails-en16931",
+        "image": "https://rubrol.com/assets/og_image.png",
+        "datePublished": "2026-09-17T12:00:00Z",
+        "dateModified": "2026-09-17T12:00:00Z",
+        "author": {
+          "@type": "Person",
+          "name": "Ian Vargas"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Rubrol",
+          "url": "https://rubrol.com",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://rubrol.com/assets/logo.png"
+          }
+        },
+        "mainEntityOfPage": "https://rubrol.com/articles/why-puppeteer-fails-en16931",
+        "keywords": "Puppeteer, Headless Chrome, PDF/A-3, EN 16931, Factur-X, ZUGFeRD 2.2, Typst"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://rubrol.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Guides",
+            "item": "https://rubrol.com/#articles"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Why Puppeteer Fails EN 16931",
+            "item": "https://rubrol.com/articles/why-puppeteer-fails-en16931"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

@@ -3,9 +3,154 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rubrol — Sub-millisecond PDF Engine</title>
+  <title>Rubrol — Sub-millisecond PDF Engine &amp; EU Factur-X Suite</title>
+  <meta name="description" content="The sub-10ms dynamic PDF/A compilation engine replacing Headless Chrome and Gotenberg. Turnkey European EN 16931 Factur-X / ZUGFeRD 2.2 Suite with 96% less memory.">
+  <meta name="keywords" content="Rubrol, Typst PDF, Factur-X, ZUGFeRD 2.2, EN 16931, e-invoicing API, PDF/A-3b, Puppeteer alternative, Gotenberg alternative, sub-10ms PDF generator, Rust PDF engine">
+  <meta name="author" content="Max Comperatore">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <link rel="canonical" href="https://rubrol.com/">
   <link rel="icon" type="image/png" href="/assets/logo.png">
   <meta name="google-site-verification" content="vZgg9tVFR8LflFR5UOTA8stXBmRkuz94YHv8ZOPdT6M">
+  <meta name="theme-color" content="#08090c">
+
+  <!-- Open Graph / Facebook / LinkedIn -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://rubrol.com/">
+  <meta property="og:site_name" content="Rubrol">
+  <meta property="og:title" content="Rubrol — Sub-millisecond PDF Engine &amp; EU Factur-X Suite">
+  <meta property="og:description" content="Sub-10ms dynamic PDF/A compilation replacing Headless Chrome and Gotenberg. Turnkey European EN 16931 Factur-X e-invoicing sidecar.">
+  <meta property="og:image" content="https://rubrol.com/assets/og_image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Rubrol - Sub-millisecond Document Engine">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://rubrol.com/">
+  <meta name="twitter:title" content="Rubrol — Sub-millisecond PDF Engine">
+  <meta name="twitter:description" content="The sub-10ms document engine replacing Headless Chrome and Gotenberg. Turnkey European EN 16931 Factur-X / ZUGFeRD 2.2 Suite.">
+  <meta name="twitter:image" content="https://rubrol.com/assets/og_image.png">
+
+  <!-- Google Rich Results / Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://rubrol.com/#organization",
+        "name": "Rubrol",
+        "url": "https://rubrol.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://rubrol.com/assets/logo.png"
+        },
+        "founder": {
+          "@type": "Person",
+          "name": "Max Comperatore"
+        },
+        "sameAs": [
+          "https://github.com/maxcomperatore/rubrol"
+        ],
+        "description": "Sub-millisecond document engine replacing Chromium and Gotenberg. Native PDF/A-3b compliance and European EN 16931 Factur-X suite."
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://rubrol.com/#website",
+        "url": "https://rubrol.com",
+        "name": "Rubrol — Sub-millisecond PDF Engine",
+        "description": "The Anti-Puppeteer PDF Engine. Sub-10ms dynamic PDF/A compilation powered by Apache 2.0 Typst.",
+        "publisher": {
+          "@id": "https://rubrol.com/#organization"
+        }
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://rubrol.com/#software",
+        "name": "Rubrol PDF Engine",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Linux, macOS, Windows, Docker",
+        "softwareVersion": "1.0.0",
+        "license": "https://github.com/maxcomperatore/rubrol/blob/main/LICENSE",
+        "description": "Sub-10ms dynamic PDF/A compilation engine with turnkey EU Factur-X / ZUGFeRD 2.2 suite.",
+        "offers": [
+          {
+            "@type": "Offer",
+            "name": "Developer Core",
+            "price": "0",
+            "priceCurrency": "USD",
+            "description": "Apache 2.0 open-source core with local sidecar and CLI."
+          },
+          {
+            "@type": "Offer",
+            "name": "Pro Template Vault",
+            "price": "490",
+            "priceCurrency": "USD",
+            "priceValidUntil": "2027-12-31",
+            "description": "11 production enterprise templates with quarterly updates."
+          },
+          {
+            "@type": "Offer",
+            "name": "Compliance Suite",
+            "price": "2400",
+            "priceCurrency": "USD",
+            "priceValidUntil": "2027-12-31",
+            "description": "Turnkey EU Factur-X / ZUGFeRD 2.2 EN 16931 compliance suite."
+          },
+          {
+            "@type": "Offer",
+            "name": "Lifetime Founder Pass",
+            "price": "990",
+            "priceCurrency": "USD",
+            "priceValidUntil": "2027-12-31",
+            "description": "Lifetime commercial engine rights and perpetual template access."
+          }
+        ],
+        "author": {
+          "@id": "https://rubrol.com/#organization"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://rubrol.com/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is Rubrol?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Rubrol is a sub-10ms dynamic PDF/A compilation engine powered by Apache 2.0 Typst. It is built as a lightweight, zero-virtualization alternative to Headless Chrome, Puppeteer, and Gotenberg."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How does Rubrol generate European EN 16931 Factur-X invoices?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Rubrol compiles a visual ISO 19005-3 PDF/A-3b container, generates compliant UN/CEFACT CII XML (factur-x.xml), attaches it at the root catalog with an /AFRelationship /Alternative dictionary, and validates tax arithmetic in under 160 milliseconds."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Why is Rubrol faster than Puppeteer and Gotenberg?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Puppeteer launches a 500MB headless Chromium browser executing full Blink/V8 DOM rendering trees for every single page. Rubrol compiles Typst documents using native Rust with persistent in-memory font caches, executing in under 15 milliseconds on less than 28MB RAM."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I deploy Rubrol with Docker?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "You can run the official multi-arch Docker image with: docker run -d -p 8080:8080 --name rubrol-sidecar ghcr.io/maxcomperatore/rubrol:latest."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 
   <!-- Google Fonts: Instrument Serif, Playfair Display, Inter, JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
