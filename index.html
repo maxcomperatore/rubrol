@@ -1582,10 +1582,11 @@
     .btn-pricing {
       display: block;
       text-align: center;
-      padding: 12px 20px;
+      padding: 12px 16px;
       border-radius: 8px;
       font-weight: 600;
-      font-size: 14px;
+      font-size: 13.5px;
+      white-space: nowrap;
       transition: all 0.2s;
     }
 
@@ -2413,7 +2414,7 @@
           <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
           GitHub
         </a>
-        <a href="#studio" class="btn-pill-primary">Live Studio →</a>
+        <a href="#studio" class="btn-pill-primary">Live Studio</a>
       </div>
     </div>
   </div>
@@ -2447,7 +2448,7 @@
       </p>
 
       <div class="hero-ctas">
-        <a href="#studio" class="btn-pill-primary" style="padding: 13px 30px; font-size: 15px;">Launch Live Studio →</a>
+        <a href="#studio" class="btn-pill-primary" style="padding: 13px 30px; font-size: 15px;">Launch Live Studio</a>
         <a href="https://github.com/maxcomperatore/rubrol" target="_blank" class="btn-pill-secondary" style="padding: 13px 28px; font-size: 15px;">Explore GitHub Repository</a>
       </div>
 
@@ -2710,7 +2711,7 @@
         <p style="font-size: 16px; line-height: 1.68; color: #94a3b8; margin-bottom: 28px;">
           When processing 200,000 monthly invoices, running headless browser clusters drains tens of thousands of dollars in AWS Fargate and CPU allocations. By reducing compute times by 96% and shrinking RAM from 250MB to 24MB, Rubrol amortizes its cost within days.
         </p>
-        <a href="#calculator" class="btn-pill-primary">Calculate Your Cluster Savings →</a>
+        <a href="#calculator" class="btn-pill-primary">Calculate Your Cluster Savings</a>
       </div>
     </div>
   </section>
@@ -3174,7 +3175,7 @@
 
           <div style="margin-top: 14px;">
             <a id="calcCtaBtn" href="https://buy.stripe.com/00w8wQ0GN1h8ehJ7Wk0Ba09" target="_blank" class="btn-pricing btn-pricing-primary" style="padding: 10px 24px; font-size: 13px; display: inline-flex; align-items: center; justify-content: center; gap: 6px; width: 100%;">
-              <span>Proceed to Stripe Checkout</span> →
+              <span>Proceed to Stripe Checkout</span>
             </a>
           </div>
         </div>
@@ -3245,7 +3246,7 @@
             </ul>
           </div>
           <a href="https://buy.stripe.com/00w8wQ0GN1h8ehJ7Wk0Ba09" target="_blank" class="btn-pricing btn-pricing-primary" id="btn-pro">
-            Get Pro Access →
+            Get Pro Access
           </a>
         </div>
 
@@ -3272,7 +3273,7 @@
             </ul>
           </div>
           <a href="https://buy.stripe.com/14A5kE1KR8JA2z1dgE0Ba0c" target="_blank" class="btn-pricing btn-pricing-secondary" id="btn-compliance">
-            Get Compliance Suite →
+            Get Compliance Suite
           </a>
         </div>
 
@@ -3299,7 +3300,7 @@
             </ul>
           </div>
           <a href="mailto:enterprise@rubrol.com?subject=Enterprise%20Rubrol%20Scale%20Deployment" target="_blank" class="btn-pricing btn-pricing-secondary" id="btn-scale">
-            Contact Enterprise Engineering →
+            Contact Enterprise Engineering
           </a>
         </div>
       </div>
@@ -3324,7 +3325,7 @@
           </div>
         </div>
         <a href="https://buy.stripe.com/00w9AU75b6Bsc9BgsQ0Ba0b" target="_blank" class="btn-pill-primary" style="background: #18181b; color: #ffffff; white-space: nowrap;">
-          Claim Founder Pass ($990) →
+          Claim Founder Pass ($990)
         </a>
       </div>
     </div>
@@ -3339,7 +3340,7 @@
         Deploy the Rubrol sidecar into your Kubernetes or Docker cluster today. Compile 10,000 documents per minute on single-core compute.
       </p>
       <div style="display: flex; justify-content: center; gap: 16px;">
-        <a href="#studio" class="btn-pill-primary" style="padding: 14px 32px; font-size: 15px;">Launch Live Studio →</a>
+        <a href="#studio" class="btn-pill-primary" style="padding: 14px 32px; font-size: 15px;">Launch Live Studio</a>
         <a href="https://github.com/maxcomperatore/rubrol" target="_blank" class="btn-pill-secondary" style="padding: 14px 28px; font-size: 15px;">View GitHub Core</a>
       </div>
     </div>
@@ -4247,11 +4248,11 @@ ${err.message}</div>`;
 
         if (btnPro) {
           btnPro.href = STRIPE_PRO_MONTHLY_URL;
-          btnPro.innerText = "Get Pro Access ($49/mo) →";
+          btnPro.innerText = "Get Pro Access ($49/mo)";
         }
         if (btnComp) {
           btnComp.href = STRIPE_COMPLIANCE_MONTHLY_URL;
-          btnComp.innerText = "Get Compliance Suite ($300/mo) →";
+          btnComp.innerText = "Get Compliance Suite ($300/mo)";
         }
       } else {
         toggleBtn.classList.remove('monthly');
@@ -4269,11 +4270,11 @@ ${err.message}</div>`;
 
         if (btnPro) {
           btnPro.href = STRIPE_PRO_ANNUAL_URL;
-          btnPro.innerText = "Get Pro Access ($490/yr) →";
+          btnPro.innerText = "Get Pro Access ($490/yr)";
         }
         if (btnComp) {
           btnComp.href = STRIPE_COMPLIANCE_ANNUAL_URL;
-          btnComp.innerText = "Get Compliance Suite ($3,600/yr) →";
+          btnComp.innerText = "Get Compliance Suite ($3,600/yr)";
         }
       }
       if (docSlider) updatePricingCalculator(parseInt(docSlider.value, 10));
@@ -4329,7 +4330,7 @@ ${err.message}</div>`;
         calcRecPlan.style.color = "#10b981";
         calcRecRoi.innerHTML = "100% Free Open-Source Core • Run unlimited locally or in Docker";
         calcCtaBtn.href = GITHUB_REPO_URL;
-        calcCtaBtn.innerHTML = "<span>Clone on GitHub (Free)</span> →";
+        calcCtaBtn.innerHTML = "<span>Clone on GitHub (Free)</span>";
       }
       // Tier 2: Pro Vault (20,000 - 100,000 docs/mo)
       else if (val < 100000) {
@@ -4351,7 +4352,7 @@ ${err.message}</div>`;
         const netTco = totalTcoSaved - planCost;
         calcRecRoi.innerHTML = `Net Positive TCO ROI: +$${netTco.toLocaleString()} / year saved after plan cost`;
         calcCtaBtn.href = currentBillingPeriod === "monthly" ? STRIPE_PRO_MONTHLY_URL : STRIPE_PRO_ANNUAL_URL;
-        calcCtaBtn.innerHTML = `<span>Proceed to Stripe (${currentBillingPeriod === 'monthly' ? '$49/mo' : '$490/yr'})</span> →`;
+        calcCtaBtn.innerHTML = `<span>Proceed to Stripe (${currentBillingPeriod === 'monthly' ? '$49/mo' : '$490/yr'})</span>`;
       }
       // Tier 3: Compliance Suite (100,000 - 250,000 docs/mo)
       else if (val < 250000) {
@@ -4373,7 +4374,7 @@ ${err.message}</div>`;
         const netTco = totalTcoSaved - planCostComp;
         calcRecRoi.innerHTML = `Net Positive TCO ROI: +$${netTco.toLocaleString()} / year saved + EN 16931 certified`;
         calcCtaBtn.href = currentBillingPeriod === "monthly" ? STRIPE_COMPLIANCE_MONTHLY_URL : STRIPE_COMPLIANCE_ANNUAL_URL;
-        calcCtaBtn.innerHTML = `<span>Proceed to Stripe (${currentBillingPeriod === "monthly" ? "$300/mo" : "$3,600/yr"})</span> →`;
+        calcCtaBtn.innerHTML = `<span>Proceed to Stripe (${currentBillingPeriod === "monthly" ? "$300/mo" : "$3,600/yr"})</span>`;
       }
       // Tier 4: Enterprise Scale (>= 250,000 docs/mo)
       else {
@@ -4392,7 +4393,7 @@ ${err.message}</div>`;
         const netTco = totalTcoSaved - 7200;
         calcRecRoi.innerHTML = `Net Positive TCO ROI: +$${netTco.toLocaleString()} / year saved + dedicated SLA`;
         calcCtaBtn.href = ENTERPRISE_CONTACT_URL;
-        calcCtaBtn.innerHTML = "<span>Contact Enterprise Engineering</span> →";
+        calcCtaBtn.innerHTML = "<span>Contact Enterprise Engineering</span>";
       }
     }
 
