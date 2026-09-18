@@ -14,6 +14,8 @@ import urllib.error
 import subprocess
 from typing import Optional, Dict, Any
 
+from rubrol.core.api_key_manager import key_manager
+
 logger = logging.getLogger("rubrol.webhooks.stripe")
 
 VAULT_REPO_OWNER = os.environ.get("RUBROL_VAULT_OWNER", "maxcomperatore")
@@ -99,6 +101,23 @@ def process_stripe_event(event: Dict[str, Any]) -> Dict[str, Any]:
         if not github_username:
             github_username = session.get("metadata", {}).get("github_username")
 
+        # Provision paid API key for customer
+        customer_id = session.get("customer", "")
+        subscription_id = session.get("subscription", "")
+        tier = session.get("metadata", {}).get("tier", "starter")
+        api_key_info = {}
+        if email and email != "unknown":
+            try:
+                api_key_info = key_manager.provision_paid_key(
+                    email=email,
+                    tier=tier,
+                    stripe_customer_id=customer_id,
+                    stripe_subscription_id=subscription_id
+                )
+                logger.info(f"Provisioned {tier} API key for {email}: {api_key_info.get('api_key')}")
+            except Exception as ex:
+                logger.error(f"Failed to provision API key for {email}: {ex}")
+
         if github_username:
             invite_res = invite_github_user_to_vault(github_username)
             return {
@@ -106,16 +125,17 @@ def process_stripe_event(event: Dict[str, Any]) -> Dict[str, Any]:
                 "event_type": event_type,
                 "customer_email": email,
                 "customer_name": name,
+                "api_key_info": api_key_info,
                 "github_username": github_username,
                 "invitation": invite_res
             }
         else:
-            logger.warning(f"Checkout session {session.get('id')} completed without GitHub username.")
+            logger.info(f"Checkout session {session.get('id')} completed for {email} (API Key: {api_key_info.get('api_key')})")
             return {
                 "handled": True,
                 "event_type": event_type,
-                "warning": "No GitHub username found in checkout session",
-                "customer_email": email
+                "customer_email": email,
+                "api_key_info": api_key_info
             }
 
     return {"handled": False, "event_type": event_type, "message": "Event type not requiring fulfillment"}

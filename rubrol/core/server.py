@@ -14,6 +14,7 @@ if str(ROOT_DIR) not in sys.path:
     sys.path.insert(0, str(ROOT_DIR))
 
 from rubrol.core.engine import RubrolEngine
+from rubrol.core.api_key_manager import key_manager
 from rubrol.facturx.validator import validate_facturx_payload, validate_facturx_pdf
 from rubrol.facturx.packager import extract_facturx_xml
 
@@ -49,6 +50,16 @@ class RubrolServerHandler(BaseHTTPRequestHandler):
                 "facturx_version": "1.0.07 / ZUGFeRD 2.2 (EN 16931)"
             }
             self._send_json(200, data)
+
+        elif path in ("/v1/auth/trial", "/api/auth/trial"):
+            # Instant free trial key provisioning via GET for instant onboarding
+            res = key_manager.create_trial_key()
+            res["status"] = "success"
+            res["message"] = "Trial key created! 30 free requests available with no credit card required."
+            self._send_json(201, res)
+
+        elif path in ("/v1/auth/usage", "/v1/auth/me", "/api/auth/usage"):
+            self._handle_auth_usage()
 
         elif path == "/v1/templates":
             templates = list(self.engine.template_registry.keys())
@@ -94,6 +105,8 @@ class RubrolServerHandler(BaseHTTPRequestHandler):
 
         if path in ("/v1/render", "/v1/render/raw"):
             self._handle_render()
+        elif path in ("/v1/auth/trial", "/api/auth/trial"):
+            self._handle_auth_trial()
         elif path == "/v1/facturx/render":
             self._handle_facturx_render()
         elif path == "/v1/facturx/validate":
@@ -104,6 +117,96 @@ class RubrolServerHandler(BaseHTTPRequestHandler):
             self._handle_stripe_webhook()
         else:
             self.send_error(404, f"Endpoint '{path}' not found")
+
+    def _authenticate_request(self):
+        """
+        Validate API key from headers, body, or query param.
+        Returns: (success: bool, info: dict, error_response: dict)
+        """
+        auth_header = self.headers.get("Authorization") or self.headers.get("X-API-Key")
+        api_key = None
+        if auth_header:
+            api_key = auth_header.strip()
+            if api_key.lower().startswith("bearer "):
+                api_key = api_key[7:].strip()
+
+        if not api_key:
+            parsed = urlparse(self.path)
+            qs = parse_qs(parsed.query)
+            if "api_key" in qs:
+                api_key = qs["api_key"][0]
+
+        if not api_key:
+            allow_anon = os.environ.get("RUBROL_ALLOW_ANON", "false").lower() in ("1", "true", "yes")
+            client_ip = self.client_address[0] if self.client_address else ""
+            is_local = client_ip in ("127.0.0.1", "localhost", "::1")
+            if allow_anon or is_local:
+                return True, {"api_key": "rbl_sandbox_local", "tier": "sandbox", "quota_limit": 9999, "quota_used": 0, "quota_remaining": 9999}, None
+
+            return False, None, {
+                "error": "unauthorized",
+                "message": "API key required. Pass 'Authorization: Bearer <key>' or 'X-API-Key: <key>'. Get your free trial key (30 free requests, no credit card required) at POST /v1/auth/trial or https://rubrol.com/#trial."
+            }
+
+        success, info, err_code = key_manager.validate_and_consume(api_key, cost=1)
+        if not success:
+            if err_code == "quota_exceeded":
+                return False, info, {
+                    "error": "quota_exceeded",
+                    "message": "Quota limit reached. Please upgrade to continue generating documents: https://rubrol.com/#pricing",
+                    "quota_limit": info.get("quota_limit", 30) if info else 30,
+                    "quota_used": info.get("quota_used", 30) if info else 30,
+                    "quota_remaining": 0
+                }
+            elif err_code in ("invalid_key", "missing_key"):
+                return False, None, {
+                    "error": "invalid_api_key",
+                    "message": "Invalid API key provided. Generate a free trial key at POST /v1/auth/trial (no card required)."
+                }
+            elif err_code == "key_inactive":
+                return False, None, {
+                    "error": "key_inactive",
+                    "message": "This API key has been revoked or deactivated."
+                }
+            else:
+                return False, None, {"error": err_code or "auth_failed"}
+
+        return True, info, None
+
+    def _handle_auth_trial(self):
+        try:
+            length = int(self.headers.get("Content-Length", 0))
+            body = json.loads(self.rfile.read(length).decode("utf-8")) if length else {}
+            email = body.get("email", "")
+            res = key_manager.create_trial_key(email)
+            res["status"] = "success"
+            res["message"] = "Trial key created! 30 free requests available with no credit card required."
+            self._send_json(201, res)
+        except Exception as e:
+            self._send_json(400, {"error": str(e), "status": "failed"})
+
+    def _handle_auth_usage(self):
+        auth_header = self.headers.get("Authorization") or self.headers.get("X-API-Key")
+        api_key = None
+        if auth_header:
+            api_key = auth_header.strip()
+            if api_key.lower().startswith("bearer "):
+                api_key = api_key[7:].strip()
+        if not api_key:
+            parsed = urlparse(self.path)
+            qs = parse_qs(parsed.query)
+            if "api_key" in qs:
+                api_key = qs["api_key"][0]
+
+        if not api_key:
+            self._send_json(400, {"error": "missing_api_key", "message": "Provide API key in Authorization or X-API-Key header"})
+            return
+
+        info = key_manager.get_key_info(api_key)
+        if not info:
+            self._send_json(404, {"error": "not_found", "message": "API key not found"})
+            return
+        self._send_json(200, info)
 
     def _handle_stripe_webhook(self):
         try:
@@ -118,6 +221,12 @@ class RubrolServerHandler(BaseHTTPRequestHandler):
 
     def _handle_render(self):
         try:
+            auth_ok, auth_info, auth_err = self._authenticate_request()
+            if not auth_ok:
+                status_code = 402 if auth_err.get("error") == "quota_exceeded" else 401
+                self._send_json(status_code, auth_err)
+                return
+
             length = int(self.headers.get("Content-Length", 0))
             raw_body = self.rfile.read(length).decode("utf-8")
             body = json.loads(raw_body) if raw_body else {}
@@ -153,6 +262,10 @@ class RubrolServerHandler(BaseHTTPRequestHandler):
             self.send_header("Content-Disposition", f'inline; filename="{filename}"')
             self.send_header("Content-Length", str(len(output_bytes)))
             self.send_header("X-Render-Time-Ms", f"{elapsed_ms:.2f}")
+            if auth_info:
+                self.send_header("X-Quota-Limit", str(auth_info.get("quota_limit", 30)))
+                self.send_header("X-Quota-Remaining", str(auth_info.get("quota_remaining", 30)))
+                self.send_header("X-Tier", str(auth_info.get("tier", "trial")))
             self.send_header("Access-Control-Allow-Origin", "*")
             self.end_headers()
             self.wfile.write(output_bytes)
@@ -163,6 +276,12 @@ class RubrolServerHandler(BaseHTTPRequestHandler):
 
     def _handle_facturx_render(self):
         try:
+            auth_ok, auth_info, auth_err = self._authenticate_request()
+            if not auth_ok:
+                status_code = 402 if auth_err.get("error") == "quota_exceeded" else 401
+                self._send_json(status_code, auth_err)
+                return
+
             length = int(self.headers.get("Content-Length", 0))
             raw_body = self.rfile.read(length).decode("utf-8")
             body = json.loads(raw_body) if raw_body else {}
@@ -184,6 +303,10 @@ class RubrolServerHandler(BaseHTTPRequestHandler):
             self.send_header("X-Render-Time-Ms", f"{elapsed_ms:.2f}")
             self.send_header("X-FacturX-Profile", profile)
             self.send_header("X-FacturX-XML-Bytes", str(len(xml_bytes)))
+            if auth_info:
+                self.send_header("X-Quota-Limit", str(auth_info.get("quota_limit", 30)))
+                self.send_header("X-Quota-Remaining", str(auth_info.get("quota_remaining", 30)))
+                self.send_header("X-Tier", str(auth_info.get("tier", "trial")))
             self.send_header("Access-Control-Allow-Origin", "*")
             self.end_headers()
             self.wfile.write(pdf_bytes)
@@ -229,7 +352,8 @@ class RubrolServerHandler(BaseHTTPRequestHandler):
         self.send_response(200)
         self.send_header("Access-Control-Allow-Origin", "*")
         self.send_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
-        self.send_header("Access-Control-Allow-Headers", "Content-Type")
+        self.send_header("Access-Control-Allow-Headers", "Content-Type, Authorization, X-API-Key")
+        self.send_header("Access-Control-Expose-Headers", "X-Quota-Limit, X-Quota-Remaining, X-Render-Time-Ms, X-FacturX-Profile, X-Tier")
         self.end_headers()
 
     def _send_json(self, status: int, obj: dict):
