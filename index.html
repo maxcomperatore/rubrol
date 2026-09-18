@@ -2750,6 +2750,8 @@
       .mobile-nav-drawer {
         top: 60px;
       }
+    }
+
     /* Bannerbear-style PLG API & Free Trial Components */
     .btn-trial-nav {
       background: linear-gradient(135deg, #f59e0b, #d97706);
@@ -5294,7 +5296,10 @@ ${err.message}</div>`;
 
     function openTrialModal() {
       const modal = document.getElementById('trialModalBackdrop');
-      if (modal) modal.classList.add('open');
+      if (modal) {
+        modal.style.display = 'flex';
+        modal.classList.add('open');
+      }
       const activeKeyInput = document.getElementById('activeKeyInput');
       if (activeKeyInput) activeKeyInput.value = activeApiKey;
       const resultBox = document.getElementById('trialKeyResult');
@@ -5303,7 +5308,10 @@ ${err.message}</div>`;
 
     function closeTrialModal() {
       const modal = document.getElementById('trialModalBackdrop');
-      if (modal) modal.classList.remove('open');
+      if (modal) {
+        modal.style.display = 'none';
+        modal.classList.remove('open');
+      }
     }
 
     async function requestTrialKey() {
@@ -5352,12 +5360,18 @@ ${err.message}</div>`;
     function openApiCodeModal() {
       renderCodeSnippet();
       const modal = document.getElementById('apiCodeModalBackdrop');
-      if (modal) modal.classList.add('open');
+      if (modal) {
+        modal.style.display = 'flex';
+        modal.classList.add('open');
+      }
     }
 
     function closeApiCodeModal() {
       const modal = document.getElementById('apiCodeModalBackdrop');
-      if (modal) modal.classList.remove('open');
+      if (modal) {
+        modal.style.display = 'none';
+        modal.classList.remove('open');
+      }
     }
 
     function switchApiCodeTab(lang) {
