@@ -13,6 +13,6 @@ Thumbs.db
 *.pdf
 !examples/output/*.pdf
 .vercel
-*.sqlite3
-*.sqlite
-rubrol/data/*.sqlite3
+*.sqlite3*
+*.sqlite*
+rubrol/data/*.sqlite3*
