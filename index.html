@@ -5217,6 +5217,13 @@ ${err.message}</div>`;
         closeMobileNav();
       }
       if (window.innerWidth > 768) {
+        const previewPane = document.querySelector('.studio-preview-pane');
+        const editorPane = document.querySelector('.studio-editor-pane');
+        if (previewPane) previewPane.style.removeProperty('display');
+        if (editorPane) editorPane.style.removeProperty('display');
+      }
+    });
+
     /* Bannerbear-Style PLG Free Trial & API Modal Logic */
     let activeApiKey = localStorage.getItem('rubrol_api_key') || '';
     let currentCodeLang = 'curl';
