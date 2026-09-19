@@ -3,10 +3,10 @@
   <h1>Rubrol</h1>
   <h3>The Sub-millisecond PDF Engine</h3>
   <p><strong>PDF generation is no longer a background job.</strong></p>
-  <p>Sub-8ms dynamic PDF/A documents powered by Apache 2.0 Typst. Universal document engine for SaaS invoices, executive reports, and payment receipts. No Headless Chrome. No Chromium bloat.</p>
+  <p>Sub-8ms dynamic PDF/A documents powered by native Typst. Universal document engine for SaaS invoices, executive reports, and payment receipts. No Headless Chrome. No Chromium bloat.</p>
 
   <p>
-    <a href="https://opensource.org/licenses/Apache-2.0"><img src="https://img.shields.io/badge/License-Apache_2.0-blue.svg" alt="License" /></a>
+    <a href="LICENSE"><img src="https://img.shields.io/badge/License-LGPL_3.0-blue.svg" alt="License" /></a>
     <a href="https://typst.app/"><img src="https://img.shields.io/badge/Typst-Native-orange.svg" alt="Typst" /></a>
     <img src="https://img.shields.io/badge/Latency-5.8ms-brightgreen.svg" alt="Latency" />
     <img src="https://img.shields.io/badge/RAM-%3C28MB-green.svg" alt="RAM" />
@@ -91,7 +91,7 @@ User clicks "Download Invoice"
 
 * **The Villain:** Headless Chrome, Puppeteer, and Playwright consume 1.5GB to 2GB of RAM per process, suffer cold starts $>1,500\text{ms}$, and frequently trigger Out-Of-Memory (OOM) crashes across Kubernetes clusters during batch billing runs.
 * **The Legacy Trap:** Monolithic HTML-to-PDF renderers (WeasyPrint, Gotenberg, wkhtmltopdf) suffer from brittle CSS Paged Media pagination, broken table page breaks, and complex foreign library dependencies.
-* **The Solution (Rubrol):** 100% Permissive Apache 2.0 Open Core engine. Compiles documents using native Typst in **$< 8\text{ms}$** with **$< 28\text{MB}$ RAM**, running as a stateless universal HTTP sidecar next to any backend service.
+* **The Solution (Rubrol):** 100% Open Source GNU LGPLv3 core engine with commercial licensing (Sidekiq model). Compiles documents using native Typst in **$< 8\text{ms}$** with **$< 28\text{MB}$ RAM**, running as a stateless universal HTTP sidecar next to any backend service.
 
 ---
 
@@ -757,21 +757,20 @@ spec:
 
 ---
 
-## Commercial Licensing & Pro Vault
+## Commercial Licensing & Sidekiq Dual-License Model
 
-Rubrol operates on a transparent Open Core model:
+Rubrol operates on the transparent **Sidekiq commercial open-core model**:
 
-| Tier | Price | Highlights |
-| :--- | :--- | :--- |
-| **Community Core** | **$0** (Apache 2.0) | Full CLI compiler, local daemon, unlimited documents, open core templates. |
-| **Rubrol Pro** | **$59** / mo or **$490** / yr | Complete 11+ Production Template Vault, multi-worker HTTP sidecar, priority updates. |
-| **Compliance Suite** | **$360** / mo or **$3,600** / yr | Turnkey EU Factur-X / ZUGFeRD Suite (EN 16931 + PDF/A-3b), air-gapped ECR images, source code escrow, custom template design. |
-| **Enterprise Scale** | **$7,200** / year | Dedicated Multi-Cluster HA Kubernetes manifests, bespoke Typst font/template engineering, 99.99% SLA. |
-| **Founder Lifetime Pass** | **$990** *(Steps to $1,490 at #15)* | Perpetual commercial license, lifetime access to all future template releases, direct engineering Slack channel. |
+| Tier | Price | Model | Deliverables & Rights |
+| :--- | :--- | :--- | :--- |
+| **Rubrol Community** | **$0 / Free Forever** | Open Source (GNU LGPLv3) | Local developer CLI, Docker evaluation container, standard B2B SaaS Typst templates, community GitHub support. |
+| **Rubrol Pro** | **$1,800 / year** | Annual Commercial License | Unlimited local Docker sidecar execution (no doc limits), commercial rights replacing LGPLv3, SaaS billing and receipt templates, Swiss QR and barcodes, private GitHub vault access (`rubrol-pro-vault`), 1-year offline cryptographic license key. |
+| **Rubrol Enterprise** | **$4,800 / year** | Annual Enterprise Suite | Turnkey EU compliance suite with certified ISO 19005-3 PDF/A-3b + Factur-X / ZUGFeRD 2.2, Schematron semantic validator (EN 16931 & XRechnung 3.0), German DIN 5008 & French Chorus Pro templates, dual vault access (`rubrol-pro-vault` + `rubrol-enterprise-vault`), 2025-2028 legal update feed, priority support. |
 
-**[Unlock Pro & Lifetime Licenses via Stripe Checkout](https://buy.stripe.com/00w8wQ0GN1h8ehJ7Wk0Ba09)**
+* **[Buy Rubrol Pro ($1,800/yr via Stripe Checkout)](https://buy.stripe.com/00w8wQ0GN1h8ehJ7Wk0Ba09)**
+* **[Buy Rubrol Enterprise ($4,800/yr via Stripe Checkout)](https://buy.stripe.com/14A5kE1KR8JA2z1dgE0Ba0c)**
 
-*Note: Upon purchase, you will receive immediate automated access to the private repository [`rubrol-pro-vault`](https://github.com/maxcomperatore/rubrol-pro-vault).*
+*Note: Upon purchase, you will receive an immediate signed 1-year offline cryptographic key (`RUBROL_LICENSE_KEY=RBL-LIC-...`) and automated GitHub collaborator invitations to the private vaults.*
 
 ---
 
@@ -779,7 +778,7 @@ Rubrol operates on a transparent Open Core model:
 
 We want native, high-performance client libraries in every programming language. 
 
-> **The Bounty:** Build, test, and publish an open-source community client SDK for an unaddressed ecosystem (e.g. Ruby / Rails, Elixir / Phoenix, Java / Kotlin, Swift, Dart / Flutter) — **Receive a complimentary Rubrol Lifetime Founder Pass ($990 value)** and permanent featured listing on [rubrol.com](https://rubrol.com) and in this repository.
+> **The Bounty:** Build, test, and publish an open-source community client SDK for an unaddressed ecosystem (e.g. Ruby / Rails, Elixir / Phoenix, Java / Kotlin, Swift, Dart / Flutter) - **Receive a complimentary 1-Year Rubrol Pro Commercial License ($1,800 value)** and permanent featured listing on [rubrol.com](https://rubrol.com) and in this repository.
 
 See [`CONTRIBUTING.md`](CONTRIBUTING.md) for full eligibility criteria and submission guidelines.
 
@@ -814,5 +813,5 @@ Yes. The Python server uses `ThreadedHTTPServer` and each Typst compilation work
 ---
 
 <div align="center">
-  <sub>Engineered by the Rubrol Team. Apache 2.0 Open Core.</sub>
+  <sub>Engineered by the Rubrol Team. GNU LGPLv3 Open Source Core with Commercial Dual Licensing (Sidekiq Model).</sub>
 </div>
