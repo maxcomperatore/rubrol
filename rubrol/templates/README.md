@@ -24,7 +24,7 @@ Are hosted in the private repository **[maxcomperatore/rubrol-pro-vault](https:/
 
 ### How to Unlock Access
 1. Purchase a Pro Vault or Enterprise license:
-   * [Rubrol Pro ($1,800/yr)](https://buy.stripe.com/4gM3cw75bbVMb5x7Wk0Ba0h)
-   * [Rubrol Enterprise ($4,800/yr)](https://buy.stripe.com/eVqdRa1KRaRIa1ta4s0Ba0i)
+   * [Rubrol Pro ($1,800/yr)](https://buy.stripe.com/fZu5kEcpvcZQehJdgE0Ba0j)
+   * [Rubrol Enterprise ($4,800/yr)](https://buy.stripe.com/7sY28sahn0d41uX5Oc0Ba0k)
 2. Enter your **GitHub Username** in the required checkout field.
 3. You will immediately receive an automated GitHub repository invitation granting full access to clone and download maxcomperatore/rubrol-pro-vault.

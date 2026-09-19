@@ -82,7 +82,7 @@ class RubrolEngine:
         if template_ident in pro_vault_catalog:
             raise FileNotFoundError(
                 f"Template '{template_ident}' ({pro_vault_catalog[template_ident]}) is part of the private Rubrol Pro Vault.\n"
-                f"Unlock access at https://buy.stripe.com/4gM3cw75bbVMb5x7Wk0Ba0h (or clone https://github.com/maxcomperatore/rubrol-pro-vault into rubrol/templates/vault/)."
+                f"Unlock access at https://buy.stripe.com/fZu5kEcpvcZQehJdgE0Ba0j (or clone https://github.com/maxcomperatore/rubrol-pro-vault into rubrol/templates/vault/)."
             )
 
         raise FileNotFoundError(f"Template '{template_ident}' not found in registry or filesystem.")

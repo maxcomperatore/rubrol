@@ -514,11 +514,11 @@ io.Copy(outFile, resp.Body)
 
 You can inspect precompiled sample PDFs in [`examples/output/`](examples/output):
 
-* [**`b2b_invoice.pdf`**](examples/output/b2b_invoice.pdf) — Stripe/Linear-style SaaS billing invoice.
-* [**`saas_receipt.pdf`**](examples/output/saas_receipt.pdf) — Clean payment receipt with transaction ID and card brand.
-* [**`facturx_invoice.pdf`**](examples/output/facturx_invoice.pdf) — EU Factur-X / ZUGFeRD 2.2 hybrid container with embedded `factur-x.xml`.
-* [**`board_financial_report.pdf`**](examples/output/board_financial_report.pdf) — Multi-column executive financial briefing.
-* [**`compliance_certificate.pdf`**](examples/output/compliance_certificate.pdf) — Cryptographically styled SOC 2 / ISO 27001 certificate.
+* [**`b2b_invoice.pdf`**](examples/output/b2b_invoice.pdf) - Stripe/Linear-style SaaS billing invoice.
+* [**`saas_receipt.pdf`**](examples/output/saas_receipt.pdf) - Clean payment receipt with transaction ID and card brand.
+* [**`facturx_invoice.pdf`**](examples/output/facturx_invoice.pdf) - EU Factur-X / ZUGFeRD 2.2 hybrid container with embedded `factur-x.xml`.
+* [**`board_financial_report.pdf`**](examples/output/board_financial_report.pdf) - Multi-column executive financial briefing.
+* [**`compliance_certificate.pdf`**](examples/output/compliance_certificate.pdf) - Cryptographically styled SOC 2 / ISO 27001 certificate.
 
 ---
 
@@ -742,8 +742,8 @@ Rubrol operates on the transparent **Sidekiq commercial open-core model**:
 | **Rubrol Pro** | **$1,800 / year** | Annual Commercial License | Unlimited local Docker sidecar execution (no doc limits), commercial rights replacing LGPLv3, SaaS billing and receipt templates, Swiss QR and barcodes, private GitHub vault access (`rubrol-pro-vault`), 1-year offline cryptographic license key. |
 | **Rubrol Enterprise** | **$4,800 / year** | Annual Enterprise Suite | Turnkey EU compliance suite with certified ISO 19005-3 PDF/A-3b + Factur-X / ZUGFeRD 2.2, Schematron semantic validator (EN 16931 & XRechnung 3.0), German DIN 5008 & French Chorus Pro templates, dual vault access (`rubrol-pro-vault` + `rubrol-enterprise-vault`), 2025-2028 legal update feed, priority support. |
 
-* **[Buy Rubrol Pro ($1,800/yr via Stripe Checkout)](https://buy.stripe.com/4gM3cw75bbVMb5x7Wk0Ba0h)**
-* **[Buy Rubrol Enterprise ($4,800/yr via Stripe Checkout)](https://buy.stripe.com/eVqdRa1KRaRIa1ta4s0Ba0i)**
+* **[Buy Rubrol Pro ($1,800/yr via Stripe Checkout)](https://buy.stripe.com/fZu5kEcpvcZQehJdgE0Ba0j)**
+* **[Buy Rubrol Enterprise ($4,800/yr via Stripe Checkout)](https://buy.stripe.com/7sY28sahn0d41uX5Oc0Ba0k)**
 
 *Note: Upon purchase, you will receive an immediate signed 1-year offline cryptographic key (`RUBROL_LICENSE_KEY=RBL-LIC-...`) and automated GitHub collaborator invitations to the private vaults.*
 
