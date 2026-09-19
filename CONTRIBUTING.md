@@ -96,10 +96,11 @@ Run the automated test suite before opening any pull request:
 
 ```bash
 # Run unit & compilation tests
-pytest tests/
+pytest
 
-# Test sidecar endpoint latency
-python -m pytest tests/test_latency.py -v
+# Test sidecar endpoint latency (optional)
+pytest -k test_latency -v
+
 ```
 
 ---

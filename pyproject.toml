@@ -30,3 +30,8 @@ include = ["rubrol*"]
 
 [tool.setuptools.package-data]
 "*" = ["*.typ", "*.json", "*.html", "*.css", "*.js", "*.svg", "*.png"]
+
+[tool.pytest.ini_options]
+testpaths = ["rubrol/tests"]
+python_files = ["test_*.py"]
+

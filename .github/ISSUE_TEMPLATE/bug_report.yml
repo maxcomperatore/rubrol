@@ -1,0 +1,84 @@
+name: Bug Report
+description: Report an issue or unexpected behavior in the Rubrol engine or sidecar
+title: "[BUG]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Before submitting, please search existing issues and [GitHub Discussions](https://github.com/maxcomperatore/rubrol/discussions) to see if this has already been reported.
+
+        For general usage questions or template styling help, please use Discussions or email `support@rubrol.com` for commercial priority support.
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the Bug
+      description: A clear and concise description of what the bug is.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to Reproduce & Sample Payload
+      description: Provide the exact CLI command or HTTP payload needed to reproduce this issue.
+      render: json
+      placeholder: |
+        {
+          "invoice_number": "INV-2026-001",
+          ...
+        }
+    validations:
+      required: true
+  - type: textarea
+    id: error_output
+    attributes:
+      label: Error Output or Stack Trace
+      description: Paste any error messages, compiler outputs, or terminal logs.
+      render: shell
+    validations:
+      required: false
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: A concise description of what you expected to happen.
+    validations:
+      required: true
+  - type: dropdown
+    id: deployment
+    attributes:
+      label: Deployment Environment
+      description: How are you running Rubrol?
+      options:
+        - Docker sidecar container
+        - Python CLI / Library (`python rubrol.py ...`)
+        - Kubernetes pod
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Rubrol Version
+      description: Run `rubrol --version` or check container image tag.
+      placeholder: "1.0.0"
+    validations:
+      required: true
+  - type: input
+    id: os
+    attributes:
+      label: Operating System / Platform
+      placeholder: "Ubuntu 24.04, Debian 12, macOS 15, Windows 11"
+    validations:
+      required: true
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Pre-submission Checklist
+      options:
+        - label: I have verified this issue occurs on the latest v1.0.x release.
+          required: true
+        - label: I have included a minimal reproducible template or JSON payload.
+          required: true
+        - label: I understand that questions should be asked in GitHub Discussions, not Issues.
+          required: true

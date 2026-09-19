@@ -1,0 +1,43 @@
+name: Feature / Template Request
+description: Propose a new document template, engine optimization, or SDK integration
+title: "[FEATURE]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for suggesting a feature to improve Rubrol! Please ensure your request focuses on performance, compliance, or developer experience.
+  - type: textarea
+    id: summary
+    attributes:
+      label: Feature Summary
+      description: What would you like Rubrol to support or improve?
+    validations:
+      required: true
+  - type: textarea
+    id: motivation
+    attributes:
+      label: Motivation / Use Case
+      description: What compute bottleneck, compliance standard, or operational difficulty does this address?
+    validations:
+      required: true
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed Implementation
+      description: Any architectural ideas, Typst design snippets, or API design suggestions.
+    validations:
+      required: false
+  - type: dropdown
+    id: area
+    attributes:
+      label: Primary Feature Area
+      options:
+        - Typst Document Template
+        - Core Engine / Performance
+        - Factur-X / PDF/A Compliance
+        - HTTP Sidecar & Server
+        - Client SDK (Go, Node, Ruby, etc.)
+        - Docker / Infrastructure
+    validations:
+      required: true
