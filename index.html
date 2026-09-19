@@ -76,34 +76,26 @@
         "offers": [
           {
             "@type": "Offer",
-            "name": "Developer Core",
+            "name": "Rubrol Community",
             "price": "0",
             "priceCurrency": "USD",
-            "description": "Apache 2.0 open-source core with local sidecar and CLI."
+            "description": "Open-source GNU LGPLv3 core with local developer CLI, sidecar container, and standard templates."
           },
           {
             "@type": "Offer",
-            "name": "Pro Template Vault",
-            "price": "490",
+            "name": "Rubrol Pro",
+            "price": "1800",
             "priceCurrency": "USD",
             "priceValidUntil": "2027-12-31",
-            "description": "11 production enterprise templates with quarterly updates."
+            "description": "Annual commercial license replacing LGPLv3, unlimited local Docker sidecar, B2B SaaS invoice and receipt templates, ISO 19005-2 PDF/A-2b compilation, and private GitHub vault access."
           },
           {
             "@type": "Offer",
-            "name": "Compliance Suite",
-            "price": "2400",
+            "name": "Rubrol Enterprise",
+            "price": "4800",
             "priceCurrency": "USD",
             "priceValidUntil": "2027-12-31",
-            "description": "Turnkey EU Factur-X / ZUGFeRD 2.2 EN 16931 compliance suite."
-          },
-          {
-            "@type": "Offer",
-            "name": "Lifetime Founder Pass",
-            "price": "990",
-            "priceCurrency": "USD",
-            "priceValidUntil": "2027-12-31",
-            "description": "Lifetime commercial engine rights and perpetual template access."
+            "description": "Turnkey EU compliance suite with certified ISO 19005-3 PDF/A-3b, Factur-X / ZUGFeRD 2.2, EN 16931 & XRechnung 3.0 Schematron validation, DIN 5008 & Chorus Pro templates, and priority support."
           }
         ],
         "author": {
@@ -119,7 +111,7 @@
             "name": "What is Rubrol?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Rubrol is a sub-10ms dynamic PDF/A compilation engine powered by Apache 2.0 Typst. It is built as a lightweight, zero-virtualization alternative to Headless Chrome, Puppeteer, and Gotenberg."
+              "text": "Rubrol is a sub-10ms dynamic PDF/A compilation engine powered by Typst. It is built as a lightweight, zero-virtualization alternative to Headless Chrome, Puppeteer, and Gotenberg."
             }
           },
           {
@@ -144,6 +136,38 @@
             "acceptedAnswer": {
               "@type": "Answer",
               "text": "You can run the official multi-arch Docker image with: docker run -d -p 8080:8080 --name rubrol-sidecar ghcr.io/maxcomperatore/rubrol:latest."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What are Rubrol Pro and Rubrol Enterprise?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Rubrol Pro and Rubrol Enterprise are commercial extensions following the Sidekiq open-core model. Pro includes an annual commercial license grant replacing LGPLv3, unlimited sidecar nodes, ISO 19005-2 PDF/A-2b compilation, and access to private template repositories. Enterprise adds turnkey ISO 19005-3 PDF/A-3b Factur-X / ZUGFeRD 2.2 compliance, Schematron validators, and European regulatory updates."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I use Rubrol in a commercial closed-source SaaS?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Rubrol Pro and Rubrol Enterprise grant full commercial production rights that legally replace the GNU LGPLv3, allowing proprietary closed-source deployment without open-sourcing modifications."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does Rubrol send document or customer data over the internet?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Rubrol runs completely locally as a Docker sidecar or standalone CLI binary on your own infrastructure. Zero document payloads, invoice data, or customer PII ever leaves your VPC."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How does offline license key validation work?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Rubrol licenses use asymmetric Ed25519 cryptographic signatures (JWT). The sidecar verifies the license key completely offline in memory using an embedded public key, requiring zero outbound network pings or telemetry."
             }
           }
         ]
