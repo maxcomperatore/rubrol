@@ -233,6 +233,39 @@ def process_stripe_event(event: Dict[str, Any]) -> Dict[str, Any]:
             "message": "Subscription cancelled; credentials and vault access revoked."
         }
 
+    elif event_type in ("invoice.payment_succeeded", "invoice.paid"):
+        invoice = event.get("data", {}).get("object", {})
+        billing_reason = invoice.get("billing_reason", "")
+        # Process renewal cycles (Day 365+)
+        if billing_reason == "subscription_cycle":
+            email = invoice.get("customer_email", "")
+            amount_paid = invoice.get("amount_paid", 0)
+            lines = invoice.get("lines", {}).get("data", [])
+            metadata = lines[0].get("metadata", {}) if lines else {}
+            github_username = metadata.get("github_username") or invoice.get("metadata", {}).get("github_username")
+
+            raw_tier = metadata.get("tier", "").lower()
+            if "enterprise" in raw_tier or "compliance" in raw_tier or amount_paid >= 400000:
+                tier = "eu_enterprise"
+            else:
+                tier = "pro_sidecar"
+
+            renewed_key = generate_license_key(
+                customer_email=email,
+                github_username=github_username or "unspecified",
+                tier=tier,
+                valid_days=365
+            )
+            logger.info(f"Generated renewed 1-year license key for {email}: {renewed_key[:35]}...")
+            return {
+                "handled": True,
+                "event_type": event_type,
+                "customer_email": email,
+                "tier": tier,
+                "license_key": renewed_key,
+                "message": "Annual subscription successfully renewed; new 1-year cryptographic key generated."
+            }
+
     return {"handled": False, "event_type": event_type, "message": "Event type not requiring fulfillment"}
 
 

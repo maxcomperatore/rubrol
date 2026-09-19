@@ -89,3 +89,38 @@ def test_stripe_subscription_cancellation_webhook(monkeypatch):
     assert result["github_username"] == "canceluser"
     assert len(result["revocations"]) == 2
 
+def test_stripe_subscription_renewal_webhook():
+    from rubrol.webhooks.stripe_fulfillment import process_stripe_event
+    from rubrol.core.license import verify_license_key
+
+    event = {
+        "id": "evt_test_renewal_123",
+        "type": "invoice.payment_succeeded",
+        "data": {
+            "object": {
+                "billing_reason": "subscription_cycle",
+                "customer_email": "renewed@client.de",
+                "amount_paid": 480000,
+                "lines": {
+                    "data": [
+                        {
+                            "metadata": {
+                                "tier": "eu_enterprise",
+                                "github_username": "renewedclient"
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    }
+    result = process_stripe_event(event)
+    assert result["handled"] is True
+    assert result["tier"] == "eu_enterprise"
+    assert result["customer_email"] == "renewed@client.de"
+    assert "license_key" in result
+    info = verify_license_key(result["license_key"])
+    assert info.is_valid is True
+    assert info.tier == "eu_enterprise"
+    assert info.days_remaining in (364, 365)
+
