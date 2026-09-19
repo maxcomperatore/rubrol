@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: GitHub Discussions (Q&A & Community Help)
+    url: https://github.com/maxcomperatore/rubrol/discussions
+    about: Ask questions, get help with Typst templates, or discuss architecture.
+  - name: Commercial & Priority Support
+    url: mailto:support@rubrol.com
+    about: Dedicated support for Rubrol Pro & Enterprise license holders.
