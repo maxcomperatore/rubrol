@@ -3167,7 +3167,7 @@
         <a href="#studio" class="btn-pill-primary" style="padding: 13px 28px; font-size: 15px;">Launch Live Studio</a>
         <a href="https://github.com/maxcomperatore/rubrol" target="_blank" class="btn-pill-secondary" style="padding: 13px 22px; font-size: 15px; display: inline-flex; align-items: center; gap: 8px;">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-          Clone Core (AGPLv3)
+          Clone Core (LGPLv3)
         </a>
         <a href="#pricing" class="btn-pill-secondary" style="padding: 13px 22px; font-size: 15px;">Commercial Licenses</a>
       </div>
@@ -3857,7 +3857,7 @@
               <span class="price-period">/ Free Forever</span>
             </div>
             <div id="roi-developer" style="font-size: 11.5px; color: #15803d; font-family: var(--font-mono); margin: -10px 0 16px 0;">
-              ● 100% Free Open-Source Core (AGPLv3)
+              ● 100% Free Open-Source Core (LGPLv3)
             </div>
             <ul class="price-features">
               <li>Sub-10ms Mean Compile Latency</li>
@@ -3884,7 +3884,7 @@
               <span class="price-period" id="price-period-pro">/ year ($150/mo)</span>
             </div>
             <div id="roi-pro" style="font-size: 11px; color: #15803d; font-family: var(--font-mono); margin: -10px 0 16px 0;">
-              ● Unlimited Local Nodes • Replaces AGPLv3
+              ● Unlimited Local Nodes • Replaces LGPLv3
             </div>
             <ul class="price-features">
               <li>Unlimited Local Sidecar Execution (No Limits)</li>
@@ -3928,6 +3928,40 @@
           <a href="https://buy.stripe.com/14A5kE1KR8JA2z1dgE0Ba0c" target="_blank" class="btn-pricing btn-pricing-primary" id="btn-compliance">
             Buy Rubrol Enterprise ($4,800/yr)
           </a>
+        </div>
+      </div>
+
+      <!-- Sidekiq Dual-License Model Explanation -->
+      <div style="margin-top: 48px; background: #ffffff; border: 1px solid var(--border-parchment); border-radius: 12px; padding: 32px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);">
+        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+          <span style="font-family: var(--font-mono); font-size: 11px; background: rgba(245, 158, 11, 0.12); color: #b45309; padding: 3px 10px; border-radius: 999px; font-weight: 700; border: 1px solid rgba(245, 158, 11, 0.25);">
+            COMMERCIAL OPEN-CORE MODEL
+          </span>
+          <span style="font-size: 12.5px; color: var(--text-light-muted); font-family: var(--font-mono);">The Sidekiq dual-license model</span>
+        </div>
+        <h3 style="font-family: var(--font-serif); font-size: 22px; color: var(--text-light-head); margin-bottom: 12px;">
+          How Rubrol Licensing Works: The Sidekiq Model
+        </h3>
+        <p style="font-size: 14px; color: var(--text-light-body); line-height: 1.6; margin-bottom: 16px;">
+          Just like Sidekiq, <strong>Rubrol Community</strong> is 100% free and open source under the <strong>GNU Lesser General Public License v3.0 (LGPLv3)</strong>. You are free to run it locally, inspect the source, and use it in your development infrastructure without paying a dime.
+        </p>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px;">
+          <div style="background: var(--bg-parchment-warm); border: 1px solid var(--border-parchment); border-radius: 8px; padding: 18px;">
+            <div style="font-weight: 700; font-size: 14px; color: #15803d; margin-bottom: 6px; display: flex; align-items: center; gap: 6px;">
+              <span>●</span> Open Source (GNU LGPLv3)
+            </div>
+            <p style="font-size: 12.5px; color: var(--text-light-body); line-height: 1.5; margin: 0;">
+              Free forever for local development, Docker evaluation, CLI scripts, and open-source projects. You can dynamically link or invoke the sidecar without having to open-source your proprietary business code.
+            </p>
+          </div>
+          <div style="background: var(--bg-parchment-warm); border: 1px solid var(--border-parchment); border-radius: 8px; padding: 18px;">
+            <div style="font-weight: 700; font-size: 14px; color: var(--amber-primary); margin-bottom: 6px; display: flex; align-items: center; gap: 6px;">
+              <span>●</span> Commercial License (Pro &amp; Enterprise)
+            </div>
+            <p style="font-size: 12.5px; color: var(--text-light-body); line-height: 1.5; margin: 0;">
+              Replaces the LGPLv3 with a traditional commercial agreement for production SaaS deployments. Unlocks unlimited execution, turnkey EU Factur-X / Schematron verification, and private GitHub repository access.
+            </p>
+          </div>
         </div>
       </div>
 
@@ -3998,7 +4032,7 @@
           <div class="footer-col-title">Company</div>
           <ul class="footer-links">
             <li><a href="https://github.com/maxcomperatore/rubrol" target="_blank">GitHub</a></li>
-            <li><a href="https://github.com/maxcomperatore/rubrol/blob/main/LICENSE" target="_blank">Apache 2.0 License</a></li>
+            <li><a href="https://github.com/maxcomperatore/rubrol/blob/main/LICENSE" target="_blank">GNU LGPLv3 License</a></li>
             <li><a href="#pricing">Pricing</a></li>
             <li><a href="mailto:support@rubrol.com">Support</a></li>
           </ul>
@@ -4006,7 +4040,7 @@
       </div>
 
       <div class="footer-bottom">
-        <div>&copy; 2026 Rubrol Engine. Open core released under the Apache 2.0 License.</div>
+        <div>&copy; 2026 Rubrol Engine. Open core released under the GNU LGPLv3 License. Commercial licenses available.</div>
         <div style="font-family: var(--font-mono); font-size: 11.5px;">SUB-MILLISECOND DOCUMENT INFRASTRUCTURE</div>
       </div>
     </div>
@@ -4853,7 +4887,7 @@ ${err.message}</div>`;
         if (roiDev) roiDev.style.display = 'block';
         calcRecPlan.innerText = "Rubrol Community ($0 Free)";
         calcRecPlan.style.color = "#10b981";
-        calcRecRoi.innerHTML = "100% Free Open-Source Core (AGPLv3) • Run unlimited locally or in Docker for evaluation";
+        calcRecRoi.innerHTML = "100% Free Open-Source Core (LGPLv3) • Run unlimited locally or in Docker for evaluation";
         calcCtaBtn.href = GITHUB_REPO_URL;
         calcCtaBtn.innerHTML = "<span>Clone on GitHub (Free)</span>";
       }

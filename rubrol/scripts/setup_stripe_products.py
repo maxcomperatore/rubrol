@@ -46,7 +46,7 @@ def create_checkout_session(
         name = "Rubrol Pro (Annual Commercial License)"
         description = (
             "Commercial open-core license for scaling engineering teams. Unlimited local Docker containers, "
-            "replaces AGPLv3 with full commercial production rights, zero Chrome memory leaks (<6ms renders), "
+            "replaces LGPLv3 with full commercial production rights, zero Chrome memory leaks (<6ms renders), "
             "pre-built B2B SaaS invoice & receipt templates, dynamic Swiss QR / barcodes, private GitHub vault "
             "(rubrol-pro-vault) access, and a signed 1-year offline cryptographic license key."
         )
