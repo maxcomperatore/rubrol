@@ -81,9 +81,9 @@ User clicks "Download Invoice"
   - [Docker Compose](#docker-compose)
   - [Kubernetes Sidecar Pattern](#kubernetes-sidecar-pattern)
 - [Commercial Licensing & Sidekiq Dual-License Model](#commercial-licensing--sidekiq-dual-license-model)
-- [Community SDK Bounty Program](#community-sdk-bounty-program-990-reward)
+- [Commercial Licensing FAQ](#commercial-licensing-faq)
 - [Contributing Guidelines](#contributing-guidelines)
-- [FAQ & Troubleshooting](#faq--troubleshooting)
+- [Technical FAQ & Troubleshooting](#technical-faq--troubleshooting)
 
 ---
 
@@ -749,13 +749,73 @@ Rubrol operates on the transparent **Sidekiq commercial open-core model**:
 
 ---
 
-## Community SDK Bounty Program ($990 Reward)
+## Commercial Licensing FAQ
 
-We want native, high-performance client libraries in every programming language. 
+### What are Rubrol Pro and Rubrol Enterprise?
+Rubrol Pro and Rubrol Enterprise are commercial extensions and licensing agreements for the Rubrol engine. They provide production commercial rights (replacing the GNU LGPLv3), private GitHub template vault access, cryptographic 1-year offline license keys, turnkey EU Factur-X / Schematron compliance suites, and direct developer support.
 
-> **The Bounty:** Build, test, and publish an open-source community client SDK for an unaddressed ecosystem (e.g. Ruby / Rails, Elixir / Phoenix, Java / Kotlin, Swift, Dart / Flutter) - **Receive a complimentary 1-Year Rubrol Pro Commercial License ($1,800 value)** and permanent featured listing on [rubrol.com](https://rubrol.com) and in this repository.
+### Is there a trial version?
+We do not have pre-sales demos or trial keys. Rubrol Community is 100% free, open-source, and available on GitHub for evaluation and local development under the GNU LGPLv3. If Rubrol meets your performance needs, you can purchase Rubrol Pro or Enterprise. If you are not satisfied with the result, write to support@rubrol.com within 14 days and we will issue a full refund.
 
-See [`CONTRIBUTING.md`](CONTRIBUTING.md) for full eligibility criteria and submission guidelines.
+### Can I get a discount?
+For Rubrol Pro ($1,800/yr), pricing is fixed and flat with zero discounts or special deals. For Rubrol Enterprise ($4,800/yr), multi-year commitments or custom cluster volume agreements are available for high-throughput organizations. Contact enterprise@rubrol.com for quotes.
+
+### What is the license?
+The open-source core is licensed under the **GNU Lesser General Public License v3.0 (LGPLv3)**. Rubrol Pro and Rubrol Enterprise are commercial licenses that replace the LGPLv3 with a traditional proprietary commercial agreement for production SaaS deployments, removing open-source linking obligations.
+
+### How does Pro licensing work?
+Every organization running Rubrol in production for commercial SaaS applications must purchase an annual subscription ($1,800/yr). There is no limit to the number of Docker containers, Kubernetes pods, CPU cores, or developer machines used by that organization. Your subscription renews automatically each year.
+
+### How does Enterprise licensing work?
+Every organization deploying Rubrol for European e-invoicing compliance (EN 16931) must purchase a Rubrol Enterprise subscription ($4,800/yr). It includes the complete turnkey compliance suite: certified ISO 19005-3 PDF/A-3b container generation, embedded Factur-X / ZUGFeRD 2.2 XML, built-in Schematron semantic validation (XRechnung 3.0), French Chorus Pro and German DIN 5008 templates, dual vault repository access (`rubrol-pro-vault` + `rubrol-enterprise-vault`), guaranteed regulatory update feeds for 2025-2028 EU mandates, and priority Slack/email support.
+
+### How do I purchase?
+You can purchase in seconds via Stripe Checkout:
+* [Buy Rubrol Pro ($1,800/yr)](https://buy.stripe.com/fZu5kEcpvcZQehJdgE0Ba0j)
+* [Buy Rubrol Enterprise ($4,800/yr)](https://buy.stripe.com/7sY28sahn0d41uX5Oc0Ba0k)
+
+Enter your **GitHub Username** during checkout. Your account will automatically receive a collaborator invitation granting full access to clone the private repository, and a signed 1-year cryptographic license key (`RUBROL_LICENSE_KEY=RBL-LIC-...`) will be issued immediately.
+
+### Can I upgrade from Rubrol Pro to Enterprise?
+Yes. Purchase a Rubrol Enterprise subscription and email support@rubrol.com. We will cancel your existing Pro subscription and prorate the unused balance back to your credit card immediately.
+
+### What happens if my subscription lapses?
+We email you an automated reminder one week before annual subscription renewal. If your card cannot be charged, Stripe will retry 3 times over a 7-day period. If payment continues to fail, your subscription is canceled, private GitHub vault repository access is revoked, and your offline license key will not be renewed upon expiration.
+
+### Can I distribute Rubrol as an on-premise appliance to my customers?
+The standard commercial license covers your organization's own SaaS infrastructure and internal servers. If you distribute Rubrol binaries or containers embedded directly inside an on-premise software appliance delivered to external third-party customer hardware, contact enterprise@rubrol.com for an OEM Appliance License.
+
+### Can you transfer a license?
+Licenses are not transferable between different corporate entities. You can transfer a license between employees or GitHub accounts within the same organization by emailing support@rubrol.com with your Stripe customer email.
+
+### What does the license require me to do?
+Your purchase provides private GitHub vault repository access and an offline cryptographic license key. The license agreement requires you to keep these access credentials confidential. Do not commit your license key to public git repositories or public container registries.
+
+### Do I have to share the license key with all of my developers?
+Yes. Your developers and CI/CD runners require the `RUBROL_LICENSE_KEY` environment variable to compile production documents without evaluation limits. Store it securely in your secret manager (e.g. AWS Secrets Manager, GitHub Actions Secrets, HashiCorp Vault, Doppler, or local `.env`).
+
+### How do I debug a license validation error?
+Ensure your environment variable `RUBROL_LICENSE_KEY` starts with `RBL-LIC-`. Run `rubrol license verify` from the CLI or inspect container logs on startup. If the key has expired or the signature was modified, the engine will output a clear error message indicating whether the token was malformed or expired.
+
+### Can I get a refund?
+Yes, up to 14 days after purchase. If Rubrol does not fit your infrastructure or workload, write to support@rubrol.com and we will refund 100% of your payment.
+
+### Can I pay via invoice and purchase order?
+Rubrol Pro is credit card only via Stripe. For Rubrol Enterprise, annual invoicing with payment via ACH, wire transfer, or corporate purchase order is available for qualified corporate accounts. Contact enterprise@rubrol.com to arrange an invoice.
+
+### Disputing a charge
+If an unfamiliar charge appears on your card statement, please contact support@rubrol.com before initiating a bank dispute. Disputes result in immediate automated suspension of license keys and vault access. We resolve billing issues and refunds quickly and politely.
+
+### Purchasing via Resellers
+Resellers are welcome to purchase Rubrol Pro or Rubrol Enterprise for their clients via Stripe Checkout. Provide the client's distinct technical email address and GitHub username so access is provisioned directly to their engineering team.
+
+### Security, Privacy, and Data Sovereignty
+Rubrol runs 100% locally within your own Docker containers, Kubernetes pods, or bare-metal servers. Customer documents, invoice data, and PII are processed entirely in memory and never leave your infrastructure. There are zero outbound document telemetry calls, zero third-party analytics scripts, and zero cloud dependencies.
+
+### Contact Info
+* General Support & Licensing: [support@rubrol.com](mailto:support@rubrol.com)
+* Enterprise Sales & Invoicing: [enterprise@rubrol.com](mailto:enterprise@rubrol.com)
+* GitHub Repository: [https://github.com/maxcomperatore/rubrol](https://github.com/maxcomperatore/rubrol)
 
 ---
 
@@ -771,7 +831,7 @@ Please review our [**Contributing Guide (`CONTRIBUTING.md`)**](CONTRIBUTING.md) 
 
 ---
 
-## FAQ & Troubleshooting
+## Technical FAQ & Troubleshooting
 
 ### Why is Typst faster than Chromium?
 Chromium must initialize an entire browser rendering pipeline: Blink layout engine, V8 JavaScript engine, DOM tree construction, CSS rule calculation, and Skia paint calls. Typst is a purpose-built document layout compiler written in Rust that compiles directly to vector PDF primitives in memory with zero browser overhead.

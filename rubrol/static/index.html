@@ -1647,6 +1647,82 @@
       gap: 24px;
     }
 
+    /* COMMERCIAL FAQ SECTION (SIDEKIQ MODEL) */
+    .section-faq {
+      background: #000000;
+      padding: 100px 0;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .faq-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 48px;
+    }
+
+    .faq-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 24px 28px;
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .faq-card:hover {
+      border-color: rgba(255, 255, 255, 0.2);
+      transform: translateY(-1px);
+    }
+
+    .faq-question {
+      font-family: var(--font-sans);
+      font-size: 16px;
+      font-weight: 600;
+      color: #ffffff;
+      margin-bottom: 10px;
+      letter-spacing: -0.015em;
+      line-height: 1.4;
+    }
+
+    .faq-answer {
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+
+    .faq-answer p {
+      margin: 0 0 8px 0;
+    }
+
+    .faq-answer p:last-child {
+      margin-bottom: 0;
+    }
+
+    .faq-answer a {
+      color: #ffffff;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .faq-answer strong {
+      color: var(--text-primary);
+    }
+
+    .faq-answer code {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      background: rgba(255, 255, 255, 0.06);
+      padding: 2px 6px;
+      border-radius: 4px;
+      border: 1px solid var(--border-subtle);
+    }
+
+    @media (max-width: 900px) {
+      .faq-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
     /* PRE-FOOTER CTA */
     .section-prefooter {
       background: #07080b;
@@ -3093,11 +3169,11 @@
                 <div class="compact-item-desc">Official @preview/rubrol-invoice package</div>
               </div>
             </a>
-            <a href="https://github.com/maxcomperatore/rubrol#-community-sdk-bounty-program-990-reward" target="_blank" class="compact-dropdown-item">
-              <span class="compact-item-icon">BOUNTY</span>
+            <a href="#faq" class="compact-dropdown-item">
+              <span class="compact-item-icon">FAQ</span>
               <div class="compact-item-body">
-                <div class="compact-item-title">SDK Bounty Program <span class="compact-item-badge">$990</span></div>
-                <div class="compact-item-desc">Cash rewards for community client libraries</div>
+                <div class="compact-item-title">Commercial FAQ <span class="compact-item-badge">LICENSING</span></div>
+                <div class="compact-item-desc">Sidekiq dual-license model, vaults, and terms</div>
               </div>
             </a>
           </div>
@@ -3175,8 +3251,8 @@
         <a href="https://typst.app/universe/package/rubrol-invoice" target="_blank" class="mobile-nav-link" onclick="closeMobileNav()">
           Typst Universe Package
         </a>
-        <a href="https://github.com/maxcomperatore/rubrol#-community-sdk-bounty-program-990-reward" target="_blank" class="mobile-nav-link" onclick="closeMobileNav()">
-          SDK Bounty Program ($990)
+        <a href="#faq" class="mobile-nav-link" onclick="closeMobileNav()">
+          Commercial FAQ
         </a>
       </div>
     </div>
@@ -4016,6 +4092,172 @@
   </section>
       
 
+  <!-- COMMERCIAL LICENSING FAQ (SIDEKIQ MODEL) -->
+  <section id="faq" class="section-faq">
+    <div class="container">
+      <div style="text-align: center; margin-bottom: 48px;">
+        <span class="editorial-label">TRANSPARENT OPEN-CORE LICENSING</span>
+        <h2 style="font-family: var(--font-sans); font-size: 40px; font-weight: 700; color: #ffffff; letter-spacing: -0.03em; margin-bottom: 14px;">
+          Commercial Licensing FAQ
+        </h2>
+        <p style="font-size: 15.5px; color: var(--text-secondary); max-width: 680px; margin: 0 auto;">
+          Rubrol operates on the transparent Sidekiq commercial open-core model. Everything you need to know about subscriptions, private template vaults, and commercial rights.
+        </p>
+      </div>
+
+      <div class="faq-grid">
+        <!-- Q1 -->
+        <div class="faq-card">
+          <h3 class="faq-question">What are Rubrol Pro and Rubrol Enterprise?</h3>
+          <div class="faq-answer">
+            <p>Rubrol Pro and Rubrol Enterprise are commercial extensions and licensing agreements for the Rubrol engine. They provide commercial SaaS rights that replace the GNU LGPLv3, private GitHub template vault access, cryptographic 1-year offline license keys, turnkey European e-invoicing compliance (Enterprise), and direct developer support.</p>
+          </div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="faq-card">
+          <h3 class="faq-question">Is there a trial version?</h3>
+          <div class="faq-answer">
+            <p>We do not offer pre-sales sales demos or trial keys. <strong>Rubrol Community</strong> is 100% free, open-source, and available on GitHub under GNU LGPLv3 for evaluation and local development. If Rubrol works for your architecture, you can purchase an annual subscription to Pro or Enterprise. If you are not satisfied with the result, write to <a href="mailto:support@rubrol.com">support@rubrol.com</a> within 14 days and we will issue a full refund.</p>
+          </div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="faq-card">
+          <h3 class="faq-question">Can I get a discount?</h3>
+          <div class="faq-answer">
+            <p>For <strong>Rubrol Pro ($1,800/yr)</strong>, pricing is flat and transparent with zero discounts or promotions. For <strong>Rubrol Enterprise ($4,800/yr)</strong>, multi-year commitments or custom cluster volume agreements are available for high-throughput organizations. Email <a href="mailto:enterprise@rubrol.com">enterprise@rubrol.com</a> for custom quotes.</p>
+          </div>
+        </div>
+
+        <!-- Q4 -->
+        <div class="faq-card">
+          <h3 class="faq-question">What is the license?</h3>
+          <div class="faq-answer">
+            <p>The open-source core is licensed under the <strong>GNU Lesser General Public License v3.0 (LGPLv3)</strong>. Rubrol Pro and Enterprise are commercial licenses that replace the LGPLv3 with a traditional proprietary agreement for production SaaS deployments, removing open-source linking obligations.</p>
+          </div>
+        </div>
+
+        <!-- Q5 -->
+        <div class="faq-card">
+          <h3 class="faq-question">How does Pro licensing work?</h3>
+          <div class="faq-answer">
+            <p>Every organization running Rubrol in production for commercial SaaS applications must purchase an annual subscription ($1,800/yr). There is no limit to the number of Docker containers, Kubernetes pods, CPU cores, or developer machines used by that organization. Your subscription renews automatically each year.</p>
+          </div>
+        </div>
+
+        <!-- Q6 -->
+        <div class="faq-card">
+          <h3 class="faq-question">How does Enterprise licensing work?</h3>
+          <div class="faq-answer">
+            <p>Every organization deploying Rubrol for European e-invoicing compliance (EN 16931) must purchase an Enterprise subscription ($4,800/yr). It includes certified ISO 19005-3 PDF/A-3b container generation, embedded Factur-X / ZUGFeRD 2.2 XML, built-in Schematron semantic validation (XRechnung 3.0), French Chorus Pro and German DIN 5008 templates, dual vault access (<code>rubrol-pro-vault</code> + <code>rubrol-enterprise-vault</code>), 2025-2028 regulatory updates, and priority Slack/email support.</p>
+          </div>
+        </div>
+
+        <!-- Q7 -->
+        <div class="faq-card">
+          <h3 class="faq-question">How do I purchase?</h3>
+          <div class="faq-answer">
+            <p>You can purchase in seconds via Stripe Checkout:</p>
+            <p style="margin-top: 6px;">
+              • <a href="https://buy.stripe.com/fZu5kEcpvcZQehJdgE0Ba0j" target="_blank"><strong>Buy Rubrol Pro ($1,800/yr)</strong></a><br>
+              • <a href="https://buy.stripe.com/7sY28sahn0d41uX5Oc0Ba0k" target="_blank"><strong>Buy Rubrol Enterprise ($4,800/yr)</strong></a>
+            </p>
+            <p style="margin-top: 6px;">Enter your <strong>GitHub Username</strong> during checkout. You will automatically receive an invitation granting access to the private template vault, and a signed 1-year cryptographic license key (<code>RUBROL_LICENSE_KEY=RBL-LIC-...</code>) will be issued immediately.</p>
+          </div>
+        </div>
+
+        <!-- Q8 -->
+        <div class="faq-card">
+          <h3 class="faq-question">Can I upgrade from Rubrol Pro to Enterprise?</h3>
+          <div class="faq-answer">
+            <p>Yes. Purchase a Rubrol Enterprise subscription and email <a href="mailto:support@rubrol.com">support@rubrol.com</a>. We will cancel your existing Pro subscription and prorate the unused balance back to your credit card immediately.</p>
+          </div>
+        </div>
+
+        <!-- Q9 -->
+        <div class="faq-card">
+          <h3 class="faq-question">What happens if my subscription lapses?</h3>
+          <div class="faq-answer">
+            <p>We email you an automated reminder one week before annual subscription renewal. If your card cannot be charged, Stripe retries 3 times over a 7-day period. If payment continues to fail, your subscription is canceled, private GitHub vault repository access is revoked, and your offline license key will not be renewed upon expiration.</p>
+          </div>
+        </div>
+
+        <!-- Q10 -->
+        <div class="faq-card">
+          <h3 class="faq-question">Can I distribute Rubrol as an on-premise appliance to customers?</h3>
+          <div class="faq-answer">
+            <p>The standard commercial license covers your organization's own SaaS infrastructure and internal servers. If you need to distribute Rubrol binaries or containers embedded directly inside an on-premise software appliance delivered to external third-party customer hardware, contact <a href="mailto:enterprise@rubrol.com">enterprise@rubrol.com</a> for an OEM Appliance License.</p>
+          </div>
+        </div>
+
+        <!-- Q11 -->
+        <div class="faq-card">
+          <h3 class="faq-question">Can you transfer a license?</h3>
+          <div class="faq-answer">
+            <p>Licenses are not transferable between different corporate entities. You can transfer a license between employees or GitHub accounts within the same organization by emailing <a href="mailto:support@rubrol.com">support@rubrol.com</a> with your Stripe customer email.</p>
+          </div>
+        </div>
+
+        <!-- Q12 -->
+        <div class="faq-card">
+          <h3 class="faq-question">What does the license require me to do?</h3>
+          <div class="faq-answer">
+            <p>Your purchase provides private GitHub vault repository access and an offline cryptographic license key. The license agreement requires you to keep these access credentials confidential. Do not commit your license key to public git repositories or public container registries.</p>
+          </div>
+        </div>
+
+        <!-- Q13 -->
+        <div class="faq-card">
+          <h3 class="faq-question">Do I have to share the license key with all developers?</h3>
+          <div class="faq-answer">
+            <p>Yes. Your developers and CI/CD runners require the <code>RUBROL_LICENSE_KEY</code> environment variable to compile production documents without evaluation limits. Store it securely in your secret manager (e.g. AWS Secrets Manager, GitHub Actions Secrets, HashiCorp Vault, Doppler, or local <code>.env</code>).</p>
+          </div>
+        </div>
+
+        <!-- Q14 -->
+        <div class="faq-card">
+          <h3 class="faq-question">How do I debug a license validation error?</h3>
+          <div class="faq-answer">
+            <p>Ensure your environment variable <code>RUBROL_LICENSE_KEY</code> starts with <code>RBL-LIC-</code>. Run <code>rubrol license verify</code> from the CLI or inspect container logs on startup. If the key has expired or the signature was modified, the engine will output a clear error message indicating whether the token was malformed or expired.</p>
+          </div>
+        </div>
+
+        <!-- Q15 -->
+        <div class="faq-card">
+          <h3 class="faq-question">Can I get a refund?</h3>
+          <div class="faq-answer">
+            <p>Yes, up to 14 days after purchase. If Rubrol does not fit your infrastructure or workload, write to <a href="mailto:support@rubrol.com">support@rubrol.com</a> and we will refund 100% of your payment.</p>
+          </div>
+        </div>
+
+        <!-- Q16 -->
+        <div class="faq-card">
+          <h3 class="faq-question">Can I pay via invoice and purchase order?</h3>
+          <div class="faq-answer">
+            <p>Rubrol Pro is credit card only via Stripe. For Rubrol Enterprise, annual invoicing with payment via ACH, wire transfer, or corporate purchase order is available for qualified corporate accounts. Contact <a href="mailto:enterprise@rubrol.com">enterprise@rubrol.com</a> to arrange an invoice.</p>
+          </div>
+        </div>
+
+        <!-- Q17 -->
+        <div class="faq-card">
+          <h3 class="faq-question">Disputing a charge</h3>
+          <div class="faq-answer">
+            <p>If an unfamiliar charge appears on your card statement, please contact <a href="mailto:support@rubrol.com">support@rubrol.com</a> before initiating a bank dispute. Disputes result in immediate automated suspension of license keys and vault access. We resolve billing issues and refunds quickly and politely.</p>
+          </div>
+        </div>
+
+        <!-- Q18 -->
+        <div class="faq-card">
+          <h3 class="faq-question">Security, Privacy, and Data Sovereignty</h3>
+          <div class="faq-answer">
+            <p>Rubrol runs 100% locally within your own Docker containers, Kubernetes pods, or bare-metal servers. Customer documents, invoice data, and PII are processed entirely in memory and never leave your infrastructure. There are zero outbound document telemetry calls, zero third-party analytics scripts, and zero cloud dependencies.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- PRE-FOOTER CTA -->
   <section class="section-prefooter">
     <div class="container">
@@ -4081,6 +4323,7 @@
             <li><a href="https://github.com/maxcomperatore/rubrol" target="_blank">GitHub</a></li>
             <li><a href="https://github.com/maxcomperatore/rubrol/blob/main/LICENSE" target="_blank">GNU LGPLv3 License</a></li>
             <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#faq">Commercial FAQ</a></li>
             <li><a href="mailto:support@rubrol.com">Support</a></li>
           </ul>
         </div>

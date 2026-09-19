@@ -10,7 +10,6 @@ Whether you're writing a client library, authoring a new document template, impr
 
 ## Table of Contents
 
-- [The Community SDK Bounty Program ($990 Reward)](#-the-community-sdk-bounty-program-990-reward)
 - [Ways to Contribute](#ways-to-contribute)
   - [1. Community Client SDKs](#1-community-client-sdks)
   - [2. Document Templates](#2-document-templates)
@@ -22,39 +21,6 @@ Whether you're writing a client library, authoring a new document template, impr
 - [Community Recognition & Hall of Fame](#community-recognition--hall-of-fame)
 - [Contributor Terms & License Grant](#contributor-terms--license-grant)
 - [Code of Conduct](#code-of-conduct)
-
----
-
-## The Community SDK Bounty Program ($990 Reward)
-
-To accelerate native integration across every programming language, we sponsor the **Rubrol Community SDK Bounty Program**.
-
-### The Reward
-Any developer who authors, tests, and publishes an idiomatic community SDK package for Rubrol in an unrepresented ecosystem receives:
-1. **Complimentary Rubrol Lifetime Founder Pass ($990 Value)** — Perpetual commercial engine license and access to all future template vault releases with zero recurring fees.
-2. **Official Directory Listing** — Permanent featured link on [rubrol.com](https://rubrol.com), `README.md`, and official documentation.
-3. **Direct Core Maintainer Channel** — Dedicated access to the engineering team.
-
-### Targeted Ecosystems
-| Ecosystem / Language | Package Registry | Bounty Status |
-| :--- | :--- | :--- |
-| **Ruby / Rails** | [rubygems.org](https://rubygems.org) | 🟢 **Open** |
-| **Elixir / Phoenix** | [hex.pm](https://hex.pm) | 🟢 **Open** |
-| **Java / Kotlin / Spring** | Maven Central | 🟢 **Open** |
-| **Swift / Vapor** | Swift Package Manager | 🟢 **Open** |
-| **Dart / Flutter** | [pub.dev](https://pub.dev) | 🟢 **Open** |
-| **Scala** | Maven Central | 🟢 **Open** |
-| **Rust Crate** (`rubrol-rs`) | [crates.io](https://crates.io) | 🟢 **Open** |
-| **Go Module** (`rubrol-go`) | `pkg.go.dev` | 🟢 **Open** |
-| **C# / .NET** | NuGet | 🟢 **Open** |
-
-### Bounty Submission Criteria
-To qualify for the Founder Pass:
-- **Idiomatic Design:** Must adhere to the conventions and best practices of the target language (e.g. type safety, async support where appropriate).
-- **Core Endpoints Covered:** Must wrap `POST /v1/render`, `POST /v1/facturx/render`, and `GET /health`.
-- **Unit Tests:** Must include automated tests verified against the local Rubrol daemon or mock responses.
-- **Published:** Must be published under an open-source license (MIT, Apache 2.0, or BSD) on the target language's package registry.
-- **Claiming the Bounty:** Open an issue or email [bounty@rubrol.com](mailto:bounty@rubrol.com) with the link to your repository and published package.
 
 ---
 
@@ -170,9 +136,8 @@ Every contributor who submits an accepted pull request or publishes an ecosystem
 ## Contributor Terms & License Grant
 
 By submitting a pull request, patch, or contribution to Rubrol:
-1. **Apache 2.0 Inbound License**: You grant Rubrol, its maintainers, and its users an irrevocable, perpetual, worldwide, royalty-free, non-exclusive license under the Apache License 2.0 (pursuant to Section 5 of Apache-2.0), including patent grants.
-2. **Developer Certificate of Origin (DCO 1.1)**: You certify that you authored the contribution in its entirety or otherwise have the full legal right and authority to license it under Apache 2.0.
-3. **Bounty Program IP Assignment**: For bounties awarded and paid under the Community SDK Bounty Program, receipt of the bounty award confirms a perpetual, irrevocable, worldwide license grant and commercial exploitation rights to the Rubrol project.
+1. **GNU LGPLv3 Inbound License**: You grant Rubrol, its maintainers, and its users an irrevocable, perpetual, worldwide, royalty-free license under the GNU Lesser General Public License v3.0 (LGPLv3).
+2. **Developer Certificate of Origin (DCO 1.1)**: You certify that you authored the contribution in its entirety or otherwise have the full legal right and authority to license it under the GNU LGPLv3.
 
 ---
 
