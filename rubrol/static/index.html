@@ -3064,15 +3064,12 @@
       </div>
 
       <div class="nav-actions">
-        <button onclick="openTrialModal()" class="btn-trial-nav">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-          Free API Key
-        </button>
         <a href="https://github.com/maxcomperatore/rubrol" target="_blank" class="btn-github">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
           GitHub
         </a>
         <a href="#studio" class="btn-pill-primary">Live Studio</a>
+        <a href="#pricing" class="btn-trial-nav" style="background: rgba(245, 158, 11, 0.15); border: 1px solid rgba(245, 158, 11, 0.35); color: #f59e0b; text-decoration: none;">Get License</a>
         <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle navigation menu" onclick="toggleMobileNav()" aria-expanded="false">
           <span class="hamburger-bar"></span>
           <span class="hamburger-bar"></span>
@@ -3167,12 +3164,12 @@
       </p>
 
       <div class="hero-ctas">
-        <button onclick="openTrialModal()" class="btn-pill-primary" style="padding: 13px 30px; font-size: 15px; cursor: pointer; border: none; background: linear-gradient(135deg, #f59e0b, #d97706); color: #08090c; font-weight: 700; display: inline-flex; align-items: center; gap: 8px;">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-          Start Free Trial <span style="font-size: 11.5px; opacity: 0.85; font-weight: 500;">(No Card Required)</span>
-        </button>
-        <a href="#studio" class="btn-pill-secondary" style="padding: 13px 26px; font-size: 15px;">Interactive API Studio</a>
-        <a href="https://github.com/maxcomperatore/rubrol" target="_blank" class="btn-pill-secondary" style="padding: 13px 22px; font-size: 15px;">GitHub</a>
+        <a href="#studio" class="btn-pill-primary" style="padding: 13px 28px; font-size: 15px;">Launch Live Studio</a>
+        <a href="https://github.com/maxcomperatore/rubrol" target="_blank" class="btn-pill-secondary" style="padding: 13px 22px; font-size: 15px; display: inline-flex; align-items: center; gap: 8px;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          Clone Core (AGPLv3)
+        </a>
+        <a href="#pricing" class="btn-pill-secondary" style="padding: 13px 22px; font-size: 15px;">Commercial Licenses</a>
       </div>
 
       <div class="hero-metrics-strip">
@@ -3289,14 +3286,9 @@
           </div>
 
           <div class="studio-controls-right">
-            <div id="studioApiPill" class="studio-api-pill" onclick="openTrialModal()" title="Click to manage API key and view trial quota">
-              <span>🔑</span>
-              <span id="studioKeyPreview">Trial Key</span>
-              <span id="studioQuotaPill" class="quota-badge">30 left</span>
-            </div>
             <button id="apiCodeBtn" class="btn-copy-json" onclick="openApiCodeModal()" title="View cURL, Node.js, Python, and Rust code snippets">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
-              API Code
+              Integration Code
             </button>
             <button id="copyJsonBtn" class="btn-copy-json" onclick="copyJsonPayload()">
               Copy JSON
@@ -4668,18 +4660,6 @@ ${err.message}</div>`;
             applyViewMode();
             latencyBadge.innerHTML = `<span>●</span> ${renderMs}ms`;
             rendered = true;
-          } else if (res.status === 402) {
-            latencyBadge.innerHTML = '<span>●</span> QUOTA EXCEEDED';
-            container.innerHTML = `
-              <div style="padding: 40px 20px; text-align: center; color: #f87171; font-family: var(--font-mono);">
-                <div style="font-size: 16px; font-weight: 700; margin-bottom: 8px;">Free Trial Quota Exceeded (30/30)</div>
-                <p style="font-size: 13px; color: #94a3b8; max-width: 440px; margin: 0 auto 18px;">
-                  You have used all 30 free trial requests. Upgrade to a Starter ($29/mo) or Pro ($79/mo) plan to continue generating documents without limits.
-                </p>
-                <a href="#pricing" class="btn-trial-nav" style="padding: 10px 22px; font-size: 13px; text-decoration: none;">View Pricing &amp; Upgrade</a>
-              </div>
-            `;
-            rendered = true;
           }
         } catch (e) {}
       }
@@ -4750,9 +4730,6 @@ ${err.message}</div>`;
             document.body.appendChild(a);
             a.click();
             a.remove();
-            return;
-          } else if (res.status === 402) {
-            openTrialModal();
             return;
           }
         } catch (err) {}
@@ -5054,135 +5031,7 @@ ${err.message}</div>`;
     });
 
     /* Bannerbear-Style PLG Free Trial & API Modal Logic */
-    let activeApiKey = localStorage.getItem('rubrol_api_key') || '';
     let currentCodeLang = 'curl';
-
-    async function initApiKey() {
-      if (!activeApiKey) {
-        try {
-          const res = await fetch(`${API_BASE}/v1/auth/trial`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email: '' })
-          });
-          if (res.ok) {
-            const data = await res.json();
-            activeApiKey = data.api_key;
-            localStorage.setItem('rubrol_api_key', activeApiKey);
-            updateApiKeyUI(data);
-          }
-        } catch (e) {
-          activeApiKey = 'rbl_trial_sandbox_demo';
-          updateApiKeyUI({ api_key: activeApiKey, quota_remaining: 30, quota_limit: 30 });
-        }
-      } else {
-        try {
-          const res = await fetch(`${API_BASE}/v1/auth/usage`, {
-            headers: { 'X-API-Key': activeApiKey }
-          });
-          if (res.ok) {
-            const data = await res.json();
-            updateApiKeyUI(data);
-          } else {
-            updateApiKeyUI({ api_key: activeApiKey, quota_remaining: 30, quota_limit: 30 });
-          }
-        } catch (e) {
-          updateApiKeyUI({ api_key: activeApiKey, quota_remaining: 30, quota_limit: 30 });
-        }
-      }
-    }
-
-    function updateQuotaDisplay(rem) {
-      const quotaPill = document.getElementById('studioQuotaPill');
-      const trialQuotaDisplay = document.getElementById('trialQuotaDisplay');
-      if (quotaPill) {
-        quotaPill.innerText = `${rem} left`;
-        if (parseInt(rem) <= 5) quotaPill.classList.add('low');
-        else quotaPill.classList.remove('low');
-      }
-      if (trialQuotaDisplay) {
-        trialQuotaDisplay.innerText = `${rem} Credits Remaining`;
-      }
-    }
-
-    function updateApiKeyUI(info) {
-      const key = info.api_key || activeApiKey;
-      const keyShort = key ? (key.substring(0, 13) + '...') : 'Trial Key';
-      const keyPreview = document.getElementById('studioKeyPreview');
-      const activeKeyInput = document.getElementById('activeKeyInput');
-
-      if (keyPreview) keyPreview.innerText = keyShort;
-      if (activeKeyInput) activeKeyInput.value = key;
-
-      const rem = info.quota_remaining !== undefined ? info.quota_remaining : 30;
-      updateQuotaDisplay(rem);
-
-      const resultBox = document.getElementById('trialKeyResult');
-      if (resultBox && key) resultBox.style.display = 'block';
-    }
-
-    function openTrialModal() {
-      const modal = document.getElementById('trialModalBackdrop');
-      if (modal) {
-        modal.style.display = 'flex';
-        modal.classList.add('open');
-      }
-      const activeKeyInput = document.getElementById('activeKeyInput');
-      if (activeKeyInput) activeKeyInput.value = activeApiKey;
-      const resultBox = document.getElementById('trialKeyResult');
-      if (resultBox && activeApiKey) resultBox.style.display = 'block';
-    }
-
-    function closeTrialModal() {
-      const modal = document.getElementById('trialModalBackdrop');
-      if (modal) {
-        modal.style.display = 'none';
-        modal.classList.remove('open');
-      }
-    }
-
-    async function requestTrialKey() {
-      const emailInput = document.getElementById('trialEmailInput');
-      const email = emailInput ? emailInput.value.trim() : '';
-      const btn = document.getElementById('btnGenerateKey');
-      if (btn) btn.innerText = 'Provisioning...';
-      try {
-        const res = await fetch(`${API_BASE}/v1/auth/trial`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email: email })
-        });
-        if (res.ok) {
-          const data = await res.json();
-          activeApiKey = data.api_key;
-          localStorage.setItem('rubrol_api_key', activeApiKey);
-          updateApiKeyUI(data);
-          if (btn) btn.innerText = 'Key Generated!';
-          setTimeout(() => { if (btn) btn.innerText = 'Generate Key'; }, 2000);
-        } else {
-          if (btn) btn.innerText = 'Generate Key';
-          alert('Could not provision trial key. Please retry.');
-        }
-      } catch (e) {
-        activeApiKey = 'rbl_trial_' + Math.random().toString(36).substring(2, 12);
-        localStorage.setItem('rubrol_api_key', activeApiKey);
-        updateApiKeyUI({ api_key: activeApiKey, quota_remaining: 30, quota_limit: 30 });
-        if (btn) btn.innerText = 'Key Ready!';
-        setTimeout(() => { if (btn) btn.innerText = 'Generate Key'; }, 2000);
-      }
-    }
-
-    function copyActiveKey() {
-      navigator.clipboard.writeText(activeApiKey).then(() => {
-        const btn = document.getElementById('btnCopyKey');
-        if (btn) {
-          const orig = btn.innerText;
-          btn.innerText = 'Copied!';
-          btn.style.color = '#34d399';
-          setTimeout(() => { btn.innerText = orig; btn.style.color = ''; }, 2000);
-        }
-      });
-    }
 
     function openApiCodeModal() {
       renderCodeSnippet();
@@ -5212,7 +5061,6 @@ ${err.message}</div>`;
     function renderCodeSnippet() {
       const display = document.getElementById('apiCodeDisplay');
       if (!display) return;
-      const key = activeApiKey || 'rbl_trial_your_key_here';
       const tmpl = currentTemplate || 'b2b_invoice';
       const payload = monacoEditor ? monacoEditor.getValue() : currentPayloadStr;
       let compactPayload = '{}';
@@ -5220,9 +5068,8 @@ ${err.message}</div>`;
 
       let code = '';
       if (currentCodeLang === 'curl') {
-        code = `curl -X POST "https://api.rubrol.com/v1/render" \\
+        code = `curl -X POST "http://localhost:8080/v1/render" \\
   -H "Content-Type: application/json" \\
-  -H "X-API-Key: ${key}" \\
   -d '{
     "template": "${tmpl}",
     "data": ${compactPayload},
@@ -5233,12 +5080,9 @@ ${err.message}</div>`;
         code = `const fs = require('fs');
 
 async function generateInvoice() {
-  const response = await fetch('https://api.rubrol.com/v1/render', {
+  const response = await fetch('http://localhost:8080/v1/render', {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'X-API-Key': '${key}'
-    },
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       template: '${tmpl}',
       data: ${payload},
@@ -5247,47 +5091,38 @@ async function generateInvoice() {
   });
 
   if (!response.ok) {
-    throw new Error(\`Rubrol API error: \${response.statusText}\`);
+    throw new Error(\`Rubrol error: \${response.statusText}\`);
   }
 
   const buffer = await response.arrayBuffer();
   fs.writeFileSync('invoice.pdf', Buffer.from(buffer));
-  console.log('PDF generated in ' + response.headers.get('x-render-time-ms') + 'ms');
+  console.log('PDF compiled in ' + response.headers.get('x-render-time-ms') + 'ms');
 }
 
 generateInvoice();`;
       } else if (currentCodeLang === 'python') {
         code = `import requests
 
-url = "https://api.rubrol.com/v1/render"
-headers = {
-    "Content-Type": "application/json",
-    "X-API-Key": "${key}"
-}
+url = "http://localhost:8080/v1/render"
 payload = {
     "template": "${tmpl}",
     "data": ${payload},
     "format": "pdf"
 }
 
-response = requests.post(url, headers=headers, json=payload)
+response = requests.post(url, json=payload)
 if response.status_code == 200:
     with open("invoice.pdf", "wb") as f:
         f.write(response.content)
     print(f"Compiled in {response.headers.get('X-Render-Time-Ms')}ms")
 else:
-    print("API Error:", response.json())`;
+    print("Error:", response.text)`;
       } else if (currentCodeLang === 'rust') {
-        code = `use reqwest::header::HeaderMap;
-use serde_json::json;
-
-#[tokio::main]
+        code = `#[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let client = reqwest::Client::new();
-    
-    let res = client.post("https://api.rubrol.com/v1/render")
-        .header("X-API-Key", "${key}")
-        .json(&json!({
+    let res = client.post("http://localhost:8080/v1/render")
+        .json(&serde_json::json!({
             "template": "${tmpl}",
             "data": ${compactPayload},
             "format": "pdf"
@@ -5317,79 +5152,22 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
       });
     }
 
-    // Initialize API Key on boot
-    initApiKey();
-
   </script>
 
-  <!-- MODAL 1: Free Trial API Key Generator (Bannerbear Style) -->
-  <div id="trialModalBackdrop" class="rubrol-modal-backdrop" onclick="if(event.target===this)closeTrialModal()">
-    <div class="rubrol-modal">
-      <button class="modal-close-btn" onclick="closeTrialModal()">&times;</button>
-      <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
-        <span style="font-family: var(--font-mono); font-size: 11px; background: rgba(245, 158, 11, 0.15); color: #f59e0b; padding: 3px 10px; border-radius: 999px; border: 1px solid rgba(245, 158, 11, 0.3); font-weight: 700;">
-          NO CREDIT CARD REQUIRED
-        </span>
-      </div>
-      <h3 style="font-family: var(--font-serif); font-size: 26px; color: #ffffff; margin-bottom: 8px;">
-        Instant Free Trial — 30 API Requests
-      </h3>
-      <p style="font-size: 14px; color: #94a3b8; line-height: 1.5; margin-bottom: 24px;">
-        Generate compliant PDF/A-3b documents and EU Factur-X invoices in single-digit milliseconds directly via REST API.
-      </p>
-
-      <div id="trialKeyForm">
-        <label style="display: block; font-size: 12px; font-weight: 600; color: #cbd5e1; margin-bottom: 6px; font-family: var(--font-mono);">
-          WORK EMAIL (OPTIONAL)
-        </label>
-        <div style="display: flex; gap: 10px; margin-bottom: 16px;">
-          <input type="email" id="trialEmailInput" placeholder="name@company.com" style="flex: 1; background: #07080b; border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 8px; padding: 10px 14px; font-size: 14px; color: #ffffff; outline: none; font-family: inherit;">
-          <button onclick="requestTrialKey()" id="btnGenerateKey" class="btn-trial-nav" style="padding: 10px 20px; font-size: 13.5px; border-radius: 8px; white-space: nowrap;">
-            Generate Key
-          </button>
-        </div>
-        <div style="font-size: 12px; color: #64748b;">
-          Leave empty to generate an instant sandbox key immediately.
-        </div>
-      </div>
-
-      <div id="trialKeyResult" style="display: none; margin-top: 16px; padding: 18px; background: #07080b; border: 1px solid rgba(245, 158, 11, 0.25); border-radius: 12px;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-          <span style="font-size: 12px; font-family: var(--font-mono); color: #94a3b8;">ACTIVE API KEY</span>
-          <span id="trialQuotaDisplay" style="font-size: 12px; font-family: var(--font-mono); color: #34d399; font-weight: 700;">30 / 30 Credits Available</span>
-        </div>
-        <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 16px;">
-          <input type="text" id="activeKeyInput" readonly style="flex: 1; background: #11131a; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 6px; padding: 8px 12px; font-family: var(--font-mono); font-size: 13px; color: #f59e0b; outline: none;">
-          <button onclick="copyActiveKey()" id="btnCopyKey" class="btn-copy-json" style="padding: 8px 14px; font-size: 12px;">
-            Copy
-          </button>
-        </div>
-        <div style="display: flex; gap: 10px;">
-          <button onclick="closeTrialModal(); openApiCodeModal();" class="btn-pill-primary" style="flex: 1; justify-content: center; font-size: 13px; padding: 9px 16px;">
-            View API Code Snippets
-          </button>
-          <a href="#pricing" onclick="closeTrialModal()" class="btn-pill-secondary" style="font-size: 13px; padding: 9px 16px;">
-            Upgrade Plan
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- MODAL 2: API Code Snippets (cURL, Node.js, Python, Rust) -->
+  <!-- MODAL: Local Sidecar Integration Code (cURL, Node.js, Python, Rust) -->
   <div id="apiCodeModalBackdrop" class="rubrol-modal-backdrop" onclick="if(event.target===this)closeApiCodeModal()">
     <div class="rubrol-modal wide">
       <button class="modal-close-btn" onclick="closeApiCodeModal()">&times;</button>
       <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
         <h3 style="font-family: var(--font-serif); font-size: 24px; color: #ffffff;">
-          Backend API Integration
+          Local Sidecar Integration
         </h3>
         <span style="font-family: var(--font-mono); font-size: 11px; background: #064e3b; color: #6ee7b7; padding: 3px 8px; border-radius: 6px;">
           Sub-10ms Latency
         </span>
       </div>
       <p style="font-size: 13.5px; color: #94a3b8; margin-bottom: 14px;">
-        Call the Rubrol API endpoint with your active key to compile compliant PDF/A-3b documents and Factur-X invoices.
+        Deploy Rubrol as a Docker sidecar in your Kubernetes pod or VPC. Send JSON, receive compliant PDF/A-3b documents with zero cloud data transmission.
       </p>
 
       <div class="code-tabs">
@@ -5403,7 +5181,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
       <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 16px;">
         <span style="font-size: 12px; color: #64748b; font-family: var(--font-mono);">
-          Endpoint: <code style="color: #93c5fd;">POST https://api.rubrol.com/v1/render</code>
+          Endpoint: <code style="color: #93c5fd;">POST http://localhost:8080/v1/render</code>
         </span>
         <button onclick="copyCurrentCodeSnippet()" id="btnCopySnippet" class="btn-trial-nav" style="padding: 8px 18px; font-size: 12.5px;">
           Copy Snippet
