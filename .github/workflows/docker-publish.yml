@@ -48,7 +48,7 @@ jobs:
             org.opencontainers.image.source=https://github.com/maxcomperatore/rubrol
 
       - name: Build and push Docker image
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v7
         with:
           context: .
           file: ./rubrol/docker/Dockerfile
