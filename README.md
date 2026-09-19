@@ -739,7 +739,7 @@ Rubrol operates on the transparent **Sidekiq commercial open-core model**:
 | Tier | Price | Model | Deliverables & Rights |
 | :--- | :--- | :--- | :--- |
 | **Rubrol Community** | **$0 / Free Forever** | Open Source (GNU LGPLv3) | Local developer CLI, Docker evaluation container, standard B2B SaaS Typst templates, community GitHub support. |
-| **Rubrol Pro** | **$1,800 / year** | Annual Commercial License | Unlimited local Docker sidecar execution (no doc limits), commercial rights replacing LGPLv3, SaaS billing and receipt templates, Swiss QR and barcodes, private GitHub vault access (`rubrol-pro-vault`), 1-year offline cryptographic license key. |
+| **Rubrol Pro** | **$1,800 / year** | Annual Commercial License | Unlimited local Docker sidecar execution (no doc limits), commercial rights replacing LGPLv3, SaaS billing and receipt templates, standard ISO 19005-2 PDF/A-2b compilation, private GitHub vault access (`rubrol-pro-vault`), 1-year offline cryptographic license key. |
 | **Rubrol Enterprise** | **$4,800 / year** | Annual Enterprise Suite | Turnkey EU compliance suite with certified ISO 19005-3 PDF/A-3b + Factur-X / ZUGFeRD 2.2, Schematron semantic validator (EN 16931 & XRechnung 3.0), German DIN 5008 & French Chorus Pro templates, dual vault access (`rubrol-pro-vault` + `rubrol-enterprise-vault`), 2025-2028 legal update feed, priority support. |
 
 * **[Buy Rubrol Pro ($1,800/yr via Stripe Checkout)](https://buy.stripe.com/fZu5kEcpvcZQehJdgE0Ba0j)**

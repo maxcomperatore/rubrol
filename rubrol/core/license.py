@@ -81,7 +81,6 @@ def generate_license_key(
             "unlimited_sidecar",
             "commercial_license",
             "b2b_saas_templates",
-            "dynamic_qr_barcodes",
             "standard_pdfa_2b",
             "vault_access",
         ]
