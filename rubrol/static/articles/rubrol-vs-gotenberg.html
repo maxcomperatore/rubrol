@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rubrol vs Gotenberg: Why Headless Chromium Clusters Are the Wrong Tool for E-Invoicing — Rubrol</title>
+  <title>Rubrol vs Gotenberg: Why Headless Chromium Clusters Are the Wrong Tool for E-Invoicing  -  Rubrol</title>
   <meta name="description" content="An objective benchmark and teardown of Rubrol vs Gotenberg. Understand why Chromium and LibreOffice microservices suffer memory leaks, high latency, and bloated Docker images, and why Typst is the 14ms successor.">
   <link rel="icon" type="image/png" href="/assets/logo.png">
 
@@ -78,6 +78,35 @@
             "position": 3,
             "name": "Rubrol vs Gotenberg: Why Headless Chromium Clusters Are the Wrong Tool for E-Invoicing",
             "item": "https://rubrol.com/articles/rubrol-vs-gotenberg"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How does Rubrol compare to Gotenberg in performance?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Rubrol compiles dynamic PDFs in under 6 milliseconds with less than 18MB RAM using native Typst. Gotenberg relies on Chromium and LibreOffice, taking 1,200ms to 3,500ms and consuming 400MB to 1.2GB RAM."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Why does Gotenberg suffer from memory leaks in production?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Gotenberg coordinates headless Chromium and LibreOffice child processes via Go. Both underlying C++ engines accumulate memory over time and frequently fail to garbage collect complex DOM trees."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can Gotenberg validate EU Factur-X / EN 16931 e-invoices?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Gotenberg does not include native Schematron semantic validation or automated PDF/A-3b XML attachment catalogues out of the box."
+            }
           }
         ]
       }
@@ -366,12 +395,12 @@ LIBREOFFICE_RESTART_AFTER=10</code></pre>
   <tbody>
     <tr>
       <td><strong>Average Request Latency</strong></td>
-      <td class="bad">950ms – 1,800ms</td>
-      <td class="good">8ms – 25ms (70x faster)</td>
+      <td class="bad">950ms  -  1,800ms</td>
+      <td class="good">8ms  -  25ms (70x faster)</td>
     </tr>
     <tr>
       <td><strong>RAM Required per Replica</strong></td>
-      <td class="bad">2,048MB – 4,096MB</td>
+      <td class="bad">2,048MB  -  4,096MB</td>
       <td class="good">&lt; 32MB</td>
     </tr>
     <tr>
@@ -391,8 +420,8 @@ LIBREOFFICE_RESTART_AFTER=10</code></pre>
     </tr>
     <tr>
       <td><strong>Monthly Infrastructure Cost (1M inv)</strong></td>
-      <td class="bad">\$350 – \$600 / month (AWS Fargate)</td>
-      <td class="good">\$10 – \$20 / month (Minimal VPS)</td>
+      <td class="bad">\$350  -  \$600 / month (AWS Fargate)</td>
+      <td class="good">\$10  -  \$20 / month (Minimal VPS)</td>
     </tr>
   </tbody>
 </table>

@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rubrol vs Mustangproject: Why Modern Cloud Services Don't Want a 300MB Java JVM — Rubrol</title>
+  <title>Rubrol vs Mustangproject: Why Modern Cloud Services Don't Want a 300MB Java JVM  -  Rubrol</title>
   <meta name="description" content="An objective architectural comparison of Rubrol vs Mustangproject. Discover why running a 300MB Java JVM for ZUGFeRD 2.2 e-invoicing causes Docker OOM issues and how native Typst compilation solves it in 14ms.">
   <link rel="icon" type="image/png" href="/assets/logo.png">
 
@@ -78,6 +78,27 @@
             "position": 3,
             "name": "Rubrol vs Mustangproject: Why Modern Cloud Services Don't Want a 300MB Java JVM",
             "item": "https://rubrol.com/articles/rubrol-vs-mustangproject"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is the difference between Mustangproject and Rubrol?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Mustangproject is a Java library and CLI tool requiring a full JVM runtime (250MB+ footprint) to inject XML into pre-existing PDFs. Rubrol is an end-to-end Rust/Typst engine that designs, renders, and validates PDF/A-3b hybrid invoices from raw JSON in under 6 milliseconds."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can Rubrol replace Mustangproject in containerized environments?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Rubrol runs as a lightweight Docker sidecar (<18MB RAM) with a synchronous HTTP API, eliminating Java runtime dependencies and JVM cold starts."
+            }
           }
         ]
       }
@@ -373,22 +394,22 @@ java -jar Mustang-CLI.jar --action combine \
     </tr>
     <tr>
       <td><strong>Container Memory (Idle)</strong></td>
-      <td class="bad">140MB – 220MB</td>
+      <td class="bad">140MB  -  220MB</td>
       <td class="good">&lt; 14MB</td>
     </tr>
     <tr>
       <td><strong>Container Memory (Under Load)</strong></td>
-      <td class="bad">350MB – 650MB (Heap + PDFBox DOM)</td>
+      <td class="bad">350MB  -  650MB (Heap + PDFBox DOM)</td>
       <td class="good">&lt; 28MB</td>
     </tr>
     <tr>
       <td><strong>Cold Boot Time</strong></td>
-      <td class="bad">1,800ms – 3,200ms (JVM warm-up)</td>
+      <td class="bad">1,800ms  -  3,200ms (JVM warm-up)</td>
       <td class="good">8ms (Instant serverless wake)</td>
     </tr>
     <tr>
       <td><strong>Render + Embed Latency</strong></td>
-      <td class="bad">450ms – 1,100ms (Injection only)</td>
+      <td class="bad">450ms  -  1,100ms (Injection only)</td>
       <td class="good">14ms (Full document render + embed)</td>
     </tr>
     <tr>

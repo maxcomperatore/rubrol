@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rubrol vs Ghostscript: Why ZUGFeRD via PostScript Scripts Is an Infrastructure Hazard — Rubrol</title>
+  <title>Rubrol vs Ghostscript: Why ZUGFeRD via PostScript Scripts Is an Infrastructure Hazard  -  Rubrol</title>
   <meta name="description" content="A brutal engineering teardown of Ghostscript's zugferd.ps approach for PDF/A-3 e-invoicing. Learn why AGPL licensing, CVE vulnerabilities, and lack of XML validation make Ghostscript dangerous in production.">
   <link rel="icon" type="image/png" href="/assets/logo.png">
 
@@ -78,6 +78,35 @@
             "position": 3,
             "name": "Rubrol vs Ghostscript: Why ZUGFeRD via PostScript Scripts Is an Infrastructure Hazard",
             "item": "https://rubrol.com/articles/rubrol-vs-ghostscript"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Can Ghostscript legally be used in commercial SaaS?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Ghostscript is licensed under AGPLv3. Using it over a network inside commercial SaaS infrastructure can trigger copyleft obligations requiring you to open-source your proprietary application code."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Why is Ghostscript risky for PDF/A-3b compliance?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Ghostscript requires PostScript pdfmark scripts to inject attachments. Slight PostScript syntax errors or font rasterization bugs produce non-compliant PDF/A files that fail veraPDF validation."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How does Rubrol differ from Ghostscript?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Rubrol is an open-core Rust compilation engine with commercial licensing (Sidekiq model). It generates certified ISO 19005-3 PDF/A-3b documents directly from Typst without AGPL contagion or PostScript interpreters."
+            }
           }
         ]
       }
@@ -412,7 +441,7 @@
     </tr>
     <tr>
       <td><strong>Execution Speed</strong></td>
-      <td class="bad">350ms – 850ms</td>
+      <td class="bad">350ms  -  850ms</td>
       <td class="good">14ms (25x faster)</td>
     </tr>
   </tbody>

@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>How to Make Your Stripe Invoices Factur-X / ZUGFeRD Compliant in 5 Minutes — Rubrol</title>
+  <title>How to Make Your Stripe Invoices Factur-X / ZUGFeRD Compliant in 5 Minutes  -  Rubrol</title>
   <meta name="description" content="A brutalist, no-nonsense technical guide to converting standard Stripe invoices into legally compliant European EN 16931 Factur-X and ZUGFeRD 2.2 PDF/A-3b files in 5 minutes.">
   <link rel="icon" type="image/png" href="/assets/logo.png">
 
@@ -78,6 +78,54 @@
             "position": 3,
             "name": "Stripe Factur-X Compliance in 5 Minutes",
             "item": "https://rubrol.com/articles/stripe-facturx-zugferd"
+          }
+        ]
+      },
+      {
+        "@type": "HowTo",
+        "name": "How to Convert Stripe Invoices to Factur-X / ZUGFeRD 2.2 Compliant PDF/A-3b",
+        "description": "Step-by-step guide to generating European legally compliant EN 16931 e-invoices directly from Stripe webhook payloads using Rubrol.",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "name": "Receive Stripe Webhook",
+            "text": "Listen for the invoice.finalized or payment_intent.succeeded event from Stripe in your backend service."
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Extract Invoice Payload",
+            "text": "Extract buyer tax IDs, line items, and VAT amounts from the Stripe invoice object."
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Send Payload to Rubrol Sidecar",
+            "text": "Make a local HTTP POST request to the Rubrol sidecar endpoint (/v1/facturx/render) with the invoice data."
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Stream Compliant PDF/A-3b",
+            "text": "Rubrol compiles the Typst template and embeds the valid UN/CEFACT CII XML into an ISO 19005-3 container in under 160ms."
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Does Stripe support European Factur-X or ZUGFeRD natively?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Standard Stripe Invoicing generates plain PDF documents without the embedded UN/CEFACT CII XML or ISO 19005-3 PDF/A-3b container required by French and German e-invoicing laws."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How fast does Rubrol generate Factur-X invoices from Stripe?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Rubrol compiles the complete PDF/A-3b hybrid invoice with embedded XML in under 160 milliseconds on a single CPU core."
+            }
           }
         ]
       }
