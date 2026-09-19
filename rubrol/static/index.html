@@ -3833,129 +3833,104 @@
         </div>
       </div>
 
-      <!-- Billing Period Toggle Switch (Monthly vs Annual) -->
-      <div class="billing-toggle-wrap">
-        <span class="billing-label active" id="label-annual" onclick="setBillingPeriod('annual')">
-          Annual Billing <span class="billing-save-pill">Save up to 31% • 2 Months Free</span>
-        </span>
-        <div class="billing-toggle-btn" id="billingToggleBtn" onclick="toggleBillingPeriod()">
-          <div class="billing-toggle-thumb"></div>
+      <!-- Annual Commercial Licensing Banner -->
+      <div style="display: flex; justify-content: center; margin-bottom: 24px;">
+        <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.28); border-radius: 24px; padding: 6px 18px; font-family: var(--font-mono); font-size: 11.5px; font-weight: 700; color: #b45309;">
+          <span>● ANNUAL COMMERCIAL LICENSES</span>
+          <span style="opacity: 0.4;">|</span>
+          <span>ON-PREMISE SIDECAR</span>
+          <span style="opacity: 0.4;">|</span>
+          <span>ZERO CLOUD DATA PRIVACY RISK</span>
         </div>
-        <span class="billing-label" id="label-monthly" onclick="setBillingPeriod('monthly')">
-          Monthly Billing
-        </span>
       </div>
-      <div style="text-align: center; font-family: var(--font-mono); font-size: 11px; color: #15803d; margin: -16px 0 32px 0;">
-        Tax inclusive pricing — sales tax and VAT are fully absorbed. What you see is what you pay.
+      <div style="text-align: center; font-family: var(--font-mono); font-size: 11px; color: #15803d; margin: -12px 0 32px 0;">
+        Tax inclusive pricing. Sales tax and VAT are fully absorbed. Billed annually upfront.
       </div>
 
-      <!-- 4-Tier Quant Optimized Deck -->
+      <!-- 3-Tier Commercial Open-Core Deck -->
       <div class="pricing-deck">
-        <!-- Tier 1: Free Trial -->
+        <!-- Tier 1: Developer Edition -->
         <div id="card-developer" class="price-card tier-dimmed">
-          <span id="ribbon-developer" class="featured-ribbon" style="background: #10b981;">No Card Required</span>
+          <span id="ribbon-developer" class="featured-ribbon" style="background: #10b981;">Open Source • Free</span>
           <div>
-            <h3 class="price-plan-name">Free Trial</h3>
-            <p class="price-plan-desc">For testing and prototyping sub-millisecond document generation.</p>
+            <h3 class="price-plan-name">Developer Edition</h3>
+            <p class="price-plan-desc">Local CLI &amp; Docker evaluation with sub-10ms mean compile speed.</p>
             <div class="price-plan-num">
               <span class="price-currency">$</span>
               <span class="price-figure">0</span>
-              <span class="price-period">/ 30 requests</span>
+              <span class="price-period">/ Free Forever</span>
             </div>
             <div id="roi-developer" style="font-size: 11.5px; color: #15803d; font-family: var(--font-mono); margin: -10px 0 16px 0;">
-              ● Instant API Key • No Card Required
+              ● 100% Free Open-Source Core (AGPLv3)
             </div>
             <ul class="price-features">
-              <li>30 Free Document Compilations</li>
-              <li>Instant Free API Key (rbl_trial_*)</li>
               <li>Sub-10ms Mean Compile Latency</li>
-              <li>All 11 Production Enterprise Templates</li>
-              <li>Instant cURL, Node.js &amp; Python SDKs</li>
+              <li>Local Developer CLI &amp; Docker Container</li>
+              <li>100 Documents / Month (Watermarked Eval)</li>
+              <li>Standard B2B &amp; SaaS Typst Templates</li>
+              <li>Open-Source Community GitHub Support</li>
             </ul>
           </div>
-          <button onclick="openTrialModal()" class="btn-pricing btn-pricing-secondary" id="btn-developer">
-            Get Free API Key
-          </button>
+          <a href="https://github.com/maxcomperatore/rubrol" target="_blank" class="btn-pricing btn-pricing-secondary" id="btn-developer">
+            Clone on GitHub (Free)
+          </a>
         </div>
 
-        <!-- Tier 2: Starter API -->
+        <!-- Tier 2: Pro Sidecar -->
         <div id="card-pro" class="price-card tier-dimmed">
-          <span id="ribbon-pro" class="featured-ribbon" style="display: none;">Best for Growing SaaS</span>
+          <span id="ribbon-pro" class="featured-ribbon" style="background: #f59e0b;">Commercial License</span>
           <div>
-            <h3 class="price-plan-name">Starter API</h3>
-            <p class="price-plan-desc">For indie hackers and SaaS apps generating monthly invoices &amp; receipts.</p>
+            <h3 class="price-plan-name">Pro Sidecar</h3>
+            <p class="price-plan-desc">Unlimited local sidecar execution for startups &amp; global billing engines.</p>
             <div class="price-plan-num">
               <span class="price-currency">$</span>
-              <span class="price-figure" id="price-val-pro">29</span>
-              <span class="price-period" id="price-period-pro">/ month</span>
+              <span class="price-figure" id="price-val-pro">1,800</span>
+              <span class="price-period" id="price-period-pro">/ year ($150/mo)</span>
             </div>
             <div id="roi-pro" style="font-size: 11px; color: #15803d; font-family: var(--font-mono); margin: -10px 0 16px 0;">
-              ● 2,500 documents included / mo
+              ● Unlimited Local Nodes • Replaces AGPLv3
             </div>
             <ul class="price-features">
-              <li>2,500 Document Compilations / mo</li>
-              <li>Live Production API Key (rbl_live_*)</li>
-              <li>All 11 Core Enterprise Templates</li>
-              <li>Dynamic Barcode &amp; QR Code Generation</li>
-              <li>Standard PDF/A-2b &amp; SVG Formats</li>
+              <li>Unlimited Local Sidecar Execution (No Limits)</li>
+              <li>Full Commercial Production License Grant</li>
+              <li>Pre-Built B2B SaaS Invoice &amp; Receipt Templates</li>
+              <li>Dynamic Swiss QR, EPC QR &amp; Barcodes</li>
+              <li>Private GitHub Vault (rubrol-pro-vault) Access</li>
+              <li>Cryptographic 1-Year Offline License Key</li>
+              <li>Direct Developer Email Support</li>
             </ul>
           </div>
           <a href="https://buy.stripe.com/00w8wQ0GN1h8ehJ7Wk0Ba09" target="_blank" class="btn-pricing btn-pricing-primary" id="btn-pro">
-            Start Starter Plan
+            Get Pro Sidecar ($1,800/yr)
           </a>
         </div>
 
-        <!-- Tier 3: Pro E-Invoicing API -->
+        <!-- Tier 3: EU Compliance & Enterprise -->
         <div id="card-compliance" class="price-card tier-active featured">
-          <span id="ribbon-compliance" class="featured-ribbon" style="background: #ea580c;">Most Popular • Recommended</span>
+          <span id="ribbon-compliance" class="featured-ribbon" style="background: #ea580c;">Most Popular • Regulatory Standard</span>
           <div>
-            <h3 class="price-plan-name">Pro E-Invoicing API</h3>
-            <p class="price-plan-desc">For European &amp; global businesses requiring turnkey e-invoicing compliance.</p>
+            <h3 class="price-plan-name">EU Compliance &amp; Enterprise</h3>
+            <p class="price-plan-desc">Certified EN 16931 &amp; Factur-X / ZUGFeRD 2.2 turnkey compliance suite.</p>
             <div class="price-plan-num">
               <span class="price-currency">$</span>
-              <span class="price-figure" id="price-val-compliance">79</span>
-              <span class="price-period" id="price-period-compliance">/ month</span>
+              <span class="price-figure" id="price-val-compliance">4,800</span>
+              <span class="price-period" id="price-period-compliance">/ year ($400/mo)</span>
             </div>
             <div id="roi-compliance" style="font-size: 11px; color: #15803d; font-family: var(--font-mono); margin: -10px 0 16px 0;">
-              ● 15,000 documents included / mo
+              ● Turnkey EN 16931 &amp; Schematron Engine
             </div>
             <ul class="price-features">
-              <li>15,000 Document Compilations / mo</li>
-              <li>Turnkey Factur-X / ZUGFeRD 2.2 Suite</li>
-              <li>EN 16931 &amp; ISO 19005-3 PDF/A-3b</li>
-              <li>Automated CII / UBL XML Embedding</li>
-              <li>Priority Processing &amp; Webhook Alerts</li>
+              <li>Certified ISO 19005-3 PDF/A-3b + Factur-X / ZUGFeRD 2.2</li>
+              <li>Built-in Schematron Semantic Validator (XRechnung 3.0)</li>
+              <li>German DIN 5008 &amp; French Chorus Pro XML/PDF Templates</li>
+              <li>Dual Vault Access (rubrol-pro-vault + rubrol-enterprise-vault)</li>
+              <li>Guaranteed Compliance Updates for 2025-2028 EU Mandates</li>
+              <li>Private Container Registry &amp; Air-Gapped License Key</li>
+              <li>Priority Engineering Slack Channel &amp; Direct Support</li>
             </ul>
           </div>
           <a href="https://buy.stripe.com/14A5kE1KR8JA2z1dgE0Ba0c" target="_blank" class="btn-pricing btn-pricing-primary" id="btn-compliance">
-            Start Pro Plan
-          </a>
-        </div>
-
-        <!-- Tier 4: Scale API -->
-        <div id="card-scale" class="price-card tier-dimmed">
-          <span id="ribbon-scale" class="featured-ribbon" style="display: none; background: #4f46e5;">Enterprise Dedicated Scale</span>
-          <div>
-            <h3 class="price-plan-name">Scale API</h3>
-            <p class="price-plan-desc">For high-throughput billing engines with massive monthly document volume.</p>
-            <div class="price-plan-num">
-              <span class="price-currency">$</span>
-              <span class="price-figure" id="price-val-scale">249</span>
-              <span class="price-period" id="price-period-scale">/ month</span>
-            </div>
-            <div id="roi-scale" style="font-size: 11px; color: #15803d; font-family: var(--font-mono); margin: -10px 0 16px 0;">
-              ● 75,000 documents included / mo
-            </div>
-            <ul class="price-features">
-              <li>75,000 Document Compilations / mo</li>
-              <li>Dedicated Low-Latency Burst Queue</li>
-              <li>Custom Font Loading &amp; Layout Support</li>
-              <li>99.99% Uptime SLA Guarantee</li>
-              <li>Direct Engineer Slack Channel</li>
-            </ul>
-          </div>
-          <a href="mailto:enterprise@rubrol.com?subject=Rubrol%20Scale%20API%20Subscription" target="_blank" class="btn-pricing btn-pricing-secondary" id="btn-scale">
-            Contact Scale Sales
+            Get EU Enterprise ($4,800/yr)
           </a>
         </div>
       </div>
@@ -5000,21 +4975,21 @@ ${err.message}</div>`;
       quantDevLabor.innerText = `$${devLaborSavings.toLocaleString()}/yr (${devHoursSaved} hrs)`;
       quantTcoTotal.innerText = `$${totalTcoSaved.toLocaleString()}/yr`;
 
-      // Reset all cards
-      [cardDev, cardPro, cardComp, cardScale].forEach(c => {
+      // Reset all 3 cards
+      [cardDev, cardPro, cardComp].forEach(c => {
         if (c) {
           c.classList.remove('tier-active');
           c.classList.add('tier-dimmed');
         }
       });
-      [ribbonDev, ribbonPro, ribbonComp, ribbonScale].forEach(r => {
+      [ribbonDev, ribbonPro, ribbonComp].forEach(r => {
         if (r) r.style.display = 'none';
       });
-      [roiDev, roiPro, roiComp, roiScale].forEach(ro => {
+      [roiDev, roiPro, roiComp].forEach(ro => {
         if (ro) ro.style.display = 'none';
       });
 
-      // Tier 1: Developer Core (< 20,000 docs/mo)
+      // Tier 1: Developer Edition (< 20,000 docs/mo)
       if (val < 20000) {
         if (cardDev) {
           cardDev.classList.add('tier-active');
@@ -5022,13 +4997,13 @@ ${err.message}</div>`;
         }
         if (ribbonDev) ribbonDev.style.display = 'block';
         if (roiDev) roiDev.style.display = 'block';
-        calcRecPlan.innerText = "Developer Core ($0 Free)";
+        calcRecPlan.innerText = "Developer Edition ($0 Free)";
         calcRecPlan.style.color = "#10b981";
-        calcRecRoi.innerHTML = "100% Free Open-Source Core • Run unlimited locally or in Docker";
+        calcRecRoi.innerHTML = "100% Free Open-Source Core • Run unlimited locally or in Docker for evaluation";
         calcCtaBtn.href = GITHUB_REPO_URL;
         calcCtaBtn.innerHTML = "<span>Clone on GitHub (Free)</span>";
       }
-      // Tier 2: Pro Vault (20,000 - 100,000 docs/mo)
+      // Tier 2: Pro Sidecar (20,000 - 100,000 docs/mo)
       else if (val < 100000) {
         if (cardPro) {
           cardPro.classList.add('tier-active');
@@ -5037,21 +5012,18 @@ ${err.message}</div>`;
         if (ribbonPro) ribbonPro.style.display = 'block';
         if (roiPro) {
           roiPro.style.display = 'block';
-          const planCost = currentBillingPeriod === 'monthly' ? 708 : 490;
-          const netTco = totalTcoSaved - planCost;
-          roiPro.innerText = `● Net TCO ROI: +$${netTco.toLocaleString()}/yr`;
+          const netTco = totalTcoSaved - 1800;
+          roiPro.innerText = `● Net TCO ROI: +$${netTco.toLocaleString()}/yr saved`;
         }
-        const planStr = currentBillingPeriod === 'monthly' ? "Pro Vault ($59/mo)" : "Pro Vault ($490/yr)";
-        calcRecPlan.innerText = planStr;
+        calcRecPlan.innerText = "Pro Sidecar ($1,800/yr)";
         calcRecPlan.style.color = "var(--amber-primary)";
-        const planCost = currentBillingPeriod === 'monthly' ? 708 : 490;
-        const netTco = totalTcoSaved - planCost;
-        calcRecRoi.innerHTML = `Net Positive TCO ROI: +$${netTco.toLocaleString()} / year saved after plan cost`;
-        calcCtaBtn.href = currentBillingPeriod === "monthly" ? STRIPE_PRO_MONTHLY_URL : STRIPE_PRO_ANNUAL_URL;
-        calcCtaBtn.innerHTML = `<span>Proceed to Stripe (${currentBillingPeriod === 'monthly' ? '$59/mo' : '$490/yr'})</span>`;
+        const netTco = totalTcoSaved - 1800;
+        calcRecRoi.innerHTML = `Net Positive TCO ROI: +$${netTco.toLocaleString()} / year saved after license cost`;
+        calcCtaBtn.href = STRIPE_PRO_ANNUAL_URL;
+        calcCtaBtn.innerHTML = "<span>Get Pro Sidecar ($1,800/yr)</span>";
       }
-      // Tier 3: Compliance Suite (100,000 - 250,000 docs/mo)
-      else if (val < 250000) {
+      // Tier 3: EU Compliance & Enterprise (>= 100,000 docs/mo)
+      else {
         if (cardComp) {
           cardComp.classList.add('tier-active');
           cardComp.classList.remove('tier-dimmed');
@@ -5059,37 +5031,15 @@ ${err.message}</div>`;
         if (ribbonComp) ribbonComp.style.display = 'block';
         if (roiComp) {
           roiComp.style.display = 'block';
-          const planCostComp = currentBillingPeriod === "monthly" ? 4320 : 3600;
-          const netTco = totalTcoSaved - planCostComp;
+          const netTco = totalTcoSaved - 4800;
           roiComp.innerText = `● Net TCO ROI: +$${netTco.toLocaleString()}/yr + certified EN 16931`;
         }
-        const planStr = currentBillingPeriod === 'monthly' ? "Compliance Suite ($360/mo)" : "Compliance Suite ($3,600/yr)";
-        calcRecPlan.innerText = planStr;
+        calcRecPlan.innerText = "EU Compliance & Enterprise ($4,800/yr)";
         calcRecPlan.style.color = "#ea580c";
-        const planCostComp = currentBillingPeriod === "monthly" ? 4320 : 3600;
-        const netTco = totalTcoSaved - planCostComp;
+        const netTco = totalTcoSaved - 4800;
         calcRecRoi.innerHTML = `Net Positive TCO ROI: +$${netTco.toLocaleString()} / year saved + EN 16931 certified`;
-        calcCtaBtn.href = currentBillingPeriod === "monthly" ? STRIPE_COMPLIANCE_MONTHLY_URL : STRIPE_COMPLIANCE_ANNUAL_URL;
-        calcCtaBtn.innerHTML = `<span>Proceed to Stripe (${currentBillingPeriod === "monthly" ? "$360/mo" : "$3,600/yr"})</span>`;
-      }
-      // Tier 4: Enterprise Scale (>= 250,000 docs/mo)
-      else {
-        if (cardScale) {
-          cardScale.classList.add('tier-active');
-          cardScale.classList.remove('tier-dimmed');
-        }
-        if (ribbonScale) ribbonScale.style.display = 'block';
-        if (roiScale) {
-          roiScale.style.display = 'block';
-          const netTco = totalTcoSaved - 7200;
-          roiScale.innerText = `● Net TCO ROI: +$${netTco.toLocaleString()}/yr + 99.99% SLA`;
-        }
-        calcRecPlan.innerText = "Enterprise Scale ($7,200/yr or Custom)";
-        calcRecPlan.style.color = "#4f46e5";
-        const netTco = totalTcoSaved - 7200;
-        calcRecRoi.innerHTML = `Net Positive TCO ROI: +$${netTco.toLocaleString()} / year saved + dedicated SLA`;
-        calcCtaBtn.href = ENTERPRISE_CONTACT_URL;
-        calcCtaBtn.innerHTML = "<span>Contact Enterprise Engineering</span>";
+        calcCtaBtn.href = STRIPE_COMPLIANCE_ANNUAL_URL;
+        calcCtaBtn.innerHTML = "<span>Get EU Enterprise ($4,800/yr)</span>";
       }
     }
 

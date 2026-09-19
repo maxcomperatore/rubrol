@@ -1,7 +1,7 @@
 """
 Rubrol: The Anti-Puppeteer PDF Engine.
 Sub-10ms dynamic PDF/A compilation engine powered by Apache 2.0 Typst.
-Includes Turnkey EU Factur-X / ZUGFeRD 2.2 Enterprise Suite.
+Includes Turnkey EU Factur-X / ZUGFeRD 2.2 Enterprise Suite & Cryptographic Licensing.
 """
 import argparse, json, os, sys, time
 from pathlib import Path
@@ -13,9 +13,11 @@ if str(ROOT_DIR) not in sys.path:
 
 from rubrol.core.engine import RubrolEngine
 from rubrol.core.server import serve as run_server
+from rubrol.core.license import verify_license_key, generate_license_key
 from rubrol.facturx.generator import FacturXProfile
 from rubrol.facturx.packager import extract_facturx_xml
 from rubrol.facturx.validator import validate_facturx_payload, validate_facturx_pdf
+from rubrol.facturx.schematron_validator import schematron_validator
 
 _PRO_FACTURX_TEMPLATE = ROOT_DIR / "rubrol" / "templates" / "facturx_invoice.typ"
 DEFAULT_FACTURX_TEMPLATE = str(_PRO_FACTURX_TEMPLATE if _PRO_FACTURX_TEMPLATE.exists() else (ROOT_DIR / "rubrol" / "templates" / "b2b_invoice.typ"))
@@ -48,12 +50,25 @@ def main():
     val = subparsers.add_parser("validate-facturx", help="Validate a Factur-X PDF container or JSON payload")
     val.add_argument("target", help="Path to PDF container or JSON file")
 
-    # 5. serve
+    # 5. schematron
+    sch = subparsers.add_parser("schematron", help="Perform deep EN 16931 / XRechnung Schematron semantic validation")
+    sch.add_argument("target", help="Path to factur-x.xml or PDF container")
+    sch.add_argument("-p", "--profile", default="EN16931", help="Target profile (EN16931, XRECHNUNG)")
+
+    # 6. license
+    lic = subparsers.add_parser("license", help="Manage and inspect Rubrol offline cryptographic licenses")
+    lic.add_argument("action", choices=["status", "verify", "generate"], help="License action")
+    lic.add_argument("--key", default=None, help="License key string to verify")
+    lic.add_argument("--email", default="customer@domain.com", help="Customer email for generation")
+    lic.add_argument("--github", default="octocat", help="GitHub username for generation")
+    lic.add_argument("--tier", default="pro_sidecar", choices=["developer", "pro_sidecar", "eu_enterprise"], help="License tier")
+
+    # 7. serve
     s = subparsers.add_parser("serve", help="Run local HTTP daemon sidecar with interactive playground")
     s.add_argument("--host", default="0.0.0.0", help="Host address (default: 0.0.0.0)")
     s.add_argument("-p", "--port", type=int, default=8080, help="Port (default: 8080)")
 
-    # 6. benchmark
+    # 8. benchmark
     b = subparsers.add_parser("benchmark", help="Run real sub-millisecond compilation benchmarks with latency percentiles")
     b.add_argument("-t", "--template", default="b2b_invoice", help="Template to benchmark (default: b2b_invoice)")
     b.add_argument("-n", "--iterations", type=int, default=50, help="Number of benchmark iterations (default: 50)")
@@ -125,6 +140,49 @@ def main():
                 sys.exit(1)
             else:
                 print("[Rubrol Factur-X] Input payload is 100% compliant with EN 16931 rules.")
+
+    elif args.command == "schematron":
+        p = Path(args.target)
+        if not p.exists():
+            print(f"Error: Target '{args.target}' not found.", file=sys.stderr)
+            sys.exit(1)
+        
+        if p.suffix.lower() == ".pdf":
+            xml_bytes = extract_facturx_xml(p.read_bytes())
+            xml_str = xml_bytes.decode("utf-8")
+        else:
+            xml_str = p.read_text(encoding="utf-8")
+
+        valid, errors = schematron_validator.validate_xml_string(xml_str, profile=args.profile)
+        if valid:
+            print(f"[Rubrol Schematron] PASSED: XML is 100% compliant with {args.profile} business rules.")
+        else:
+            print(f"[Rubrol Schematron] FAILED with {len(errors)} semantic rule violations:", file=sys.stderr)
+            for e in errors:
+                print(f"  - {e}", file=sys.stderr)
+            sys.exit(1)
+
+    elif args.command == "license":
+        if args.action == "status":
+            info = verify_license_key()
+            print("Rubrol Sidecar License Status:")
+            print(f"  Status: {'COMMERCIAL LICENSE (' + info.tier.upper() + ')' if info.is_valid else 'DEVELOPER EVALUATION (COMMUNITY)'}")
+            if info.is_valid:
+                print(f"  Customer: {info.customer_email} (@{info.github_username})")
+                print(f"  Valid Until: {info.expires_at.strftime('%Y-%m-%d')} ({info.days_remaining} days remaining)")
+                print(f"  Active Features: {', '.join(info.features)}")
+            else:
+                print(f"  Notice: {info.error}")
+                print("  To activate commercial rights: set RUBROL_LICENSE_KEY=RBL-LIC-...")
+        elif args.action == "verify":
+            info = verify_license_key(args.key)
+            print(f"Valid: {info.is_valid} | Tier: {info.tier} | Days: {info.days_remaining}")
+            if info.error:
+                print(f"Error: {info.error}")
+        elif args.action == "generate":
+            key = generate_license_key(customer_email=args.email, github_username=args.github, tier=args.tier)
+            print("Generated Rubrol Offline License Key:")
+            print(key)
 
     elif args.command == "serve":
         run_server(args.host, args.port)
