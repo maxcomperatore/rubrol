@@ -5,10 +5,10 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "rubrol"
 version = "1.0.0"
-description = "Sub-10ms dynamic PDF/A compilation engine powered by Apache 2.0 Typst. Includes turnkey EU Factur-X / ZUGFeRD 2.2 Suite."
+description = "Sub-10ms dynamic PDF/A compilation engine powered by Typst. Includes turnkey EU Factur-X / ZUGFeRD 2.2 Suite."
 readme = "README.md"
 requires-python = ">=3.9"
-license = "Apache-2.0"
+license = "LGPL-3.0-or-later"
 authors = [
     { name = "Max Comperatore" }
 ]
