@@ -75,13 +75,13 @@ User clicks "Download Invoice"
   - [Conditionals, Loops & Formatting](#2-conditionals-loops--formatting)
   - [Multi-Page Styling & Headers/Footers](#3-multi-page-styling--headersfooters)
   - [Custom Fonts & Assets](#4-custom-fonts--assets)
-- [EU Factur-X / ZUGFeRD Turnkey Suite (EN 16931)](#-eu-factur-x--zugferd-turnkey-suite-en-16931)
+- [EU Factur-X & ZUGFeRD Turnkey Suite (EN 16931)](#built-in-enterprise-compliance-eu-factur-x--zugferd-en-16931)
 - [Production Deployment](#production-deployment)
   - [Docker Container](#docker-container)
   - [Docker Compose](#docker-compose)
   - [Kubernetes Sidecar Pattern](#kubernetes-sidecar-pattern)
-- [Commercial Licensing & Pro Vault](#commercial-licensing--pro-vault)
-- [Community SDK Bounty Program](#-community-sdk-bounty-program-990-reward)
+- [Commercial Licensing & Sidekiq Dual-License Model](#commercial-licensing--sidekiq-dual-license-model)
+- [Community SDK Bounty Program](#community-sdk-bounty-program-990-reward)
 - [Contributing Guidelines](#contributing-guidelines)
 - [FAQ & Troubleshooting](#faq--troubleshooting)
 
@@ -156,31 +156,6 @@ Tested on an AWS EC2 c6i.xlarge instance (4 vCPU, 8GB RAM), compiling standard 2
 | **Concurrency Ceiling (1 Pod)**| ~40 req/s (OOM risk) | ~120 req/s | ~80 req/s | **> 1,200 req/s** |
 | **PDF Archival Standard** | Manual / Brittle scripts | Manual / Incomplete | Incomplete | **Native ISO 19005-3 & ISO 19005-2** |
 | **Turnkey EU Factur-X (EN 16931)**| None | Third-party glue | Third-party glue | **Built-in Native Module** |
-
-### 4. Visual Performance Profiles
-
-```
-Compilation Latency: P50 in milliseconds (Lower is better)
---------------------------------------------------------------------------------
-Headless Chrome (Puppeteer) : [========================================] 1,850 ms
-Gotenberg (Go + Chromium)   : [==============                          ]   650 ms
-WeasyPrint (Python + Cairo) : [==========                              ]   480 ms
-Rubrol (Native Typst Core)  : [=                                       ]     5.5 ms
-
-Resident Memory Footprint: RAM per worker process (Lower is better)
---------------------------------------------------------------------------------
-Headless Chrome (Puppeteer) : [========================================] 1,600 MB
-Gotenberg (Go + Chromium)   : [============                            ]   480 MB
-WeasyPrint (Python + Cairo) : [====                                    ]   160 MB
-Rubrol (Native Typst Core)  : [=                                       ]    24 MB
-
-Single-Core Throughput: Documents compiled per second (Higher is better)
---------------------------------------------------------------------------------
-Headless Chrome (Puppeteer) : [=                                       ]   0.5 docs/sec
-Gotenberg (Go + Chromium)   : [==                                      ]   1.5 docs/sec
-WeasyPrint (Python + Cairo) : [===                                     ]   2.1 docs/sec
-Rubrol (Native Typst Core)  : [========================================] 181.4 docs/sec
-```
 
 ---
 
@@ -302,12 +277,12 @@ Content-Type: application/json
   "data": {
     "invoice_number": "INV-2026-9921",
     "currency_symbol": "$",
-    "total": 490.00,
+    "total": 1800.00,
     "line_items": [
       {
-        "description": "Rubrol Pro License",
+        "description": "Rubrol Pro Annual Commercial License",
         "qty": 1,
-        "unit_price": 490.00
+        "unit_price": 1800.00
       }
     ]
   },
@@ -498,7 +473,7 @@ import httpx
 
 payload = {
     "template": "b2b_invoice",
-    "data": {"invoice_number": "INV-2026-001", "total": 490.00},
+    "data": {"invoice_number": "INV-2026-001", "total": 1800.00},
     "pdf_standard": "a-2b"
 }
 resp = httpx.post("http://localhost:8080/v1/render", json=payload, timeout=5.0)
@@ -513,7 +488,7 @@ const response = await fetch("http://localhost:8080/v1/render", {
   headers: { "Content-Type": "application/json" },
   body: JSON.stringify({
     template: "b2b_invoice",
-    data: { invoice_number: "INV-2026-001", total: 490.00 },
+    data: { invoice_number: "INV-2026-001", total: 1800.00 },
     pdf_standard: "a-2b"
   })
 });
@@ -525,7 +500,7 @@ require("fs").writeFileSync("invoice.pdf", buffer);
 ```go
 reqBody, _ := json.Marshal(map[string]any{
     "template": "b2b_invoice",
-    "data": map[string]any{"invoice_number": "INV-2026-001", "total": 490.00},
+    "data": map[string]any{"invoice_number": "INV-2026-001", "total": 1800.00},
 })
 resp, _ := http.Post("http://localhost:8080/v1/render", "application/json", bytes.NewBuffer(reqBody))
 defer resp.Body.Close()
