@@ -21,36 +21,45 @@ jobs:
               const owner = context.repo.owner;
               console.log(`Checking versions for package: ${packageName} owned by: ${owner}`);
               
-              // List package versions for authenticated user package
-              let versions = [];
-              try {
-                const res = await github.request('GET /user/packages/container/{package_name}/versions', {
-                  package_name: packageName
+              let deletedCount = 0;
+              while (true) {
+                let versions = [];
+                try {
+                  const res = await github.request('GET /user/packages/container/{package_name}/versions', {
+                    package_name: packageName,
+                    per_page: 100
+                  });
+                  versions = res.data;
+                } catch (e1) {
+                  const res = await github.request('GET /users/{username}/packages/container/{package_name}/versions', {
+                    username: owner,
+                    package_name: packageName,
+                    per_page: 100
+                  });
+                  versions = res.data;
+                }
+                
+                const toDelete = versions.filter(v => {
+                  const tags = v.metadata?.container?.tags || [];
+                  const isGA = tags.includes('GA') || tags.includes('latest');
+                  return !isGA;
                 });
-                versions = res.data;
-              } catch (e1) {
-                console.log("Failed /user/packages, trying /users/{username}/packages...", e1.message);
-                const res = await github.request('GET /users/{username}/packages/container/{package_name}/versions', {
-                  username: owner,
-                  package_name: packageName
-                });
-                versions = res.data;
-              }
-              
-              console.log(`Found ${versions.length} versions`);
-              for (const v of versions) {
-                const tags = v.metadata?.container?.tags || [];
-                console.log(`Version ID: ${v.id}, tags: ${JSON.stringify(tags)}`);
-                // If it does not have GA or latest tag, delete it
-                const isGA = tags.includes('GA') || tags.includes('latest');
-                if (!isGA) {
-                  console.log(`Deleting version ${v.id} (tags: ${tags.join(',')})`);
+                
+                if (toDelete.length === 0) {
+                  console.log(`No more versions to delete! Cleaned up ${deletedCount} versions total.`);
+                  break;
+                }
+                
+                console.log(`Found ${toDelete.length} versions to delete in this batch`);
+                for (const v of toDelete) {
+                  const tags = v.metadata?.container?.tags || [];
                   try {
                     await github.request('DELETE /user/packages/container/{package_name}/versions/{version_id}', {
                       package_name: packageName,
                       version_id: v.id
                     });
-                    console.log(`Successfully deleted version ${v.id}`);
+                    deletedCount++;
+                    console.log(`[${deletedCount}] Deleted version ${v.id} (tags: ${tags.join(',')})`);
                   } catch (delErr) {
                     console.error(`Error deleting version ${v.id}:`, delErr.message);
                   }
