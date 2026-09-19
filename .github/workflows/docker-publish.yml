@@ -39,8 +39,9 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
+            type=raw,value=GA
             type=raw,value=latest
-            type=sha,format=short
+
           labels: |
             org.opencontainers.image.title=Rubrol
             org.opencontainers.image.description=High-performance Typst document generation engine and certified EU Factur-X / ZUGFeRD 2.2 e-invoicing sidecar.

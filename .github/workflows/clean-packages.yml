@@ -1,0 +1,62 @@
+name: Clean Old Package Versions
+
+on:
+  workflow_dispatch:
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
+
+    steps:
+      - name: Delete old sha versions
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            try {
+              const packageName = "rubrol";
+              const owner = context.repo.owner;
+              console.log(`Checking versions for package: ${packageName} owned by: ${owner}`);
+              
+              // List package versions for authenticated user package
+              let versions = [];
+              try {
+                const res = await github.request('GET /user/packages/container/{package_name}/versions', {
+                  package_name: packageName
+                });
+                versions = res.data;
+              } catch (e1) {
+                console.log("Failed /user/packages, trying /users/{username}/packages...", e1.message);
+                const res = await github.request('GET /users/{username}/packages/container/{package_name}/versions', {
+                  username: owner,
+                  package_name: packageName
+                });
+                versions = res.data;
+              }
+              
+              console.log(`Found ${versions.length} versions`);
+              for (const v of versions) {
+                const tags = v.metadata?.container?.tags || [];
+                console.log(`Version ID: ${v.id}, tags: ${JSON.stringify(tags)}`);
+                // If it does not have GA or latest tag, delete it
+                const isGA = tags.includes('GA') || tags.includes('latest');
+                if (!isGA) {
+                  console.log(`Deleting version ${v.id} (tags: ${tags.join(',')})`);
+                  try {
+                    await github.request('DELETE /user/packages/container/{package_name}/versions/{version_id}', {
+                      package_name: packageName,
+                      version_id: v.id
+                    });
+                    console.log(`Successfully deleted version ${v.id}`);
+                  } catch (delErr) {
+                    console.error(`Error deleting version ${v.id}:`, delErr.message);
+                  }
+                }
+              }
+            } catch (err) {
+              console.error("Workflow failed:", err.message);
+              throw err;
+            }
