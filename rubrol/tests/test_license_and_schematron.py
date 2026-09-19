@@ -60,3 +60,32 @@ def test_schematron_catches_invalid_syntax():
     assert valid is False
     assert len(errors) > 0
     assert errors[0].rule_id == "XML-SYNTAX"
+
+def test_stripe_subscription_cancellation_webhook(monkeypatch):
+    from rubrol.webhooks.stripe_fulfillment import process_stripe_event
+    from rubrol.core.api_key_manager import key_manager
+
+    # Mock token and HTTP deletion
+    monkeypatch.setattr("rubrol.webhooks.stripe_fulfillment.get_github_token", lambda: "fake_token")
+    monkeypatch.setattr("rubrol.webhooks.stripe_fulfillment.remove_github_user_from_repo", lambda user, repo: {"success": True, "username": user, "repository": repo})
+
+    # Test cancellation event
+    event = {
+        "id": "evt_test_cancel_123",
+        "type": "customer.subscription.deleted",
+        "data": {
+            "object": {
+                "id": "sub_test_annual_999",
+                "customer": "cus_test_123",
+                "metadata": {
+                    "github_username": "canceluser"
+                }
+            }
+        }
+    }
+    result = process_stripe_event(event)
+    assert result["handled"] is True
+    assert result["subscription_id"] == "sub_test_annual_999"
+    assert result["github_username"] == "canceluser"
+    assert len(result["revocations"]) == 2
+

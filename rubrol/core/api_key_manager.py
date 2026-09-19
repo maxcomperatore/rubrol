@@ -215,5 +215,18 @@ class APIKeyManager:
                 "last_used_at": row["last_used_at"]
             }
 
+    def deactivate_subscription(self, stripe_subscription_id: str) -> bool:
+        """Deactivate all API keys associated with a Stripe subscription ID."""
+        if not stripe_subscription_id:
+            return False
+        with self._get_conn() as conn:
+            conn.execute("""
+                UPDATE api_keys
+                SET is_active = 0
+                WHERE stripe_subscription_id = ?
+            """, (stripe_subscription_id,))
+            conn.commit()
+        return True
+
 # Global singleton instance
 key_manager = APIKeyManager()

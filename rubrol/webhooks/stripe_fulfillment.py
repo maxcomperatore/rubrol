@@ -85,9 +85,49 @@ def invite_github_user_to_repo(github_username: str, repo_name: str, permission:
         return {"success": False, "error": str(exc), "repository": full_repo, "username": clean_username}
 
 
+def remove_github_user_from_repo(github_username: str, repo_name: str) -> Dict[str, Any]:
+    """
+    Revoke collaborator access for a GitHub user when their subscription is cancelled or expires.
+    """
+    clean_username = github_username.strip().lstrip("@")
+    if not clean_username:
+        return {"success": False, "error": "Empty GitHub username"}
+
+    token = get_github_token()
+    if not token:
+        logger.error("Cannot remove collaborator: No GITHUB_TOKEN or gh CLI authentication found.")
+        return {"success": False, "error": "No GitHub token available"}
+
+    full_repo = f"{VAULT_OWNER}/{repo_name}"
+    url = f"https://api.github.com/repos/{full_repo}/collaborators/{clean_username}"
+    headers = {
+        "Authorization": f"Bearer {token}",
+        "Accept": "application/vnd.github+json",
+        "X-GitHub-Api-Version": "2022-11-28",
+        "User-Agent": "Rubrol-Fulfillment-Bot"
+    }
+
+    req = urllib.request.Request(url, headers=headers, method="DELETE")
+    try:
+        with urllib.request.urlopen(req) as resp:
+            logger.info(f"Successfully revoked access for @{clean_username} from {full_repo} (HTTP {resp.status})")
+            return {"success": True, "status": resp.status, "username": clean_username, "repository": full_repo}
+    except urllib.error.HTTPError as err:
+        err_msg = err.read().decode("utf-8") if hasattr(err, "read") else str(err)
+        logger.error(f"GitHub API error revoking @{clean_username} from {full_repo}: HTTP {err.code} - {err_msg}")
+        return {"success": False, "status": err.code, "error": err_msg, "repository": full_repo, "username": clean_username}
+    except Exception as exc:
+        logger.error(f"Unexpected error revoking @{clean_username} from {full_repo}: {exc}")
+        return {"success": False, "error": str(exc), "repository": full_repo, "username": clean_username}
+
+
 def process_stripe_event(event: Dict[str, Any]) -> Dict[str, Any]:
     """
     Process an incoming Stripe webhook event.
+    Handles:
+    - checkout.session.completed (Initial provisioning & GitHub vault invite)
+    - customer.subscription.deleted (Cancellation & vault access revocation)
+    - invoice.payment_succeeded (Annual renewal license key issuance)
     """
     event_type = event.get("type", "")
     logger.info(f"Processing Stripe webhook event: {event_type} (id: {event.get('id')})")
@@ -161,6 +201,36 @@ def process_stripe_event(event: Dict[str, Any]) -> Dict[str, Any]:
             "license_key": license_key,
             "api_key_info": api_key_info,
             "vault_invitations": invite_results
+        }
+
+    elif event_type == "customer.subscription.deleted":
+        # Subscription was canceled and reached period end, or canceled immediately
+        sub = event.get("data", {}).get("object", {})
+        subscription_id = sub.get("id", "")
+        customer_id = sub.get("customer", "")
+        metadata = sub.get("metadata", {})
+        github_username = metadata.get("github_username")
+
+        # Deactivate local API keys
+        if subscription_id:
+            key_manager.deactivate_subscription(subscription_id)
+            logger.info(f"Deactivated local API credentials for subscription {subscription_id}")
+
+        # Revoke access to GitHub vaults
+        revocation_results = []
+        if github_username:
+            for repo in [PRO_VAULT_REPO, ENTERPRISE_VAULT_REPO]:
+                res = remove_github_user_from_repo(github_username, repo)
+                revocation_results.append(res)
+
+        return {
+            "handled": True,
+            "event_type": event_type,
+            "subscription_id": subscription_id,
+            "customer_id": customer_id,
+            "github_username": github_username,
+            "revocations": revocation_results,
+            "message": "Subscription cancelled; credentials and vault access revoked."
         }
 
     return {"handled": False, "event_type": event_type, "message": "Event type not requiring fulfillment"}
