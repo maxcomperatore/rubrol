@@ -1455,7 +1455,9 @@
     .pricing-deck {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 32px;
+      gap: 28px;
+      width: 100%;
+      align-items: stretch;
     }
 
     .price-card {
@@ -1468,6 +1470,8 @@
       justify-content: space-between;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
       position: relative;
+      width: 100%;
+      box-sizing: border-box;
     }
 
     .price-card.featured {
@@ -1555,6 +1559,8 @@
 
     .btn-pricing {
       display: block;
+      width: 100%;
+      box-sizing: border-box;
       text-align: center;
       padding: 12px 16px;
       border-radius: 8px;
@@ -2108,19 +2114,17 @@
   
     .pricing-deck {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 24px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      width: 100%;
+      align-items: stretch;
     }
 
-    @media (max-width: 1100px) {
-      .pricing-deck {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media (max-width: 640px) {
+    @media (max-width: 1024px) {
       .pricing-deck {
         grid-template-columns: 1fr;
+        max-width: 520px;
+        margin: 0 auto;
       }
     }
 
