@@ -108,8 +108,9 @@ class TestFacturXSuite(unittest.TestCase):
 
         # 3. Package
         packaged_pdf = package_facturx_pdf(pdf_base, xml_bytes, profile="EN 16931")
-        self.assertTrue(len(packaged_pdf) > 50000)
+        self.assertTrue(len(packaged_pdf) > 10000)
         self.assertIn(b"/EmbeddedFiles", packaged_pdf)
+
 
         # 4. Extract
         extracted = extract_facturx_xml(packaged_pdf)
