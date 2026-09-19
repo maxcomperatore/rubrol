@@ -51,21 +51,19 @@ User clicks "Download Invoice"
 
 ---
 
-## What You Become: Developer Superpowers (The Fire Mario Effect)
+## The Architectural Transformation: Developer Superpowers Unlocked
 
-People do not buy software; they buy a better version of themselves.
+Adopting Rubrol is not just about replacing a rendering library; it fundamentally changes the operational profile of your engineering team:
 
-Rubrol is not just a faster document compiler (the flower). It is about the engineer and systems architect you become once you wield it (Fire Mario):
-
-| Before Rubrol (Regular Mario) | With Rubrol (Fire Mario) | The Superpower Unlocked |
+| Legacy Document Stack | With Rubrol Native Engine | The Architectural Superpower |
 | :--- | :--- | :--- |
-| **The Queue Janitor** | **The Infrastructure Simplifier** | You walk into standup and announce you deleted your Redis queues, Celery worker nodes, and S3 polling loops. |
-| **The Midnight Pager Victim** | **The Undisturbed Sleeper** | When monthly billing compiles 100,000 invoices simultaneously, your cluster hums at 28MB RAM with zero OOM crashes. |
+| **The Queue Janitor** | **The Systems Simplifier** | You walk into architectural review having deleted your Redis queues, Celery worker fleet, and S3 polling loops. |
+| **The Midnight Pager Victim** | **The Undisturbed Sleeper** | When monthly billing compiles 100,000 invoices concurrently, your cluster hums at 28MB RAM with zero OOM crashes. |
 | **The Spinner Apologist** | **The Sub-15ms Speed Demon** | Users click "Download" and the PDF is on their desktop in 15ms. No loading spinners, no delayed emails, no expired links. |
 | **The CSS Print Sufferer** | **The Typographic Master** | You never touch brittle `@media print` CSS hacks again. You write clean, deterministic Typst templates that compile cleanly. |
 | **The Compliance Panicker** | **The Enterprise Hero** | When leadership worries about the 2026 EU EN 16931 e-invoicing mandate, you deliver turnkey Factur-X / PDF/A-3b in one endpoint. |
 
-### The 4 Transformations
+### The 4 Production Transformations
 
 1. **You Delete an Entire Distributed Tier**: Collapsing an asynchronous 4-hop architecture (API &rarr; Redis &rarr; Chromium Worker &rarr; S3 &rarr; User) into a single synchronous 6ms HTTP response makes your system dramatically easier to reason about, test, and deploy.
 2. **You Become Immune to Out-Of-Memory Outages**: Chromium memory leaks are the #1 cause of PDF cluster evictions. Rubrol's stateless, sub-28MB memory ceiling means you can handle 1,200+ requests per second on a single modest container without breaking a sweat.
@@ -77,7 +75,7 @@ Rubrol is not just a faster document compiler (the flower). It is about the engi
 ## Table of Contents
 
 - [The Architecture Shift: Eliminating Background Queues](#the-architecture-shift-eliminating-background-queues)
-- [What You Become: Developer Superpowers](#what-you-become-developer-superpowers-the-fire-mario-effect)
+- [The Architectural Transformation: Developer Superpowers](#the-architectural-transformation-developer-superpowers-unlocked)
 - [The Problem & The Solution](#the-problem--the-solution)
 - [Performance Benchmarks](#performance-benchmarks)
 - [Use AI to Integrate Rubrol](#use-ai-to-integrate-rubrol)
