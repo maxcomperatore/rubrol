@@ -3847,14 +3847,14 @@
         Tax inclusive pricing. Sales tax and VAT are fully absorbed. Billed annually upfront.
       </div>
 
-      <!-- 3-Tier Commercial Open-Core Deck -->
+      <!-- 3-Tier Commercial Open-Core Deck (Sidekiq Model) -->
       <div class="pricing-deck">
-        <!-- Tier 1: Developer Edition -->
+        <!-- Tier 1: Rubrol Community -->
         <div id="card-developer" class="price-card tier-dimmed">
           <span id="ribbon-developer" class="featured-ribbon" style="background: #10b981;">Open Source • Free</span>
           <div>
-            <h3 class="price-plan-name">Developer Edition</h3>
-            <p class="price-plan-desc">Local CLI &amp; Docker evaluation with sub-10ms mean compile speed.</p>
+            <h3 class="price-plan-name">Rubrol Community</h3>
+            <p class="price-plan-desc">Open-source vector engine for local CLI development &amp; Docker evaluation.</p>
             <div class="price-plan-num">
               <span class="price-currency">$</span>
               <span class="price-figure">0</span>
@@ -3866,7 +3866,7 @@
             <ul class="price-features">
               <li>Sub-10ms Mean Compile Latency</li>
               <li>Local Developer CLI &amp; Docker Container</li>
-              <li>100 Documents / Month (Watermarked Eval)</li>
+              <li>100 Documents / Month (Evaluation Build)</li>
               <li>Standard B2B &amp; SaaS Typst Templates</li>
               <li>Open-Source Community GitHub Support</li>
             </ul>
@@ -3876,12 +3876,12 @@
           </a>
         </div>
 
-        <!-- Tier 2: Pro Sidecar -->
+        <!-- Tier 2: Rubrol Pro -->
         <div id="card-pro" class="price-card tier-dimmed">
           <span id="ribbon-pro" class="featured-ribbon" style="background: #f59e0b;">Commercial License</span>
           <div>
-            <h3 class="price-plan-name">Pro Sidecar</h3>
-            <p class="price-plan-desc">Unlimited local sidecar execution for startups &amp; global billing engines.</p>
+            <h3 class="price-plan-name">Rubrol Pro</h3>
+            <p class="price-plan-desc">Annual commercial license for SaaS startups &amp; high-throughput billing systems.</p>
             <div class="price-plan-num">
               <span class="price-currency">$</span>
               <span class="price-figure" id="price-val-pro">1,800</span>
@@ -3901,16 +3901,16 @@
             </ul>
           </div>
           <a href="https://buy.stripe.com/00w8wQ0GN1h8ehJ7Wk0Ba09" target="_blank" class="btn-pricing btn-pricing-primary" id="btn-pro">
-            Get Pro Sidecar ($1,800/yr)
+            Buy Rubrol Pro ($1,800/yr)
           </a>
         </div>
 
-        <!-- Tier 3: EU Compliance & Enterprise -->
+        <!-- Tier 3: Rubrol Enterprise -->
         <div id="card-compliance" class="price-card tier-active featured">
-          <span id="ribbon-compliance" class="featured-ribbon" style="background: #ea580c;">Most Popular • Regulatory Standard</span>
+          <span id="ribbon-compliance" class="featured-ribbon" style="background: #ea580c;">Regulatory Standard • Most Popular</span>
           <div>
-            <h3 class="price-plan-name">EU Compliance &amp; Enterprise</h3>
-            <p class="price-plan-desc">Certified EN 16931 &amp; Factur-X / ZUGFeRD 2.2 turnkey compliance suite.</p>
+            <h3 class="price-plan-name">Rubrol Enterprise</h3>
+            <p class="price-plan-desc">Turnkey EU compliance suite with certified EN 16931 &amp; Schematron validation.</p>
             <div class="price-plan-num">
               <span class="price-currency">$</span>
               <span class="price-figure" id="price-val-compliance">4,800</span>
@@ -3930,7 +3930,7 @@
             </ul>
           </div>
           <a href="https://buy.stripe.com/14A5kE1KR8JA2z1dgE0Ba0c" target="_blank" class="btn-pricing btn-pricing-primary" id="btn-compliance">
-            Get EU Enterprise ($4,800/yr)
+            Buy Rubrol Enterprise ($4,800/yr)
           </a>
         </div>
       </div>
@@ -4989,7 +4989,7 @@ ${err.message}</div>`;
         if (ro) ro.style.display = 'none';
       });
 
-      // Tier 1: Developer Edition (< 20,000 docs/mo)
+      // Tier 1: Rubrol Community (< 20,000 docs/mo)
       if (val < 20000) {
         if (cardDev) {
           cardDev.classList.add('tier-active');
@@ -4997,13 +4997,13 @@ ${err.message}</div>`;
         }
         if (ribbonDev) ribbonDev.style.display = 'block';
         if (roiDev) roiDev.style.display = 'block';
-        calcRecPlan.innerText = "Developer Edition ($0 Free)";
+        calcRecPlan.innerText = "Rubrol Community ($0 Free)";
         calcRecPlan.style.color = "#10b981";
-        calcRecRoi.innerHTML = "100% Free Open-Source Core • Run unlimited locally or in Docker for evaluation";
+        calcRecRoi.innerHTML = "100% Free Open-Source Core (AGPLv3) • Run unlimited locally or in Docker for evaluation";
         calcCtaBtn.href = GITHUB_REPO_URL;
         calcCtaBtn.innerHTML = "<span>Clone on GitHub (Free)</span>";
       }
-      // Tier 2: Pro Sidecar (20,000 - 100,000 docs/mo)
+      // Tier 2: Rubrol Pro (20,000 - 100,000 docs/mo)
       else if (val < 100000) {
         if (cardPro) {
           cardPro.classList.add('tier-active');
@@ -5015,14 +5015,14 @@ ${err.message}</div>`;
           const netTco = totalTcoSaved - 1800;
           roiPro.innerText = `● Net TCO ROI: +$${netTco.toLocaleString()}/yr saved`;
         }
-        calcRecPlan.innerText = "Pro Sidecar ($1,800/yr)";
+        calcRecPlan.innerText = "Rubrol Pro ($1,800/yr)";
         calcRecPlan.style.color = "var(--amber-primary)";
         const netTco = totalTcoSaved - 1800;
         calcRecRoi.innerHTML = `Net Positive TCO ROI: +$${netTco.toLocaleString()} / year saved after license cost`;
         calcCtaBtn.href = STRIPE_PRO_ANNUAL_URL;
-        calcCtaBtn.innerHTML = "<span>Get Pro Sidecar ($1,800/yr)</span>";
+        calcCtaBtn.innerHTML = "<span>Buy Rubrol Pro ($1,800/yr)</span>";
       }
-      // Tier 3: EU Compliance & Enterprise (>= 100,000 docs/mo)
+      // Tier 3: Rubrol Enterprise (>= 100,000 docs/mo)
       else {
         if (cardComp) {
           cardComp.classList.add('tier-active');
@@ -5034,12 +5034,12 @@ ${err.message}</div>`;
           const netTco = totalTcoSaved - 4800;
           roiComp.innerText = `● Net TCO ROI: +$${netTco.toLocaleString()}/yr + certified EN 16931`;
         }
-        calcRecPlan.innerText = "EU Compliance & Enterprise ($4,800/yr)";
+        calcRecPlan.innerText = "Rubrol Enterprise ($4,800/yr)";
         calcRecPlan.style.color = "#ea580c";
         const netTco = totalTcoSaved - 4800;
         calcRecRoi.innerHTML = `Net Positive TCO ROI: +$${netTco.toLocaleString()} / year saved + EN 16931 certified`;
         calcCtaBtn.href = STRIPE_COMPLIANCE_ANNUAL_URL;
-        calcCtaBtn.innerHTML = "<span>Get EU Enterprise ($4,800/yr)</span>";
+        calcCtaBtn.innerHTML = "<span>Buy Rubrol Enterprise ($4,800/yr)</span>";
       }
     }
 

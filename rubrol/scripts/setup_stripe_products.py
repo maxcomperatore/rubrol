@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 """
 Rubrol Stripe Product & Checkout Link Generator.
-Provisions the 2 Annual Commercial Products in Stripe:
-1. Rubrol Pro Sidecar ($1,800 / year)
-2. Rubrol EU Compliance & Enterprise ($4,800 / year)
+Provisions the 2 Annual Commercial Products in Stripe (Sidekiq Model):
+1. Rubrol Pro ($1,800 / year)
+2. Rubrol Enterprise ($4,800 / year)
 Configures custom_fields to require the buyer's GitHub username at checkout.
 """
 import os
@@ -32,16 +32,26 @@ def create_checkout_session(
             "instructions": "Set STRIPE_SECRET_KEY=sk_test_... or sk_live_... to create live Stripe Checkout sessions."
         }
 
-    if tier.lower() in ("enterprise", "eu_enterprise", "compliance"):
-        name = "Rubrol EU Compliance & Enterprise (Annual License)"
-        description = "Certified PDF/A-3b & Factur-X / ZUGFeRD 2.2 Schematron validator, DIN 5008 German & French templates, private container registry, regulatory update feed."
+    if tier.lower() in ("enterprise", "rubrol_enterprise", "compliance"):
+        name = "Rubrol Enterprise (Annual License)"
+        description = (
+            "Complete enterprise e-invoicing suite. Everything in Pro plus certified ISO 19005-3 PDF/A-3b & "
+            "Factur-X / ZUGFeRD 2.2 Schematron semantic validator, German DIN 5008 & French Chorus Pro XML/PDF, "
+            "dual vault access (rubrol-enterprise-vault), guaranteed compliance updates for 2025-2028 EU mandates, "
+            "air-gapped license key, and direct priority engineering support."
+        )
         amount = 480000  # $4,800.00 USD in cents
-        metadata = {"tier": "eu_enterprise"}
+        metadata = {"tier": "enterprise", "plan": "rubrol_enterprise"}
     else:
-        name = "Rubrol Pro Sidecar (Annual Commercial License)"
-        description = "Unlimited local sidecar execution, commercial production license, pre-built B2B SaaS invoice templates, dynamic Swiss QR / barcodes, private vault access."
+        name = "Rubrol Pro (Annual Commercial License)"
+        description = (
+            "Commercial open-core license for scaling engineering teams. Unlimited local Docker containers, "
+            "replaces AGPLv3 with full commercial production rights, zero Chrome memory leaks (<6ms renders), "
+            "pre-built B2B SaaS invoice & receipt templates, dynamic Swiss QR / barcodes, private GitHub vault "
+            "(rubrol-pro-vault) access, and a signed 1-year offline cryptographic license key."
+        )
         amount = 180000  # $1,800.00 USD in cents
-        metadata = {"tier": "pro_sidecar"}
+        metadata = {"tier": "pro", "plan": "rubrol_pro"}
 
     try:
         session = stripe.checkout.Session.create(
@@ -77,6 +87,7 @@ def create_checkout_session(
             "session_id": session.id,
             "checkout_url": session.url,
             "tier": metadata["tier"],
+            "plan_name": name,
             "amount_usd": amount / 100,
         }
     except Exception as e:
@@ -85,7 +96,7 @@ def create_checkout_session(
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
-    tier_arg = "pro" if "--pro" in sys.argv else ("enterprise" if "--enterprise" in sys.argv else "pro")
-    print(f"Generating Stripe Checkout Session for tier: {tier_arg}...")
+    tier_arg = "enterprise" if ("--enterprise" in sys.argv or "-e" in sys.argv) else "pro"
+    print(f"Generating Stripe Checkout Session for: {tier_arg.upper()}...")
     res = create_checkout_session(tier=tier_arg)
     print(json.dumps(res, indent=2))
