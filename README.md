@@ -21,6 +21,20 @@
 
 ---
 
+## Why not just use Typst directly?
+
+Typst is a compiler. You give it a `.typ` file, it gives you a PDF. What Rubrol adds on top:
+
+- **REST API + process isolation** - concurrent requests, hot-reload templates, `POST /v1/render` from any language without managing subprocesses or file I/O yourself
+- **Template management** - store, version, and serve templates via API; no filesystem juggling per deployment
+- **Factur-X / EN 16931 pipeline** - XMP metadata injection, `/AFRelationship` PDF dictionary, Schematron validation; skip the 2-3 months to get EU e-invoicing compliance right
+- **One Docker image** - `docker run ghcr.io/maxcomperatore/rubrol:GA` and you have a production-ready PDF service in 2 minutes
+- **8 client SDKs** - drop-in libraries for Python, Node, Go, Ruby, PHP, Java, .NET, Rust
+
+If you are generating one PDF type internally, raw Typst is fine. If you need a multi-tenant PDF service or legally compliant EU invoices at volume, that is what Rubrol saves you from building.
+
+---
+
 ## The Architecture Shift: Eliminating Background Queues
 
 Every engineering team has built the same accidental infrastructure:
@@ -74,6 +88,7 @@ Adopting Rubrol is not just about replacing a rendering library; it fundamentall
 
 ## Table of Contents
 
+- [Why not just use Typst directly?](#why-not-just-use-typst-directly)
 - [The Architecture Shift: Eliminating Background Queues](#the-architecture-shift-eliminating-background-queues)
 - [The Architectural Transformation: Developer Superpowers](#the-architectural-transformation-developer-superpowers-unlocked)
 - [The Problem & The Solution](#the-problem--the-solution)
