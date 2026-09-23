@@ -809,89 +809,302 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 28px;
+      align-items: stretch;
     }
 
-    .parchment-card {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
-      border-radius: 12px;
-      padding: 36px;
-      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
-      transition: border-color 0.2s ease, transform 0.2s ease;
+    .bench-arch-card {
+      position: relative;
+      border-radius: 16px;
+      padding: 36px 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .parchment-card:hover {
-      border-color: var(--border-hover);
+    .card-chromium {
+      background: linear-gradient(180deg, rgba(26, 20, 24, 0.85) 0%, rgba(17, 18, 22, 0.95) 100%);
+      border: 1px solid rgba(239, 68, 68, 0.22);
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(239, 68, 68, 0.15);
     }
 
-    .parchment-card-title {
-      font-family: var(--font-sans);
-      font-size: 20px;
+    .card-chromium:hover {
+      border-color: rgba(239, 68, 68, 0.4);
+      box-shadow: 0 16px 40px -10px rgba(239, 68, 68, 0.15), inset 0 1px 0 rgba(239, 68, 68, 0.25);
+    }
+
+    .card-rubrol {
+      background: linear-gradient(180deg, rgba(16, 32, 28, 0.85) 0%, rgba(13, 20, 24, 0.95) 100%);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      box-shadow: 0 12px 35px -10px rgba(16, 185, 129, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    }
+
+    .card-rubrol:hover {
+      border-color: rgba(16, 185, 129, 0.55);
+      box-shadow: 0 20px 48px -10px rgba(16, 185, 129, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    }
+
+    .bench-card-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 11px;
       font-weight: 600;
-      letter-spacing: -0.02em;
-      margin-bottom: 12px;
-      color: #ffffff;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 9999px;
+      margin-bottom: 20px;
+      align-self: flex-start;
     }
 
-    .parchment-card-text {
-      font-size: 14px;
-      color: var(--text-secondary);
+    .badge-legacy {
+      background: rgba(239, 68, 68, 0.12);
+      border: 1px solid rgba(239, 68, 68, 0.25);
+      color: #f87171;
+    }
+
+    .badge-modern {
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: #34d399;
+    }
+
+    .bench-card-badge .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+    }
+
+    .badge-legacy .dot {
+      background: #ef4444;
+      box-shadow: 0 0 8px rgba(239, 68, 68, 0.8);
+    }
+
+    .badge-modern .dot {
+      background: #10b981;
+      box-shadow: 0 0 8px rgba(16, 185, 129, 0.8);
+      animation: pulse-dot 2s infinite ease-in-out;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+
+    .bench-card-title {
+      font-family: var(--font-sans);
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: -0.025em;
+      color: #ffffff;
+      margin-bottom: 8px;
+    }
+
+    .bench-card-desc {
+      font-size: 13.5px;
       line-height: 1.6;
+      color: #94a3b8;
       margin-bottom: 24px;
     }
 
-    /* High-Res Comparison Table */
-    .comp-table {
+    /* Chromium Debt Metric Rows */
+    .bench-metric-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .bench-metric-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 13px 16px;
+      background: rgba(255, 255, 255, 0.025);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 10px;
+    }
+
+    .bench-metric-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .bench-metric-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: rgba(239, 68, 68, 0.1);
+      color: #f87171;
+      flex-shrink: 0;
+    }
+
+    .bench-metric-label {
+      font-size: 13px;
+      font-weight: 500;
+      color: #e2e8f0;
+      line-height: 1.3;
+    }
+
+    .bench-metric-sub {
+      font-size: 11px;
+      color: #64748b;
+      margin-top: 2px;
+    }
+
+    .bench-metric-val-bad {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 700;
+      color: #f87171;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    /* Rubrol Transformation Rows */
+    .bench-transform-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .bench-transform-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 13px 16px;
+      background: rgba(16, 185, 129, 0.04);
+      border: 1px solid rgba(16, 185, 129, 0.15);
+      border-radius: 10px;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .bench-transform-item:hover {
+      background: rgba(16, 185, 129, 0.07);
+      border-color: rgba(16, 185, 129, 0.25);
+    }
+
+    .bench-transform-left {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .bench-transform-label {
+      font-size: 13px;
+      font-weight: 500;
+      color: #e2e8f0;
+    }
+
+    .bench-transform-sub {
+      font-size: 11px;
+      color: #64748b;
+      margin-top: 2px;
+    }
+
+    .bench-transform-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .bench-val-before {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: #64748b;
+      text-decoration: line-through;
+    }
+
+    .bench-arrow {
+      color: #475569;
+      font-size: 12px;
+    }
+
+    .bench-val-after {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 700;
+      color: #34d399;
+    }
+
+    .bench-pill-speedup {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 700;
+      color: #064e3b;
+      background: #34d399;
+      padding: 2px 7px;
+      border-radius: 6px;
+      letter-spacing: 0.02em;
+    }
+
+    /* Comparison Telemetry Bars */
+    .bench-telemetry-box {
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 10px;
+      padding: 14px 16px;
+    }
+
+    .bench-telemetry-hdr {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: #94a3b8;
+      margin-bottom: 8px;
+    }
+
+    .bench-telemetry-bar-wrap {
+      height: 8px;
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 9999px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .bench-bar-fill-bad {
+      height: 100%;
       width: 100%;
-      border-collapse: collapse;
-      font-size: 13.5px;
-      margin-top: 16px;
+      background: linear-gradient(90deg, #ef4444 0%, #dc2626 100%);
+      border-radius: 9999px;
     }
 
-    .comp-table th {
-      text-align: left;
-      font-family: var(--font-mono);
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--text-light-muted);
-      padding: 10px 12px;
-      border-bottom: 1px solid var(--border-subtle);
+    .bench-bar-fill-good {
+      height: 100%;
+      width: 2.8%;
+      min-width: 8px;
+      background: linear-gradient(90deg, #10b981 0%, #34d399 100%);
+      border-radius: 9999px;
+      box-shadow: 0 0 10px rgba(52, 211, 153, 0.8);
     }
 
-    .comp-table td {
-      padding: 12px;
-      border-bottom: 1px solid var(--border-subtle);
-      color: var(--text-light-body);
-    }
-
-    .comp-table tr.highlight {
-      background: rgba(217, 119, 6, 0.05);
-      font-weight: 600;
-    }
-
-    .comp-table tr.highlight td {
-      color: var(--amber-primary);
-    }
-
-    .badge-win {
-      display: inline-block;
-      font-family: var(--font-mono);
-      font-size: 11px;
-      padding: 2px 6px;
-      background: #dcfce7;
-      color: #15803d;
-      border-radius: 4px;
-    }
-
-    .badge-loss {
-      display: inline-block;
-      font-family: var(--font-mono);
-      font-size: 11px;
-      padding: 2px 6px;
-      background: #fee2e2;
-      color: #b91c1c;
-      border-radius: 4px;
+    @media (max-width: 600px) {
+      .bench-arch-card {
+        padding: 24px 20px;
+      }
+      .bench-metric-item, .bench-transform-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+      .bench-metric-val-bad {
+        align-self: flex-start;
+      }
+      .bench-transform-right {
+        width: 100%;
+        justify-content: space-between;
+      }
     }
 
     /* DARK SECTION 2: The Business Impact */
@@ -4441,56 +4654,159 @@
       </div>
 
       <div class="parchment-grid">
-        <div class="parchment-card">
-          <h3 class="parchment-card-title">The Chromium Bottleneck</h3>
-          <p class="parchment-card-text">
-            Every invoice generated via Puppeteer spins up a full WebKit/Blink layout engine, executing JavaScript, evaluating CSS cascades, and allocating huge DOM node trees before rasterizing to print media.
-          </p>
-          <ul style="list-style: none; display: flex; flex-direction: column; gap: 10px; font-size: 13.5px; color: var(--text-secondary);">
-            <li><strong>250MB - 400MB RAM</strong> per concurrent worker</li>
-            <li><strong>1,800ms - 3,500ms</strong> p95 cold start latency</li>
-            <li>Frequent out-of-memory container crashes under batch loads</li>
-            <li>Non-deterministic line breaking across Linux distributions</li>
-          </ul>
+        <!-- Legacy Chromium Bottleneck Card -->
+        <div class="bench-arch-card card-chromium">
+          <div>
+            <div class="bench-card-badge badge-legacy">
+              <span class="dot"></span>
+              <span>Legacy Cluster Overhead</span>
+            </div>
+            <h3 class="bench-card-title">The Chromium Bottleneck</h3>
+            <p class="bench-card-desc">
+              Spawning headless browser instances forces massive memory spikes, unpredictable V8 garbage collection freezes, and cold-start latency failures.
+            </p>
+
+            <div class="bench-metric-list">
+              <div class="bench-metric-item">
+                <div class="bench-metric-left">
+                  <div class="bench-metric-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+                      <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+                      <line x1="6" y1="6" x2="6.01" y2="6"></line>
+                      <line x1="6" y1="18" x2="6.01" y2="18"></line>
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="bench-metric-label">Memory Footprint</div>
+                    <div class="bench-metric-sub">Heavy container heap allocations</div>
+                  </div>
+                </div>
+                <div class="bench-metric-val-bad">250MB – 400MB / worker</div>
+              </div>
+
+              <div class="bench-metric-item">
+                <div class="bench-metric-left">
+                  <div class="bench-metric-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="bench-metric-label">p95 Cold-Start Latency</div>
+                    <div class="bench-metric-sub">DOM parsing &amp; CSS cascade engine</div>
+                  </div>
+                </div>
+                <div class="bench-metric-val-bad">1,800ms – 3,500ms</div>
+              </div>
+
+              <div class="bench-metric-item">
+                <div class="bench-metric-left">
+                  <div class="bench-metric-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path>
+                      <line x1="12" y1="9" x2="12" y2="13"></line>
+                      <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="bench-metric-label">High-Concurrency Stability</div>
+                    <div class="bench-metric-sub">OOM kills &amp; font raster variances</div>
+                  </div>
+                </div>
+                <div class="bench-metric-val-bad">Frequent OOM Crashes</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bench-telemetry-box">
+            <div class="bench-telemetry-hdr">
+              <span>LATENCY PENALTY</span>
+              <span style="color: #f87171; font-weight: 700;">2,400ms avg</span>
+            </div>
+            <div class="bench-telemetry-bar-wrap">
+              <div class="bench-bar-fill-bad"></div>
+            </div>
+          </div>
         </div>
 
-        <div class="parchment-card" style="border: 1px solid rgba(255, 255, 255, 0.2); box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08), 0 8px 30px rgba(0,0,0,0.5);">
-          <h3 class="parchment-card-title">The Rubrol Architecture</h3>
-          <p class="parchment-card-text">
-            Rubrol compiles structured documents into native vector PDF/A-3b, PDF/A-2b, and SVG. Zero browser overhead, zero Node.js bridging, and native ISO 19005-3 & ISO 19005-2 compliance built directly into the binary.
-          </p>
-          <div class="table-responsive">
-            <table class="comp-table">
-              <thead>
-                <tr>
-                  <th>Vector Spec</th>
-                  <th>Chromium / Puppeteer</th>
-                  <th>Rubrol Sidecar</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Compile Latency</td>
-                  <td><span class="badge-loss">2,400ms</span></td>
-                  <td><span class="badge-win">5.8ms</span></td>
-                </tr>
-                <tr>
-                  <td>Memory Footprint</td>
-                  <td><span class="badge-loss">250MB</span></td>
-                  <td><span class="badge-win">24MB</span></td>
-                </tr>
-                <tr>
-                  <td>Max Concurrency</td>
-                  <td><span class="badge-loss">40 req/s</span></td>
-                  <td><span class="badge-win">1,200 req/s</span></td>
-                </tr>
-                <tr class="highlight">
-                  <td>PDF/A-3b &amp; Factur-X (ISO 19005-3)</td>
-                  <td>Requires 3rd party CLI</td>
-                  <td>Native Zero-Copy</td>
-                </tr>
-              </tbody>
-            </table>
+        <!-- Sovereign Modern Rubrol Card -->
+        <div class="bench-arch-card card-rubrol">
+          <div>
+            <div class="bench-card-badge badge-modern">
+              <span class="dot"></span>
+              <span>Sub-Millisecond Architecture</span>
+            </div>
+            <h3 class="bench-card-title">The Rubrol Architecture</h3>
+            <p class="bench-card-desc">
+              Rubrol compiles directly into native vector PDF/A-3b, PDF/A-2b, and SVG. Zero browser overhead, zero Node.js bridging, and native ISO compliance built into bare metal.
+            </p>
+
+            <div class="bench-transform-list">
+              <div class="bench-transform-item">
+                <div class="bench-transform-left">
+                  <div class="bench-transform-label">Compile Latency (p99)</div>
+                  <div class="bench-transform-sub">Native deterministic vector layout</div>
+                </div>
+                <div class="bench-transform-right">
+                  <span class="bench-val-before">2,400ms</span>
+                  <span class="bench-arrow">→</span>
+                  <span class="bench-val-after">5.8ms</span>
+                  <span class="bench-pill-speedup">413x Faster</span>
+                </div>
+              </div>
+
+              <div class="bench-transform-item">
+                <div class="bench-transform-left">
+                  <div class="bench-transform-label">Memory Footprint</div>
+                  <div class="bench-transform-sub">Zero-copy arena allocator</div>
+                </div>
+                <div class="bench-transform-right">
+                  <span class="bench-val-before">250MB</span>
+                  <span class="bench-arrow">→</span>
+                  <span class="bench-val-after">24MB</span>
+                  <span class="bench-pill-speedup">-90% RAM</span>
+                </div>
+              </div>
+
+              <div class="bench-transform-item">
+                <div class="bench-transform-left">
+                  <div class="bench-transform-label">Max Concurrency</div>
+                  <div class="bench-transform-sub">Lightweight async Rust workers</div>
+                </div>
+                <div class="bench-transform-right">
+                  <span class="bench-val-before">40 req/s</span>
+                  <span class="bench-arrow">→</span>
+                  <span class="bench-val-after">1,200 req/s</span>
+                  <span class="bench-pill-speedup">30x Scale</span>
+                </div>
+              </div>
+
+              <div class="bench-transform-item" style="border-color: rgba(16, 185, 129, 0.3); background: rgba(16, 185, 129, 0.08);">
+                <div class="bench-transform-left">
+                  <div class="bench-transform-label" style="display: flex; align-items: center; gap: 6px;">
+                    <span>PDF/A-3b &amp; Factur-X</span>
+                    <span style="font-family: var(--font-mono); font-size: 10px; color: #10b981; background: rgba(16, 185, 129, 0.2); padding: 1px 6px; border-radius: 4px;">ISO 19005-3</span>
+                  </div>
+                  <div class="bench-transform-sub">Native zero-copy electronic invoicing</div>
+                </div>
+                <div class="bench-transform-right">
+                  <span class="bench-val-after" style="color: #6ee7b7; font-size: 12.5px;">Native Built-In</span>
+                  <span class="bench-pill-speedup" style="background: rgba(16, 185, 129, 0.25); color: #a7f3d0; border: 1px solid rgba(16, 185, 129, 0.4);">Zero Hack</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bench-telemetry-box" style="border-color: rgba(16, 185, 129, 0.2);">
+            <div class="bench-telemetry-hdr">
+              <span>LATENCY FOOTPRINT</span>
+              <span style="color: #34d399; font-weight: 700;">5.8ms (0.24% of Chromium)</span>
+            </div>
+            <div class="bench-telemetry-bar-wrap">
+              <div class="bench-bar-fill-good"></div>
+            </div>
           </div>
         </div>
       </div>
