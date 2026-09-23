@@ -256,6 +256,26 @@
       overflow-x: hidden;
     }
 
+    /* Sleek Modern Scrollbars */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.16);
+      border-radius: 999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+    * {
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255, 255, 255, 0.16) transparent;
+    }
+
     a {
       color: inherit;
       text-decoration: none;
@@ -1393,9 +1413,20 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      overflow: auto;
+      overflow-y: auto;
+      overflow-x: hidden;
       padding: 24px;
       position: relative;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
+    }
+
+    .studio-preview-pane::-webkit-scrollbar {
+      width: 5px;
+    }
+    .studio-preview-pane::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 999px;
     }
 
     .preview-sheet {
@@ -1538,21 +1569,7 @@
     }
 
     .featured-ribbon {
-      position: absolute;
-      top: -12px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(255, 255, 255, 0.12);
-      color: #ffffff;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      backdrop-filter: blur(8px);
-      font-family: var(--font-mono);
-      font-size: 10px;
-      font-weight: 700;
-      text-transform: uppercase;
-      padding: 3px 12px;
-      border-radius: 999px;
-      letter-spacing: 0.08em;
+      display: none !important;
     }
 
     .price-plan-name {
@@ -2548,22 +2565,153 @@
       border-radius: 6px;
     }
 
-    /* Guides Grid & Card Classes */
+    /* Guides Grid & Modern Card System */
     .guides-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
-      gap: 32px;
+      gap: 24px;
     }
 
-    .guide-card {
-      background: #11131a;
-      border: 1px solid var(--bg-obsidian-border);
-      border-radius: 12px;
-      padding: 36px;
+    .guide-card-modern {
       display: flex;
       flex-direction: column;
+      background: #14161f;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.22s ease, box-shadow 0.22s ease;
+      position: relative;
+    }
+
+    .guide-card-modern:hover {
+      transform: translateY(-4px);
+      border-color: rgba(255, 255, 255, 0.22);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.1);
+      text-decoration: none;
+    }
+
+    .guide-card-cover {
+      height: 140px;
+      width: 100%;
+      background: #0d0f15;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .guide-card-cover svg {
+      width: 100%;
+      height: 100%;
+      transition: transform 0.3s ease;
+    }
+
+    .guide-card-modern:hover .guide-card-cover svg {
+      transform: scale(1.03);
+    }
+
+    .guide-card-body {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
       justify-content: space-between;
-      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .guide-card-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #94a3b8;
+      margin-bottom: 12px;
+    }
+
+    .guide-meta-tag {
+      color: var(--amber-light);
+      background: rgba(245, 158, 11, 0.1);
+      padding: 2px 7px;
+      border-radius: 4px;
+      border: 1px solid rgba(245, 158, 11, 0.2);
+    }
+
+    .guide-meta-tag.tag-arch {
+      color: #f87171;
+      background: rgba(239, 68, 68, 0.1);
+      border-color: rgba(239, 68, 68, 0.2);
+    }
+
+    .guide-meta-tag.tag-bench {
+      color: #c084fc;
+      background: rgba(192, 132, 252, 0.1);
+      border-color: rgba(192, 132, 252, 0.2);
+    }
+
+    .guide-meta-tag.tag-sec {
+      color: #fb7185;
+      background: rgba(251, 113, 133, 0.1);
+      border-color: rgba(251, 113, 133, 0.2);
+    }
+
+    .guide-meta-tag.tag-devops {
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.1);
+      border-color: rgba(56, 189, 248, 0.2);
+    }
+
+    .guide-meta-sep {
+      color: #475569;
+    }
+
+    .guide-card-title {
+      font-family: var(--font-sans);
+      font-size: 19px;
+      font-weight: 600;
+      color: #f8fafc;
+      line-height: 1.35;
+      letter-spacing: -0.015em;
+      margin: 0 0 12px 0;
+      transition: color 0.15s ease;
+    }
+
+    .guide-card-modern:hover .guide-card-title {
+      color: #ffffff;
+    }
+
+    .guide-card-desc {
+      font-size: 13.5px;
+      line-height: 1.55;
+      color: #94a3b8;
+      margin: 0 0 20px 0;
+      flex-grow: 1;
+    }
+
+    .guide-card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--amber-light);
+      letter-spacing: 0.02em;
+      transition: color 0.15s ease;
+    }
+
+    .guide-card-link svg {
+      transition: transform 0.2s ease;
+    }
+
+    .guide-card-modern:hover .guide-card-link svg {
+      transform: translateX(4px);
     }
 
     .prefooter-ctas {
@@ -3686,8 +3834,6 @@
         </div>
 
 
-        <!-- 5. GitHub Direct Link -->
-        <a href="https://github.com/maxcomperatore/rubrol" target="_blank" class="nav-link">GitHub</a>
       </div>
 
       <div class="nav-actions">
@@ -3770,13 +3916,12 @@
         Rubrol Engine v1.0 &bull; The Sub-millisecond Typst Sidecar
       </div>
 
-            <h1 class="hero-title">
-        The sub-millisecond document engine.<br>
-        <span class="hero-title-muted">PDF generation is no longer a background job.</span>
+      <h1 class="hero-title">
+        PDF generation is <span class="hero-title-muted">no longer a background job.</span>
       </h1>
 
       <p class="hero-subtitle">
-        Native Typst compilation replacing Headless Chrome and Gotenberg. Compile B2B SaaS billing invoices, receipts, and European EN 16931 Factur-X documents in &lt;6ms on 96% less compute.
+        Native Typst. Invoices &amp; Factur-X in &lt;6ms on 96% less compute.
       </p>
 
       <div class="hero-ctas" style="margin-bottom: 24px;">
@@ -4226,154 +4371,187 @@
       <div class="guides-grid">
         
         <!-- Guide 1: Stripe Factur-X -->
-        <div class="guide-card">
-          <div>
-            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px;">
-              <span style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: var(--amber-light); background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.25); padding: 3px 9px; border-radius: 6px; text-transform: uppercase;">
-                STRIPE &amp; EU MANDATE
-              </span>
-              <span style="font-size: 12.5px; color: #64748b; font-family: var(--font-mono);">6 MIN READ • RUBROL TEAM</span>
-            </div>
-            
-            <h3 style="font-family: var(--font-sans); font-size: 22px; font-weight: 600; letter-spacing: -0.02em; color: #f8fafc; line-height: 1.35; margin-bottom: 14px;">
-              How to Make Your Stripe Invoices Factur-X / ZUGFeRD Compliant in 5 Minutes
-            </h3>
-            
-            <p style="font-size: 14.5px; color: #94a3b8; line-height: 1.65; margin-bottom: 24px;">
-              Your standard Stripe PDF invoice is legally non-compliant for French and German B2B clients under EN 16931. Here is why Stripe won't solve it, why legacy EDI charges €1,200/month, and the exact 5-line webhook fix using Rubrol.
-            </p>
-
-            <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 13.5px; color: #cbd5e1; margin-bottom: 28px;">
-              <li><strong>The Lie:</strong> Why European ERPs (SAP, DATEV) reject standard Stripe PDFs</li>
-              <li><strong>The Code:</strong> Copy-paste Node.js/Express webhook to generate PDF/A-3b</li>
-              <li><strong>Zero Bloat:</strong> Full ISO 19005-3 validation in under 160ms</li>
-            </ul>
+        <a href="/articles/stripe-facturx-zugferd" class="guide-card-modern">
+          <div class="guide-card-cover">
+            <svg viewBox="0 0 380 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="380" height="140" fill="#0c0e14"/>
+              <circle cx="190" cy="70" r="110" fill="url(#stripe-glow)" fill-opacity="0.12"/>
+              <!-- Pipeline flow -->
+              <path d="M40 70H130L170 70H250L290 70H340" stroke="rgba(255, 255, 255, 0.12)" stroke-width="1.5" stroke-dasharray="4 4"/>
+              <!-- Node 1: Stripe -->
+              <rect x="40" y="46" width="80" height="48" rx="8" fill="#181a24" stroke="rgba(245, 158, 11, 0.3)" stroke-width="1.5"/>
+              <text x="80" y="68" fill="#f59e0b" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700" text-anchor="middle">STRIPE</text>
+              <text x="80" y="82" fill="#94a3b8" font-family="'JetBrains Mono', monospace" font-size="9" text-anchor="middle">WEBHOOK</text>
+              <!-- Connection Arrow -->
+              <path d="M124 70H156M152 66L156 70L152 74" stroke="#f59e0b" stroke-width="1.5" stroke-linecap="round"/>
+              <!-- Node 2: Rubrol Engine -->
+              <rect x="160" y="42" width="90" height="56" rx="8" fill="#1f2330" stroke="#f59e0b" stroke-width="1.5"/>
+              <text x="205" y="66" fill="#ffffff" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700" text-anchor="middle">RUBROL</text>
+              <text x="205" y="82" fill="#10b981" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="600" text-anchor="middle">&lt; 160ms</text>
+              <!-- Connection Arrow -->
+              <path d="M254 70H286M282 66L286 70L282 74" stroke="#10b981" stroke-width="1.5" stroke-linecap="round"/>
+              <!-- Node 3: Factur-X / PDF/A-3b -->
+              <rect x="290" y="46" width="80" height="48" rx="8" fill="#181a24" stroke="rgba(16, 185, 129, 0.4)" stroke-width="1.5"/>
+              <text x="330" y="68" fill="#10b981" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700" text-anchor="middle">PDF/A-3b</text>
+              <text x="330" y="82" fill="#94a3b8" font-family="'JetBrains Mono', monospace" font-size="9" text-anchor="middle">FACTUR-X</text>
+              <defs>
+                <radialGradient id="stripe-glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(190 70) rotate(90) scale(70)">
+                  <stop stop-color="#f59e0b"/>
+                  <stop offset="1" stop-color="#f59e0b" stop-opacity="0"/>
+                </radialGradient>
+              </defs>
+            </svg>
           </div>
-
-          <a href="/articles/stripe-facturx-zugferd" style="display: inline-flex; align-items: center; gap: 8px; font-weight: 700; font-size: 14px; color: var(--amber-light); text-decoration: none;">
-            Read Full Engineering Guide
-          </a>
-        </div>
+          <div class="guide-card-body">
+            <div>
+              <div class="guide-card-meta">
+                <span class="guide-meta-tag">STRIPE &amp; EU MANDATE</span>
+                <span class="guide-meta-sep">•</span>
+                <span>6 MIN READ</span>
+              </div>
+              <h3 class="guide-card-title">How to Make Your Stripe Invoices Factur-X / ZUGFeRD Compliant in 5 Minutes</h3>
+              <p class="guide-card-desc">Standard Stripe PDFs fail French and German B2B laws under EN 16931. Learn how to plug Rubrol into your Stripe webhook to inject compliant XML and ISO 19005-3 PDF/A-3b in under 160ms.</p>
+            </div>
+            <div class="guide-card-link">
+              <span>Read Full Guide</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </div>
+        </a>
 
         <!-- Guide 2: Why Puppeteer Cannot Generate EN 16931 -->
-        <div class="guide-card">
-          <div>
-            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px;">
-              <span style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: #f87171; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.25); padding: 3px 9px; border-radius: 6px; text-transform: uppercase;">
-                ARCHITECTURAL TEARDOWN
-              </span>
-              <span style="font-size: 12.5px; color: #64748b; font-family: var(--font-mono);">7 MIN READ • RUBROL TEAM</span>
-            </div>
-            
-            <h3 style="font-family: var(--font-sans); font-size: 22px; font-weight: 600; letter-spacing: -0.02em; color: #f8fafc; line-height: 1.35; margin-bottom: 14px;">
-              Why Puppeteer Cannot Generate Legal EN 16931 E-Invoices (And What to Use Instead)
-            </h3>
-            
-            <p style="font-size: 14.5px; color: #94a3b8; line-height: 1.65; margin-bottom: 24px;">
-              Every engineering team treats PDF generation as a web-page printing problem. Here is the deep technical autopsy of why Chrome's Skia engine fails ISO 19005-3 and burns $500/month on zombie Fargate containers.
-            </p>
-
-            <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 13.5px; color: #cbd5e1; margin-bottom: 28px;">
-              <li><strong>Skia Engine Flaw:</strong> Zero native support for PDF/A-3b or ICC profiles</li>
-              <li><strong>Catalog Attachment:</strong> Why Puppeteer cannot create valid <code>/AFRelationship</code></li>
-              <li><strong>The Alternative:</strong> Sub-15ms Rust Typst compilation with 96% less RAM</li>
-            </ul>
+        <a href="/articles/why-puppeteer-fails-en16931" class="guide-card-modern">
+          <div class="guide-card-cover">
+            <svg viewBox="0 0 380 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="380" height="140" fill="#0c0e14"/>
+              <!-- Chrome flame vs Typst speed -->
+              <rect x="35" y="44" width="140" height="52" rx="8" fill="#1c1619" stroke="rgba(239, 68, 68, 0.4)" stroke-width="1.5"/>
+              <text x="105" y="67" fill="#ef4444" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700" text-anchor="middle">HEADLESS CHROME</text>
+              <text x="105" y="83" fill="#94a3b8" font-family="'JetBrains Mono', monospace" font-size="9.5" text-anchor="middle">512MB RAM • NO PDF/A</text>
+              
+              <text x="190" y="74" fill="#64748b" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="700" text-anchor="middle">VS</text>
+              
+              <rect x="205" y="44" width="140" height="52" rx="8" fill="#131e1c" stroke="rgba(16, 185, 129, 0.4)" stroke-width="1.5"/>
+              <text x="275" y="67" fill="#10b981" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700" text-anchor="middle">RUBROL TYPST</text>
+              <text x="275" y="83" fill="#94a3b8" font-family="'JetBrains Mono', monospace" font-size="9.5" text-anchor="middle">&lt; 28MB RAM • PDF/A-3b</text>
+            </svg>
           </div>
+          <div class="guide-card-body">
+            <div>
+              <div class="guide-card-meta">
+                <span class="guide-meta-tag tag-arch">ARCHITECTURAL TEARDOWN</span>
+                <span class="guide-meta-sep">•</span>
+                <span>7 MIN READ</span>
+              </div>
+              <h3 class="guide-card-title">Why Puppeteer Cannot Generate Legal EN 16931 E-Invoices</h3>
+              <p class="guide-card-desc">An autopsy of why Chrome Skia fails ISO 19005-3 catalog attachments and drains AWS compute budgets with memory leaks, plus the modern Typst replacement architecture.</p>
+            </div>
+            <div class="guide-card-link" style="color: #f87171;">
+              <span>Read Teardown</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </div>
+        </a>
 
-          <a href="/articles/why-puppeteer-fails-en16931" style="display: inline-flex; align-items: center; gap: 8px; font-weight: 700; font-size: 14px; color: #f87171; text-decoration: none;">
-            Read Architectural Teardown
-          </a>
-        </div>
         <!-- Guide 3: Rubrol vs Mustangproject -->
-        <div class="guide-card">
-          <div>
-            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px;">
-              <span style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: #a855f7; background: rgba(168, 85, 247, 0.1); border: 1px solid rgba(168, 85, 247, 0.25); padding: 3px 9px; border-radius: 6px; text-transform: uppercase;">
-                JAVA VS RUST
-              </span>
-              <span style="font-size: 12.5px; color: #64748b; font-family: var(--font-mono);">8 MIN READ • RUBROL TEAM</span>
-            </div>
-            
-            <h3 style="font-family: var(--font-sans); font-size: 22px; font-weight: 600; letter-spacing: -0.02em; color: #f8fafc; line-height: 1.35; margin-bottom: 14px;">
-              Rubrol vs Mustangproject: Why Modern Cloud Services Don't Want a 300MB Java JVM
-            </h3>
-            
-            <p style="font-size: 14.5px; color: #94a3b8; line-height: 1.65; margin-bottom: 24px;">
-              Mustangproject is the reference German ZUGFeRD tool. But deploying a heavy JVM with Apache PDFBox in Kubernetes leads to memory leaks, exit code 137 OOM kills, and the fact that Mustangproject cannot even render visual invoices.
-            </p>
-
-            <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 13.5px; color: #cbd5e1; margin-bottom: 28px;">
-              <li><strong>The Missing Renderer:</strong> Mustangproject only attaches XML to pre-existing PDFs</li>
-              <li><strong>JVM Memory Spikes:</strong> Why PDFBox DOM buffering triggers container OOM kills</li>
-              <li><strong>Atomic Pipeline:</strong> Render visual Typst layout + embed XML in one 14ms pass</li>
-            </ul>
+        <a href="/articles/rubrol-vs-mustangproject" class="guide-card-modern">
+          <div class="guide-card-cover">
+            <svg viewBox="0 0 380 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="380" height="140" fill="#0c0e14"/>
+              <!-- JVM footprint bar vs Rust footprint bar -->
+              <text x="40" y="52" fill="#94a3b8" font-family="'JetBrains Mono', monospace" font-size="10">MUSTANGPROJECT (JVM + PDFBOX)</text>
+              <rect x="40" y="58" width="220" height="14" rx="4" fill="#a855f7" fill-opacity="0.2" stroke="#a855f7" stroke-width="1"/>
+              <text x="270" y="69" fill="#c084fc" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="700">340MB RAM</text>
+              
+              <text x="40" y="94" fill="#94a3b8" font-family="'JetBrains Mono', monospace" font-size="10">RUBROL (COMPILED RUST)</text>
+              <rect x="40" y="100" width="30" height="14" rx="4" fill="#10b981" fill-opacity="0.3" stroke="#10b981" stroke-width="1"/>
+              <text x="80" y="111" fill="#10b981" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="700">14MB RAM (96% LESS)</text>
+            </svg>
           </div>
-
-          <a href="/articles/rubrol-vs-mustangproject" style="display: inline-flex; align-items: center; gap: 8px; font-weight: 700; font-size: 14px; color: #c084fc; text-decoration: none;">
-            Read Architectural Comparison
-          </a>
-        </div>
+          <div class="guide-card-body">
+            <div>
+              <div class="guide-card-meta">
+                <span class="guide-meta-tag tag-bench">JAVA VS RUST</span>
+                <span class="guide-meta-sep">•</span>
+                <span>8 MIN READ</span>
+              </div>
+              <h3 class="guide-card-title">Rubrol vs Mustangproject: Why Modern Cloud Services Don't Want a 300MB JVM</h3>
+              <p class="guide-card-desc">Mustangproject is the reference German ZUGFeRD tool, but deploying a heavy JVM in Kubernetes triggers OOM kills and cannot render visual documents. Here is the Rust alternative.</p>
+            </div>
+            <div class="guide-card-link" style="color: #c084fc;">
+              <span>Read Comparison</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </div>
+        </a>
 
         <!-- Guide 4: Rubrol vs Ghostscript -->
-        <div class="guide-card">
-          <div>
-            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px;">
-              <span style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: #f43f5e; background: rgba(244, 63, 94, 0.1); border: 1px solid rgba(244, 63, 94, 0.25); padding: 3px 9px; border-radius: 6px; text-transform: uppercase;">
-                SECURITY &amp; COMPLIANCE
-              </span>
-              <span style="font-size: 12.5px; color: #64748b; font-family: var(--font-mono);">7 MIN READ • RUBROL TEAM</span>
-            </div>
-            
-            <h3 style="font-family: var(--font-sans); font-size: 22px; font-weight: 600; letter-spacing: -0.02em; color: #f8fafc; line-height: 1.35; margin-bottom: 14px;">
-              Rubrol vs Ghostscript: Why ZUGFeRD via PostScript Scripts Is an Infrastructure Hazard
-            </h3>
-            
-            <p style="font-size: 14.5px; color: #94a3b8; line-height: 1.65; margin-bottom: 24px;">
-              Artifex recommends Ghostscript command lines with zugferd.ps. But underneath lies AGPL-3.0 copyleft traps, decades of remote code execution CVEs, and complete absence of EN 16931 schema validation.
-            </p>
+        <a href="/articles/rubrol-vs-ghostscript" class="guide-card-modern">
+          <div class="guide-card-cover">
+            <svg viewBox="0 0 380 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="380" height="140" fill="#0c0e14"/>
+              <!-- Security comparison diagram -->
+              <rect x="40" y="44" width="135" height="52" rx="8" fill="#1d1618" stroke="rgba(244, 63, 94, 0.4)" stroke-width="1.5"/>
+              <text x="107" y="66" fill="#fb7185" font-family="'JetBrains Mono', monospace" font-size="10.5" font-weight="700" text-anchor="middle">GHOSTSCRIPT</text>
+              <text x="107" y="82" fill="#ef4444" font-family="'JetBrains Mono', monospace" font-size="9" text-anchor="middle">POSTSCRIPT CVE RISKS</text>
 
-            <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 13.5px; color: #cbd5e1; margin-bottom: 28px;">
-              <li><strong>Blind Embedding:</strong> Ghostscript will embed invalid XML without error</li>
-              <li><strong>AGPL-3.0 Contagion:</strong> Risking proprietary SaaS IP or paying $10k+ OEM fees</li>
-              <li><strong>Memory-Safe Rust:</strong> Zero PostScript attack surface with pre-compile validation</li>
-            </ul>
+              <path d="M185 70H195" stroke="#64748b" stroke-width="1.5"/>
+
+              <rect x="205" y="44" width="135" height="52" rx="8" fill="#131e1c" stroke="rgba(16, 185, 129, 0.4)" stroke-width="1.5"/>
+              <text x="272" y="66" fill="#10b981" font-family="'JetBrains Mono', monospace" font-size="10.5" font-weight="700" text-anchor="middle">RUBROL</text>
+              <text x="272" y="82" fill="#10b981" font-family="'JetBrains Mono', monospace" font-size="9" text-anchor="middle">MEMORY-SAFE RUST</text>
+            </svg>
           </div>
-
-          <a href="/articles/rubrol-vs-ghostscript" style="display: inline-flex; align-items: center; gap: 8px; font-weight: 700; font-size: 14px; color: #fb7185; text-decoration: none;">
-            Read Security Breakdown
-          </a>
-        </div>
+          <div class="guide-card-body">
+            <div>
+              <div class="guide-card-meta">
+                <span class="guide-meta-tag tag-sec">SECURITY &amp; COMPLIANCE</span>
+                <span class="guide-meta-sep">•</span>
+                <span>7 MIN READ</span>
+              </div>
+              <h3 class="guide-card-title">Rubrol vs Ghostscript: Why ZUGFeRD via PostScript Scripts Is an Infrastructure Hazard</h3>
+              <p class="guide-card-desc">Decades of remote code execution CVEs, AGPL-3.0 licensing traps, and zero EN 16931 validation. How memory-safe Rust eliminates PostScript attack surfaces entirely.</p>
+            </div>
+            <div class="guide-card-link" style="color: #fb7185;">
+              <span>Read Breakdown</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </div>
+        </a>
 
         <!-- Guide 5: Rubrol vs Gotenberg -->
-        <div class="guide-card">
-          <div>
-            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px;">
-              <span style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: #38bdf8; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.25); padding: 3px 9px; border-radius: 6px; text-transform: uppercase;">
-                DEVOPS &amp; SCALE
-              </span>
-              <span style="font-size: 12.5px; color: #64748b; font-family: var(--font-mono);">6 MIN READ • RUBROL TEAM</span>
-            </div>
-            
-            <h3 style="font-family: var(--font-sans); font-size: 22px; font-weight: 600; letter-spacing: -0.02em; color: #f8fafc; line-height: 1.35; margin-bottom: 14px;">
-              Rubrol vs Gotenberg: Why Headless Chromium Clusters Are the Wrong Tool for E-Invoicing
-            </h3>
-            
-            <p style="font-size: 14.5px; color: #94a3b8; line-height: 1.65; margin-bottom: 24px;">
-              Gotenberg requires CHROMIUM_RESTART_AFTER to survive memory leaks and needs 2GB-4GB of RAM per pod. Discover why high-throughput billing systems drop Chromium for 14ms Typst compilation.
-            </p>
+        <a href="/articles/rubrol-vs-gotenberg" class="guide-card-modern">
+          <div class="guide-card-cover">
+            <svg viewBox="0 0 380 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="380" height="140" fill="#0c0e14"/>
+              <!-- Gotenberg 2GB image vs Rubrol 42MB -->
+              <rect x="40" y="44" width="135" height="52" rx="8" fill="#141a24" stroke="rgba(56, 189, 248, 0.3)" stroke-width="1.5"/>
+              <text x="107" y="66" fill="#38bdf8" font-family="'JetBrains Mono', monospace" font-size="10.5" font-weight="700" text-anchor="middle">GOTENBERG</text>
+              <text x="107" y="82" fill="#94a3b8" font-family="'JetBrains Mono', monospace" font-size="9" text-anchor="middle">1.8GB DOCKER IMAGE</text>
 
-            <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 13.5px; color: #cbd5e1; margin-bottom: 28px;">
-              <li><strong>Memory Leaks:</strong> Periodic browser killing needed to avoid container crashes</li>
-              <li><strong>Bloated Containers:</strong> 1.8GB image size with Chromium, LibreOffice, and Java</li>
-              <li><strong>70x Faster:</strong> 14ms response time, 42MB Docker image, and &lt; 28MB RAM</li>
-            </ul>
+              <path d="M185 70H195" stroke="#64748b" stroke-width="1.5"/>
+
+              <rect x="205" y="44" width="135" height="52" rx="8" fill="#131e1c" stroke="rgba(16, 185, 129, 0.4)" stroke-width="1.5"/>
+              <text x="272" y="66" fill="#10b981" font-family="'JetBrains Mono', monospace" font-size="10.5" font-weight="700" text-anchor="middle">RUBROL</text>
+              <text x="272" y="82" fill="#10b981" font-family="'JetBrains Mono', monospace" font-size="9" text-anchor="middle">42MB DOCKER • 5.8ms</text>
+            </svg>
           </div>
-
-          <a href="/articles/rubrol-vs-gotenberg" style="display: inline-flex; align-items: center; gap: 8px; font-weight: 700; font-size: 14px; color: #38bdf8; text-decoration: none;">
-            Read DevOps Benchmark
-          </a>
-        </div>
-
+          <div class="guide-card-body">
+            <div>
+              <div class="guide-card-meta">
+                <span class="guide-meta-tag tag-devops">DEVOPS &amp; SCALE</span>
+                <span class="guide-meta-sep">•</span>
+                <span>6 MIN READ</span>
+              </div>
+              <h3 class="guide-card-title">Rubrol vs Gotenberg: Why Headless Chromium Clusters Are the Wrong Tool</h3>
+              <p class="guide-card-desc">Gotenberg requires periodic browser killing to survive memory leaks and consumes 2GB-4GB of RAM per pod. Why high-throughput billing systems drop Chromium for 5.8ms Typst compilation.</p>
+            </div>
+            <div class="guide-card-link" style="color: #38bdf8;">
+              <span>Read Benchmark</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </div>
+        </a>
 
       </div>
     </div>
@@ -4518,7 +4696,6 @@
       <div class="pricing-deck">
         <!-- Tier 1: Rubrol Community -->
         <div id="card-developer" class="price-card tier-dimmed">
-          <span id="ribbon-developer" class="featured-ribbon" style="background: #10b981;">Open Source • Free</span>
           <div>
             <h3 class="price-plan-name">Rubrol Community</h3>
             <p class="price-plan-desc">Open-source vector engine for local CLI development &amp; Docker evaluation.</p>
@@ -4545,7 +4722,6 @@
 
         <!-- Tier 2: Rubrol Pro -->
         <div id="card-pro" class="price-card tier-dimmed">
-          <span id="ribbon-pro" class="featured-ribbon" style="background: #f59e0b;">Commercial License</span>
           <div>
             <h3 class="price-plan-name">Rubrol Pro</h3>
             <p class="price-plan-desc">Annual commercial license for SaaS startups &amp; high-throughput billing systems.</p>
@@ -4573,8 +4749,7 @@
         </div>
 
         <!-- Tier 3: Rubrol Enterprise -->
-        <div id="card-compliance" class="price-card tier-active featured">
-          <span id="ribbon-compliance" class="featured-ribbon" style="background: #ea580c;">Regulatory Standard • Most Popular</span>
+        <div id="card-compliance" class="price-card tier-dimmed">
           <div>
             <h3 class="price-plan-name">Rubrol Enterprise</h3>
             <p class="price-plan-desc">Turnkey EU compliance suite with certified EN 16931 &amp; Schematron validation.</p>
@@ -5685,10 +5860,6 @@ ${err.message}</div>`;
     const cardPro = document.getElementById('card-pro');
     const cardComp = document.getElementById('card-compliance');
     const cardScale = document.getElementById('card-scale');
-    const ribbonDev = document.getElementById('ribbon-developer');
-    const ribbonPro = document.getElementById('ribbon-pro');
-    const ribbonComp = document.getElementById('ribbon-compliance');
-    const ribbonScale = document.getElementById('ribbon-scale');
     const roiDev = document.getElementById('roi-developer');
     const roiPro = document.getElementById('roi-pro');
     const roiComp = document.getElementById('roi-compliance');
@@ -5708,6 +5879,14 @@ ${err.message}</div>`;
 
     function updatePricingCalculator(val) {
       docCountLabel.innerText = val >= 500000 ? "500,000+ / mo" : `${val.toLocaleString()} / mo`;
+
+      // Update dynamic slider track fill
+      const minVal = 2000;
+      const maxVal = 600000;
+      const pct = Math.max(0, Math.min(100, ((val - minVal) / (maxVal - minVal)) * 100));
+      if (docSlider) {
+        docSlider.style.setProperty('--slider-pct', `${pct}%`);
+      }
 
       // Quant Math: Compute Waste ($0.0081 vs $0.0003)
       const annualDocs = val * 12;
@@ -5733,9 +5912,6 @@ ${err.message}</div>`;
           c.classList.add('tier-dimmed');
         }
       });
-      [ribbonDev, ribbonPro, ribbonComp].forEach(r => {
-        if (r) r.style.display = 'none';
-      });
       [roiDev, roiPro, roiComp].forEach(ro => {
         if (ro) ro.style.display = 'none';
       });
@@ -5746,7 +5922,6 @@ ${err.message}</div>`;
           cardDev.classList.add('tier-active');
           cardDev.classList.remove('tier-dimmed');
         }
-        if (ribbonDev) ribbonDev.style.display = 'block';
         if (roiDev) roiDev.style.display = 'block';
         calcRecPlan.innerText = "Rubrol Community ($0 Free)";
         calcRecPlan.style.color = "#10b981";
@@ -5760,7 +5935,6 @@ ${err.message}</div>`;
           cardPro.classList.add('tier-active');
           cardPro.classList.remove('tier-dimmed');
         }
-        if (ribbonPro) ribbonPro.style.display = 'block';
         if (roiPro) {
           roiPro.style.display = 'block';
           const netTco = totalTcoSaved - 1800;
@@ -5779,7 +5953,6 @@ ${err.message}</div>`;
           cardComp.classList.add('tier-active');
           cardComp.classList.remove('tier-dimmed');
         }
-        if (ribbonComp) ribbonComp.style.display = 'block';
         if (roiComp) {
           roiComp.style.display = 'block';
           const netTco = totalTcoSaved - 4800;

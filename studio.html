@@ -1261,10 +1261,20 @@
       background: #12141a;
       display: flex;
       align-items: center;
+      align-items: safe center;
       justify-content: center;
-      overflow: auto;
+      overflow-y: auto;
+      overflow-x: hidden;
       padding: 24px;
       position: relative;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .studio-preview-pane::-webkit-scrollbar {
+      display: none;
+      width: 0;
+      height: 0;
     }
 
     .preview-sheet {
@@ -1407,21 +1417,7 @@
     }
 
     .featured-ribbon {
-      position: absolute;
-      top: -12px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(255, 255, 255, 0.12);
-      color: #ffffff;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      backdrop-filter: blur(8px);
-      font-family: var(--font-mono);
-      font-size: 10px;
-      font-weight: 700;
-      text-transform: uppercase;
-      padding: 3px 12px;
-      border-radius: 999px;
-      letter-spacing: 0.08em;
+      display: none !important;
     }
 
     .price-plan-name {
@@ -3704,7 +3700,6 @@
       <div class="pricing-deck">
         <!-- Tier 1: Rubrol Community -->
         <div id="card-developer" class="price-card tier-dimmed">
-          <span id="ribbon-developer" class="featured-ribbon" style="background: #10b981;">Open Source • Free</span>
           <div>
             <h3 class="price-plan-name">Rubrol Community</h3>
             <p class="price-plan-desc">Open-source vector engine for local CLI development &amp; Docker evaluation.</p>
@@ -3731,7 +3726,6 @@
 
         <!-- Tier 2: Rubrol Pro -->
         <div id="card-pro" class="price-card tier-dimmed">
-          <span id="ribbon-pro" class="featured-ribbon" style="background: #f59e0b;">Commercial License</span>
           <div>
             <h3 class="price-plan-name">Rubrol Pro</h3>
             <p class="price-plan-desc">Annual commercial license for SaaS startups &amp; high-throughput billing systems.</p>
@@ -3760,7 +3754,6 @@
 
         <!-- Tier 3: Rubrol Enterprise -->
         <div id="card-compliance" class="price-card tier-active featured">
-          <span id="ribbon-compliance" class="featured-ribbon" style="background: #ea580c;">Regulatory Standard • Most Popular</span>
           <div>
             <h3 class="price-plan-name">Rubrol Enterprise</h3>
             <p class="price-plan-desc">Turnkey EU compliance suite with certified EN 16931 &amp; Schematron validation.</p>
