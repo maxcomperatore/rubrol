@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -4694,7 +4694,7 @@
       <!-- 3-Tier Commercial Open-Core Deck (Sidekiq Model) -->
       <div class="pricing-deck">
         <!-- Tier 1: Rubrol Community -->
-        <div id="card-developer" class="price-card tier-dimmed">
+        <div id="card-developer" class="price-card">
           <span id="ribbon-developer" class="featured-ribbon" style="display: none;">Community Core</span>
           <div>
             <h3 class="price-plan-name">Rubrol Community</h3>
@@ -4721,7 +4721,7 @@
         </div>
 
         <!-- Tier 2: Rubrol Pro -->
-        <div id="card-pro" class="price-card tier-dimmed">
+        <div id="card-pro" class="price-card">
           <span id="ribbon-pro" class="featured-ribbon" style="display: none;">Commercial License</span>
           <div>
             <h3 class="price-plan-name">Rubrol Pro</h3>
@@ -4750,7 +4750,7 @@
         </div>
 
         <!-- Tier 3: Rubrol Enterprise -->
-        <div id="card-compliance" class="price-card tier-dimmed">
+        <div id="card-compliance" class="price-card">
           <span id="ribbon-compliance" class="featured-ribbon" style="display: none;">Regulatory Standard</span>
           <div>
             <h3 class="price-plan-name">Rubrol Enterprise</h3>
@@ -5923,12 +5923,7 @@ ${err.message}</div>`;
 
       // Tier 1: Rubrol Community (< 20,000 docs/mo)
       if (val < 20000) {
-        if (cardDev) {
-          cardDev.classList.add('tier-active');
-          cardDev.classList.remove('tier-dimmed');
-        }
-        if (ribbonDev) ribbonDev.style.display = 'inline-flex';
-        if (roiDev) roiDev.style.display = 'block';
+        
         calcRecPlan.innerText = "Rubrol Community ($0 Free)";
         calcRecPlan.style.color = "#10b981";
         calcRecRoi.innerHTML = "100% Free Open-Source Core (LGPLv3) • Run unlimited locally or in Docker for evaluation";
@@ -5937,16 +5932,7 @@ ${err.message}</div>`;
       }
       // Tier 2: Rubrol Pro (20,000 - 100,000 docs/mo)
       else if (val < 100000) {
-        if (cardPro) {
-          cardPro.classList.add('tier-active');
-          cardPro.classList.remove('tier-dimmed');
-        }
-        if (ribbonPro) ribbonPro.style.display = 'inline-flex';
-        if (roiPro) {
-          roiPro.style.display = 'block';
-          const netTco = totalTcoSaved - 1800;
-          roiPro.innerText = `● Net TCO ROI: +$${netTco.toLocaleString()}/yr saved`;
-        }
+        
         calcRecPlan.innerText = "Rubrol Pro ($1,800/yr)";
         calcRecPlan.style.color = "var(--amber-primary)";
         const netTco = totalTcoSaved - 1800;
@@ -5956,16 +5942,7 @@ ${err.message}</div>`;
       }
       // Tier 3: Rubrol Enterprise (>= 100,000 docs/mo)
       else {
-        if (cardComp) {
-          cardComp.classList.add('tier-active');
-          cardComp.classList.remove('tier-dimmed');
-        }
-        if (ribbonComp) ribbonComp.style.display = 'inline-flex';
-        if (roiComp) {
-          roiComp.style.display = 'block';
-          const netTco = totalTcoSaved - 4800;
-          roiComp.innerText = `● Net TCO ROI: +$${netTco.toLocaleString()}/yr + certified EN 16931`;
-        }
+        
         calcRecPlan.innerText = "Rubrol Enterprise ($4,800/yr)";
         calcRecPlan.style.color = "#ea580c";
         const netTco = totalTcoSaved - 4800;
