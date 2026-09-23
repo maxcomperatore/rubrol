@@ -186,45 +186,45 @@
 
   <style>
     :root {
-      /* Vercel Dark Canonical Tokens */
-      --bg-canvas: #000000;
-      --bg-surface: #0a0a0c;
-      --bg-surface-card: #0d0e12;
-      --bg-surface-elevated: #111218;
-      --bg-surface-hover: #161820;
+      /* g2i.ai Modern Graphite Palette (#1f1f1f) */
+      --bg-canvas: #1f1f1f;
+      --bg-surface: #262626;
+      --bg-surface-card: #222222;
+      --bg-surface-elevated: #2a2a2a;
+      --bg-surface-hover: #333333;
 
       --border-subtle: rgba(255, 255, 255, 0.08);
-      --border-hover: rgba(255, 255, 255, 0.18);
-      --border-focus: rgba(255, 255, 255, 0.32);
+      --border-hover: rgba(255, 255, 255, 0.2);
+      --border-focus: rgba(255, 255, 255, 0.35);
 
-      --text-primary: #ededed;
-      --text-secondary: #a1a1aa;
-      --text-muted: #71717a;
+      --text-primary: #ffffff;
+      --text-secondary: #9e9e9e;
+      --text-muted: #737373;
 
-      /* Dark aliases for legacy class compatibility */
-      --bg-obsidian: #000000;
-      --bg-obsidian-subtle: #0a0a0c;
-      --bg-obsidian-card: #0d0e12;
+      /* Dark aliases for legacy classes */
+      --bg-obsidian: #1f1f1f;
+      --bg-obsidian-subtle: #262626;
+      --bg-obsidian-card: #222222;
       --bg-obsidian-border: rgba(255, 255, 255, 0.08);
-      --bg-obsidian-border-hover: rgba(255, 255, 255, 0.18);
+      --bg-obsidian-border-hover: rgba(255, 255, 255, 0.2);
 
-      --bg-parchment: #000000;
-      --bg-parchment-card: #0d0e12;
-      --bg-parchment-warm: #111218;
+      --bg-parchment: #1f1f1f;
+      --bg-parchment-card: #222222;
+      --bg-parchment-warm: #262626;
       --border-parchment: rgba(255, 255, 255, 0.08);
       --border-parchment-subtle: rgba(255, 255, 255, 0.05);
 
-      --text-dark-hero: #ededed;
-      --text-dark-body: #a1a1aa;
-      --text-dark-muted: #71717a;
+      --text-dark-hero: #ffffff;
+      --text-dark-body: #9e9e9e;
+      --text-dark-muted: #737373;
 
-      --text-light-head: #ededed;
-      --text-light-body: #a1a1aa;
-      --text-light-muted: #71717a;
+      --text-light-head: #ffffff;
+      --text-light-body: #9e9e9e;
+      --text-light-muted: #737373;
 
       --amber-primary: #ffffff;
       --amber-glow: #ffffff;
-      --amber-light: #fbbf24;
+      --amber-light: #f59e0b;
       --amber-bg: rgba(255, 255, 255, 0.04);
       --amber-border: rgba(255, 255, 255, 0.12);
 
@@ -3047,6 +3047,348 @@
       line-height: 1.6;
     }
 
+  
+    /* --- g2i.ai Aesthetic System --- */
+    body {
+      background-color: #1f1f1f !important;
+      background-image: none !important;
+      color: #ffffff;
+    }
+
+    /* Two-Tone g2i Headline System */
+    .hero-title {
+      font-size: 54px !important;
+      font-weight: 700 !important;
+      letter-spacing: -0.035em !important;
+      line-height: 1.15 !important;
+      color: #ffffff !important;
+      margin-bottom: 20px !important;
+    }
+    .hero-title-muted {
+      color: #8e8e93 !important;
+      font-weight: 500 !important;
+      display: block;
+      margin-top: 4px;
+    }
+    .hero-subtitle {
+      color: #9e9e9e !important;
+      font-size: 17px !important;
+      line-height: 1.6 !important;
+      max-width: 660px !important;
+      margin: 0 auto 32px auto !important;
+    }
+
+    /* g2i Clean Solid White & Dark Buttons */
+    .btn-g2i-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #ffffff !important;
+      color: #141414 !important;
+      font-weight: 600;
+      font-size: 14px;
+      padding: 12px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.15s ease;
+      border: 1px solid #ffffff;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+    }
+    .btn-g2i-primary:hover {
+      background: #f0f0f0 !important;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(255, 255, 255, 0.2);
+      text-decoration: none;
+    }
+    .btn-g2i-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.05) !important;
+      color: #ffffff !important;
+      font-weight: 500;
+      font-size: 14px;
+      padding: 12px 22px;
+      border-radius: 8px;
+      text-decoration: none;
+      border: 1px solid rgba(255, 255, 255, 0.14) !important;
+      transition: all 0.15s ease;
+    }
+    .btn-g2i-secondary:hover {
+      background: rgba(255, 255, 255, 0.09) !important;
+      border-color: rgba(255, 255, 255, 0.25) !important;
+      text-decoration: none;
+    }
+
+    /* Organic Landscape Backdrop Frame (g2i Screenshot 1) */
+    .hero-landscape-frame {
+      position: relative;
+      margin: 48px auto 0 auto;
+      max-width: 1200px;
+      border-radius: 16px;
+      padding: 32px 24px;
+      background: radial-gradient(ellipse 90% 80% at 50% 120%, #4ade80 0%, #16a34a 25%, #15803d 45%, #14532d 65%, #052e16 85%, #1f1f1f 100%);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      overflow: hidden;
+    }
+    .hero-landscape-frame::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.08), transparent 60%);
+      pointer-events: none;
+    }
+
+    /* 2-Column Compliance Feature Showcase (g2i Screenshot 2) */
+    .g2i-feature-section {
+      padding: 96px 0;
+      background: #1f1f1f;
+    }
+    .g2i-feature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .g2i-control-wrapper {
+      position: relative;
+      border-radius: 14px;
+      padding: 24px;
+      background: radial-gradient(circle at 10% 90%, #22c55e 0%, #15803d 30%, #0d2818 60%, #1f1f1f 100%);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    }
+    .g2i-control-card {
+      background: #242424;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      padding: 24px 28px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    }
+    .g2i-control-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .g2i-control-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: #ffffff;
+      letter-spacing: -0.01em;
+    }
+    .g2i-control-subtitle {
+      font-size: 13px;
+      color: #9e9e9e;
+      margin-bottom: 20px;
+    }
+    .g2i-control-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 24px 0;
+    }
+    .g2i-control-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 10px 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      font-size: 13px;
+      line-height: 1.45;
+      color: #d4d4d4;
+    }
+    .g2i-check-box {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 18px;
+      height: 18px;
+      background: rgba(34, 197, 94, 0.15);
+      border: 1px solid #22c55e;
+      border-radius: 4px;
+      color: #22c55e;
+      font-size: 11px;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .g2i-control-footer {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: #737373;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .g2i-kicker {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      color: #a3a3a3;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .g2i-section-title {
+      font-size: 42px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      color: #ffffff;
+      margin-bottom: 18px;
+    }
+    .g2i-section-title-muted {
+      color: #8e8e93;
+    }
+    .g2i-section-body {
+      font-size: 16px;
+      line-height: 1.65;
+      color: #9e9e9e;
+      margin-bottom: 24px;
+    }
+
+    /* High-Contrast Light Banner Callout (g2i Screenshot 3) */
+    .g2i-banner-container {
+      padding: 60px 0 80px 0;
+    }
+    .g2i-light-banner {
+      background: #e6e6e6;
+      border-radius: 12px;
+      padding: 56px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
+    }
+    .g2i-light-title {
+      font-size: 38px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: #171717;
+      line-height: 1.15;
+      margin-bottom: 8px;
+    }
+    .g2i-light-title-muted {
+      color: #666666;
+      font-weight: 500;
+    }
+    .btn-g2i-dark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #1f1f1f;
+      color: #ffffff;
+      font-weight: 600;
+      font-size: 14px;
+      padding: 13px 26px;
+      border-radius: 8px;
+      text-decoration: none;
+      border: 1px solid #1f1f1f;
+      transition: all 0.15s ease;
+    }
+    .btn-g2i-dark:hover {
+      background: #000000;
+      transform: translateY(-1px);
+      text-decoration: none;
+    }
+
+    /* Minimalist Multi-Column Footer (g2i Screenshot 3) */
+    .g2i-footer {
+      background: #191919;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 72px 0 36px 0;
+    }
+    .g2i-footer-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+      margin-bottom: 56px;
+    }
+    .g2i-footer-title {
+      font-size: 12px;
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      color: #737373;
+      letter-spacing: 0.05em;
+      margin-bottom: 20px;
+    }
+    .g2i-footer-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .g2i-footer-links li {
+      margin-bottom: 12px;
+    }
+    .g2i-footer-links a {
+      color: #a3a3a3;
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.15s;
+    }
+    .g2i-footer-links a:hover {
+      color: #ffffff;
+    }
+    .g2i-footer-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      padding-top: 28px;
+      font-size: 13px;
+      color: #737373;
+    }
+    .g2i-social-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .g2i-social-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      background: #242424;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 6px;
+      color: #a3a3a3;
+      text-decoration: none;
+      font-size: 12px;
+      transition: all 0.15s;
+    }
+    .g2i-social-icon:hover {
+      background: #2e2e2e;
+      color: #ffffff;
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+    .g2i-status-tags {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 12px;
+    }
+    .g2i-status-tag {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #a3a3a3;
+    }
+    .g2i-status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 6px #22c55e;
+    }
+
+    @media (max-width: 900px) {
+      .g2i-feature-grid { grid-template-columns: 1fr; }
+      .g2i-light-banner { flex-direction: column; text-align: center; }
+      .g2i-footer-grid { grid-template-columns: repeat(2, 1fr); }
+      .g2i-footer-bar { flex-direction: column; gap: 18px; text-align: center; }
+    }
+
   </style>
 </head>
 <body>
@@ -3299,22 +3641,22 @@
         UNIVERSAL HIGH-THROUGHPUT DOCUMENT ENGINE
       </div>
 
-      <h1 class="hero-title">
-        Turn Document Infrastructure<br>
-        <em>Into Instantaneous Precision.</em>
+            <h1 class="hero-title">
+        The sub-millisecond document engine.<br>
+        <span class="hero-title-muted">PDF generation is no longer a background job.</span>
       </h1>
 
       <p class="hero-subtitle">
-        The sub-millisecond document engine replacing Headless Chrome, Puppeteer, and Gotenberg. Compile pixel-perfect SaaS billing invoices, reports, statements, and receipts in &lt;6ms on 96% less compute. Includes turnkey EU Factur-X / ZUGFeRD compliance out of the box.
+        Native Typst compilation replacing Headless Chrome and Gotenberg. Compile B2B SaaS billing invoices, receipts, and European EN 16931 Factur-X documents in &lt;6ms on 96% less compute.
       </p>
 
-      <div class="hero-ctas">
-        <a href="/studio" class="btn-pill-primary" style="padding: 13px 28px; font-size: 15px;">Launch Live Studio</a>
-        <a href="https://github.com/maxcomperatore/rubrol" target="_blank" class="btn-pill-secondary" style="padding: 13px 22px; font-size: 15px; display: inline-flex; align-items: center; gap: 8px;">
+      <div class="hero-ctas" style="margin-bottom: 24px;">
+        <a href="/studio" class="btn-g2i-primary">Launch Live Studio</a>
+        <a href="/pricing" class="btn-g2i-secondary">Commercial Licenses</a>
+        <a href="https://github.com/maxcomperatore/rubrol" target="_blank" class="btn-g2i-secondary" style="display: inline-flex; align-items: center; gap: 8px;">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-          Clone Core (LGPLv3)
+          GitHub (LGPLv3)
         </a>
-        <a href="/pricing" class="btn-pill-secondary" style="padding: 13px 22px; font-size: 15px;">Commercial Licenses</a>
       </div>
 
       <div class="hero-metrics-strip">
@@ -3398,6 +3740,7 @@
 
 <!-- LIVE MONACO STUDIO WORKSTATION -->
   <section id="studio" class="section-studio">
+    <div class="hero-landscape-frame">
     <div class="container">
       <div style="text-align: center; margin-bottom: 48px;">
         <span class="editorial-label" style="color: var(--amber-light);">INTERACTIVE ENGINE WORKSTATION</span>
@@ -3471,6 +3814,7 @@
         </div>
       </div>
     </div>
+  </div>
   </section>
 
   <!-- SECTION 1: The Sovereign Advantage -->
@@ -3905,6 +4249,59 @@
       </div>
     </div>
   </section>
+  
+  <!-- 2-COLUMN ENTERPRISE COMPLIANCE SHOWCASE (g2i Screenshot 2 style) -->
+  <section class="g2i-feature-section">
+    <div class="container">
+      <div class="g2i-feature-grid">
+        <div class="g2i-control-wrapper">
+          <div class="g2i-control-card">
+            <div class="g2i-control-header">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <span class="g2i-control-title">ISO 19005-3 &bull; Factur-X / ZUGFeRD 2.2</span>
+            </div>
+            <div class="g2i-control-subtitle">5 of 5 compliance controls enforced.</div>
+            <ul class="g2i-control-list">
+              <li>
+                <span class="g2i-check-box">&#10003;</span>
+                <div><strong>Architecture</strong> - Native Typst vector engine with zero headless browser virtualization</div>
+              </li>
+              <li>
+                <span class="g2i-check-box">&#10003;</span>
+                <div><strong>PDF/A-3b Archival</strong> - Certified ISO 19005-3 compliance with embedded Factur-X XML</div>
+              </li>
+              <li>
+                <span class="g2i-check-box">&#10003;</span>
+                <div><strong>Schematron Validation</strong> - Built-in semantic validator for French Chorus Pro &amp; German XRechnung 3.0</div>
+              </li>
+              <li>
+                <span class="g2i-check-box">&#10003;</span>
+                <div><strong>Commercial Grant</strong> - Proprietary production license key legally replacing GNU LGPLv3</div>
+              </li>
+              <li>
+                <span class="g2i-check-box">&#10003;</span>
+                <div><strong>Data Sovereignty</strong> - 100% on-premise local Docker sidecar with zero cloud data transmission</div>
+              </li>
+            </ul>
+            <div class="g2i-control-footer">LAST SYNC <span style="color:#ffffff;">JUST NOW</span></div>
+          </div>
+        </div>
+
+        <div class="g2i-feature-copy">
+          <div class="g2i-kicker">DOMAINS / ENTERPRISE COMPLIANCE</div>
+          <h2 class="g2i-section-title">
+            Compliance is not optional.<br>
+            <span class="g2i-section-title-muted">Factur-X &amp; PDF/A-3b.</span>
+          </h2>
+          <p class="g2i-section-body">
+            Turnkey European EN 16931 compliance backed by automated Schematron validation. Generate audit-ready electronic invoices and regulatory receipts directly in your service without foreign EDI toolchains.
+          </p>
+          <a href="/pricing" class="btn-g2i-secondary">View Compliance Suite</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- PRICING & ROI AMORTIZATION DECK -->
   <section id="pricing" class="section-pricing">
     <div class="container">
@@ -4280,83 +4677,108 @@
     </div>
   </section>
 
-  <!-- PRE-FOOTER CTA -->
-  <section class="section-prefooter">
-    <div class="container">
-      <h2 class="prefooter-title">Stop running Chromium.<br>Start generating instantly.</h2>
-      <p class="prefooter-sub">
-        Deploy the Rubrol sidecar into your Kubernetes or Docker cluster today. Compile 10,000 documents per minute on single-core compute.
-      </p>
-      <div class="prefooter-ctas">
-        <a href="/studio" class="btn-pill-primary" style="padding: 14px 32px; font-size: 15px;">Launch Live Studio</a>
-        <a href="https://github.com/maxcomperatore/rubrol" target="_blank" class="btn-pill-secondary" style="padding: 14px 28px; font-size: 15px;">View GitHub Core</a>
+  
+  <!-- HIGH-CONTRAST LIGHT CALLOUT BANNER (g2i Screenshot 3 style) -->
+  <section class="g2i-banner-container container">
+    <div class="g2i-light-banner">
+      <div>
+        <h2 class="g2i-light-title">
+          Delete your background queues.<br>
+          <span class="g2i-light-title-muted">Start compiling in 6ms on 96% less compute.</span>
+        </h2>
+        <div style="margin-top: 24px;">
+          <a href="/studio" class="btn-g2i-dark">Launch Live Studio</a>
+        </div>
+      </div>
+      <div style="text-align: right;">
+        <div style="background: rgba(0,0,0,0.06); border: 1px solid rgba(0,0,0,0.1); border-radius: 10px; padding: 20px 28px; display: inline-block; text-align: left;">
+          <div style="font-size: 26px; font-weight: 800; color: #171717; letter-spacing: -0.02em;">RUBROL</div>
+          <div style="font-family: var(--font-mono); font-size: 11px; color: #525252; margin-top: 4px;">5.8ms &bull; &lt;28MB RAM &bull; ISO 19005-3</div>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- EDITORIAL FOOTER -->
-  <footer class="site-footer">
-    <div class="footer-watermark">Rubrol</div>
+    <footer class="g2i-footer">
     <div class="container">
-      <div class="footer-grid">
+      <div class="g2i-footer-grid">
         <div>
-          <div class="footer-brand-title">RUBROL</div>
-          <p class="footer-brand-desc">
-            High-throughput document compilation engine built in native Rust. Certified ISO 19005-3 PDF/A-3b & ISO 19005-2 PDF/A-2b European EN 16931 Factur-X sidecar.
-          </p>
-          <div style="margin-top: 16px; font-family: var(--font-mono); font-size: 11.5px; color: #10b981;">
-            ● ALL SYSTEMS OPERATIONAL • ENGINE V1.0
-          </div>
-        </div>
-
-        <div>
-          <div class="footer-col-title">Engine</div>
-          <ul class="footer-links">
-            <li><a href="#pipeline">Pipeline</a></li>
-            <li><a href="#benchmarks">Benchmarks</a></li>
+          <div class="g2i-footer-title">Engine</div>
+          <ul class="g2i-footer-links">
             <li><a href="/studio">Live Studio</a></li>
-            <li><a href="https://github.com/maxcomperatore/rubrol" target="_blank">Docker Registry</a></li>
+            <li><a href="#benchmarks">Benchmarks</a></li>
+            <li><a href="#pipeline">Architecture Pipeline</a></li>
+            <li><a href="https://github.com/maxcomperatore/rubrol" target="_blank">GitHub Repository</a></li>
+            <li><a href="https://github.com/maxcomperatore/rubrol/pkgs/container/rubrol" target="_blank">Docker Hub (ghcr.io)</a></li>
           </ul>
         </div>
 
         <div>
-          <div class="footer-col-title">Guides &amp; Compliance</div>
-          <ul class="footer-links">
-            <li><a href="/articles/stripe-facturx-zugferd">Stripe to Factur-X in 5 Min</a></li>
+          <div class="g2i-footer-title">Guides &amp; Compliance</div>
+          <ul class="g2i-footer-links">
+            <li><a href="/articles/stripe-facturx-zugferd">Stripe to Factur-X Guide</a></li>
             <li><a href="/articles/why-puppeteer-fails-en16931">Why Puppeteer Fails EN 16931</a></li>
-            <li><a href="#compliance">Factur-X 1.0 &amp; ZUGFeRD 2.2</a></li>
-            <li><a href="#compliance">PDF/A-3b (ISO 19005-3) &amp; PDF/A-2b</a></li>
+            <li><a href="/articles/rubrol-vs-gotenberg">Rubrol vs Gotenberg</a></li>
+            <li><a href="/articles/rubrol-vs-mustangproject">Rubrol vs Mustangproject</a></li>
+            <li><a href="/articles/rubrol-vs-ghostscript">Rubrol vs Ghostscript</a></li>
           </ul>
         </div>
 
         <div>
-          <div class="footer-col-title">Templates</div>
-          <ul class="footer-links">
+          <div class="g2i-footer-title">Templates</div>
+          <ul class="g2i-footer-links">
             <li><a href="/studio">B2B SaaS Invoices</a></li>
             <li><a href="/studio">Procurement Orders</a></li>
-            <li><a href="/studio">Board Reports</a></li>
-            <li><a href="/studio">Medical Intake Records</a></li>
+            <li><a href="/studio">Executive Board Reports</a></li>
+            <li><a href="/studio">Itemized Payroll Statements</a></li>
+            <li><a href="/studio">HIPAA Medical Intake</a></li>
           </ul>
         </div>
 
         <div>
-          <div class="footer-col-title">Company</div>
-          <ul class="footer-links">
-            <li><a href="https://github.com/maxcomperatore/rubrol" target="_blank">GitHub</a></li>
-            <li><a href="https://github.com/maxcomperatore/rubrol/blob/main/LICENSE" target="_blank">GNU LGPLv3 License</a></li>
-            <li><a href="/pricing">Pricing</a></li>
-            <li><a href="#faq">Commercial FAQ</a></li>
-            <li><a href="mailto:support@rubrol.com">Support</a></li>
+          <div class="g2i-footer-title">Company &amp; Licensing</div>
+          <ul class="g2i-footer-links">
+            <li><a href="/pricing">Pricing &amp; Licenses</a></li>
+            <li><a href="https://github.com/maxcomperatore/rubrol/blob/main/LICENSE" target="_blank">GNU LGPLv3 Open Core</a></li>
+            <li><a href="/pricing#calculator">Cloud Cost Calculator</a></li>
+            <li><a href="mailto:support@rubrol.com">support@rubrol.com</a></li>
+            <li><a href="mailto:enterprise@rubrol.com">enterprise@rubrol.com</a></li>
           </ul>
         </div>
       </div>
 
-      <div class="footer-bottom">
-        <div>&copy; 2026 Rubrol Engine. Open core released under the GNU LGPLv3 License. Commercial licenses available.</div>
-        <div style="font-family: var(--font-mono); font-size: 11.5px;">SUB-MILLISECOND DOCUMENT INFRASTRUCTURE</div>
+      <div class="g2i-footer-bar">
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <div class="g2i-social-group">
+            <a href="https://github.com/maxcomperatore/rubrol" target="_blank" class="g2i-social-icon" title="GitHub">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            </a>
+            <a href="https://rubrol.com" class="g2i-social-icon" title="Rubrol">
+              <span style="font-weight: 800; font-size: 11px;">R</span>
+            </a>
+          </div>
+          <div>&copy; 2026 Rubrol Engine. Half Radiation LLC.</div>
+        </div>
+
+        <div class="g2i-status-tags">
+          <div class="g2i-status-tag">
+            <span class="g2i-status-dot"></span>
+            All Systems Operational
+          </div>
+          <div class="g2i-status-tag">
+            <span class="g2i-status-dot"></span>
+            EN 16931 Compliant
+          </div>
+          <div class="g2i-status-tag">
+            <span class="g2i-status-dot" style="background: #3b82f6; box-shadow: 0 0 6px #3b82f6;"></span>
+            LGPLv3 Open Core
+          </div>
+        </div>
       </div>
     </div>
   </footer>
+
 
   <!-- STUDIO JAVASCRIPT & BINDINGS -->
   <script>
