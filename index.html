@@ -1919,143 +1919,269 @@
       width: 9px;
       height: 9px;
       stroke: currentColor;
-      stroke-width: 2.2;
+      stroke-width: 1.8;
       stroke-linecap: round;
       stroke-linejoin: round;
       fill: none;
-      transition: transform 0.2s ease, stroke 0.2s ease;
-      opacity: 0.7;
+      opacity: 0.65;
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), stroke 0.2s ease, opacity 0.2s ease;
       margin-top: 1px;
     }
 
-    .nav-item-dropdown:hover .nav-chevron {
+    .nav-item-dropdown:hover .nav-chevron,
+    .nav-item-dropdown:focus-within .nav-chevron {
       transform: rotate(180deg);
       opacity: 1;
-      stroke: #f59e0b;
+      stroke: #ffffff;
     }
 
     .nav-dropdown-bridge {
       position: absolute;
-      top: 55px;
-      left: -15px;
-      right: -15px;
+      top: 50px;
+      left: -20px;
+      right: -20px;
       height: 25px;
       display: none;
-      z-index: 199;
+      z-index: 290;
     }
 
     .nav-item-dropdown:hover .nav-dropdown-bridge {
       display: block;
     }
 
-    /* Sleek Compact Dropdown Panel */
-    .compact-dropdown-menu {
+    /* G2i Luxury Light Mega-Menu Dropdown Panel */
+    .g2i-mega-menu {
       position: absolute;
-      top: 66px;
-      left: 50%;
-      transform: translateX(-50%) translateY(8px);
-      background: #0b0c12;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 12px;
-      padding: 8px;
-      box-shadow: 0 24px 50px -10px rgba(0, 0, 0, 0.95), 0 0 0 1px rgba(255, 255, 255, 0.05);
+      top: 64px;
+      width: 760px;
+      background: #ebeef2;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: 16px;
+      padding: 24px 28px;
+      box-shadow: 0 24px 60px -10px rgba(0, 0, 0, 0.75), 0 8px 24px -4px rgba(0, 0, 0, 0.25), 0 0 1px 1px rgba(255, 255, 255, 0.1);
       opacity: 0;
       visibility: hidden;
       pointer-events: none;
       transition: opacity 0.16s cubic-bezier(0.16, 1, 0.3, 1), transform 0.16s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.16s;
       z-index: 300;
-      width: 360px;
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
+      display: grid;
+      grid-template-columns: 1.18fr 1fr;
+      column-gap: 32px;
+      text-align: left;
     }
 
-    .nav-item-dropdown:hover .compact-dropdown-menu,
-    .nav-item-dropdown:focus-within .compact-dropdown-menu {
+    /* Alignments */
+    .nav-item-dropdown.align-left .g2i-mega-menu {
+      left: -40px;
+      transform: translateY(8px);
+    }
+    .nav-item-dropdown.align-center .g2i-mega-menu {
+      left: 50%;
+      transform: translateX(-50%) translateY(8px);
+    }
+    .nav-item-dropdown.align-right .g2i-mega-menu {
+      right: -60px;
+      left: auto;
+      transform: translateY(8px);
+    }
+
+    .nav-item-dropdown:hover .g2i-mega-menu,
+    .nav-item-dropdown:focus-within .g2i-mega-menu {
       opacity: 1;
       visibility: visible;
       pointer-events: auto;
+    }
+    .nav-item-dropdown.align-left:hover .g2i-mega-menu,
+    .nav-item-dropdown.align-left:focus-within .g2i-mega-menu {
+      transform: translateY(0);
+    }
+    .nav-item-dropdown.align-center:hover .g2i-mega-menu,
+    .nav-item-dropdown.align-center:focus-within .g2i-mega-menu {
       transform: translateX(-50%) translateY(0);
     }
+    .nav-item-dropdown.align-right:hover .g2i-mega-menu,
+    .nav-item-dropdown.align-right:focus-within .g2i-mega-menu {
+      transform: translateY(0);
+    }
 
-    .compact-dropdown-item {
+    /* Column Headers (G2i Products / Workforce Header Style) */
+    .mega-col-header {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: #64748b;
+      margin-bottom: 10px;
+      padding: 0 8px;
+    }
+
+    .mega-col-list {
       display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      padding: 9px 12px;
-      border-radius: 8px;
+      flex-direction: column;
+    }
+
+    /* Mega Row Item */
+    .mega-item-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 10px 8px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
       text-decoration: none;
-      transition: background 0.14s ease;
+      border-radius: 8px;
+      transition: background 0.12s ease;
+    }
+    .mega-item-row:last-child {
+      border-bottom: none;
+    }
+    .mega-item-row:hover {
+      background: rgba(0, 0, 0, 0.04);
     }
 
-    .compact-dropdown-item:hover {
-      background: rgba(255, 255, 255, 0.06);
-    }
-
-    .compact-item-icon {
-      font-size: 10px;
-      font-weight: 700;
-      font-family: var(--font-mono);
-      width: 26px;
-      height: 26px;
+    /* Left Column Miniature Visual Thumbnail */
+    .mega-thumb {
+      width: 52px;
+      height: 36px;
       border-radius: 6px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      overflow: hidden;
+      flex-shrink: 0;
+      background: #0d1017;
+      border: 1px solid rgba(0, 0, 0, 0.1);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 13px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+    }
+    .mega-thumb svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    /* Right Column Dark Squircle Icon (G2i Workforce Style) */
+    .mega-icon-sq {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: #1e2430;
+      border: 1px solid rgba(255, 255, 255, 0.08);
       flex-shrink: 0;
-      margin-top: 1px;
-      color: #f59e0b;
-    }
-
-    .compact-dropdown-item:hover .compact-item-icon {
-      font-size: 10px;
-      font-weight: 700;
-      font-family: var(--font-mono);
-      background: rgba(245, 158, 11, 0.15);
-      border-color: rgba(245, 158, 11, 0.35);
-      color: #fbbf24;
-    }
-
-    .compact-item-body {
       display: flex;
-      flex-direction: column;
-      gap: 2px;
-      flex-grow: 1;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      transition: transform 0.15s ease, background 0.15s ease;
+    }
+    .mega-item-row:hover .mega-icon-sq {
+      background: #141820;
+      transform: scale(1.04);
     }
 
-    .compact-item-title {
-      font-size: 13px;
+    /* Mega Text Info */
+    .mega-item-info {
+      flex: 1;
+      min-width: 0;
+    }
+    .mega-item-title {
+      font-size: 13.5px;
       font-weight: 600;
-      color: #f1f5f9;
+      color: #0f172a;
+      line-height: 1.25;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 6px;
     }
-
-    .compact-dropdown-item:hover .compact-item-title {
-      color: #fbbf24;
-    }
-
-    .compact-item-desc {
+    .mega-item-desc {
       font-size: 11.5px;
-      color: #94a3b8;
+      color: #525d6e;
       line-height: 1.35;
+      margin-top: 2px;
+      white-space: normal;
     }
-
-    .compact-item-badge {
+    .mega-badge-pill {
       font-size: 9px;
       font-weight: 700;
-      padding: 1px 5px;
-      border-radius: 3px;
-      background: rgba(245, 158, 11, 0.12);
-      color: #fbbf24;
-      border: 1px solid rgba(245, 158, 11, 0.25);
       font-family: var(--font-mono);
+      padding: 1px 5px;
+      border-radius: 4px;
       text-transform: uppercase;
-      letter-spacing: 0.03em;
+      letter-spacing: 0.02em;
+    }
+    .mega-badge-emerald {
+      background: rgba(16, 185, 129, 0.15);
+      color: #047857;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+    .mega-badge-amber {
+      background: rgba(245, 158, 11, 0.15);
+      color: #b45309;
+      border: 1px solid rgba(245, 158, 11, 0.3);
+    }
+    .mega-badge-blue {
+      background: rgba(59, 130, 246, 0.15);
+      color: #1d4ed8;
+      border: 1px solid rgba(59, 130, 246, 0.3);
+    }
+
+    /* Nav Actions - G2i Style */
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .nav-action-github {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #94a3b8;
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+    .nav-action-github:hover {
+      color: #ffffff;
+    }
+
+    .nav-action-ghost {
+      display: inline-flex;
+      align-items: center;
+      font-size: 13px;
+      font-weight: 500;
+      color: #cbd5e1;
+      text-decoration: none;
+      padding: 7px 12px;
+      border-radius: 6px;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+    .nav-action-ghost:hover {
+      background: rgba(255, 255, 255, 0.07);
+      color: #ffffff;
+    }
+
+    /* G2i Outlined Luxury Button ("Schedule a Call" Style) */
+    .nav-action-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 8px;
+      padding: 8px 18px;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: #ffffff;
+      text-decoration: none;
+      transition: all 0.15s ease;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    }
+    .nav-action-cta:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.4);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+      color: #ffffff;
     }
 
     /* Auth0-Style AI Integration Card */
@@ -3681,167 +3807,381 @@
 </head>
 <body>
 
-  <!-- TOP NAVIGATION -->
+  <!-- TOP NAVIGATION (G2i Luxury Mega-Menu Architecture) -->
   <div class="nav-wrapper">
     <div class="container nav-bar">
-      <div class="brand-group">
+      <a href="/" class="brand-group" aria-label="Rubrol Home">
         <img src="/assets/logo.png" alt="Rubrol Logo" class="brand-logo-img">
-        <a href="/" class="brand-title">RUBROL</a>
-      </div>
+        <span class="brand-title">RUBROL</span>
+      </a>
 
-                  <div class="nav-links">
-        <!-- 1. Developers Dropdown -->
-        <div class="nav-item-dropdown">
+      <div class="nav-links">
+        <!-- 0. Why Rubrol Direct Link -->
+        <a href="#benchmarks" class="nav-link">Why Rubrol</a>
+
+        <!-- 1. Benchmarks & Teardowns Dropdown (Active in User's Screenshot) -->
+        <div class="nav-item-dropdown align-center">
           <div class="nav-dropdown-bridge"></div>
           <button class="nav-dropdown-trigger" aria-haspopup="true" aria-expanded="false">
-            Developers <svg class="nav-chevron" viewBox="0 0 12 12"><path d="M2.5 4.5L6 8L9.5 4.5"/></svg>
+            Benchmarks <svg class="nav-chevron" viewBox="0 0 10 10"><path d="M2.5 3.75L5 6.25L7.5 3.75"/></svg>
           </button>
-          <div class="compact-dropdown-menu" role="menu">
-            <a href="/studio" class="compact-dropdown-item">
-              <span class="compact-item-icon">CLI</span>
-              <div class="compact-item-body">
-                <div class="compact-item-title">Live Studio <span class="compact-item-badge">Interactive</span></div>
-                <div class="compact-item-desc">Interactive browser editor with real-time SVG &amp; PDF preview</div>
+          <div class="g2i-mega-menu" role="menu">
+            <!-- Left Column: Products / Performance & Engine -->
+            <div class="mega-col">
+              <div class="mega-col-header">Engine &amp; Performance</div>
+              <div class="mega-col-list">
+                <a href="#benchmarks" class="mega-item-row">
+                  <div class="mega-thumb">
+                    <svg viewBox="0 0 52 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <rect width="52" height="36" rx="6" fill="#0b1311"/>
+                      <path d="M6 25C13 25 18 11 26 11C34 11 39 18 46 18" stroke="#10b981" stroke-width="2" stroke-linecap="round"/>
+                      <circle cx="26" cy="11" r="3" fill="#34d399"/>
+                      <text x="26" y="30" font-family="'JetBrains Mono', monospace" font-size="7.5" font-weight="700" fill="#34d399" text-anchor="middle">5.8ms</text>
+                    </svg>
+                  </div>
+                  <div class="mega-item-info">
+                    <div class="mega-item-title">
+                      Performance Benchmarks <span class="mega-badge-pill mega-badge-emerald">5.8ms</span>
+                    </div>
+                    <div class="mega-item-desc">318x faster &amp; 57x less memory than Headless Chrome</div>
+                  </div>
+                </a>
+
+                <a href="#calculator" class="mega-item-row">
+                  <div class="mega-thumb">
+                    <svg viewBox="0 0 52 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <rect width="52" height="36" rx="6" fill="#141109"/>
+                      <rect x="10" y="8" width="7" height="20" rx="1.5" fill="#451a03" stroke="#f59e0b" stroke-width="1"/>
+                      <rect x="22" y="14" width="7" height="14" rx="1.5" fill="#78350f" stroke="#fbbf24" stroke-width="1"/>
+                      <rect x="34" y="21" width="7" height="7" rx="1.5" fill="#10b981" stroke="#34d399" stroke-width="1"/>
+                      <path d="M13 10L37 23" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="2 2"/>
+                    </svg>
+                  </div>
+                  <div class="mega-item-info">
+                    <div class="mega-item-title">Cloud Cost Calculator</div>
+                    <div class="mega-item-desc">Compute annual AWS Fargate &amp; compute cluster savings</div>
+                  </div>
+                </a>
+
+                <a href="articles/why-puppeteer-fails-en16931.html" class="mega-item-row">
+                  <div class="mega-thumb">
+                    <svg viewBox="0 0 52 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <rect width="52" height="36" rx="6" fill="#170c0e"/>
+                      <line x1="8" y1="10" x2="44" y2="10" stroke="#ef4444" stroke-width="1" stroke-dasharray="2 2"/>
+                      <path d="M8 27C16 27 24 25 30 17L38 10" stroke="#f43f5e" stroke-width="2" stroke-linecap="round"/>
+                      <text x="36" y="8" font-family="'JetBrains Mono', monospace" font-size="6.5" font-weight="700" fill="#f87171" text-anchor="middle">OOM</text>
+                      <circle cx="38" cy="10" r="2.5" fill="#ef4444"/>
+                    </svg>
+                  </div>
+                  <div class="mega-item-info">
+                    <div class="mega-item-title">Why Puppeteer Fails</div>
+                    <div class="mega-item-desc">V8 memory leaks, zombie Chromium procs &amp; OOM crashes</div>
+                  </div>
+                </a>
               </div>
-            </a>
-            <a href="https://github.com/maxcomperatore/rubrol#http-sidecar-api-reference" target="_blank" class="compact-dropdown-item">
-              <span class="compact-item-icon">API</span>
-              <div class="compact-item-body">
-                <div class="compact-item-title">HTTP Sidecar API</div>
-                <div class="compact-item-desc">REST endpoints, telemetry headers, and payloads</div>
+            </div>
+
+            <!-- Right Column: Workforce / Architectural Teardowns -->
+            <div class="mega-col">
+              <div class="mega-col-header">Architectural Teardowns</div>
+              <div class="mega-col-list">
+                <a href="articles/rubrol-vs-gotenberg.html" class="mega-item-row">
+                  <div class="mega-icon-sq">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="2" y="2" width="20" height="8" rx="2" ry="2"/>
+                      <rect x="2" y="14" width="20" height="8" rx="2" ry="2"/>
+                      <line x1="6" y1="6" x2="6.01" y2="6"/>
+                      <line x1="6" y1="18" x2="6.01" y2="18"/>
+                    </svg>
+                  </div>
+                  <div class="mega-item-info">
+                    <div class="mega-item-title">Rubrol vs Gotenberg</div>
+                    <div class="mega-item-desc">Headless Chromium cluster vs 42MB native Typst</div>
+                  </div>
+                </a>
+
+                <a href="articles/rubrol-vs-mustangproject.html" class="mega-item-row">
+                  <div class="mega-icon-sq">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="12" cy="12" r="3"/>
+                      <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                    </svg>
+                  </div>
+                  <div class="mega-item-info">
+                    <div class="mega-item-title">Rubrol vs Mustangproject</div>
+                    <div class="mega-item-desc">Sub-millisecond Rust core vs heavy Java JVM tooling</div>
+                  </div>
+                </a>
+
+                <a href="articles/rubrol-vs-ghostscript.html" class="mega-item-row">
+                  <div class="mega-icon-sq">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M12 19l7-7 3 3-7 7-3-3z"/>
+                      <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/>
+                      <path d="M2 2l7.586 7.586"/>
+                      <circle cx="11" cy="11" r="2"/>
+                    </svg>
+                  </div>
+                  <div class="mega-item-info">
+                    <div class="mega-item-title">Rubrol vs Ghostscript</div>
+                    <div class="mega-item-desc">PDF/A-3b vector fidelity vs rasterization artifacts</div>
+                  </div>
+                </a>
+
+                <a href="#faq" class="mega-item-row">
+                  <div class="mega-icon-sq">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                      <path d="M9 12l2 2 4-4"/>
+                    </svg>
+                  </div>
+                  <div class="mega-item-info">
+                    <div class="mega-item-title">Schematron CI Validation</div>
+                    <div class="mega-item-desc">Automated ISO Schematron &amp; EN 16931 CI assertion</div>
+                  </div>
+                </a>
               </div>
-            </a>
-            <a href="https://github.com/maxcomperatore/rubrol#multi-language-client-examples" target="_blank" class="compact-dropdown-item">
-              <span class="compact-item-icon">SDK</span>
-              <div class="compact-item-body">
-                <div class="compact-item-title">Client SDKs &amp; Examples</div>
-                <div class="compact-item-desc">Zero-dep clients in Python, Node.js, Go, Rust, PHP, and C#</div>
-              </div>
-            </a>
-            <a href="https://github.com/maxcomperatore/rubrol/pkgs/container/rubrol" target="_blank" class="compact-dropdown-item">
-              <span class="compact-item-icon">HUB</span>
-              <div class="compact-item-body">
-                <div class="compact-item-title">Docker Container</div>
-                <div class="compact-item-desc">ghcr.io/maxcomperatore/rubrol:latest</div>
-              </div>
-            </a>
-            <a href="https://github.com/maxcomperatore/rubrol#template-authoring-guide" target="_blank" class="compact-dropdown-item">
-              <span class="compact-item-icon">TYP</span>
-              <div class="compact-item-body">
-                <div class="compact-item-title">Typst Template Guide</div>
-                <div class="compact-item-desc">Dynamic data injection, tables, and pagination</div>
-              </div>
-            </a>
-            <a href="#ai-integration" class="compact-dropdown-item">
-              <span class="compact-item-icon">AI</span>
-              <div class="compact-item-body">
-                <div class="compact-item-title">AI Agent Skills &amp; Rules <span class="compact-item-badge">Cursor</span></div>
-                <div class="compact-item-desc">Integrate via Claude Code, Cursor, and Copilot</div>
-              </div>
-            </a>
+            </div>
           </div>
         </div>
 
-        <!-- 2. Benchmarks & Teardowns Dropdown -->
-        <div class="nav-item-dropdown">
+        <!-- 2. Developers Dropdown -->
+        <div class="nav-item-dropdown align-center">
           <div class="nav-dropdown-bridge"></div>
           <button class="nav-dropdown-trigger" aria-haspopup="true" aria-expanded="false">
-            Benchmarks <svg class="nav-chevron" viewBox="0 0 12 12"><path d="M2.5 4.5L6 8L9.5 4.5"/></svg>
+            Developers <svg class="nav-chevron" viewBox="0 0 10 10"><path d="M2.5 3.75L5 6.25L7.5 3.75"/></svg>
           </button>
-          <div class="compact-dropdown-menu" role="menu">
-            <a href="#benchmarks" class="compact-dropdown-item">
-              <span class="compact-item-icon">OPS</span>
-              <div class="compact-item-body">
-                <div class="compact-item-title">Performance Benchmarks <span class="compact-item-badge">5.8ms</span></div>
-                <div class="compact-item-desc">318x faster &amp; 57x less memory than Headless Chrome</div>
+          <div class="g2i-mega-menu" role="menu">
+            <!-- Left Column: Platform Tools -->
+            <div class="mega-col">
+              <div class="mega-col-header">Core Platform</div>
+              <div class="mega-col-list">
+                <a href="/studio" class="mega-item-row">
+                  <div class="mega-thumb">
+                    <svg viewBox="0 0 52 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <rect width="52" height="36" rx="6" fill="#0d1117"/>
+                      <rect x="7" y="7" width="17" height="22" rx="2" fill="#161b22" stroke="#30363d"/>
+                      <line x1="10" y1="11" x2="20" y2="11" stroke="#38bdf8" stroke-width="1.2" stroke-linecap="round"/>
+                      <line x1="10" y1="15" x2="18" y2="15" stroke="#94a3b8" stroke-width="1.2" stroke-linecap="round"/>
+                      <line x1="10" y1="19" x2="21" y2="19" stroke="#94a3b8" stroke-width="1.2" stroke-linecap="round"/>
+                      <rect x="28" y="7" width="17" height="22" rx="2" fill="#ffffff" stroke="#cbd5e1"/>
+                      <line x1="31" y1="11" x2="41" y2="11" stroke="#dc2626" stroke-width="1.5"/>
+                      <line x1="31" y1="15" x2="38" y2="15" stroke="#94a3b8" stroke-width="1"/>
+                      <line x1="31" y1="18" x2="42" y2="18" stroke="#cbd5e1" stroke-width="1"/>
+                    </svg>
+                  </div>
+                  <div class="mega-item-info">
+                    <div class="mega-item-title">
+                      Live Studio <span class="mega-badge-pill mega-badge-blue">Interactive</span>
+                    </div>
+                    <div class="mega-item-desc">Browser compiler with real-time SVG &amp; PDF preview</div>
+                  </div>
+                </a>
+
+                <a href="https://github.com/maxcomperatore/rubrol#http-sidecar-api-reference" target="_blank" class="mega-item-row">
+                  <div class="mega-thumb">
+                    <svg viewBox="0 0 52 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <rect width="52" height="36" rx="6" fill="#0b131a"/>
+                      <rect x="8" y="11" width="14" height="14" rx="3" fill="#1e293b" stroke="#38bdf8" stroke-width="1"/>
+                      <path d="M22 18H30" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="2 1.5"/>
+                      <rect x="30" y="11" width="14" height="14" rx="3" fill="#10b981" fill-opacity="0.2" stroke="#10b981" stroke-width="1"/>
+                      <path d="M37 14V22M34 18L37 14L40 18" stroke="#10b981" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </div>
+                  <div class="mega-item-info">
+                    <div class="mega-item-title">HTTP Sidecar API</div>
+                    <div class="mega-item-desc">REST endpoints, JSON payloads &amp; microsecond daemon</div>
+                  </div>
+                </a>
+
+                <a href="https://github.com/maxcomperatore/rubrol#template-authoring-guide" target="_blank" class="mega-item-row">
+                  <div class="mega-thumb">
+                    <svg viewBox="0 0 52 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <rect width="52" height="36" rx="6" fill="#130e1c"/>
+                      <rect x="14" y="6" width="24" height="24" rx="2" fill="#1e1829" stroke="#c084fc" stroke-width="1"/>
+                      <path d="M18 11H34M18 15H30M18 19H34M18 23H26" stroke="#e9d5ff" stroke-width="1.2" stroke-linecap="round"/>
+                    </svg>
+                  </div>
+                  <div class="mega-item-info">
+                    <div class="mega-item-title">Typst Template Authoring</div>
+                    <div class="mega-item-desc">Dynamic data injection, calculated fields &amp; pagination</div>
+                  </div>
+                </a>
               </div>
-            </a>
-            <a href="articles/why-puppeteer-fails-en16931.html" class="compact-dropdown-item">
-              <span class="compact-item-icon">OOM</span>
-              <div class="compact-item-body">
-                <div class="compact-item-title">Why Puppeteer Fails</div>
-                <div class="compact-item-desc">V8 memory leaks and OOM crashes during batch runs</div>
+            </div>
+
+            <!-- Right Column: Tooling & Ecosystem -->
+            <div class="mega-col">
+              <div class="mega-col-header">Ecosystem &amp; Tooling</div>
+              <div class="mega-col-list">
+                <a href="https://github.com/maxcomperatore/rubrol#multi-language-client-examples" target="_blank" class="mega-item-row">
+                  <div class="mega-icon-sq">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="16 18 22 12 16 6"/>
+                      <polyline points="8 6 2 12 8 18"/>
+                    </svg>
+                  </div>
+                  <div class="mega-item-info">
+                    <div class="mega-item-title">Client SDKs &amp; Examples</div>
+                    <div class="mega-item-desc">Zero-dep clients in Python, Node, Go, Rust, PHP &amp; C#</div>
+                  </div>
+                </a>
+
+                <a href="#ai-integration" class="mega-item-row">
+                  <div class="mega-icon-sq">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8L12 2z"/>
+                    </svg>
+                  </div>
+                  <div class="mega-item-info">
+                    <div class="mega-item-title">AI Agent Skills &amp; Rules</div>
+                    <div class="mega-item-desc">Native tool rules for Claude Code, Cursor &amp; Copilot</div>
+                  </div>
+                </a>
+
+                <a href="https://github.com/maxcomperatore/rubrol/pkgs/container/rubrol" target="_blank" class="mega-item-row">
+                  <div class="mega-icon-sq">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                      <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                      <line x1="12" y1="22.08" x2="12" y2="12"/>
+                    </svg>
+                  </div>
+                  <div class="mega-item-info">
+                    <div class="mega-item-title">Docker Container Registry</div>
+                    <div class="mega-item-desc">ghcr.io/maxcomperatore/rubrol:latest (42MB)</div>
+                  </div>
+                </a>
+
+                <a href="/pricing" class="mega-item-row">
+                  <div class="mega-icon-sq">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                      <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                    </svg>
+                  </div>
+                  <div class="mega-item-info">
+                    <div class="mega-item-title">Commercial License Vault</div>
+                    <div class="mega-item-desc">Air-gapped verification &amp; automated key deployment</div>
+                  </div>
+                </a>
               </div>
-            </a>
-            <a href="articles/rubrol-vs-gotenberg.html" class="compact-dropdown-item">
-              <span class="compact-item-icon">VS</span>
-              <div class="compact-item-body">
-                <div class="compact-item-title">Rubrol vs Gotenberg</div>
-                <div class="compact-item-desc">Architectural teardown: Chromium vs native Typst</div>
-              </div>
-            </a>
-            <a href="articles/rubrol-vs-mustangproject.html" class="compact-dropdown-item">
-              <span class="compact-item-icon">JVM</span>
-              <div class="compact-item-body">
-                <div class="compact-item-title">Rubrol vs Mustangproject</div>
-                <div class="compact-item-desc">Sub-millisecond Rust core vs heavy Java JVM tooling</div>
-              </div>
-            </a>
-            <a href="articles/rubrol-vs-ghostscript.html" class="compact-dropdown-item">
-              <span class="compact-item-icon">PDF</span>
-              <div class="compact-item-body">
-                <div class="compact-item-title">Rubrol vs Ghostscript</div>
-                <div class="compact-item-desc">PDF/A-3b vector fidelity vs rasterization artifacts</div>
-              </div>
-            </a>
-            <a href="#calculator" class="compact-dropdown-item">
-              <span class="compact-item-icon">ROI</span>
-              <div class="compact-item-body">
-                <div class="compact-item-title">Cloud Cost Calculator</div>
-                <div class="compact-item-desc">Compute annual AWS Fargate compute savings</div>
-              </div>
-            </a>
+            </div>
           </div>
         </div>
 
         <!-- 3. Guides & Compliance Dropdown -->
-        <div class="nav-item-dropdown">
+        <div class="nav-item-dropdown align-right">
           <div class="nav-dropdown-bridge"></div>
           <button class="nav-dropdown-trigger" aria-haspopup="true" aria-expanded="false">
-            Guides <svg class="nav-chevron" viewBox="0 0 12 12"><path d="M2.5 4.5L6 8L9.5 4.5"/></svg>
+            Guides <svg class="nav-chevron" viewBox="0 0 10 10"><path d="M2.5 3.75L5 6.25L7.5 3.75"/></svg>
           </button>
-          <div class="compact-dropdown-menu" role="menu">
-            <a href="articles/stripe-facturx-zugferd.html" class="compact-dropdown-item">
-              <span class="compact-item-icon">EU</span>
-              <div class="compact-item-body">
-                <div class="compact-item-title">Stripe + Factur-X Guide <span class="compact-item-badge">EN 16931</span></div>
-                <div class="compact-item-desc">French &amp; German legally compliant hybrid e-invoicing</div>
+          <div class="g2i-mega-menu" role="menu">
+            <!-- Left Column: Standards & Formats -->
+            <div class="mega-col">
+              <div class="mega-col-header">Regulatory &amp; Formats</div>
+              <div class="mega-col-list">
+                <a href="articles/stripe-facturx-zugferd.html" class="mega-item-row">
+                  <div class="mega-thumb">
+                    <svg viewBox="0 0 52 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <rect width="52" height="36" rx="6" fill="#0c141c"/>
+                      <rect x="11" y="7" width="20" height="22" rx="2" fill="#1e293b" stroke="#38bdf8" stroke-width="1"/>
+                      <rect x="25" y="15" width="16" height="14" rx="2" fill="#047857" stroke="#34d399" stroke-width="1"/>
+                      <text x="33" y="24" font-family="'JetBrains Mono', monospace" font-size="6" font-weight="700" fill="#ffffff" text-anchor="middle">XML</text>
+                      <path d="M15 12H23M15 15H21" stroke="#94a3b8" stroke-width="1" stroke-linecap="round"/>
+                    </svg>
+                  </div>
+                  <div class="mega-item-info">
+                    <div class="mega-item-title">
+                      Stripe + Factur-X Guide <span class="mega-badge-pill mega-badge-emerald">EN 16931</span>
+                    </div>
+                    <div class="mega-item-desc">French &amp; German legally compliant hybrid e-invoicing</div>
+                  </div>
+                </a>
+
+                <a href="#faq" class="mega-item-row">
+                  <div class="mega-thumb">
+                    <svg viewBox="0 0 52 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <rect width="52" height="36" rx="6" fill="#14110b"/>
+                      <path d="M26 8L36 12V19C36 24 31.5 28 26 30C20.5 28 16 24 16 19V12L26 8Z" fill="#1f1a10" stroke="#f59e0b" stroke-width="1.5"/>
+                      <circle cx="26" cy="18" r="3" fill="#f59e0b"/>
+                      <path d="M26 21V24" stroke="#f59e0b" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                  </div>
+                  <div class="mega-item-info">
+                    <div class="mega-item-title">Commercial Licensing FAQ</div>
+                    <div class="mega-item-desc">Sidekiq dual-license model, self-hosted terms &amp; vaults</div>
+                  </div>
+                </a>
               </div>
-            </a>
-            <a href="https://github.com/maxcomperatore/rubrol#precompiled-sample-output-pdfs" target="_blank" class="compact-dropdown-item">
-              <span class="compact-item-icon">DOC</span>
-              <div class="compact-item-body">
-                <div class="compact-item-title">Sample PDF Gallery</div>
-                <div class="compact-item-desc">Precompiled B2B invoices, receipts, and reports</div>
+            </div>
+
+            <!-- Right Column: Resources & Assets -->
+            <div class="mega-col">
+              <div class="mega-col-header">Resources &amp; Assets</div>
+              <div class="mega-col-list">
+                <a href="https://github.com/maxcomperatore/rubrol#precompiled-sample-output-pdfs" target="_blank" class="mega-item-row">
+                  <div class="mega-icon-sq">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                      <polyline points="14 2 14 8 20 8"/>
+                      <line x1="16" y1="13" x2="8" y2="13"/>
+                      <line x1="16" y1="17" x2="8" y2="17"/>
+                      <polyline points="10 9 9 9 8 9"/>
+                    </svg>
+                  </div>
+                  <div class="mega-item-info">
+                    <div class="mega-item-title">Sample PDF Gallery</div>
+                    <div class="mega-item-desc">Precompiled B2B invoices, receipts, and reports</div>
+                  </div>
+                </a>
+
+                <a href="https://typst.app/universe/package/rubrol-invoice" target="_blank" class="mega-item-row">
+                  <div class="mega-icon-sq">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="16.5" y1="9.4" x2="7.5" y2="4.21"/>
+                      <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                      <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                      <line x1="12" y1="22.08" x2="12" y2="12"/>
+                    </svg>
+                  </div>
+                  <div class="mega-item-info">
+                    <div class="mega-item-title">Typst Universe Package</div>
+                    <div class="mega-item-desc">Official @preview/rubrol-invoice repository</div>
+                  </div>
+                </a>
+
+                <a href="articles/why-puppeteer-fails-en16931.html" class="mega-item-row">
+                  <div class="mega-icon-sq">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="17 1 21 5 17 9"/>
+                      <path d="M3 11V9a4 4 0 0 1 4-4h14"/>
+                      <polyline points="7 23 3 19 7 15"/>
+                      <path d="M21 13v2a4 4 0 0 1-4 4H3"/>
+                    </svg>
+                  </div>
+                  <div class="mega-item-info">
+                    <div class="mega-item-title">Puppeteer Migration Guide</div>
+                    <div class="mega-item-desc">Step-by-step conversion of HTML/CSS to Typst templates</div>
+                  </div>
+                </a>
               </div>
-            </a>
-            <a href="https://typst.app/universe/package/rubrol-invoice" target="_blank" class="compact-dropdown-item">
-              <span class="compact-item-icon">PKG</span>
-              <div class="compact-item-body">
-                <div class="compact-item-title">Typst Universe Package</div>
-                <div class="compact-item-desc">Official @preview/rubrol-invoice package</div>
-              </div>
-            </a>
-            <a href="#faq" class="compact-dropdown-item">
-              <span class="compact-item-icon">FAQ</span>
-              <div class="compact-item-body">
-                <div class="compact-item-title">Commercial FAQ <span class="compact-item-badge">LICENSING</span></div>
-                <div class="compact-item-desc">Sidekiq dual-license model, vaults, and terms</div>
-              </div>
-            </a>
+            </div>
           </div>
         </div>
 
-
+        <!-- 4. Pricing Direct Link -->
+        <a href="/pricing" class="nav-link">Pricing</a>
       </div>
 
+      <!-- Right Actions (G2i Style) -->
       <div class="nav-actions">
-        <a href="https://github.com/maxcomperatore/rubrol" target="_blank" class="btn-github">
+        <a href="https://github.com/maxcomperatore/rubrol" target="_blank" class="nav-action-github" aria-label="GitHub Repository">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-          GitHub
+          <span>GitHub</span>
         </a>
-        <a href="/studio" class="btn-pill-primary">Live Studio</a>
-        <a href="/pricing" class="btn-trial-nav" style="background: rgba(245, 158, 11, 0.15); border: 1px solid rgba(245, 158, 11, 0.35); color: #f59e0b; text-decoration: none;">Get License</a>
+        <a href="/studio" class="nav-action-ghost">Live Studio</a>
+        <a href="/pricing" class="nav-action-cta">Get License</a>
         <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle navigation menu" onclick="toggleMobileNav()" aria-expanded="false">
           <span class="hamburger-bar"></span>
           <span class="hamburger-bar"></span>
@@ -4217,69 +4557,6 @@
   </section>
 
 
-  <!-- SECTION 4: ENTERPRISE CASE STUDY & PROOF NUMBERS -->
-  <section class="section-proof">
-    <div class="container">
-      <!-- High-End Enterprise Architectural Case Study Card -->
-      <div class="case-study-hero-card">
-        <div>
-          <div class="case-tag">ENTERPRISE CASE STUDY - GLOBAL TIER-1 FINTECH</div>
-          <h3 class="case-headline">
-            "We retired our 16-node Chromium Puppeteer cluster and replaced it with a single Rubrol sidecar container."
-          </h3>
-          <p class="case-sub">
-            During high-volume month-end billing cycles, generating 300,000 corporate invoice runs regularly caused V8 memory leaks and pod evictions. Rubrol lowered our 99th-percentile response time from 2,400ms to 5.8ms while reducing compute overhead by over \$180,000 annually.
-          </p>
-        </div>
-        <div class="case-metrics-column">
-          <div class="case-metric-item">
-            <span class="case-metric-val">2,400ms to 5.8ms</span>
-            <span class="case-metric-label">p99 Latency Drop (413× Faster)</span>
-          </div>
-          <div class="case-metric-item">
-            <span class="case-metric-val">\$180,000 / yr</span>
-            <span class="case-metric-label">AWS Fargate Compute Eliminated</span>
-          </div>
-          <div class="case-metric-item">
-            <span class="case-metric-val">0 Evictions</span>
-            <span class="case-metric-label">Zero OOM Container Restarts</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="proof-grid">
-        <div class="proof-big-stat">
-          <div class="proof-number">96%<span class="proof-number-sup">†</span></div>
-          <div class="proof-label">COMPUTE REDUCTION ACROSS CLUSTER</div>
-        </div>
-
-        <div>
-          <blockquote class="proof-quote">
-            Rubrol replaced our 16-pod Chromium cluster with a single sidecar. Our p99 latency dropped from 2,400ms to 5.8ms while completely eliminating out-of-memory container restarts during end-of-month billing cycles.
-          </blockquote>
-          <div class="proof-author">
-            <strong>Staff Infrastructure Engineer</strong> - Global B2B FinTech Platform
-            <span class="author-badge">VERIFIED DEPLOYMENT</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="proof-submetrics">
-        <div class="submetric-box">
-          <div class="submetric-value">5.8ms</div>
-          <div class="submetric-label">Average document compilation latency on single vCPU</div>
-        </div>
-        <div class="submetric-box">
-          <div class="submetric-value">&lt; 28MB</div>
-          <div class="submetric-label">Resident memory consumption per container instance</div>
-        </div>
-        <div class="submetric-box">
-          <div class="submetric-value">100%</div>
-          <div class="submetric-label">EN 16931 &amp; ISO 19005-3 PDF/A-3b compliance validation</div>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- DARK PIPELINE SECTION: Point, Click & Connect WITH CENTRAL ILLUMINATED HERO BUS -->
   <section id="pipeline" class="section-pipeline">
@@ -4694,7 +4971,7 @@
       <!-- 3-Tier Commercial Open-Core Deck (Sidekiq Model) -->
       <div class="pricing-deck">
         <!-- Tier 1: Rubrol Community -->
-        <div id="card-developer" class="price-card tier-dimmed">
+        <div id="card-developer" class="price-card">
           <span id="ribbon-developer" class="featured-ribbon" style="display: none;">Community Core</span>
           <div>
             <h3 class="price-plan-name">Rubrol Community</h3>
@@ -4721,7 +4998,7 @@
         </div>
 
         <!-- Tier 2: Rubrol Pro -->
-        <div id="card-pro" class="price-card tier-dimmed">
+        <div id="card-pro" class="price-card">
           <span id="ribbon-pro" class="featured-ribbon" style="display: none;">Commercial License</span>
           <div>
             <h3 class="price-plan-name">Rubrol Pro</h3>
@@ -4750,7 +5027,7 @@
         </div>
 
         <!-- Tier 3: Rubrol Enterprise -->
-        <div id="card-compliance" class="price-card tier-dimmed">
+        <div id="card-compliance" class="price-card">
           <span id="ribbon-compliance" class="featured-ribbon" style="display: none;">Regulatory Standard</span>
           <div>
             <h3 class="price-plan-name">Rubrol Enterprise</h3>
@@ -5907,28 +6184,8 @@ ${err.message}</div>`;
       quantDevLabor.innerText = `$${devLaborSavings.toLocaleString()}/yr (${devHoursSaved} hrs)`;
       quantTcoTotal.innerText = `$${totalTcoSaved.toLocaleString()}/yr`;
 
-      // Reset all 3 cards
-      [cardDev, cardPro, cardComp].forEach(c => {
-        if (c) {
-          c.classList.remove('tier-active');
-          c.classList.add('tier-dimmed');
-        }
-      });
-      [ribbonDev, ribbonPro, ribbonComp].forEach(r => {
-        if (r) r.style.display = 'none';
-      });
-      [roiDev, roiPro, roiComp].forEach(ro => {
-        if (ro) ro.style.display = 'none';
-      });
-
-      // Tier 1: Rubrol Community (< 20,000 docs/mo)
+      // Tier recommendations for calculator box (tiers below remain unhighlighted)
       if (val < 20000) {
-        if (cardDev) {
-          cardDev.classList.add('tier-active');
-          cardDev.classList.remove('tier-dimmed');
-        }
-        if (ribbonDev) ribbonDev.style.display = 'inline-flex';
-        if (roiDev) roiDev.style.display = 'block';
         calcRecPlan.innerText = "Rubrol Community ($0 Free)";
         calcRecPlan.style.color = "#10b981";
         calcRecRoi.innerHTML = "100% Free Open-Source Core (LGPLv3) • Run unlimited locally or in Docker for evaluation";
@@ -5937,16 +6194,6 @@ ${err.message}</div>`;
       }
       // Tier 2: Rubrol Pro (20,000 - 100,000 docs/mo)
       else if (val < 100000) {
-        if (cardPro) {
-          cardPro.classList.add('tier-active');
-          cardPro.classList.remove('tier-dimmed');
-        }
-        if (ribbonPro) ribbonPro.style.display = 'inline-flex';
-        if (roiPro) {
-          roiPro.style.display = 'block';
-          const netTco = totalTcoSaved - 1800;
-          roiPro.innerText = `● Net TCO ROI: +$${netTco.toLocaleString()}/yr saved`;
-        }
         calcRecPlan.innerText = "Rubrol Pro ($1,800/yr)";
         calcRecPlan.style.color = "var(--amber-primary)";
         const netTco = totalTcoSaved - 1800;
@@ -5956,16 +6203,6 @@ ${err.message}</div>`;
       }
       // Tier 3: Rubrol Enterprise (>= 100,000 docs/mo)
       else {
-        if (cardComp) {
-          cardComp.classList.add('tier-active');
-          cardComp.classList.remove('tier-dimmed');
-        }
-        if (ribbonComp) ribbonComp.style.display = 'inline-flex';
-        if (roiComp) {
-          roiComp.style.display = 'block';
-          const netTco = totalTcoSaved - 4800;
-          roiComp.innerText = `● Net TCO ROI: +$${netTco.toLocaleString()}/yr + certified EN 16931`;
-        }
         calcRecPlan.innerText = "Rubrol Enterprise ($4,800/yr)";
         calcRecPlan.style.color = "#ea580c";
         const netTco = totalTcoSaved - 4800;
