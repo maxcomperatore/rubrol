@@ -1555,11 +1555,73 @@
       position: relative;
       width: 100%;
       box-sizing: border-box;
-      transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
     }
 
     .price-card:hover {
       border-color: var(--border-hover);
+    }
+
+    .price-card.tier-active {
+      border: 1px solid rgba(16, 185, 129, 0.55) !important;
+      background: linear-gradient(180deg, rgba(16, 36, 30, 0.85) 0%, rgba(18, 20, 26, 0.96) 100%) !important;
+      box-shadow: 0 0 0 1px rgba(16, 185, 129, 0.3), 0 24px 50px -10px rgba(16, 185, 129, 0.22), 0 10px 30px rgba(0, 0, 0, 0.8) !important;
+      transform: translateY(-6px);
+      opacity: 1 !important;
+      z-index: 5;
+    }
+
+    .price-card.tier-active .price-plan-name {
+      color: #ffffff;
+      text-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+    }
+
+    .price-card.tier-active .btn-pricing-primary,
+    .price-card.tier-active .btn-pricing-secondary {
+      box-shadow: 0 0 20px rgba(16, 185, 129, 0.25);
+    }
+
+    .price-card.tier-dimmed {
+      opacity: 0.72;
+      border-color: rgba(255, 255, 255, 0.08);
+      transform: translateY(0);
+    }
+
+    .price-card.tier-dimmed:hover {
+      opacity: 0.95;
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .tier-rec-pill {
+      display: none;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: #34d399;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      padding: 3px 10px;
+      border-radius: 9999px;
+      margin-bottom: 14px;
+      align-self: flex-start;
+      animation: rec-badge-pop 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .rec-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #10b981;
+      box-shadow: 0 0 8px rgba(16, 185, 129, 0.9);
+      animation: pulse-dot 2s infinite ease-in-out;
+    }
+
+    .price-card.tier-active .tier-rec-pill {
+      display: inline-flex;
     }
 
     .price-card.featured {
@@ -4691,6 +4753,10 @@
       <div class="pricing-deck">
         <!-- Tier 1: Rubrol Community -->
         <div id="card-developer" class="price-card">
+          <div class="tier-rec-pill">
+            <span class="rec-dot"></span>
+            <span>Recommended</span>
+          </div>
           <span id="ribbon-developer" class="featured-ribbon" style="display: none;">Community Core</span>
           <div>
             <h3 class="price-plan-name">Rubrol Community</h3>
@@ -4718,6 +4784,10 @@
 
         <!-- Tier 2: Rubrol Pro -->
         <div id="card-pro" class="price-card">
+          <div class="tier-rec-pill">
+            <span class="rec-dot"></span>
+            <span>Recommended</span>
+          </div>
           <span id="ribbon-pro" class="featured-ribbon" style="display: none;">Commercial License</span>
           <div>
             <h3 class="price-plan-name">Rubrol Pro</h3>
@@ -4747,6 +4817,10 @@
 
         <!-- Tier 3: Rubrol Enterprise -->
         <div id="card-compliance" class="price-card">
+          <div class="tier-rec-pill">
+            <span class="rec-dot"></span>
+            <span>Recommended</span>
+          </div>
           <span id="ribbon-compliance" class="featured-ribbon" style="display: none;">Regulatory Standard</span>
           <div>
             <h3 class="price-plan-name">Rubrol Enterprise</h3>
@@ -5897,23 +5971,22 @@ ${err.message}</div>`;
       quantDevLabor.innerText = `$${devLaborSavings.toLocaleString()}/yr (${devHoursSaved} hrs)`;
       quantTcoTotal.innerText = `$${totalTcoSaved.toLocaleString()}/yr`;
 
-      // Reset all 3 cards
-      [cardDev, cardPro, cardComp].forEach(c => {
-        if (c) {
-          c.classList.remove('tier-active');
-          c.classList.add('tier-dimmed');
-        }
-      });
-      [ribbonDev, ribbonPro, ribbonComp].forEach(r => {
-        if (r) r.style.display = 'none';
-      });
-      [roiDev, roiPro, roiComp].forEach(ro => {
-        if (ro) ro.style.display = 'none';
-      });
+      function setActiveTier(activeCard) {
+        [cardDev, cardPro, cardComp].forEach(c => {
+          if (!c) return;
+          if (c === activeCard) {
+            c.classList.add('tier-active');
+            c.classList.remove('tier-dimmed');
+          } else {
+            c.classList.remove('tier-active');
+            c.classList.add('tier-dimmed');
+          }
+        });
+      }
 
       // Tier 1: Rubrol Community (< 20,000 docs/mo)
       if (val < 20000) {
-        
+        setActiveTier(cardDev);
         calcRecPlan.innerText = "Rubrol Community ($0 Free)";
         calcRecPlan.style.color = "#10b981";
         calcRecRoi.innerHTML = "100% Free Open-Source Core (LGPLv3) • Run unlimited locally or in Docker for evaluation";
@@ -5922,7 +5995,7 @@ ${err.message}</div>`;
       }
       // Tier 2: Rubrol Pro (20,000 - 100,000 docs/mo)
       else if (val < 100000) {
-        
+        setActiveTier(cardPro);
         calcRecPlan.innerText = "Rubrol Pro ($1,800/yr)";
         calcRecPlan.style.color = "var(--amber-primary)";
         const netTco = totalTcoSaved - 1800;
@@ -5932,7 +6005,7 @@ ${err.message}</div>`;
       }
       // Tier 3: Rubrol Enterprise (>= 100,000 docs/mo)
       else {
-        
+        setActiveTier(cardComp);
         calcRecPlan.innerText = "Rubrol Enterprise ($4,800/yr)";
         calcRecPlan.style.color = "#ea580c";
         const netTco = totalTcoSaved - 4800;
@@ -5948,6 +6021,34 @@ ${err.message}</div>`;
       });
       // Initial call
       updatePricingCalculator(parseInt(docSlider.value, 10));
+    }
+
+    if (cardDev) {
+      cardDev.addEventListener('click', (e) => {
+        if (e.target.closest('a')) return;
+        if (docSlider) {
+          docSlider.value = 10000;
+          updatePricingCalculator(10000);
+        }
+      });
+    }
+    if (cardPro) {
+      cardPro.addEventListener('click', (e) => {
+        if (e.target.closest('a')) return;
+        if (docSlider) {
+          docSlider.value = 50000;
+          updatePricingCalculator(50000);
+        }
+      });
+    }
+    if (cardComp) {
+      cardComp.addEventListener('click', (e) => {
+        if (e.target.closest('a')) return;
+        if (docSlider) {
+          docSlider.value = 250000;
+          updatePricingCalculator(250000);
+        }
+      });
     }
 
     // Initialize
