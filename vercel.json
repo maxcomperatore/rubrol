@@ -23,6 +23,14 @@
       "destination": "/assets/logo.png"
     },
     {
+      "source": "/pricing",
+      "destination": "/rubrol/static/pricing.html"
+    },
+    {
+      "source": "/studio",
+      "destination": "/rubrol/static/studio.html"
+    },
+    {
       "source": "/articles/:slug",
       "destination": "/rubrol/static/articles/:slug.html"
     },
