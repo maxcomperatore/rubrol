@@ -5535,5 +5535,33 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
       </div>
     </div>
   </div>
+
+  <script>
+    (function () {
+      var tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+      if (!tz.startsWith('Europe/')) return;
+
+      // swap currency symbol on all price cards
+      document.querySelectorAll('.price-currency').forEach(function (el) {
+        el.textContent = '\u20ac';
+      });
+
+      // pro card
+      var valPro = document.getElementById('price-val-pro');
+      var periodPro = document.getElementById('price-period-pro');
+      var btnPro = document.getElementById('btn-pro');
+      if (valPro) valPro.textContent = '1,650';
+      if (periodPro) periodPro.textContent = '/ year (\u20ac137/mo)';
+      if (btnPro) btnPro.textContent = 'Buy Rubrol Pro (\u20ac1,650/yr)';
+
+      // enterprise card
+      var valEnt = document.getElementById('price-val-compliance');
+      var periodEnt = document.getElementById('price-period-compliance');
+      var btnEnt = document.getElementById('btn-compliance');
+      if (valEnt) valEnt.textContent = '4,400';
+      if (periodEnt) periodEnt.textContent = '/ year (\u20ac367/mo)';
+      if (btnEnt) btnEnt.textContent = 'Buy Rubrol Enterprise (\u20ac4,400/yr)';
+    })();
+  </script>
 </body>
 </html>
