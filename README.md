@@ -21,20 +21,6 @@
 
 ---
 
-## Why not just use Typst directly?
-
-Typst is a compiler. You give it a `.typ` file, it gives you a PDF. What Rubrol adds on top:
-
-- **REST API + process isolation** - concurrent requests, hot-reload templates, `POST /v1/render` from any language without managing subprocesses or file I/O yourself
-- **Template management** - store, version, and serve templates via API; no filesystem juggling per deployment
-- **Factur-X / EN 16931 pipeline** - XMP metadata injection, `/AFRelationship` PDF dictionary, Schematron validation; skip the 2-3 months to get EU e-invoicing compliance right
-- **One Docker image** - `docker run ghcr.io/maxcomperatore/rubrol:GA` and you have a production-ready PDF service in 2 minutes
-- **8 client SDKs** - drop-in libraries for Python, Node, Go, Ruby, PHP, Java, .NET, Rust
-
-If you are generating one PDF type internally, raw Typst is fine. If you need a multi-tenant PDF service or legally compliant EU invoices at volume, that is what Rubrol saves you from building.
-
----
-
 ## The Architecture Shift: Eliminating Background Queues
 
 Every engineering team has built the same accidental infrastructure:
@@ -88,7 +74,6 @@ Adopting Rubrol is not just about replacing a rendering library; it fundamentall
 
 ## Table of Contents
 
-- [Why not just use Typst directly?](#why-not-just-use-typst-directly)
 - [The Architecture Shift: Eliminating Background Queues](#the-architecture-shift-eliminating-background-queues)
 - [The Architectural Transformation: Developer Superpowers](#the-architectural-transformation-developer-superpowers-unlocked)
 - [The Problem & The Solution](#the-problem--the-solution)
@@ -238,27 +223,18 @@ Once installed, simply prompt your AI coding assistant with instructions like:
 
 ## Getting Started in 30 Seconds
 
-### 1. Install Dependencies
+### 1. Start the HTTP Sidecar (Docker)
+
 ```bash
-pip install typst pypdf
+docker run -d -p 8080:8080 --name rubrol ghcr.io/maxcomperatore/rubrol:GA
 ```
 
-### 2. Start the HTTP Sidecar & Interactive Playground
-```bash
-python rubrol/core/server.py --port 8080
-```
-Open **`http://localhost:8080`** in your browser to inspect the real-time split-pane editor, interactive SVG preview, and Puppeteer cost calculator.
+Open **`http://localhost:8080`** in your browser to inspect the real-time split-pane visual template editor, interactive SVG preview, and Puppeteer cost calculator.
 
-### 3. Compile via CLI
-```bash
-python rubrol.py compile \
-  --template rubrol/templates/b2b_invoice.typ \
-  --data rubrol/data/b2b_invoice.json \
-  --output invoice.pdf \
-  --standard a-2b
-```
+### 2. Render Your First Document (< 6ms)
 
-### 4. Compile via HTTP Request (Any Language)
+Send JSON data from any terminal, backend service, or microservice:
+
 ```bash
 curl -X POST http://localhost:8080/v1/render \
   -H "Content-Type: application/json" \
@@ -869,6 +845,14 @@ Please review our [**Contributing Guide (`CONTRIBUTING.md`)**](CONTRIBUTING.md) 
 ---
 
 ## Technical FAQ & Troubleshooting
+
+### Why not just use Typst directly?
+Typst is a compiler CLI. You provide a `.typ` file and it compiles to a PDF. What Rubrol adds for production backend architectures:
+* **HTTP Microservice & Process Isolation**: Concurrent connection pooling, template hot-reload, and `POST /v1/render` callable from any backend language (Node, Go, Python, Ruby, PHP, Java, C#) without managing raw subprocesses, pipes, or temporary disk files.
+* **Template Registry & Dynamic Data**: Store, version, and parameterize document templates via API with strict JSON schema input validation.
+* **Turnkey EU E-Invoicing (Factur-X / EN 16931)**: Built-in PDF/A-3b container generation, XML attachment, XMP extension schemas, and Schematron validation out of the box.
+* **Production Docker Container**: Multi-arch Alpine image (`ghcr.io/maxcomperatore/rubrol:GA`) bundled with fonts and production defaults, ready for Kubernetes or Docker Compose in seconds.
+* **Multi-Language SDKs**: Drop-in client libraries across 8 programming languages.
 
 ### Why is Typst faster than Chromium?
 Chromium must initialize an entire browser rendering pipeline: Blink layout engine, V8 JavaScript engine, DOM tree construction, CSS rule calculation, and Skia paint calls. Typst is a purpose-built document layout compiler written in Rust that compiles directly to vector PDF primitives in memory with zero browser overhead.
