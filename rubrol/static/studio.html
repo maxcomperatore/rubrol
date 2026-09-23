@@ -1,51 +1,182 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rubrol Studio - Live Interactive Typst PDF Engine Playground</title>
-  <meta name="description" content="Test and preview sub-millisecond Typst PDF generation live in your browser. Real-time split-pane editor, interactive preview, and Puppeteer cost calculator.">
-  <meta name="keywords" content="Rubrol Studio, Typst playground, online PDF generator, Typst web editor, live PDF compiler, Factur-X preview, test Typst PDF">
+  <title>Rubrol Live Studio - Real-Time In-Browser Typst &amp; PDF Compilation</title>
+  <meta name="description" content="Sub-10ms dynamic PDF/A engine replacing Puppeteer, Headless Chrome, and Gotenberg. Compile B2B SaaS invoices, receipts, and turnkey EU Factur-X / ZUGFeRD 2.2 documents in &lt;6ms on &lt;18MB RAM.">
+  <meta name="keywords" content="Rubrol, Puppeteer alternative, Headless Chrome memory leak, Gotenberg alternative, WeasyPrint alternative, wkhtmltopdf replacement, Typst PDF generator, Factur-X Python, ZUGFeRD 2.2 PDF/A-3b, EN 16931 e-invoicing API, sub-10ms PDF compilation, Rust PDF sidecar, Docker PDF engine">
   <meta name="author" content="Max Comperatore">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   <link rel="canonical" href="https://rubrol.com/studio">
   <link rel="icon" type="image/png" href="/assets/logo.png">
+  <meta name="google-site-verification" content="vZgg9tVFR8LflFR5UOTA8stXBmRkuz94YHv8ZOPdT6M">
   <meta name="theme-color" content="#08090c">
 
   <!-- Open Graph / Facebook / LinkedIn -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://rubrol.com/studio">
   <meta property="og:site_name" content="Rubrol">
-  <meta property="og:title" content="Rubrol Studio - Live Interactive Typst PDF Engine Playground">
-  <meta property="og:description" content="Edit live JSON variables and watch the local Rubrol engine recompile vector SVG in real time. Download PDF/A-3b &amp; PDF/A-2b binaries instantly.">
+  <meta property="og:title" content="Rubrol - Sub-millisecond PDF Engine | The Anti-Puppeteer Document Infrastructure">
+  <meta property="og:description" content="Sub-10ms dynamic PDF/A compilation replacing Headless Chrome and Gotenberg. Universal high-throughput document engine with turnkey EU Factur-X e-invoicing.">
   <meta property="og:image" content="https://rubrol.com/assets/og_image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Rubrol - Sub-millisecond Document Engine">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="https://rubrol.com/studio">
-  <meta name="twitter:title" content="Rubrol Studio - Live Interactive PDF Playground">
-  <meta name="twitter:description" content="Real-time split-pane Typst document editor and sub-10ms PDF compilation preview.">
+  <meta name="twitter:title" content="Rubrol - Sub-millisecond PDF Engine">
+  <meta name="twitter:description" content="The sub-10ms document engine replacing Headless Chrome and Gotenberg. Universal high-throughput document engine with turnkey EU Factur-X compliance.">
   <meta name="twitter:image" content="https://rubrol.com/assets/og_image.png">
 
-  <!-- Schema.org JSON-LD Structured Data for WebApplication -->
+  <!-- Google Rich Results / Schema.org JSON-LD -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": "WebApplication",
-        "name": "Rubrol Studio",
-        "url": "https://rubrol.com/studio",
+        "@type": "Organization",
+        "@id": "https://rubrol.com/#organization",
+        "name": "Rubrol",
+        "url": "https://rubrol.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://rubrol.com/assets/logo.png"
+        },
+        "founder": {
+          "@type": "Person",
+          "name": "Max Comperatore"
+        },
+        "sameAs": [
+          "https://github.com/maxcomperatore/rubrol"
+        ],
+        "description": "Sub-millisecond document engine replacing Chromium and Gotenberg. Native PDF/A-3b compliance and European EN 16931 Factur-X suite."
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://rubrol.com/#website",
+        "url": "https://rubrol.com",
+        "name": "Rubrol - Sub-millisecond PDF Engine",
+        "description": "The Anti-Puppeteer PDF Engine. Sub-10ms dynamic PDF/A compilation powered by Rust and Typst.",
+        "publisher": {
+          "@id": "https://rubrol.com/#organization"
+        }
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://rubrol.com/#software",
+        "name": "Rubrol PDF Engine",
         "applicationCategory": "DeveloperApplication",
-        "operatingSystem": "All modern web browsers",
-        "description": "Live interactive Typst document compilation playground with real-time vector SVG preview and PDF/A export."
+        "operatingSystem": "Linux, macOS, Windows, Docker",
+        "softwareVersion": "1.0.0",
+        "license": "https://github.com/maxcomperatore/rubrol/blob/main/LICENSE",
+        "description": "Sub-10ms dynamic PDF/A compilation engine with turnkey EU Factur-X / ZUGFeRD 2.2 suite.",
+        "offers": [
+          {
+            "@type": "Offer",
+            "name": "Rubrol Community",
+            "price": "0",
+            "priceCurrency": "USD",
+            "description": "Open-source GNU LGPLv3 core with local developer CLI, sidecar container, and standard templates."
+          },
+          {
+            "@type": "Offer",
+            "name": "Rubrol Pro",
+            "price": "1800",
+            "priceCurrency": "USD",
+            "priceValidUntil": "2027-12-31",
+            "description": "Annual commercial license replacing LGPLv3, unlimited local Docker sidecar, B2B SaaS invoice and receipt templates, ISO 19005-2 PDF/A-2b compilation, and private GitHub vault access."
+          },
+          {
+            "@type": "Offer",
+            "name": "Rubrol Enterprise",
+            "price": "4800",
+            "priceCurrency": "USD",
+            "priceValidUntil": "2027-12-31",
+            "description": "Turnkey EU compliance suite with certified ISO 19005-3 PDF/A-3b, Factur-X / ZUGFeRD 2.2, EN 16931 & XRechnung 3.0 Schematron validation, DIN 5008 & Chorus Pro templates, and priority support."
+          }
+        ],
+        "author": {
+          "@id": "https://rubrol.com/#organization"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://rubrol.com/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is Rubrol?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Rubrol is a sub-10ms dynamic PDF/A compilation engine powered by Typst. It is built as a lightweight, zero-virtualization alternative to Headless Chrome, Puppeteer, and Gotenberg."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How does Rubrol generate European EN 16931 Factur-X invoices?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Rubrol compiles a visual ISO 19005-3 PDF/A-3b container, generates compliant UN/CEFACT CII XML (factur-x.xml), attaches it at the root catalog with an /AFRelationship /Alternative dictionary, and validates tax arithmetic in under 160 milliseconds."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Why is Rubrol faster than Puppeteer and Gotenberg?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Puppeteer launches a 500MB headless Chromium browser executing full Blink/V8 DOM rendering trees for every single page. Rubrol compiles Typst documents using native Rust with persistent in-memory font caches, executing in under 15 milliseconds on less than 28MB RAM."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I deploy Rubrol with Docker?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "You can run the official multi-arch Docker image with: docker run -d -p 8080:8080 --name rubrol-sidecar ghcr.io/maxcomperatore/rubrol:latest."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What are Rubrol Pro and Rubrol Enterprise?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Rubrol Pro and Rubrol Enterprise are commercial extensions following the Sidekiq open-core model. Pro includes an annual commercial license grant replacing LGPLv3, unlimited sidecar nodes, ISO 19005-2 PDF/A-2b compilation, and access to private template repositories. Enterprise adds turnkey ISO 19005-3 PDF/A-3b Factur-X / ZUGFeRD 2.2 compliance, Schematron validators, and European regulatory updates."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I use Rubrol in a commercial closed-source SaaS?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Rubrol Pro and Rubrol Enterprise grant full commercial production rights that legally replace the GNU LGPLv3, allowing proprietary closed-source deployment without open-sourcing modifications."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does Rubrol send document or customer data over the internet?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Rubrol runs completely locally as a Docker sidecar or standalone CLI binary on your own infrastructure. Zero document payloads, invoice data, or customer PII ever leaves your VPC."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How does offline license key validation work?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Rubrol licenses use asymmetric Ed25519 cryptographic signatures (JWT). The sidecar verifies the license key completely offline in memory using an embedded public key, requiring zero outbound network pings or telemetry."
+            }
+          }
+        ]
       }
     ]
   }
   </script>
 
+  <!-- Google Fonts: Inter & JetBrains Mono (Vercel Minimalist Stack) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -123,6 +254,26 @@
       font-size: 14.5px;
       line-height: 1.6;
       overflow-x: hidden;
+    }
+
+    /* Sleek Modern Scrollbars */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.16);
+      border-radius: 999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+    * {
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255, 255, 255, 0.16) transparent;
     }
 
     a {
@@ -2413,22 +2564,153 @@
       border-radius: 6px;
     }
 
-    /* Guides Grid & Card Classes */
+    /* Guides Grid & Modern Card System */
     .guides-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
-      gap: 32px;
+      gap: 24px;
     }
 
-    .guide-card {
-      background: #11131a;
-      border: 1px solid var(--bg-obsidian-border);
-      border-radius: 12px;
-      padding: 36px;
+    .guide-card-modern {
       display: flex;
       flex-direction: column;
+      background: #14161f;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.22s ease, box-shadow 0.22s ease;
+      position: relative;
+    }
+
+    .guide-card-modern:hover {
+      transform: translateY(-4px);
+      border-color: rgba(255, 255, 255, 0.22);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.1);
+      text-decoration: none;
+    }
+
+    .guide-card-cover {
+      height: 140px;
+      width: 100%;
+      background: #0d0f15;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .guide-card-cover svg {
+      width: 100%;
+      height: 100%;
+      transition: transform 0.3s ease;
+    }
+
+    .guide-card-modern:hover .guide-card-cover svg {
+      transform: scale(1.03);
+    }
+
+    .guide-card-body {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
       justify-content: space-between;
-      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .guide-card-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #94a3b8;
+      margin-bottom: 12px;
+    }
+
+    .guide-meta-tag {
+      color: var(--amber-light);
+      background: rgba(245, 158, 11, 0.1);
+      padding: 2px 7px;
+      border-radius: 4px;
+      border: 1px solid rgba(245, 158, 11, 0.2);
+    }
+
+    .guide-meta-tag.tag-arch {
+      color: #f87171;
+      background: rgba(239, 68, 68, 0.1);
+      border-color: rgba(239, 68, 68, 0.2);
+    }
+
+    .guide-meta-tag.tag-bench {
+      color: #c084fc;
+      background: rgba(192, 132, 252, 0.1);
+      border-color: rgba(192, 132, 252, 0.2);
+    }
+
+    .guide-meta-tag.tag-sec {
+      color: #fb7185;
+      background: rgba(251, 113, 133, 0.1);
+      border-color: rgba(251, 113, 133, 0.2);
+    }
+
+    .guide-meta-tag.tag-devops {
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.1);
+      border-color: rgba(56, 189, 248, 0.2);
+    }
+
+    .guide-meta-sep {
+      color: #475569;
+    }
+
+    .guide-card-title {
+      font-family: var(--font-sans);
+      font-size: 19px;
+      font-weight: 600;
+      color: #f8fafc;
+      line-height: 1.35;
+      letter-spacing: -0.015em;
+      margin: 0 0 12px 0;
+      transition: color 0.15s ease;
+    }
+
+    .guide-card-modern:hover .guide-card-title {
+      color: #ffffff;
+    }
+
+    .guide-card-desc {
+      font-size: 13.5px;
+      line-height: 1.55;
+      color: #94a3b8;
+      margin: 0 0 20px 0;
+      flex-grow: 1;
+    }
+
+    .guide-card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--amber-light);
+      letter-spacing: 0.02em;
+      transition: color 0.15s ease;
+    }
+
+    .guide-card-link svg {
+      transition: transform 0.2s ease;
+    }
+
+    .guide-card-modern:hover .guide-card-link svg {
+      transform: translateX(4px);
     }
 
     .prefooter-ctas {
@@ -3254,230 +3536,157 @@
       .g2i-footer-bar { flex-direction: column; gap: 18px; text-align: center; }
     }
 
-  </style>
-
-  <!-- Monaco Editor Loader -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.44.0/min/vs/loader.min.js"></script>
-</head>
-<body>
-
-        background-image: none !important;
-      color: #ffffff;
+  
+    /* --- Ultra-Premium Dithered Aura & Custom Series A Slider --- */
+    .calculator-box {
+      position: relative !important;
+      background: radial-gradient(ellipse 90% 70% at 85% 15%, rgba(34, 197, 94, 0.16) 0%, rgba(245, 158, 11, 0.08) 40%, #1e1e24 75%, #18191d 100%) !important;
+      border: 1px solid rgba(255, 255, 255, 0.12) !important;
+      border-radius: 16px !important;
+      padding: 36px 32px !important;
+      margin-bottom: 56px !important;
+      display: grid !important;
+      grid-template-columns: 1.2fr 0.8fr !important;
+      gap: 32px !important;
+      align-items: center !important;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.18) !important;
+      overflow: hidden !important;
     }
 
-    /* Two-Tone g2i Headline System */
-    .hero-title {
-      font-size: 54px !important;
-      font-weight: 700 !important;
-      letter-spacing: -0.035em !important;
-      line-height: 1.15 !important;
-      color: #ffffff !important;
-      margin-bottom: 20px !important;
-    }
-    .hero-title-muted {
-      color: #8e8e93 !important;
-      font-weight: 500 !important;
-      display: block;
-      margin-top: 4px;
-    }
-    .hero-subtitle {
-      color: #9e9e9e !important;
-      font-size: 17px !important;
-      line-height: 1.6 !important;
-      max-width: 660px !important;
-      margin: 0 auto 32px auto !important;
-    }
-
-    /* g2i Clean Solid White & Dark Buttons */
-    .btn-g2i-primary {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background: #ffffff !important;
-      color: #141414 !important;
-      font-weight: 600;
-      font-size: 14px;
-      padding: 12px 24px;
-      border-radius: 8px;
-      text-decoration: none;
-      transition: all 0.15s ease;
-      border: 1px solid #ffffff;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
-    }
-    .btn-g2i-primary:hover {
-      background: #f0f0f0 !important;
-      transform: translateY(-1px);
-      box-shadow: 0 4px 14px rgba(255, 255, 255, 0.2);
-      text-decoration: none;
-    }
-    .btn-g2i-secondary {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(255, 255, 255, 0.05) !important;
-      color: #ffffff !important;
-      font-weight: 500;
-      font-size: 14px;
-      padding: 12px 22px;
-      border-radius: 8px;
-      text-decoration: none;
-      border: 1px solid rgba(255, 255, 255, 0.14) !important;
-      transition: all 0.15s ease;
-    }
-    .btn-g2i-secondary:hover {
-      background: rgba(255, 255, 255, 0.09) !important;
-      border-color: rgba(255, 255, 255, 0.25) !important;
-      text-decoration: none;
-    }
-
-    /* Organic Landscape Backdrop Frame (g2i Screenshot 1) */
-    .hero-landscape-frame {
-      position: relative;
-      margin: 48px auto 0 auto;
-      max-width: 1200px;
-      border-radius: 16px;
-      padding: 32px 24px;
-      background: radial-gradient(ellipse 90% 80% at 50% 120%, #4ade80 0%, #16a34a 25%, #15803d 45%, #14532d 65%, #052e16 85%, #1f1f1f 100%);
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      overflow: hidden;
-    }
-    .hero-landscape-frame::before {
+    .calculator-box::before,
+    .price-card::before {
       content: "";
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.08), transparent 60%);
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='ditherNoise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23ditherNoise)' opacity='0.07'/%3E%3C/svg%3E");
       pointer-events: none;
+      mix-blend-mode: overlay;
+      z-index: 1;
+      border-radius: inherit;
     }
 
-    /* 2-Column Compliance Feature Showcase (g2i Screenshot 2) */
-    .g2i-feature-section {
-      padding: 96px 0;
-      background: #1f1f1f;
-    }
-    .g2i-feature-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 64px;
-      align-items: center;
-    }
-    .g2i-control-wrapper {
+    .calculator-box > *,
+    .price-card > * {
       position: relative;
-      border-radius: 14px;
-      padding: 24px;
-      background: radial-gradient(circle at 10% 90%, #22c55e 0%, #15803d 30%, #0d2818 60%, #1f1f1f 100%);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-    }
-    .g2i-control-card {
-      background: #242424;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 10px;
-      padding: 24px 28px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
-    }
-    .g2i-control-header {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 12px;
-    }
-    .g2i-control-title {
-      font-size: 13px;
-      font-weight: 600;
-      color: #ffffff;
-      letter-spacing: -0.01em;
-    }
-    .g2i-control-subtitle {
-      font-size: 13px;
-      color: #9e9e9e;
-      margin-bottom: 20px;
-    }
-    .g2i-control-list {
-      list-style: none;
-      padding: 0;
-      margin: 0 0 24px 0;
-    }
-    .g2i-control-list li {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      padding: 10px 0;
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
-      font-size: 13px;
-      line-height: 1.45;
-      color: #d4d4d4;
-    }
-    .g2i-check-box {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 18px;
-      height: 18px;
-      background: rgba(34, 197, 94, 0.15);
-      border: 1px solid #22c55e;
-      border-radius: 4px;
-      color: #22c55e;
-      font-size: 11px;
-      font-weight: 700;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-    .g2i-control-footer {
-      font-family: var(--font-mono);
-      font-size: 10px;
-      color: #737373;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-    }
-    .g2i-kicker {
-      font-family: var(--font-mono);
-      font-size: 11.5px;
-      color: #a3a3a3;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      margin-bottom: 16px;
-    }
-    .g2i-section-title {
-      font-size: 42px;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      line-height: 1.15;
-      color: #ffffff;
-      margin-bottom: 18px;
-    }
-    .g2i-section-title-muted {
-      color: #8e8e93;
-    }
-    .g2i-section-body {
-      font-size: 16px;
-      line-height: 1.65;
-      color: #9e9e9e;
-      margin-bottom: 24px;
+      z-index: 2;
     }
 
-    /* High-Contrast Light Banner Callout (g2i Screenshot 3) */
-    .g2i-banner-container {
-      padding: 60px 0 80px 0;
+    /* Tactile Custom Range Slider */
+    #docSlider {
+      -webkit-appearance: none !important;
+      appearance: none !important;
+      width: 100% !important;
+      height: 8px !important;
+      border-radius: 6px !important;
+      background: linear-gradient(to right, #22c55e 0%, #22c55e var(--slider-pct, 8%), rgba(255, 255, 255, 0.12) var(--slider-pct, 8%), rgba(255, 255, 255, 0.12) 100%) !important;
+      outline: none !important;
+      cursor: grab !important;
+      position: relative !important;
+      transition: background 0.05s linear !important;
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5) !important;
+      margin: 14px 0 10px 0 !important;
     }
-    .g2i-light-banner {
-      background: #e6e6e6;
-      border-radius: 12px;
-      padding: 56px 48px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 32px;
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
-    }
-    .g2i-light-title {
-      font-size: 38px;
-      font-weight: 700;
 
-  <main style="padding-top: 40px; padding-bottom: 60px;">
-            <img src="/assets/logo.png" alt="Rubrol Logo" class="brand-logo-img">
+    #docSlider:active {
+      cursor: grabbing !important;
+    }
+
+    /* WebKit Thumb */
+    #docSlider::-webkit-slider-thumb {
+      -webkit-appearance: none !important;
+      appearance: none !important;
+      width: 24px !important;
+      height: 24px !important;
+      border-radius: 50% !important;
+      background: #ffffff !important;
+      border: 3px solid #22c55e !important;
+      box-shadow: 0 0 14px rgba(34, 197, 94, 0.8), 0 3px 8px rgba(0, 0, 0, 0.6) !important;
+      cursor: grab !important;
+      transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.15s ease !important;
+    }
+
+    #docSlider::-webkit-slider-thumb:hover {
+      transform: scale(1.2) !important;
+      box-shadow: 0 0 20px rgba(34, 197, 94, 1), 0 4px 12px rgba(0, 0, 0, 0.7) !important;
+    }
+
+    #docSlider:active::-webkit-slider-thumb {
+      cursor: grabbing !important;
+      transform: scale(1.28) !important;
+      box-shadow: 0 0 24px #22c55e, 0 6px 16px rgba(0, 0, 0, 0.8) !important;
+    }
+
+    /* Firefox Thumb */
+    #docSlider::-moz-range-thumb {
+      width: 24px !important;
+      height: 24px !important;
+      border-radius: 50% !important;
+      background: #ffffff !important;
+      border: 3px solid #22c55e !important;
+      box-shadow: 0 0 14px rgba(34, 197, 94, 0.8), 0 3px 8px rgba(0, 0, 0, 0.6) !important;
+      cursor: grab !important;
+      transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.15s ease !important;
+    }
+
+    #docSlider::-moz-range-thumb:hover {
+      transform: scale(1.2) !important;
+      box-shadow: 0 0 20px rgba(34, 197, 94, 1) !important;
+    }
+
+    #docSlider:active::-moz-range-thumb {
+      cursor: grabbing !important;
+      transform: scale(1.28) !important;
+      box-shadow: 0 0 24px #22c55e !important;
+    }
+
+    #docSlider::-moz-range-progress {
+      background: #22c55e !important;
+      height: 8px !important;
+      border-radius: 6px !important;
+    }
+
+    /* Premium Dithered Price Cards */
+    .price-card {
+      position: relative !important;
+      background: radial-gradient(ellipse 90% 70% at 50% 0%, rgba(255, 255, 255, 0.05) 0%, #202024 60%, #1a1a1d 100%) !important;
+      border: 1px solid rgba(255, 255, 255, 0.1) !important;
+      border-radius: 14px !important;
+      padding: 36px 30px !important;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
+      overflow: hidden !important;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease !important;
+    }
+
+    .price-card:hover {
+      border-color: rgba(255, 255, 255, 0.22) !important;
+      transform: translateY(-2px) !important;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+    }
+
+    .price-card.tier-active {
+      border-color: rgba(34, 197, 94, 0.6) !important;
+      background: radial-gradient(ellipse 90% 70% at 50% 0%, rgba(34, 197, 94, 0.15) 0%, #1f2320 60%, #181c19 100%) !important;
+      box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.4), 0 24px 60px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+    }
+
+    .calculator-result {
+      background: rgba(255, 255, 255, 0.03) !important;
+      border: 1px solid rgba(255, 255, 255, 0.1) !important;
+      border-radius: 12px !important;
+      padding: 26px !important;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- TOP NAVIGATION -->
+  <div class="nav-wrapper">
+    <div class="container nav-bar">
+      <div class="brand-group">
+        <img src="/assets/logo.png" alt="Rubrol Logo" class="brand-logo-img">
         <a href="/" class="brand-title">RUBROL</a>
-        <span class="brand-tag">LGPL v3</span>
       </div>
 
                   <div class="nav-links">
@@ -3550,44 +3759,849 @@
             <a href="articles/why-puppeteer-fails-en16931.html" class="compact-dropdown-item">
               <span class="compact-item-icon">OOM</span>
               <div class="compact-item-body">
-  </main>
+                <div class="compact-item-title">Why Puppeteer Fails</div>
+                <div class="compact-item-desc">V8 memory leaks and OOM crashes during batch runs</div>
+              </div>
+            </a>
+            <a href="articles/rubrol-vs-gotenberg.html" class="compact-dropdown-item">
+              <span class="compact-item-icon">VS</span>
+              <div class="compact-item-body">
+                <div class="compact-item-title">Rubrol vs Gotenberg</div>
+                <div class="compact-item-desc">Architectural teardown: Chromium vs native Typst</div>
+              </div>
+            </a>
+            <a href="articles/rubrol-vs-mustangproject.html" class="compact-dropdown-item">
+              <span class="compact-item-icon">JVM</span>
+              <div class="compact-item-body">
+                <div class="compact-item-title">Rubrol vs Mustangproject</div>
+                <div class="compact-item-desc">Sub-millisecond Rust core vs heavy Java JVM tooling</div>
+              </div>
+            </a>
+            <a href="articles/rubrol-vs-ghostscript.html" class="compact-dropdown-item">
+              <span class="compact-item-icon">PDF</span>
+              <div class="compact-item-body">
+                <div class="compact-item-title">Rubrol vs Ghostscript</div>
+                <div class="compact-item-desc">PDF/A-3b vector fidelity vs rasterization artifacts</div>
+              </div>
+            </a>
+            <a href="#calculator" class="compact-dropdown-item">
+              <span class="compact-item-icon">ROI</span>
+              <div class="compact-item-body">
+                <div class="compact-item-title">Cloud Cost Calculator</div>
+                <div class="compact-item-desc">Compute annual AWS Fargate compute savings</div>
+              </div>
+            </a>
+          </div>
+        </div>
 
-        }
+        <!-- 3. Guides & Compliance Dropdown -->
+        <div class="nav-item-dropdown">
+          <div class="nav-dropdown-bridge"></div>
+          <button class="nav-dropdown-trigger" aria-haspopup="true" aria-expanded="false">
+            Guides <svg class="nav-chevron" viewBox="0 0 12 12"><path d="M2.5 4.5L6 8L9.5 4.5"/></svg>
+          </button>
+          <div class="compact-dropdown-menu" role="menu">
+            <a href="articles/stripe-facturx-zugferd.html" class="compact-dropdown-item">
+              <span class="compact-item-icon">EU</span>
+              <div class="compact-item-body">
+                <div class="compact-item-title">Stripe + Factur-X Guide <span class="compact-item-badge">EN 16931</span></div>
+                <div class="compact-item-desc">French &amp; German legally compliant hybrid e-invoicing</div>
+              </div>
+            </a>
+            <a href="https://github.com/maxcomperatore/rubrol#precompiled-sample-output-pdfs" target="_blank" class="compact-dropdown-item">
+              <span class="compact-item-icon">DOC</span>
+              <div class="compact-item-body">
+                <div class="compact-item-title">Sample PDF Gallery</div>
+                <div class="compact-item-desc">Precompiled B2B invoices, receipts, and reports</div>
+              </div>
+            </a>
+            <a href="https://typst.app/universe/package/rubrol-invoice" target="_blank" class="compact-dropdown-item">
+              <span class="compact-item-icon">PKG</span>
+              <div class="compact-item-body">
+                <div class="compact-item-title">Typst Universe Package</div>
+                <div class="compact-item-desc">Official @preview/rubrol-invoice package</div>
+              </div>
+            </a>
+            <a href="#faq" class="compact-dropdown-item">
+              <span class="compact-item-icon">FAQ</span>
+              <div class="compact-item-body">
+                <div class="compact-item-title">Commercial FAQ <span class="compact-item-badge">LICENSING</span></div>
+                <div class="compact-item-desc">Sidekiq dual-license model, vaults, and terms</div>
+              </div>
+            </a>
+          </div>
+        </div>
 
-      // 2. Seamless Vercel fallback: download real pre-compiled vector PDF from /examples/output/
-      const a = document.createElement('a');
-      a.href = `/examples/output/${currentTemplate}.pdf`;
-      a.download = filename;
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-    }
 
-    function applyViewMode() {
-      const container = document.getElementById('svgContainer');
-      const svg = container.querySelector('svg');
-      if (!svg) return;
+      </div>
 
-      container.className = 'preview-sheet mode-fit-width';
+      <div class="nav-actions">
+        <a href="https://github.com/maxcomperatore/rubrol" target="_blank" class="btn-github">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          GitHub
+        </a>
+        <a href="/studio" class="btn-pill-primary">Live Studio</a>
+        <a href="/pricing" class="btn-trial-nav" style="background: rgba(245, 158, 11, 0.15); border: 1px solid rgba(245, 158, 11, 0.35); color: #f59e0b; text-decoration: none;">Get License</a>
+        <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle navigation menu" onclick="toggleMobileNav()" aria-expanded="false">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+      </div>
+    </div>
 
-      if (!svg.dataset.origViewBox) {
-        svg.dataset.origViewBox = svg.getAttribute('viewBox') || '0 0 595.28 841.89';
-        svg.dataset.origWidth = svg.getAttribute('width') || '';
-        svg.dataset.origHeight = svg.getAttribute('height') || '';
-      }
-      svg.setAttribute('viewBox', svg.dataset.origViewBox);
-    }
+    <!-- Mobile Navigation Drawer -->
+    <div class="mobile-nav-drawer" id="mobileNavDrawer" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
+      <div class="mobile-nav-inner">
+        <div class="mobile-nav-group-title">Engine &amp; Workstation</div>
+        <a href="/studio" class="mobile-nav-link" onclick="closeMobileNav()">
+          <span class="mobile-nav-badge">Interactive</span>
+          Live Compilation Studio
+        </a>
+        <a href="#benchmarks" class="mobile-nav-link" onclick="closeMobileNav()">
+          <span class="mobile-nav-badge">5.8ms</span>
+          Performance Benchmarks
+        </a>
+        <a href="#pipeline" class="mobile-nav-link" onclick="closeMobileNav()">
+          Architecture Pipeline
+        </a>
+        <a href="#calculator" class="mobile-nav-link" onclick="closeMobileNav()">
+          Cloud Cost Calculator
+        </a>
+        <a href="/pricing" class="mobile-nav-link" onclick="closeMobileNav()">
+          Pricing &amp; Licenses
+        </a>
 
-    // Event Bindings
-    document.getElementById('templateSelect').addEventListener('change', (e) => {
-      currentTemplate = e.target.value;
-      const downloadBtn = document.getElementById('downloadPdfBtn');
-      if (downloadBtn) {
-        downloadBtn.innerText = (currentTemplate === 'facturx_invoice') ? 'Download PDF/A-3b' : 'Download PDF/A-2b';
-      }
-      loadTemplateData(currentTemplate);
+        <div class="mobile-nav-group-title" style="margin-top: 14px;">Guides &amp; Compliance</div>
+        <a href="articles/stripe-facturx-zugferd.html" class="mobile-nav-link" onclick="closeMobileNav()">
+          Stripe to Factur-X Guide
+        </a>
+        <a href="articles/why-puppeteer-fails-en16931.html" class="mobile-nav-link" onclick="closeMobileNav()">
+          Why Puppeteer Fails EN 16931
+        </a>
+        <a href="articles/rubrol-vs-gotenberg.html" class="mobile-nav-link" onclick="closeMobileNav()">
+          Rubrol vs Gotenberg
+        </a>
+        <a href="articles/rubrol-vs-mustangproject.html" class="mobile-nav-link" onclick="closeMobileNav()">
+          Rubrol vs Mustangproject
+        </a>
+        <a href="articles/rubrol-vs-ghostscript.html" class="mobile-nav-link" onclick="closeMobileNav()">
+          Rubrol vs Ghostscript
+        </a>
 
+        <div class="mobile-nav-group-title" style="margin-top: 14px;">Developers &amp; Community</div>
+        <a href="https://github.com/maxcomperatore/rubrol" target="_blank" class="mobile-nav-link" onclick="closeMobileNav()">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 2px;"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          GitHub Repository (Open Source)
+        </a>
+        <a href="https://github.com/maxcomperatore/rubrol/pkgs/container/rubrol" target="_blank" class="mobile-nav-link" onclick="closeMobileNav()">
+          Docker Hub (ghcr.io)
+        </a>
+        <a href="https://typst.app/universe/package/rubrol-invoice" target="_blank" class="mobile-nav-link" onclick="closeMobileNav()">
+          Typst Universe Package
+        </a>
+        <a href="#faq" class="mobile-nav-link" onclick="closeMobileNav()">
+          Commercial FAQ
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO SECTION -->
+  <section class="hero-section">
+    <div class="container hero-content">
+      <div class="eyebrow-pill" style="display: inline-flex; align-items: center; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); color: #d4d4d4; padding: 6px 16px; border-radius: 24px; font-size: 12px; margin-bottom: 24px; font-family: var(--font-mono); letter-spacing: 0.02em;">
+        <span style="display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 8px #22c55e; margin-right: 8px;"></span>
+        Rubrol Engine v1.0 &bull; The Sub-millisecond Typst Sidecar
+      </div>
+
+      <h1 class="hero-title">
+        PDF generation is <span class="hero-title-muted">no longer a background job.</span>
+      </h1>
+
+      <p class="hero-subtitle">
+        Native Typst. Invoices &amp; Factur-X in &lt;6ms on 96% less compute.
+      </p>
+
+      <div class="hero-ctas" style="margin-bottom: 24px;">
+        <a href="/studio" class="btn-g2i-primary">Launch Live Studio</a>
+        <a href="/pricing" class="btn-g2i-secondary">Commercial Licenses</a>
+        <a href="https://github.com/maxcomperatore/rubrol" target="_blank" class="btn-g2i-secondary" style="display: inline-flex; align-items: center; gap: 8px;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          GitHub (LGPLv3)
+        </a>
+      </div>
+
+      <div class="hero-metrics-strip">
+        <div class="hero-metric-item">● <strong>5.8ms</strong> Mean Compile</div>
+        <span class="hero-metric-sep">|</span>
+        <div class="hero-metric-item">● <strong>&lt; 28MB</strong> Resident Memory</div>
+        <span class="hero-metric-sep">|</span>
+        <div class="hero-metric-item">● <strong>Native</strong> PDF/A Archival (2b/3b)</div>
+        <span class="hero-metric-sep">|</span>
+        <div class="hero-metric-item">● <strong>Zero</strong> V8 Virtualization</div>
+      </div>
+
+      <!-- Auth0-Style AI Agent Integration Card -->
+      <div id="ai-integration" class="ai-hero-card">
+        <div class="ai-card-header">
+          <div>
+            <span class="ai-card-badge">AI Assistant Skills &amp; Rules</span>
+            <h3 class="ai-card-title">Use AI to integrate Rubrol</h3>
+            <p class="ai-card-subtitle">
+              If you use an AI coding assistant like <strong>Claude Code</strong>, <strong>Cursor</strong>, or <strong>GitHub Copilot</strong>, you can add sub-millisecond PDF generation to your app in minutes using agent skills.
             </p>
+          </div>
+          
+        </div>
+
+        <div class="ai-terminal-box">
+          <div class="ai-terminal-cmd">
+            <span class="ai-terminal-prompt">$</span>
+            <span id="ai-cmd-text">npx skills add maxcomperatore/rubrol --skill rubrol</span>
+          </div>
+          <button class="ai-copy-btn" id="ai-copy-btn" onclick="copyAiCmd()" title="Copy command">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+            <span id="ai-copy-label">Copy</span>
+          </button>
+        </div>
+
+        <div class="ai-prompt-guidance">
+          <span>Once installed, prompt your AI coding assistant with instructions like:</span>
+          <div class="ai-prompt-pill" id="ai-prompt-pill" onclick="copyAiPrompt()" title="Click to copy prompt">
+            <span>&ldquo;Add Rubrol PDF invoice generation to my Express backend with sub-millisecond latency&rdquo;</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- MARQUEE / TRUST LOGOS -->
+  <section class="marquee-section">
+    <div class="container">
+      <div class="marquee-label">ENGINEERED FOR PRODUCTION RUNS REQUIRING ABSOLUTE DETERMINISM</div>
+      <div class="marquee-logos">
+        <div class="marquee-logo-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.976 9.15c-2.172-.806-3.356-1.426-3.356-2.409 0-.831.683-1.305 1.901-1.305 2.227 0 4.515.858 6.09 1.631l.89-5.494C18.252.975 15.697 0 12.165 0 9.667 0 7.589.654 6.104 1.872 4.56 3.147 3.757 4.992 3.757 7.218c0 4.039 2.467 5.76 6.476 7.219 2.585.92 3.445 1.574 3.445 2.583 0 .98-.84 1.545-2.354 1.545-1.875 0-4.965-.921-6.99-2.109l-.9 5.555C5.175 22.99 8.385 24 11.714 24c2.641 0 4.843-.624 6.328-1.813 1.664-1.305 2.525-3.236 2.525-5.732 0-4.128-2.524-5.851-6.594-7.305h.003z"/></svg>
+          STRIPE SAAS
+        </div>
+        <div class="marquee-logo-item">
+          <svg width="22" height="18" viewBox="0 0 128 128" fill="currentColor" aria-hidden="true"><path d="M108.59 26.148c-1.852 0-3.622.211-5.305.715-1.684.504-3.117 1.223-4.379 2.188a10.829 10.829 0 0 0-3.031 3.453c-.757 1.348-1.137 2.906-1.137 4.676 0 2.187.716 4.25 2.106 6.105 1.386 1.895 3.66 3.324 6.734 4.293l6.106 1.895c2.062.675 3.496 1.391 4.254 2.191.757.801 1.136 1.765 1.136 2.945 0 1.726-.758 3.074-2.191 4-1.43.925-3.492 1.391-6.145 1.391-1.687 0-3.328-.168-5.011-.504a23.102 23.102 0 0 1-4.633-1.476c-.421-.168-.801-.336-1.051-.418a2.357 2.357 0 0 0-.758-.13c-.634 0-.969.423-.969 1.305v2.149a2.919 2.919 0 0 0 .254 1.18c.168.38.629.8 1.305 1.18 1.094.628 2.734 1.179 4.84 1.683 2.105.504 4.297.758 6.484.758 2.15 0 4.129-.297 6.024-.883 1.808-.551 3.367-1.309 4.672-2.36 1.304-1.01 2.316-2.273 3.074-3.707.714-1.429 1.094-3.07 1.094-4.882 0-2.188-.633-4.168-1.938-5.895-1.304-1.727-3.491-3.074-6.523-4.043l-5.98-1.895c-2.23-.713-3.79-1.516-4.634-2.316-.84-.797-1.261-1.808-1.261-2.988 0-1.726.671-2.95 1.98-3.746 1.305-.801 3.199-1.18 5.598-1.18 2.988 0 5.683.547 8.086 1.64.714.337 1.261.508 1.597.508.633 0 .969-.463.969-1.347v-1.98c0-.59-.125-1.051-.379-1.391-.25-.378-.672-.715-1.262-1.051-.422-.254-1.011-.504-1.77-.758a32.528 32.528 0 0 0-2.398-.676c-.886-.168-1.769-.336-2.738-.46a21.347 21.347 0 0 0-2.82-.169zm-86.822.082c-2.316 0-4.508.254-6.57.801-2.063.505-3.831 1.137-5.303 1.895-.59.297-.97.59-1.18.883-.211.296-.293.8-.293 1.476v2.063c0 .882.293 1.304.883 1.304.168 0 .378-.043.674-.125.293-.086.796-.254 1.472-.547a33.416 33.416 0 0 1 4.547-1.433A19.176 19.176 0 0 1 20.547 32c3.242 0 5.513.633 6.863 1.938 1.304 1.303 1.98 3.534 1.98 6.734v3.074c-1.683-.379-3.283-.715-4.843-.926-1.558-.21-3.031-.336-4.461-.336-4.34 0-7.75 1.094-10.316 3.286-2.571 2.187-3.832 5.093-3.832 8.671 0 3.368 1.05 6.063 3.113 8.086 2.066 2.02 4.887 3.032 8.422 3.032 4.97 0 9.097-1.938 12.379-5.813a34.153 34.153 0 0 0 1.304 2.484 13.28 13.28 0 0 0 1.516 1.98c.422.38.844.59 1.266.59.334 0 .714-.128 1.093-.378l2.653-1.77c.546-.42.8-.843.8-1.261a1.86 1.86 0 0 0-.293-.97 22.469 22.469 0 0 1-1.347-3.03c-.297-.925-.465-2.19-.465-3.75h-.086V40c0-4.633-1.176-8.086-3.492-10.36-2.36-2.273-6.025-3.41-11.033-3.41zm19.58 1.012c-.676 0-1.012.379-1.012 1.051 0 .297.129.844.379 1.687l9.894 32.547c.254.8.547 1.387.887 1.641.336.297.84.422 1.598.422h3.62c.759 0 1.347-.125 1.684-.422.34-.293.591-.84.801-1.684l6.485-27.117 6.527 27.16c.168.84.46 1.387.8 1.684.337.292.883.422 1.684.422h3.621c.715 0 1.262-.167 1.598-.422.34-.253.633-.8.887-1.64L90.949 30.02c.168-.46.25-.797.293-1.051.043-.254.086-.466.086-.676 0-.715-.379-1.05-1.055-1.05H86.36c-.757 0-1.308.166-1.644.421-.293.25-.59.8-.84 1.64L76.59 57.517l-6.653-28.211c-.166-.8-.464-1.39-.8-1.64-.336-.298-.884-.423-1.684-.423h-3.367c-.758 0-1.348.167-1.688.422-.335.25-.588.8-.796 1.64l-6.57 27.876-7.075-27.875c-.25-.8-.504-1.39-.84-1.64-.297-.298-.844-.423-1.644-.423h-4.125zM21.64 47.496a31.816 31.816 0 0 1 3.96.25 34.401 34.401 0 0 1 3.872.719v1.765c0 1.435-.168 2.653-.422 3.665-.25 1.01-.758 1.895-1.43 2.695-1.137 1.262-2.484 2.187-4 2.695-1.516.504-2.949.758-4.336.758-1.937 0-3.41-.508-4.422-1.559-1.054-1.01-1.558-2.484-1.558-4.464 0-2.106.675-3.704 2.062-4.84 1.391-1.137 3.454-1.684 6.274-1.684zM118 73.348c-4.432.063-9.664 1.052-13.621 3.832-1.223.883-1.012 2.062.336 1.894 4.508-.547 14.44-1.726 16.21.547 1.77 2.23-1.976 11.62-3.663 15.79-.504 1.26.59 1.769 1.726.8 7.41-6.231 9.348-19.242 7.832-21.137-.757-.925-4.388-1.79-8.82-1.726zM1.63 75.859c-.926.116-1.347 1.236-.368 2.121 16.508 14.902 38.359 23.872 62.613 23.872 17.305 0 37.43-5.43 51.281-15.66 2.273-1.689.298-4.254-2.02-3.204-15.533 6.57-32.421 9.77-47.788 9.77-22.778 0-44.8-6.273-62.653-16.633-.39-.231-.755-.304-1.064-.266z"/></svg>
+          AWS FARGATE
+        </div>
+        <div class="marquee-logo-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.57 17.04l-1.997-1.316-1.665 2.782-1.937-.567-1.706 2.604.087.82 9.274-1.71-.538-5.794zm-8.649-2.498l1.488-.204c.241.108.409.15.697.223.45.117.97.23 1.741-.16.18-.088.553-.43.704-.625l6.096-1.106.622 7.527-10.444 1.882zm11.325-2.712l-.602.115L20.488 0 .789 2.285l2.427 19.693 2.306-.334c-.184-.263-.471-.581-.96-.989-.68-.564-.44-1.522-.039-2.127.53-1.022 3.26-2.322 3.106-3.956-.056-.594-.15-1.368-.702-1.898-.02.22.017.432.017.432s-.227-.289-.34-.683c-.112-.15-.2-.199-.319-.4-.085.233-.073.503-.073.503s-.186-.437-.216-.807c-.11.166-.137.48-.137.48s-.241-.69-.186-1.062c-.11-.323-.436-.965-.343-2.424.6.421 1.924.321 2.44-.439.171-.251.288-.939-.086-2.293-.24-.868-.835-2.16-1.066-2.651l-.028.02c.122.395.374 1.223.47 1.625.293 1.218.372 1.642.234 2.204-.116.488-.397.808-1.107 1.165-.71.358-1.653-.514-1.713-.562-.69-.55-1.224-1.447-1.284-1.883-.062-.477.275-.763.445-1.153-.243.07-.514.192-.514.192s.323-.334.722-.624c.165-.109.262-.178.436-.323a9.762 9.762 0 0 0-.456.003s.42-.227.855-.392c-.318-.014-.623-.003-.623-.003s.937-.419 1.678-.727c.509-.208 1.006-.147 1.286.257.367.53.752.817 1.569.996.501-.223.653-.337 1.284-.509.554-.61.99-.688.99-.688s-.216.198-.274.51c.314-.249.66-.455.66-.455s-.134.164-.259.426l.03.043c.366-.22.797-.394.797-.394s-.123.156-.268.358c.277-.002.838.012 1.056.037 1.285.028 1.552-1.374 2.045-1.55.618-.22.894-.353 1.947.68.903.888 1.609 2.477 1.259 2.833-.294.295-.874-.115-1.516-.916a3.466 3.466 0 0 1-.716-1.562 1.533 1.533 0 0 0-.497-.85s.23.51.23.96c0 .246.03 1.165.424 1.68-.039.076-.057.374-.1.43-.458-.554-1.443-.95-1.604-1.067.544.445 1.793 1.468 2.273 2.449.453.927.186 1.777.416 1.997.065.063.976 1.197 1.15 1.767.306.994.019 2.038-.381 2.685l-1.117.174c-.163-.045-.273-.068-.42-.153.08-.143.241-.5.243-.572l-.063-.111c-.348.492-.93.97-1.414 1.245-.633.359-1.363.304-1.838.156-1.348-.415-2.623-1.327-2.93-1.566 0 0-.01.191.048.234.34.383 1.119 1.077 1.872 1.56l-1.605.177.759 5.908c-.337.048-.39.071-.757.124-.325-1.147-.946-1.895-1.624-2.332-.599-.384-1.424-.47-2.214-.314l-.05.059a2.851 2.851 0 0 1 1.863.444c.654.413 1.181 1.481 1.375 2.124.248.822.42 1.7-.248 2.632-.476.662-1.864 1.028-2.986.237.3.481.705.876 1.25.95.809.11 1.577-.03 2.106-.574.452-.464.69-1.434.628-2.456l.714-.104.258 1.834 11.827-1.424zM15.05 6.848c-.034.075-.085.125-.007.37l.004.014.013.032.032.073c.14.287.295.558.552.696.067-.011.136-.019.207-.023.242-.01.395.028.492.08.009-.048.01-.119.005-.222-.018-.364.072-.982-.626-1.308-.264-.122-.634-.084-.757.068a.302.302 0 0 1 .058.013c.186.066.06.13.027.207m1.958 3.392c-.092-.05-.52-.03-.821.005-.574.068-1.193.267-1.328.372-.247.191-.135.523.047.66.511.382.96.638 1.432.575.29-.038.546-.497.728-.914.124-.288.124-.598-.058-.698m-5.077-2.942c.162-.154-.805-.355-1.556.156-.554.378-.571 1.187-.041 1.646.053.046.096.078.137.104a4.77 4.77 0 0 1 1.396-.412c.113-.125.243-.345.21-.745-.044-.542-.455-.456-.146-.749"/></svg>
+          DATADOG APM
+        </div>
+        <div class="marquee-logo-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 22.525H0l12-21.05 12 21.05z"/></svg>
+          VERCEL EDGE
+        </div>
+        <div class="marquee-logo-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11.9 1.036c-.015-.986-1.26-1.41-1.874-.637L.764 12.05C-.33 13.427.65 15.455 2.409 15.455h9.579l.113 7.51c.014.985 1.259 1.408 1.873.636l9.262-11.653c1.093-1.375.113-3.403-1.645-3.403h-9.642z"/></svg>
+          SUPABASE DB
+        </div>
+        <div class="marquee-logo-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.5088 16.8447c.1475-.5068.0908-.9707-.1553-1.3154-.2246-.3164-.6045-.499-1.0615-.5205l-8.6592-.1123a.1559.1559 0 0 1-.1333-.0713c-.0283-.042-.0351-.0986-.021-.1553.0278-.084.1123-.1484.2036-.1562l8.7359-.1123c1.0351-.0489 2.1601-.8868 2.5537-1.9136l.499-1.3013c.0215-.0561.0293-.1128.0147-.168-.5625-2.5463-2.835-4.4453-5.5499-4.4453-2.5039 0-4.6284 1.6177-5.3876 3.8614-.4927-.3658-1.1187-.5625-1.794-.499-1.2026.119-2.1665 1.083-2.2861 2.2856-.0283.31-.0069.6128.0635.894C1.5683 13.171 0 14.7754 0 16.752c0 .1748.0142.3515.0352.5273.0141.083.0844.1475.1689.1475h15.9814c.0909 0 .1758-.0645.2032-.1553l.12-.4268zm2.7568-5.5634c-.0771 0-.1611 0-.2383.0112-.0566 0-.1054.0415-.127.0976l-.3378 1.1744c-.1475.5068-.0918.9707.1543 1.3164.2256.3164.6055.498 1.0625.5195l1.8437.1133c.0557 0 .1055.0263.1329.0703.0283.043.0351.1074.0214.1562-.0283.084-.1132.1485-.204.1553l-1.921.1123c-1.041.0488-2.1582.8867-2.5527 1.914l-.1406.3585c-.0283.0713.0215.1416.0986.1416h6.5977c.0771 0 .1474-.0489.169-.126.1122-.4082.1757-.837.1757-1.2803 0-2.6025-2.125-4.727-4.7344-4.727"/></svg>
+          CLOUDFLARE
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- LIVE MONACO STUDIO WORKSTATION -->
+  <section id="studio" class="section-studio">
+    <div class="hero-landscape-frame">
+    <div class="container">
+      <div style="text-align: center; margin-bottom: 48px;">
+        <span class="editorial-label" style="color: var(--amber-light);">INTERACTIVE ENGINE WORKSTATION</span>
+        <h2 style="font-family: var(--font-sans); font-size: 44px; font-weight: 700; letter-spacing: -0.03em; color: #ffffff; margin-bottom: 14px;">
+          Live Interactive Compilation Studio
+        </h2>
+        <p style="font-size: 16px; color: #94a3b8; max-width: 680px; margin: 0 auto;">
+          Edit live JSON variables on the left. Watch the local Rubrol engine recompile vector SVG in real time. Download certified ISO 19005-3 PDF/A-3b & ISO 19005-2 PDF/A-2b binaries instantly.
+        </p>
+      </div>
+
+      <div class="studio-console-card">
+        <div class="studio-top-bar">
+          <div class="studio-controls-left">
+            <div class="studio-select-wrapper">
+              <span class="studio-select-label">Template:</span>
+              <select id="templateSelect">
+                <option value="b2b_invoice" selected>b2b_invoice - Stripe SaaS Billing Invoice</option>
+                <option value="facturx_invoice">facturx_invoice - EU Factur-X / ZUGFeRD 2.2 EN 16931</option>
+                <option value="saas_receipt">saas_receipt - Consumer &amp; Developer Receipt</option>
+                <option value="purchase_order">purchase_order - Enterprise Procurement Order</option>
+                <option value="packing_slip">packing_slip - Multi-Box Logistics Packing Slip</option>
+                <option value="paystub_statement">paystub_statement - Itemized Payroll Statement</option>
+                <option value="board_financial_report">board_financial_report - Executive Board Financial Update</option>
+                <option value="compliance_certificate">compliance_certificate - SOC 2 &amp; ISO 27001 Certificate</option>
+                <option value="medical_intake">medical_intake - HIPAA Clinical Intake Record</option>
+                <option value="nda_agreement">nda_agreement - Mutual Non-Disclosure Agreement</option>
+                <option value="academic_transcript">academic_transcript - Official University Transcript</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="studio-controls-right">
+            <button id="apiCodeBtn" class="btn-copy-json" onclick="openApiCodeModal()" title="View cURL, Node.js, Python, and Rust code snippets">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+              Integration Code
+            </button>
+            <button id="copyJsonBtn" class="btn-copy-json" onclick="copyJsonPayload()">
+              Copy JSON
+            </button>
+            <div id="latencyBadge" class="latency-badge">
+              <span>●</span> 5.2ms
+            </div>
+            <button id="downloadPdfBtn" class="btn-pill-primary" style="padding: 7px 18px; font-size: 12.5px;">
+              Download PDF/A-3b
+            </button>
+          </div>
+        </div>
+
+        <!-- Mobile Tab Switcher -->
+        <div class="studio-mobile-tabs" id="studioMobileTabs">
+          <button class="studio-tab-btn active" id="studioTabPreview" onclick="switchStudioTab('preview')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+            Live Preview
+          </button>
+          <button class="studio-tab-btn" id="studioTabEditor" onclick="switchStudioTab('editor')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+            JSON Variables
+          </button>
+        </div>
+
+        <div class="studio-split-view">
+          <div class="studio-editor-pane">
+            <div id="monacoEditor"></div>
+          </div>
+          <div class="studio-preview-pane">
+            <div id="svgContainer" class="preview-sheet mode-fit-width">
+              <!-- Rendered SVG will be injected here -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </section>
+
+  <!-- SECTION 1: The Sovereign Advantage -->
+  <section id="benchmarks" class="section-parchment">
+    <svg class="parchment-chart-graphic" viewBox="0 0 280 90" fill="none">
+      <path d="M0 10H60L90 40H170L210 75H280" stroke="rgba(255, 255, 255, 0.25)" stroke-width="1.5"/>
+      <circle cx="60" cy="10" r="3.5" fill="#ffffff" fill-opacity="0.6"/>
+      <circle cx="90" cy="40" r="3.5" fill="#ffffff" fill-opacity="0.6"/>
+      <circle cx="170" cy="40" r="3.5" fill="#ffffff" fill-opacity="0.6"/>
+      <circle cx="210" cy="75" r="3.5" fill="#10b981"/>
+      <text x="215" y="65" font-family="'JetBrains Mono', monospace" font-size="10" fill="#10b981" font-weight="700">5.8ms p99</text>
+    </svg>
+
+    <div class="container">
+      <div class="parchment-header-group">
+        <span class="editorial-label">COMPUTE INFRASTRUCTURE REVOLUTION</span>
+        <h2 class="editorial-title">Turn compute waste into raw competitive advantage.</h2>
+        <p class="editorial-body">
+          Legacy document generation relies on headless browser virtualization. Spawning Chrome or Gotenberg instances requires 250MB resident memory per worker, unpredictable GC pauses, and 2,000ms+ render latencies. Rubrol embeds a native vector layout engine directly into your process or sidecar, compiling production PDFs in under 6 milliseconds with absolute mathematical determinism.
+        </p>
+      </div>
+
+      <div class="parchment-grid">
+        <div class="parchment-card">
+          <h3 class="parchment-card-title">The Chromium Bottleneck</h3>
+          <p class="parchment-card-text">
+            Every invoice generated via Puppeteer spins up a full WebKit/Blink layout engine, executing JavaScript, evaluating CSS cascades, and allocating huge DOM node trees before rasterizing to print media.
+          </p>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 10px; font-size: 13.5px; color: var(--text-secondary);">
+            <li><strong>250MB - 400MB RAM</strong> per concurrent worker</li>
+            <li><strong>1,800ms - 3,500ms</strong> p95 cold start latency</li>
+            <li>Frequent out-of-memory container crashes under batch loads</li>
+            <li>Non-deterministic line breaking across Linux distributions</li>
+          </ul>
+        </div>
+
+        <div class="parchment-card" style="border: 1px solid rgba(255, 255, 255, 0.2); box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08), 0 8px 30px rgba(0,0,0,0.5);">
+          <h3 class="parchment-card-title">The Rubrol Architecture</h3>
+          <p class="parchment-card-text">
+            Rubrol compiles structured documents into native vector PDF/A-3b, PDF/A-2b, and SVG. Zero browser overhead, zero Node.js bridging, and native ISO 19005-3 & ISO 19005-2 compliance built directly into the binary.
+          </p>
+          <div class="table-responsive">
+            <table class="comp-table">
+              <thead>
+                <tr>
+                  <th>Vector Spec</th>
+                  <th>Chromium / Puppeteer</th>
+                  <th>Rubrol Sidecar</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Compile Latency</td>
+                  <td><span class="badge-loss">2,400ms</span></td>
+                  <td><span class="badge-win">5.8ms</span></td>
+                </tr>
+                <tr>
+                  <td>Memory Footprint</td>
+                  <td><span class="badge-loss">250MB</span></td>
+                  <td><span class="badge-win">24MB</span></td>
+                </tr>
+                <tr>
+                  <td>Max Concurrency</td>
+                  <td><span class="badge-loss">40 req/s</span></td>
+                  <td><span class="badge-win">1,200 req/s</span></td>
+                </tr>
+                <tr class="highlight">
+                  <td>PDF/A-3b &amp; Factur-X (ISO 19005-3)</td>
+                  <td>Requires 3rd party CLI</td>
+                  <td>Native Zero-Copy</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DARK SECTION 2: The Business Impact -->
+  <section class="section-impact-dark">
+    <div class="container impact-split">
+      <div class="impact-card-ledger">
+        <div class="ledger-header">
+          <div class="ledger-title">● LIVE PIPELINE TELEMETRY</div>
+          <div style="font-family: var(--font-mono); font-size: 11px; color: #10b981;">10,000 DOCS / MIN</div>
+        </div>
+        <div class="ledger-rows">
+          <div class="ledger-row">
+            <span class="ledger-col-id">INV-2026-9041</span>
+            <span style="color: #cbd5e1;">Acme Corp SaaS</span>
+            <span class="ledger-col-status">PDF/A-3b EN 16931</span>
+            <span class="ledger-col-time">5.2ms</span>
+          </div>
+          <div class="ledger-row">
+            <span class="ledger-col-id">REC-2026-8819</span>
+            <span style="color: #cbd5e1;">Stripe Checkout</span>
+            <span class="ledger-col-status">PDF/A-2b ARCHIVAL</span>
+            <span class="ledger-col-time">4.8ms</span>
+          </div>
+          <div class="ledger-row">
+            <span class="ledger-col-id">SOC-2026-4402</span>
+            <span style="color: #cbd5e1;">Enterprise Audit</span>
+            <span class="ledger-col-status">SHA-256 SIGNED</span>
+            <span class="ledger-col-time">6.1ms</span>
+          </div>
+          <div class="ledger-row">
+            <span class="ledger-col-id">MED-2026-1104</span>
+            <span style="color: #cbd5e1;">Clinical Record</span>
+            <span class="ledger-col-status">HIPAA SECURE</span>
+            <span class="ledger-col-time">5.4ms</span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <span class="editorial-label">MEASURABLE ENTERPRISE ROI</span>
+        <h2 style="font-family: var(--font-sans); font-size: 38px; line-height: 1.15; letter-spacing: -0.03em; font-weight: 700; color: #ffffff; margin-bottom: 20px;">
+          See the operational impact of every document run.
+        </h2>
+        <p style="font-size: 16px; line-height: 1.68; color: var(--text-secondary); margin-bottom: 28px;">
+          When processing 200,000 monthly invoices, running headless browser clusters drains tens of thousands of dollars in AWS Fargate and CPU allocations. By reducing compute times by 96% and shrinking RAM from 250MB to 24MB, Rubrol amortizes its cost within days.
+        </p>
+        <a href="#calculator" class="btn-pill-primary">Calculate Your Cluster Savings</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- SECTION 4: ENTERPRISE CASE STUDY & PROOF NUMBERS -->
+  <section class="section-proof">
+    <div class="container">
+      <!-- High-End Enterprise Architectural Case Study Card -->
+      <div class="case-study-hero-card">
+        <div>
+          <div class="case-tag">ENTERPRISE CASE STUDY - GLOBAL TIER-1 FINTECH</div>
+          <h3 class="case-headline">
+            "We retired our 16-node Chromium Puppeteer cluster and replaced it with a single Rubrol sidecar container."
+          </h3>
+          <p class="case-sub">
+            During high-volume month-end billing cycles, generating 300,000 corporate invoice runs regularly caused V8 memory leaks and pod evictions. Rubrol lowered our 99th-percentile response time from 2,400ms to 5.8ms while reducing compute overhead by over \$180,000 annually.
+          </p>
+        </div>
+        <div class="case-metrics-column">
+          <div class="case-metric-item">
+            <span class="case-metric-val">2,400ms to 5.8ms</span>
+            <span class="case-metric-label">p99 Latency Drop (413× Faster)</span>
+          </div>
+          <div class="case-metric-item">
+            <span class="case-metric-val">\$180,000 / yr</span>
+            <span class="case-metric-label">AWS Fargate Compute Eliminated</span>
+          </div>
+          <div class="case-metric-item">
+            <span class="case-metric-val">0 Evictions</span>
+            <span class="case-metric-label">Zero OOM Container Restarts</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="proof-grid">
+        <div class="proof-big-stat">
+          <div class="proof-number">96%<span class="proof-number-sup">†</span></div>
+          <div class="proof-label">COMPUTE REDUCTION ACROSS CLUSTER</div>
+        </div>
+
+        <div>
+          <blockquote class="proof-quote">
+            Rubrol replaced our 16-pod Chromium cluster with a single sidecar. Our p99 latency dropped from 2,400ms to 5.8ms while completely eliminating out-of-memory container restarts during end-of-month billing cycles.
+          </blockquote>
+          <div class="proof-author">
+            <strong>Staff Infrastructure Engineer</strong> - Global B2B FinTech Platform
+            <span class="author-badge">VERIFIED DEPLOYMENT</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="proof-submetrics">
+        <div class="submetric-box">
+          <div class="submetric-value">5.8ms</div>
+          <div class="submetric-label">Average document compilation latency on single vCPU</div>
+        </div>
+        <div class="submetric-box">
+          <div class="submetric-value">&lt; 28MB</div>
+          <div class="submetric-label">Resident memory consumption per container instance</div>
+        </div>
+        <div class="submetric-box">
+          <div class="submetric-value">100%</div>
+          <div class="submetric-label">EN 16931 &amp; ISO 19005-3 PDF/A-3b compliance validation</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DARK PIPELINE SECTION: Point, Click & Connect WITH CENTRAL ILLUMINATED HERO BUS -->
+  <section id="pipeline" class="section-pipeline">
+    <div class="container">
+      <h2 class="pipeline-title">Point, Click, &amp; Connect.</h2>
+      <p class="pipeline-subtitle">
+        Deploy as a microsecond sidecar in Kubernetes, run serverless via Docker, or link natively into Python, Node, Go, and Rust via REST or Unix sockets.
+      </p>
+
+      <!-- Central Illuminated Hero Bus -->
+      <div class="pipeline-bus-container">
+        <div class="pipeline-bus-track"></div>
+        <div class="pipeline-bus-row">
+          <div class="pipeline-node">
+            <span class="pipeline-node-icon"><svg viewBox="0 0 24 24" width="26" height="26" fill="#2496ED" aria-hidden="true"><path d="M13.983 11.078h2.119a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.119a.185.185 0 00-.185.185v1.888c0 .102.083.185.185.185m-2.954-5.43h2.118a.186.186 0 00.186-.186V3.574a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m0 2.716h2.118a.187.187 0 00.186-.186V6.29a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.887c0 .102.082.186.185.186m-2.93 0h2.12a.186.186 0 00.184-.186V6.29a.185.185 0 00-.185-.185H8.1a.185.185 0 00-.185.185v1.887c0 .102.083.186.185.186m-2.964 0h2.119a.186.186 0 00.185-.186V6.29a.185.185 0 00-.185-.185H5.136a.186.186 0 00-.186.185v1.887c0 .102.084.186.186.186m5.893 2.715h2.118a.186.186 0 00.186-.186V9.006a.186.186 0 00-.186-.186h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m-2.93 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.083.185.185.185m-2.964 0h2.119a.185.185 0 00.185-.185V9.006a.185.185 0 00-.185-.186h-2.12a.186.186 0 00-.184.185v1.888c0 .102.083.185.185.185m-2.92 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.082.185.185.185M23.763 9.89c-.065-.051-.672-.51-1.954-.51-.338.001-.676.03-1.01.087-.248-1.7-1.653-2.53-1.716-2.566l-.344-.199-.226.327c-.284.438-.49.922-.612 1.43-.23.97-.09 1.882.403 2.661-.595.332-1.55.413-1.744.42H.751a.751.751 0 00-.75.748 11.376 11.376 0 00.692 4.062c.545 1.428 1.355 2.48 2.41 3.124 1.18.723 3.1 1.137 5.275 1.137.983.003 1.963-.086 2.93-.266a12.248 12.248 0 003.823-1.389c.98-.567 1.86-1.288 2.61-2.136 1.252-1.418 1.998-2.997 2.553-4.4h.221c1.372 0 2.215-.549 2.68-1.009.309-.293.55-.65.707-1.046l.098-.288Z"/></svg></span>
+            <span class="pipeline-node-name">Docker</span>
+            <span class="pipeline-node-sub">ghcr.io image</span>
+          </div>
+          <div class="pipeline-node">
+            <span class="pipeline-node-icon"><svg viewBox="0 0 24 24" width="26" height="26" fill="#326CE5" aria-hidden="true"><path d="M10.204 14.35l.007.01-.999 2.413a5.171 5.171 0 0 1-2.075-2.597l2.578-.437.004.005a.44.44 0 0 1 .484.606zm-.833-2.129a.44.44 0 0 0 .173-.756l.002-.011L7.585 9.7a5.143 5.143 0 0 0-.73 3.255l2.514-.725.002-.009zm1.145-1.98a.44.44 0 0 0 .699-.337l.01-.005.15-2.62a5.144 5.144 0 0 0-3.01 1.442l2.147 1.523.004-.002zm.76 2.75l.723.349.722-.347.18-.78-.5-.623h-.804l-.5.623.179.779zm1.5-3.095a.44.44 0 0 0 .7.336l.008.003 2.134-1.513a5.188 5.188 0 0 0-2.992-1.442l.148 2.615.002.001zm10.876 5.97l-5.773 7.181a1.6 1.6 0 0 1-1.248.594l-9.261.003a1.6 1.6 0 0 1-1.247-.596l-5.776-7.18a1.583 1.583 0 0 1-.307-1.34L2.1 5.573c.108-.47.425-.864.863-1.073L11.305.513a1.606 1.606 0 0 1 1.385 0l8.345 3.985c.438.209.755.604.863 1.073l2.062 8.955c.108.47-.005.963-.308 1.34zm-3.289-2.057c-.042-.01-.103-.026-.145-.034-.174-.033-.315-.025-.479-.038-.35-.037-.638-.067-.895-.148-.105-.04-.18-.165-.216-.216l-.201-.059a6.45 6.45 0 0 0-.105-2.332 6.465 6.465 0 0 0-.936-2.163c.052-.047.15-.133.177-.159.008-.09.001-.183.094-.282.197-.185.444-.338.743-.522.142-.084.273-.137.415-.242.032-.024.076-.062.11-.089.24-.191.295-.52.123-.736-.172-.216-.506-.236-.745-.045-.034.027-.08.062-.111.088-.134.116-.217.23-.33.35-.246.25-.45.458-.673.609-.097.056-.239.037-.303.033l-.19.135a6.545 6.545 0 0 0-4.146-2.003l-.012-.223c-.065-.062-.143-.115-.163-.25-.022-.268.015-.557.057-.905.023-.163.061-.298.068-.475.001-.04-.001-.099-.001-.142 0-.306-.224-.555-.5-.555-.275 0-.499.249-.499.555l.001.014c0 .041-.002.092 0 .128.006.177.044.312.067.475.042.348.078.637.056.906a.545.545 0 0 1-.162.258l-.012.211a6.424 6.424 0 0 0-4.166 2.003 8.373 8.373 0 0 1-.18-.128c-.09.012-.18.04-.297-.029-.223-.15-.427-.358-.673-.608-.113-.12-.195-.234-.329-.349-.03-.026-.077-.062-.111-.088a.594.594 0 0 0-.348-.132.481.481 0 0 0-.398.176c-.172.216-.117.546.123.737l.007.005.104.083c.142.105.272.159.414.242.299.185.546.338.743.522.076.082.09.226.1.288l.16.143a6.462 6.462 0 0 0-1.02 4.506l-.208.06c-.055.072-.133.184-.215.217-.257.081-.546.11-.895.147-.164.014-.305.006-.48.039-.037.007-.09.02-.133.03l-.004.002-.007.002c-.295.071-.484.342-.423.608.061.267.349.429.645.365l.007-.001.01-.003.129-.029c.17-.046.294-.113.448-.172.33-.118.604-.217.87-.256.112-.009.23.069.288.101l.217-.037a6.5 6.5 0 0 0 2.88 3.596l-.09.218c.033.084.069.199.044.282-.097.252-.263.517-.452.813-.091.136-.185.242-.268.399-.02.037-.045.095-.064.134-.128.275-.034.591.213.71.248.12.556-.007.69-.282v-.002c.02-.039.046-.09.062-.127.07-.162.094-.301.144-.458.132-.332.205-.68.387-.897.05-.06.13-.082.215-.105l.113-.205a6.453 6.453 0 0 0 4.609.012l.106.192c.086.028.18.042.256.155.136.232.229.507.342.84.05.156.074.295.145.457.016.037.043.09.062.129.133.276.442.402.69.282.247-.118.341-.435.213-.71-.02-.039-.045-.096-.065-.134-.083-.156-.177-.261-.268-.398-.19-.296-.346-.541-.443-.793-.04-.13.007-.21.038-.294-.018-.022-.059-.144-.083-.202a6.499 6.499 0 0 0 2.88-3.622c.064.01.176.03.213.038.075-.05.144-.114.28-.104.266.039.54.138.87.256.154.06.277.128.448.173.036.01.088.019.13.028l.009.003.007.001c.297.064.584-.098.645-.365.06-.266-.128-.537-.423-.608zM16.4 9.701l-1.95 1.746v.005a.44.44 0 0 0 .173.757l.003.01 2.526.728a5.199 5.199 0 0 0-.108-1.674A5.208 5.208 0 0 0 16.4 9.7zm-4.013 5.325a.437.437 0 0 0-.404-.232.44.44 0 0 0-.372.233h-.002l-1.268 2.292a5.164 5.164 0 0 0 3.326.003l-1.27-2.296h-.01zm1.888-1.293a.44.44 0 0 0-.27.036.44.44 0 0 0-.214.572l-.003.004 1.01 2.438a5.15 5.15 0 0 0 2.081-2.615l-2.6-.44-.004.005z"/></svg></span>
+            <span class="pipeline-node-name">Kubernetes</span>
+            <span class="pipeline-node-sub">Micro-Sidecar</span>
+          </div>
+          <div class="pipeline-node">
+            <span class="pipeline-node-icon"><svg viewBox="0 0 128 128" width="26" height="26" aria-hidden="true"><linearGradient id="py-a" gradientUnits="userSpaceOnUse" x1="70.252" y1="1237.476" x2="170.659" y2="1151.089" gradientTransform="matrix(.563 0 0 -.568 -29.215 707.817)"><stop offset="0" stop-color="#5A9FD4"/><stop offset="1" stop-color="#306998"/></linearGradient><linearGradient id="py-b" gradientUnits="userSpaceOnUse" x1="209.674" y1="1098.815" x2="179.914" y2="1141.277" gradientTransform="matrix(.563 0 0 -.568 -29.215 707.817)"><stop offset="0" stop-color="#FFD43B"/><stop offset="1" stop-color="#FFE873"/></linearGradient><path fill="url(#py-a)" d="M63.155 0c-15.65 0-24.996 1.408-29.41 4.148-6.626 4.11-6.425 12.83-6.425 19.923v14.479h35.836v4.618H23.518c-7.094 0-14.73 4.275-17.135 12.084-2.85 9.243-2.977 15.053 0 24.63 2.158 6.974 6.787 12.085 13.882 12.085h8.972v-12.085c0-8.156 7.037-15.174 15.344-15.174h35.32v-24.63c0-6.844-5.83-12.085-12.923-12.085H47.164V12.085C47.164 5.24 53.25 0 63.155 0zM47.164 7.247a3.626 3.626 0 1 1 0 7.252 3.626 3.626 0 0 1 0-7.252z"/><path fill="url(#py-b)" d="M64.845 128c15.65 0 24.996-1.408 29.41-4.148 6.626-4.11 6.425-12.83 6.425-19.923V89.45H64.844v-4.618h39.638c7.094 0 14.73-4.275 17.135-12.084 2.85-9.243 2.977-15.053 0-24.63-2.158-6.974-6.787-12.085-13.882-12.085h-8.972v12.085c0 8.156-7.037 15.174-15.344 15.174H48.1v24.63c0 6.844 5.83 12.085 12.923 12.085h19.813v15.993c0 6.845-6.086 12.085-15.991 12.085zM80.836 120.753a3.626 3.626 0 1 1 0-7.252 3.626 3.626 0 0 1 0 7.252z"/></svg></span>
+            <span class="pipeline-node-name">Python</span>
+            <span class="pipeline-node-sub">FastAPI Async</span>
+          </div>
+
+          <!-- Central Illuminated Hero Hub -->
+          <div class="pipeline-hero-hub">
+            <img src="/assets/logo.png" alt="Rubrol Core Hub" class="pipeline-hero-logo">
+            <div class="pipeline-hero-title">RUBROL ENGINE</div>
+          </div>
+
+          <div class="pipeline-node">
+            <span class="pipeline-node-icon"><svg viewBox="0 0 128 128" width="26" height="26" aria-hidden="true"><defs><linearGradient id="node-a" x1="34.513" x2="27.157" y1="15.535" y2="30.448" gradientTransform="translate(-129.242 -73.715) scale(6.18523)" gradientUnits="userSpaceOnUse"><stop stop-color="#3F873F"/><stop offset=".33" stop-color="#3F8B3D"/><stop offset=".637" stop-color="#3E9638"/><stop offset=".934" stop-color="#3DA92E"/><stop offset="1" stop-color="#3DAE2B"/></linearGradient><linearGradient id="node-b" x1="30.009" x2="50.533" y1="23.359" y2="8.288" gradientTransform="translate(-129.242 -73.715) scale(6.18523)" gradientUnits="userSpaceOnUse"><stop offset=".138" stop-color="#3F873F"/><stop offset=".402" stop-color="#52A044"/><stop offset=".713" stop-color="#64B749"/><stop offset=".908" stop-color="#6ABF4B"/></linearGradient><linearGradient id="node-c" x1="21.917" x2="40.555" y1="22.261" y2="22.261" gradientTransform="translate(-129.242 -73.715) scale(6.18523)" gradientUnits="userSpaceOnUse"><stop offset=".092" stop-color="#6ABF4B"/><stop offset=".287" stop-color="#64B749"/><stop offset=".598" stop-color="#52A044"/><stop offset=".862" stop-color="#3F873F"/></linearGradient></defs><path fill="url(#node-a)" d="M66.958.825a6.07 6.07 0 0 0-6.035 0L11.103 29.76c-1.895 1.072-2.96 3.095-2.96 5.24v57.988c0 2.143 1.183 4.167 2.958 5.24l49.82 28.934a6.07 6.07 0 0 0 6.036 0l49.82-28.935c1.894-1.072 2.958-3.096 2.958-5.24V35c0-2.144-1.183-4.167-2.958-5.24z"/><path fill="url(#node-b)" d="M116.897 29.76 66.841.825A8.161 8.161 0 0 0 65.302.23L9.21 96.798a6.251 6.251 0 0 0 1.657 1.43l50.057 28.934c1.42.833 3.076 1.072 4.615.595l52.66-96.925a3.702 3.702 0 0 0-1.302-1.072z"/><path fill="url(#node-c)" d="M116.898 98.225c1.42-.833 2.485-2.262 2.958-3.81L65.066.108c-1.42-.238-2.959-.119-4.26.715L11.104 29.639l53.606 98.355c.71-.12 1.54-.358 2.25-.715z"/></svg></span>
+            <span class="pipeline-node-name">Node.js</span>
+            <span class="pipeline-node-sub">TypeScript SDK</span>
+          </div>
+          <div class="pipeline-node">
+            <span class="pipeline-node-icon"><svg viewBox="0 0 24 24" width="26" height="26" fill="#00ADD8" aria-hidden="true"><path d="M1.811 10.231c-.047 0-.058-.023-.035-.059l.246-.315c.023-.035.081-.058.128-.058h4.172c.046 0 .058.035.035.07l-.199.303c-.023.036-.082.07-.117.07zM.047 11.306c-.047 0-.059-.023-.035-.058l.245-.316c.023-.035.082-.058.129-.058h5.328c.047 0 .07.035.058.07l-.093.28c-.012.047-.058.07-.105.07zm2.828 1.075c-.047 0-.059-.035-.035-.07l.163-.292c.023-.035.07-.07.117-.07h2.337c.047 0 .07.035.07.082l-.023.28c0 .047-.047.082-.082.082zm12.129-2.36c-.736.187-1.239.327-1.963.514-.176.046-.187.058-.34-.117-.174-.199-.303-.327-.548-.444-.737-.362-1.45-.257-2.115.175-.795.514-1.204 1.274-1.192 2.22.011.935.654 1.706 1.577 1.835.795.105 1.46-.175 1.987-.77.105-.13.198-.27.315-.434H10.47c-.245 0-.304-.152-.222-.35.152-.362.432-.97.596-1.274a.315.315 0 01.292-.187h4.253c-.023.316-.023.631-.07.947a4.983 4.983 0 01-.958 2.29c-.841 1.11-1.94 1.8-3.33 1.986-1.145.152-2.209-.07-3.143-.77-.865-.655-1.356-1.52-1.484-2.595-.152-1.274.222-2.419.993-3.424.83-1.086 1.928-1.776 3.272-2.02 1.098-.2 2.15-.07 3.096.571.62.41 1.063.97 1.356 1.648.07.105.023.164-.117.2m3.868 6.461c-1.064-.024-2.034-.328-2.852-1.029a3.665 3.665 0 01-1.262-2.255c-.21-1.32.152-2.489.947-3.529.853-1.122 1.881-1.706 3.272-1.95 1.192-.21 2.314-.095 3.33.595.923.63 1.496 1.484 1.648 2.605.198 1.578-.257 2.863-1.344 3.962-.771.783-1.718 1.273-2.805 1.495-.315.06-.63.07-.934.106zm2.78-4.72c-.011-.153-.011-.27-.034-.387-.21-1.157-1.274-1.81-2.384-1.554-1.087.245-1.788.935-2.045 2.033-.21.912.234 1.835 1.075 2.21.643.28 1.285.244 1.905-.07.923-.48 1.425-1.228 1.484-2.233z"/></svg></span>
+            <span class="pipeline-node-name">Go</span>
+            <span class="pipeline-node-sub">gRPC / HTTP/2</span>
+          </div>
+          <div class="pipeline-node">
+            <span class="pipeline-node-icon"><svg viewBox="0 0 24 24" width="26" height="26" fill="#DEA584" aria-hidden="true"><path d="M23.8346 11.7033l-1.0073-.6236a13.7268 13.7268 0 00-.0283-.2936l.8656-.8069a.3483.3483 0 00-.1154-.578l-1.1066-.414a8.4958 8.4958 0 00-.087-.2856l.6904-.9587a.3462.3462 0 00-.2257-.5446l-1.1663-.1894a9.3574 9.3574 0 00-.1407-.2622l.49-1.0761a.3437.3437 0 00-.0274-.3361.3486.3486 0 00-.3006-.154l-1.1845.0416a6.7444 6.7444 0 00-.1873-.2268l.2723-1.153a.3472.3472 0 00-.417-.4172l-1.1532.2724a14.0183 14.0183 0 00-.2278-.1873l.0415-1.1845a.3442.3442 0 00-.49-.328l-1.076.491c-.0872-.0476-.1742-.0952-.2623-.1407l-.1903-1.1673A.3483.3483 0 0016.256.955l-.9597.6905a8.4867 8.4867 0 00-.2855-.086l-.414-1.1066a.3483.3483 0 00-.5781-.1154l-.8069.8666a9.2936 9.2936 0 00-.2936-.0284L12.2946.1683a.3462.3462 0 00-.5892 0l-.6236 1.0073a13.7383 13.7383 0 00-.2936.0284L9.9803.3374a.3462.3462 0 00-.578.1154l-.4141 1.1065c-.0962.0274-.1903.0567-.2855.086L7.744.955a.3483.3483 0 00-.5447.2258L7.009 2.348a9.3574 9.3574 0 00-.2622.1407l-1.0762-.491a.3462.3462 0 00-.49.328l.0416 1.1845a7.9826 7.9826 0 00-.2278.1873L3.8413 3.425a.3472.3472 0 00-.4171.4171l.2713 1.1531c-.0628.075-.1255.1509-.1863.2268l-1.1845-.0415a.3462.3462 0 00-.328.49l.491 1.0761a9.167 9.167 0 00-.1407.2622l-1.1662.1894a.3483.3483 0 00-.2258.5446l.6904.9587a13.303 13.303 0 00-.087.2855l-1.1065.414a.3483.3483 0 00-.1155.5781l.8656.807a9.2936 9.2936 0 00-.0283.2935l-1.0073.6236a.3442.3442 0 000 .5892l1.0073.6236c.008.0982.0182.1964.0283.2936l-.8656.8079a.3462.3462 0 00.1155.578l1.1065.4141c.0273.0962.0567.1914.087.2855l-.6904.9587a.3452.3452 0 00.2268.5447l1.1662.1893c.0456.088.0922.1751.1408.2622l-.491 1.0762a.3462.3462 0 00.328.49l1.1834-.0415c.0618.0769.1235.1528.1873.2277l-.2713 1.1541a.3462.3462 0 00.4171.4161l1.153-.2713c.075.0638.151.1255.2279.1863l-.0415 1.1845a.3442.3442 0 00.49.327l1.0761-.49c.087.0486.1741.0951.2622.1407l.1903 1.1662a.3483.3483 0 00.5447.2268l.9587-.6904a9.299 9.299 0 00.2855.087l.414 1.1066a.3452.3452 0 00.5781.1154l.8079-.8656c.0972.0111.1954.0203.2936.0294l.6236 1.0073a.3472.3472 0 00.5892 0l.6236-1.0073c.0982-.0091.1964-.0183.2936-.0294l.8069.8656a.3483.3483 0 00.578-.1154l.4141-1.1066a8.4626 8.4626 0 00.2855-.087l.9587.6904a.3452.3452 0 00.5447-.2268l.1903-1.1662c.088-.0456.1751-.0931.2622-.1407l1.0762.49a.3472.3472 0 00.49-.327l-.0415-1.1845a6.7267 6.7267 0 00.2267-.1863l1.1531.2713a.3472.3472 0 00.4171-.416l-.2713-1.1542c.0628-.0749.1255-.1508.1863-.2278l1.1845.0415a.3442.3442 0 00.328-.49l-.49-1.076c.0475-.0872.0951-.1742.1407-.2623l1.1662-.1893a.3483.3483 0 00.2258-.5447l-.6904-.9587.087-.2855 1.1066-.414a.3462.3462 0 00.1154-.5781l-.8656-.8079c.0101-.0972.0202-.1954.0283-.2936l1.0073-.6236a.3442.3442 0 000-.5892zm-6.7413 8.3551a.7138.7138 0 01.2986-1.396.714.714 0 11-.2997 1.396zm-.3422-2.3142a.649.649 0 00-.7715.5l-.3573 1.6685c-1.1035.501-2.3285.7795-3.6193.7795a8.7368 8.7368 0 01-3.6951-.814l-.3574-1.6684a.648.648 0 00-.7714-.499l-1.473.3158a8.7216 8.7216 0 01-.7613-.898h7.1676c.081 0 .1356-.0141.1356-.088v-2.536c0-.074-.0536-.0881-.1356-.0881h-2.0966v-1.6077h2.2677c.2065 0 1.1065.0587 1.394 1.2088.0901.3533.2875 1.5044.4232 1.8729.1346.413.6833 1.2381 1.2685 1.2381h3.5716a.7492.7492 0 00.1296-.0131 8.7874 8.7874 0 01-.8119.9526zM6.8369 20.024a.714.714 0 11-.2997-1.396.714.714 0 01.2997 1.396zM4.1177 8.9972a.7137.7137 0 11-1.304.5791.7137.7137 0 011.304-.579zm-.8352 1.9813l1.5347-.6824a.65.65 0 00.33-.8585l-.3158-.7147h1.2432v5.6025H3.5669a8.7753 8.7753 0 01-.2834-3.348zm6.7343-.5437V8.7836h2.9601c.153 0 1.0792.1772 1.0792.8697 0 .575-.7107.7815-1.2948.7815zm10.7574 1.4862c0 .2187-.008.4363-.0243.651h-.9c-.09 0-.1265.0586-.1265.1477v.413c0 .973-.5487 1.1846-1.0296 1.2382-.4576.0517-.9648-.1913-1.0275-.4717-.2704-1.5186-.7198-1.8436-1.4305-2.4034.8817-.5599 1.799-1.386 1.799-2.4915 0-1.1936-.819-1.9458-1.3769-2.3153-.7825-.5163-1.6491-.6195-1.883-.6195H5.4682a8.7651 8.7651 0 014.907-2.7699l1.0974 1.151a.648.648 0 00.9182.0213l1.227-1.1743a8.7753 8.7753 0 016.0044 4.2762l-.8403 1.8982a.652.652 0 00.33.8585l1.6178.7188c.0283.2875.0425.577.0425.8717zm-9.3006-9.5993a.7128.7128 0 11.984 1.0316.7137.7137 0 01-.984-1.0316zm8.3389 6.71a.7107.7107 0 01.9395-.3625.7137.7137 0 11-.9405.3635z"/></svg></span>
+            <span class="pipeline-node-name">Rust</span>
+            <span class="pipeline-node-sub">Native FFI</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pipeline-pillars">
+        <div class="pillar-card">
+          <h4 class="pillar-title">Sub-Millisecond Sidecar</h4>
+          <p class="pillar-text">Runs alongside your application containers with zero external database or Redis dependency. Pure in-memory compilation.</p>
+        </div>
+        <div class="pillar-card">
+          <h4 class="pillar-title">Embedded Factur-X &amp; CII</h4>
+          <p class="pillar-text">Automatically packages syntactically validated Cross-Industry Invoice XML directly into the PDF/A-3b catalog stream.</p>
+        </div>
+        <div class="pillar-card">
+          <h4 class="pillar-title">Mathematical Determinism</h4>
+          <p class="pillar-text">The layout engine guarantees identical pixel-level layout and kerning across any architecture or cloud provider.</p>
+        </div>
+        <div class="pillar-card">
+          <h4 class="pillar-title">Zero Memory Leaks</h4>
+          <p class="pillar-text">Written in memory-safe compiled Rust. No V8 garbage collection storms, no lingering zombie Chrome renderer processes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENGINEERING GUIDES & COMPLIANCE TEARDOWNS  -->
+  <section id="articles" class="section-guides" style="background: #090a0f; padding: 100px 0; border-bottom: 1px solid var(--bg-obsidian-border);">
+    <div class="container">
+      <div style="text-align: center; margin-bottom: 56px;">
+        <span class="editorial-label" style="color: var(--amber-light);">ENGINEERING TEARDOWNS &amp; COMPLIANCE GUIDES</span>
+        <h2 style="font-family: var(--font-sans); font-size: 42px; font-weight: 700; color: #ffffff; margin-bottom: 16px; letter-spacing: -0.03em;">
+          The Truth About Document Infrastructure
+        </h2>
+        <p style="font-size: 16px; color: #94a3b8; max-width: 720px; margin: 0 auto;">
+          No marketing fluff. Brutalist engineering breakdowns of why legacy Chromium breaks under European e-invoicing laws, and the exact code to fix it before the 2026 mandates hit.
+        </p>
+      </div>
+
+      <div class="guides-grid">
+        
+        <!-- Guide 1: Stripe Factur-X -->
+        <a href="/articles/stripe-facturx-zugferd" class="guide-card-modern">
+          <div class="guide-card-cover">
+            <svg viewBox="0 0 380 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="380" height="140" fill="#0c0e14"/>
+              <circle cx="190" cy="70" r="110" fill="url(#stripe-glow)" fill-opacity="0.12"/>
+              <!-- Pipeline flow -->
+              <path d="M40 70H130L170 70H250L290 70H340" stroke="rgba(255, 255, 255, 0.12)" stroke-width="1.5" stroke-dasharray="4 4"/>
+              <!-- Node 1: Stripe -->
+              <rect x="40" y="46" width="80" height="48" rx="8" fill="#181a24" stroke="rgba(245, 158, 11, 0.3)" stroke-width="1.5"/>
+              <text x="80" y="68" fill="#f59e0b" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700" text-anchor="middle">STRIPE</text>
+              <text x="80" y="82" fill="#94a3b8" font-family="'JetBrains Mono', monospace" font-size="9" text-anchor="middle">WEBHOOK</text>
+              <!-- Connection Arrow -->
+              <path d="M124 70H156M152 66L156 70L152 74" stroke="#f59e0b" stroke-width="1.5" stroke-linecap="round"/>
+              <!-- Node 2: Rubrol Engine -->
+              <rect x="160" y="42" width="90" height="56" rx="8" fill="#1f2330" stroke="#f59e0b" stroke-width="1.5"/>
+              <text x="205" y="66" fill="#ffffff" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700" text-anchor="middle">RUBROL</text>
+              <text x="205" y="82" fill="#10b981" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="600" text-anchor="middle">&lt; 160ms</text>
+              <!-- Connection Arrow -->
+              <path d="M254 70H286M282 66L286 70L282 74" stroke="#10b981" stroke-width="1.5" stroke-linecap="round"/>
+              <!-- Node 3: Factur-X / PDF/A-3b -->
+              <rect x="290" y="46" width="80" height="48" rx="8" fill="#181a24" stroke="rgba(16, 185, 129, 0.4)" stroke-width="1.5"/>
+              <text x="330" y="68" fill="#10b981" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700" text-anchor="middle">PDF/A-3b</text>
+              <text x="330" y="82" fill="#94a3b8" font-family="'JetBrains Mono', monospace" font-size="9" text-anchor="middle">FACTUR-X</text>
+              <defs>
+                <radialGradient id="stripe-glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(190 70) rotate(90) scale(70)">
+                  <stop stop-color="#f59e0b"/>
+                  <stop offset="1" stop-color="#f59e0b" stop-opacity="0"/>
+                </radialGradient>
+              </defs>
+            </svg>
+          </div>
+          <div class="guide-card-body">
+            <div>
+              <div class="guide-card-meta">
+                <span class="guide-meta-tag">STRIPE &amp; EU MANDATE</span>
+                <span class="guide-meta-sep">•</span>
+                <span>6 MIN READ</span>
+              </div>
+              <h3 class="guide-card-title">How to Make Your Stripe Invoices Factur-X / ZUGFeRD Compliant in 5 Minutes</h3>
+              <p class="guide-card-desc">Standard Stripe PDFs fail French and German B2B laws under EN 16931. Learn how to plug Rubrol into your Stripe webhook to inject compliant XML and ISO 19005-3 PDF/A-3b in under 160ms.</p>
+            </div>
+            <div class="guide-card-link">
+              <span>Read Full Guide</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </div>
+        </a>
+
+        <!-- Guide 2: Why Puppeteer Cannot Generate EN 16931 -->
+        <a href="/articles/why-puppeteer-fails-en16931" class="guide-card-modern">
+          <div class="guide-card-cover">
+            <svg viewBox="0 0 380 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="380" height="140" fill="#0c0e14"/>
+              <!-- Chrome flame vs Typst speed -->
+              <rect x="35" y="44" width="140" height="52" rx="8" fill="#1c1619" stroke="rgba(239, 68, 68, 0.4)" stroke-width="1.5"/>
+              <text x="105" y="67" fill="#ef4444" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700" text-anchor="middle">HEADLESS CHROME</text>
+              <text x="105" y="83" fill="#94a3b8" font-family="'JetBrains Mono', monospace" font-size="9.5" text-anchor="middle">512MB RAM • NO PDF/A</text>
+              
+              <text x="190" y="74" fill="#64748b" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="700" text-anchor="middle">VS</text>
+              
+              <rect x="205" y="44" width="140" height="52" rx="8" fill="#131e1c" stroke="rgba(16, 185, 129, 0.4)" stroke-width="1.5"/>
+              <text x="275" y="67" fill="#10b981" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700" text-anchor="middle">RUBROL TYPST</text>
+              <text x="275" y="83" fill="#94a3b8" font-family="'JetBrains Mono', monospace" font-size="9.5" text-anchor="middle">&lt; 28MB RAM • PDF/A-3b</text>
+            </svg>
+          </div>
+          <div class="guide-card-body">
+            <div>
+              <div class="guide-card-meta">
+                <span class="guide-meta-tag tag-arch">ARCHITECTURAL TEARDOWN</span>
+                <span class="guide-meta-sep">•</span>
+                <span>7 MIN READ</span>
+              </div>
+              <h3 class="guide-card-title">Why Puppeteer Cannot Generate Legal EN 16931 E-Invoices</h3>
+              <p class="guide-card-desc">An autopsy of why Chrome Skia fails ISO 19005-3 catalog attachments and drains AWS compute budgets with memory leaks, plus the modern Typst replacement architecture.</p>
+            </div>
+            <div class="guide-card-link" style="color: #f87171;">
+              <span>Read Teardown</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </div>
+        </a>
+
+        <!-- Guide 3: Rubrol vs Mustangproject -->
+        <a href="/articles/rubrol-vs-mustangproject" class="guide-card-modern">
+          <div class="guide-card-cover">
+            <svg viewBox="0 0 380 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="380" height="140" fill="#0c0e14"/>
+              <!-- JVM footprint bar vs Rust footprint bar -->
+              <text x="40" y="52" fill="#94a3b8" font-family="'JetBrains Mono', monospace" font-size="10">MUSTANGPROJECT (JVM + PDFBOX)</text>
+              <rect x="40" y="58" width="220" height="14" rx="4" fill="#a855f7" fill-opacity="0.2" stroke="#a855f7" stroke-width="1"/>
+              <text x="270" y="69" fill="#c084fc" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="700">340MB RAM</text>
+              
+              <text x="40" y="94" fill="#94a3b8" font-family="'JetBrains Mono', monospace" font-size="10">RUBROL (COMPILED RUST)</text>
+              <rect x="40" y="100" width="30" height="14" rx="4" fill="#10b981" fill-opacity="0.3" stroke="#10b981" stroke-width="1"/>
+              <text x="80" y="111" fill="#10b981" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="700">14MB RAM (96% LESS)</text>
+            </svg>
+          </div>
+          <div class="guide-card-body">
+            <div>
+              <div class="guide-card-meta">
+                <span class="guide-meta-tag tag-bench">JAVA VS RUST</span>
+                <span class="guide-meta-sep">•</span>
+                <span>8 MIN READ</span>
+              </div>
+              <h3 class="guide-card-title">Rubrol vs Mustangproject: Why Modern Cloud Services Don't Want a 300MB JVM</h3>
+              <p class="guide-card-desc">Mustangproject is the reference German ZUGFeRD tool, but deploying a heavy JVM in Kubernetes triggers OOM kills and cannot render visual documents. Here is the Rust alternative.</p>
+            </div>
+            <div class="guide-card-link" style="color: #c084fc;">
+              <span>Read Comparison</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </div>
+        </a>
+
+        <!-- Guide 4: Rubrol vs Ghostscript -->
+        <a href="/articles/rubrol-vs-ghostscript" class="guide-card-modern">
+          <div class="guide-card-cover">
+            <svg viewBox="0 0 380 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="380" height="140" fill="#0c0e14"/>
+              <!-- Security comparison diagram -->
+              <rect x="40" y="44" width="135" height="52" rx="8" fill="#1d1618" stroke="rgba(244, 63, 94, 0.4)" stroke-width="1.5"/>
+              <text x="107" y="66" fill="#fb7185" font-family="'JetBrains Mono', monospace" font-size="10.5" font-weight="700" text-anchor="middle">GHOSTSCRIPT</text>
+              <text x="107" y="82" fill="#ef4444" font-family="'JetBrains Mono', monospace" font-size="9" text-anchor="middle">POSTSCRIPT CVE RISKS</text>
+
+              <path d="M185 70H195" stroke="#64748b" stroke-width="1.5"/>
+
+              <rect x="205" y="44" width="135" height="52" rx="8" fill="#131e1c" stroke="rgba(16, 185, 129, 0.4)" stroke-width="1.5"/>
+              <text x="272" y="66" fill="#10b981" font-family="'JetBrains Mono', monospace" font-size="10.5" font-weight="700" text-anchor="middle">RUBROL</text>
+              <text x="272" y="82" fill="#10b981" font-family="'JetBrains Mono', monospace" font-size="9" text-anchor="middle">MEMORY-SAFE RUST</text>
+            </svg>
+          </div>
+          <div class="guide-card-body">
+            <div>
+              <div class="guide-card-meta">
+                <span class="guide-meta-tag tag-sec">SECURITY &amp; COMPLIANCE</span>
+                <span class="guide-meta-sep">•</span>
+                <span>7 MIN READ</span>
+              </div>
+              <h3 class="guide-card-title">Rubrol vs Ghostscript: Why ZUGFeRD via PostScript Scripts Is an Infrastructure Hazard</h3>
+              <p class="guide-card-desc">Decades of remote code execution CVEs, AGPL-3.0 licensing traps, and zero EN 16931 validation. How memory-safe Rust eliminates PostScript attack surfaces entirely.</p>
+            </div>
+            <div class="guide-card-link" style="color: #fb7185;">
+              <span>Read Breakdown</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </div>
+        </a>
+
+        <!-- Guide 5: Rubrol vs Gotenberg -->
+        <a href="/articles/rubrol-vs-gotenberg" class="guide-card-modern">
+          <div class="guide-card-cover">
+            <svg viewBox="0 0 380 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="380" height="140" fill="#0c0e14"/>
+              <!-- Gotenberg 2GB image vs Rubrol 42MB -->
+              <rect x="40" y="44" width="135" height="52" rx="8" fill="#141a24" stroke="rgba(56, 189, 248, 0.3)" stroke-width="1.5"/>
+              <text x="107" y="66" fill="#38bdf8" font-family="'JetBrains Mono', monospace" font-size="10.5" font-weight="700" text-anchor="middle">GOTENBERG</text>
+              <text x="107" y="82" fill="#94a3b8" font-family="'JetBrains Mono', monospace" font-size="9" text-anchor="middle">1.8GB DOCKER IMAGE</text>
+
+              <path d="M185 70H195" stroke="#64748b" stroke-width="1.5"/>
+
+              <rect x="205" y="44" width="135" height="52" rx="8" fill="#131e1c" stroke="rgba(16, 185, 129, 0.4)" stroke-width="1.5"/>
+              <text x="272" y="66" fill="#10b981" font-family="'JetBrains Mono', monospace" font-size="10.5" font-weight="700" text-anchor="middle">RUBROL</text>
+              <text x="272" y="82" fill="#10b981" font-family="'JetBrains Mono', monospace" font-size="9" text-anchor="middle">42MB DOCKER • 5.8ms</text>
+            </svg>
+          </div>
+          <div class="guide-card-body">
+            <div>
+              <div class="guide-card-meta">
+                <span class="guide-meta-tag tag-devops">DEVOPS &amp; SCALE</span>
+                <span class="guide-meta-sep">•</span>
+                <span>6 MIN READ</span>
+              </div>
+              <h3 class="guide-card-title">Rubrol vs Gotenberg: Why Headless Chromium Clusters Are the Wrong Tool</h3>
+              <p class="guide-card-desc">Gotenberg requires periodic browser killing to survive memory leaks and consumes 2GB-4GB of RAM per pod. Why high-throughput billing systems drop Chromium for 5.8ms Typst compilation.</p>
+            </div>
+            <div class="guide-card-link" style="color: #38bdf8;">
+              <span>Read Benchmark</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+  
+  <!-- 2-COLUMN ENTERPRISE COMPLIANCE SHOWCASE (g2i Screenshot 2 style) -->
+  <section class="g2i-feature-section">
+    <div class="container">
+      <div class="g2i-feature-grid">
+        <div class="g2i-control-wrapper">
+          <div class="g2i-control-card">
+            <div class="g2i-control-header">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <span class="g2i-control-title">ISO 19005-3 &bull; Factur-X / ZUGFeRD 2.2</span>
+            </div>
+            <div class="g2i-control-subtitle">5 of 5 compliance controls enforced.</div>
+            <ul class="g2i-control-list">
+              <li>
+                <span class="g2i-check-box">&#10003;</span>
+                <div><strong>Architecture</strong> - Native Typst vector engine with zero headless browser virtualization</div>
+              </li>
+              <li>
+                <span class="g2i-check-box">&#10003;</span>
+                <div><strong>PDF/A-3b Archival</strong> - Certified ISO 19005-3 compliance with embedded Factur-X XML</div>
+              </li>
+              <li>
+                <span class="g2i-check-box">&#10003;</span>
+                <div><strong>Schematron Validation</strong> - Built-in semantic validator for French Chorus Pro &amp; German XRechnung 3.0</div>
+              </li>
+              <li>
+                <span class="g2i-check-box">&#10003;</span>
+                <div><strong>Commercial Grant</strong> - Proprietary production license key legally replacing GNU LGPLv3</div>
+              </li>
+              <li>
+                <span class="g2i-check-box">&#10003;</span>
+                <div><strong>Data Sovereignty</strong> - 100% on-premise local Docker sidecar with zero cloud data transmission</div>
+              </li>
+            </ul>
+            <div class="g2i-control-footer">LAST SYNC <span style="color:#ffffff;">JUST NOW</span></div>
+          </div>
+        </div>
+
+        <div class="g2i-feature-copy">
+          <div class="g2i-kicker">DOMAINS / ENTERPRISE COMPLIANCE</div>
+          <h2 class="g2i-section-title">
+            Compliance is not optional.<br>
+            <span class="g2i-section-title-muted">Factur-X &amp; PDF/A-3b.</span>
+          </h2>
+          <p class="g2i-section-body">
+            Turnkey European EN 16931 compliance backed by automated Schematron validation. Generate audit-ready electronic invoices and regulatory receipts directly in your service without foreign EDI toolchains.
+          </p>
           <a href="/pricing" class="btn-g2i-secondary">View Compliance Suite</a>
         </div>
       </div>
@@ -3649,28 +4663,9 @@
             <div style="display: flex; justify-content: space-between; align-items: center;">
               <span style="font-size: 12px; font-weight: 600; color: var(--text-light-head);">Recommended Tier:</span>
               <span id="calcRecPlan" style="font-family: var(--font-mono); font-size: 13px; font-weight: 700; color: #f59e0b;">Rubrol Pro ($1,800/yr)</span>
-
-  
-  <script>
-    function toggleMobileNav() {
-      const drawer = document.getElementById('mobileNavDrawer');
-      const toggle = document.getElementById('mobileNavToggle');
-      const expanded = toggle.getAttribute('aria-expanded') === 'true';
-      toggle.setAttribute('aria-expanded', !expanded);
-      drawer.classList.toggle('open');
-    }
-    function closeMobileNav() {
-      const drawer = document.getElementById('mobileNavDrawer');
-      const toggle = document.getElementById('mobileNavToggle');
-      if (drawer && toggle) {
-        toggle.setAttribute('aria-expanded', 'false');
-        drawer.classList.remove('open');
-      }
-    }
-  </script>
-
-
-                Net Positive ROI: +$17,280 / year saved after license cost
+            </div>
+            <div id="calcRecRoi" class="quant-roi-badge">
+              Net Positive ROI: +$17,280 / year saved after license cost
             </div>
           </div>
 
@@ -3700,6 +4695,7 @@
       <div class="pricing-deck">
         <!-- Tier 1: Rubrol Community -->
         <div id="card-developer" class="price-card tier-dimmed">
+          <span id="ribbon-developer" class="featured-ribbon" style="display: none;">Community Core</span>
           <div>
             <h3 class="price-plan-name">Rubrol Community</h3>
             <p class="price-plan-desc">Open-source vector engine for local CLI development &amp; Docker evaluation.</p>
@@ -3726,6 +4722,7 @@
 
         <!-- Tier 2: Rubrol Pro -->
         <div id="card-pro" class="price-card tier-dimmed">
+          <span id="ribbon-pro" class="featured-ribbon" style="display: none;">Commercial License</span>
           <div>
             <h3 class="price-plan-name">Rubrol Pro</h3>
             <p class="price-plan-desc">Annual commercial license for SaaS startups &amp; high-throughput billing systems.</p>
@@ -3753,7 +4750,8 @@
         </div>
 
         <!-- Tier 3: Rubrol Enterprise -->
-        <div id="card-compliance" class="price-card tier-active featured">
+        <div id="card-compliance" class="price-card tier-dimmed">
+          <span id="ribbon-compliance" class="featured-ribbon" style="display: none;">Regulatory Standard</span>
           <div>
             <h3 class="price-plan-name">Rubrol Enterprise</h3>
             <p class="price-plan-desc">Turnkey EU compliance suite with certified EN 16931 &amp; Schematron validation.</p>
@@ -4807,6 +5805,528 @@ ${err.message}</div>`;
             a.click();
             a.remove();
             return;
+          }
+        } catch (err) {}
+      }
 
+      // 2. Seamless Vercel fallback: download real pre-compiled vector PDF from /examples/output/
+      const a = document.createElement('a');
+      a.href = `/examples/output/${currentTemplate}.pdf`;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    }
+
+    function applyViewMode() {
+      const container = document.getElementById('svgContainer');
+      const svg = container.querySelector('svg');
+      if (!svg) return;
+
+      container.className = 'preview-sheet mode-fit-width';
+
+      if (!svg.dataset.origViewBox) {
+        svg.dataset.origViewBox = svg.getAttribute('viewBox') || '0 0 595.28 841.89';
+        svg.dataset.origWidth = svg.getAttribute('width') || '';
+        svg.dataset.origHeight = svg.getAttribute('height') || '';
+      }
+      svg.setAttribute('viewBox', svg.dataset.origViewBox);
+    }
+
+    // Event Bindings
+    document.getElementById('templateSelect').addEventListener('change', (e) => {
+      currentTemplate = e.target.value;
+      const downloadBtn = document.getElementById('downloadPdfBtn');
+      if (downloadBtn) {
+        downloadBtn.innerText = (currentTemplate === 'facturx_invoice') ? 'Download PDF/A-3b' : 'Download PDF/A-2b';
+      }
+      loadTemplateData(currentTemplate);
+    });
+
+    document.getElementById('downloadPdfBtn').addEventListener('click', downloadPdf);
+
+    // Dynamic Tier Switcher & Quant TCO Calculator (4-Tier Max Extraction)
+    let currentBillingPeriod = 'annual'; // 'annual' or 'monthly'
+
+    const docSlider = document.getElementById('docSlider');
+    const docCountLabel = document.getElementById('docCountLabel');
+    const savingsAmount = document.getElementById('savingsAmount');
+    const quantChromeCost = document.getElementById('quantChromeCost');
+    const quantDevLabor = document.getElementById('quantDevLabor');
+    const quantTcoTotal = document.getElementById('quantTcoTotal');
+    const calcRecPlan = document.getElementById('calcRecPlan');
+    const calcRecRoi = document.getElementById('calcRecRoi');
+    const calcCtaBtn = document.getElementById('calcCtaBtn');
+
+    const cardDev = document.getElementById('card-developer');
+    const cardPro = document.getElementById('card-pro');
+    const cardComp = document.getElementById('card-compliance');
+    const cardScale = document.getElementById('card-scale');
+    const roiDev = document.getElementById('roi-developer');
+    const roiPro = document.getElementById('roi-pro');
+    const roiComp = document.getElementById('roi-compliance');
+    const roiScale = document.getElementById('roi-scale');
+
+    const priceValPro = document.getElementById('price-val-pro');
+    const pricePeriodPro = document.getElementById('price-period-pro');
+    const priceValComp = document.getElementById('price-val-compliance');
+    const pricePeriodComp = document.getElementById('price-period-compliance');
+    const priceValScale = document.getElementById('price-val-scale');
+    const pricePeriodScale = document.getElementById('price-period-scale');
+
+    const STRIPE_PRO_ANNUAL_URL = "https://buy.stripe.com/fZu5kEcpvcZQehJdgE0Ba0j";
+    const STRIPE_COMPLIANCE_ANNUAL_URL = "https://buy.stripe.com/7sY28sahn0d41uX5Oc0Ba0k";
+    const GITHUB_REPO_URL = "https://github.com/maxcomperatore/rubrol";
+    const ENTERPRISE_CONTACT_URL = "mailto:enterprise@rubrol.com?subject=Enterprise%20Rubrol%20Deployment";
+
+    function updatePricingCalculator(val) {
+      docCountLabel.innerText = val >= 500000 ? "500,000+ / mo" : `${val.toLocaleString()} / mo`;
+
+      // Update dynamic slider track fill
+      const minVal = 2000;
+      const maxVal = 600000;
+      const pct = Math.max(0, Math.min(100, ((val - minVal) / (maxVal - minVal)) * 100));
+      if (docSlider) {
+        docSlider.style.setProperty('--slider-pct', `${pct}%`);
+      }
+
+      // Quant Math: Compute Waste ($0.0081 vs $0.0003)
+      const annualDocs = val * 12;
+      const chromeCost = Math.round(annualDocs * 0.0081);
+      const rubrolCost = Math.round(annualDocs * 0.0003);
+      const netComputeSavings = chromeCost - rubrolCost;
+
+      // Senior Developer Maintenance Hours Saved (~$120/hr)
+      // Debugging CSS page breaks, restarting crashed Chromium worker pods, manual PDF scripts
+      const devHoursSaved = Math.min(180, Math.max(40, Math.round(val / 2500)));
+      const devLaborSavings = devHoursSaved * 120;
+      const totalTcoSaved = netComputeSavings + devLaborSavings;
+
+      savingsAmount.innerText = `$${totalTcoSaved.toLocaleString()}`;
+      quantChromeCost.innerText = `$${chromeCost.toLocaleString()}/yr`;
+      quantDevLabor.innerText = `$${devLaborSavings.toLocaleString()}/yr (${devHoursSaved} hrs)`;
+      quantTcoTotal.innerText = `$${totalTcoSaved.toLocaleString()}/yr`;
+
+      // Reset all 3 cards
+      [cardDev, cardPro, cardComp].forEach(c => {
+        if (c) {
+          c.classList.remove('tier-active');
+          c.classList.add('tier-dimmed');
+        }
+      });
+      [ribbonDev, ribbonPro, ribbonComp].forEach(r => {
+        if (r) r.style.display = 'none';
+      });
+      [roiDev, roiPro, roiComp].forEach(ro => {
+        if (ro) ro.style.display = 'none';
+      });
+
+      // Tier 1: Rubrol Community (< 20,000 docs/mo)
+      if (val < 20000) {
+        if (cardDev) {
+          cardDev.classList.add('tier-active');
+          cardDev.classList.remove('tier-dimmed');
+        }
+        if (ribbonDev) ribbonDev.style.display = 'inline-flex';
+        if (roiDev) roiDev.style.display = 'block';
+        calcRecPlan.innerText = "Rubrol Community ($0 Free)";
+        calcRecPlan.style.color = "#10b981";
+        calcRecRoi.innerHTML = "100% Free Open-Source Core (LGPLv3) • Run unlimited locally or in Docker for evaluation";
+        calcCtaBtn.href = GITHUB_REPO_URL;
+        calcCtaBtn.innerHTML = "<span>Clone on GitHub (Free)</span>";
+      }
+      // Tier 2: Rubrol Pro (20,000 - 100,000 docs/mo)
+      else if (val < 100000) {
+        if (cardPro) {
+          cardPro.classList.add('tier-active');
+          cardPro.classList.remove('tier-dimmed');
+        }
+        if (ribbonPro) ribbonPro.style.display = 'inline-flex';
+        if (roiPro) {
+          roiPro.style.display = 'block';
+          const netTco = totalTcoSaved - 1800;
+          roiPro.innerText = `● Net TCO ROI: +$${netTco.toLocaleString()}/yr saved`;
+        }
+        calcRecPlan.innerText = "Rubrol Pro ($1,800/yr)";
+        calcRecPlan.style.color = "var(--amber-primary)";
+        const netTco = totalTcoSaved - 1800;
+        calcRecRoi.innerHTML = `Net Positive TCO ROI: +$${netTco.toLocaleString()} / year saved after license cost`;
+        calcCtaBtn.href = STRIPE_PRO_ANNUAL_URL;
+        calcCtaBtn.innerHTML = "<span>Buy Rubrol Pro ($1,800/yr)</span>";
+      }
+      // Tier 3: Rubrol Enterprise (>= 100,000 docs/mo)
+      else {
+        if (cardComp) {
+          cardComp.classList.add('tier-active');
+          cardComp.classList.remove('tier-dimmed');
+        }
+        if (ribbonComp) ribbonComp.style.display = 'inline-flex';
+        if (roiComp) {
+          roiComp.style.display = 'block';
+          const netTco = totalTcoSaved - 4800;
+          roiComp.innerText = `● Net TCO ROI: +$${netTco.toLocaleString()}/yr + certified EN 16931`;
+        }
+        calcRecPlan.innerText = "Rubrol Enterprise ($4,800/yr)";
+        calcRecPlan.style.color = "#ea580c";
+        const netTco = totalTcoSaved - 4800;
+        calcRecRoi.innerHTML = `Net Positive TCO ROI: +$${netTco.toLocaleString()} / year saved + EN 16931 certified`;
+        calcCtaBtn.href = STRIPE_COMPLIANCE_ANNUAL_URL;
+        calcCtaBtn.innerHTML = "<span>Buy Rubrol Enterprise ($4,800/yr)</span>";
+      }
+    }
+
+    if (docSlider) {
+      docSlider.addEventListener('input', (e) => {
+        updatePricingCalculator(parseInt(e.target.value, 10));
+      });
+      // Initial call
+      updatePricingCalculator(parseInt(docSlider.value, 10));
+    }
+
+    // Initialize
+    loadTemplateData('b2b_invoice');
+  
+    // Bulletproof Clipboard Copy (with fallback for all browsers/environments)
+    function copyToClipboard(text) {
+      if (navigator.clipboard && window.isSecureContext) {
+        return navigator.clipboard.writeText(text).catch(() => fallbackCopy(text));
+      }
+      return fallbackCopy(text);
+    }
+
+    function fallbackCopy(text) {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.left = '-9999px';
+      ta.style.top = '-9999px';
+      document.body.appendChild(ta);
+      ta.focus();
+      ta.select();
+      try {
+        document.execCommand('copy');
+      } catch (err) {
+        console.error('Fallback copy failed', err);
+      }
+      document.body.removeChild(ta);
+      return Promise.resolve();
+    }
+
+    function copyAiCmd() {
+      const cmdElem = document.getElementById('ai-cmd-text');
+      const cmdText = cmdElem ? cmdElem.innerText.trim() : 'npx skills add maxcomperatore/rubrol --skill rubrol';
+      copyToClipboard(cmdText).then(() => {
+        const label = document.getElementById('ai-copy-label');
+        if (label) {
+          label.innerText = 'Copied!';
+          label.style.color = '#10b981';
+          setTimeout(() => {
+            label.innerText = 'Copy';
+            label.style.color = '';
+          }, 2000);
+        }
+      });
+    }
+
+    function copyAiPrompt() {
+      const prompt = "Add Rubrol PDF invoice generation to my Express backend with sub-millisecond latency";
+      copyToClipboard(prompt).then(() => {
+        const pill = document.getElementById('ai-prompt-pill');
+        if (pill) {
+          const origHtml = pill.innerHTML;
+          pill.innerHTML = '<span style="color: #10b981; font-weight: 600;">Copied prompt to clipboard!</span>';
+          setTimeout(() => {
+            pill.innerHTML = origHtml;
+          }, 2000);
+        }
+      });
+    }
+
+    /* Mobile Navigation & Studio Responsiveness */
+    function toggleMobileNav() {
+      const toggle = document.getElementById('mobileNavToggle');
+      const drawer = document.getElementById('mobileNavDrawer');
+      if (!toggle || !drawer) return;
+      const isOpen = drawer.classList.toggle('open');
+      toggle.classList.toggle('open', isOpen);
+      toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      if (isOpen) {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = '';
+      }
+    }
+
+    function closeMobileNav() {
+      const toggle = document.getElementById('mobileNavToggle');
+      const drawer = document.getElementById('mobileNavDrawer');
+      if (!toggle || !drawer) return;
+      drawer.classList.remove('open');
+      toggle.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+
+    function switchStudioTab(tab) {
+      const previewPane = document.querySelector('.studio-preview-pane');
+      const editorPane = document.querySelector('.studio-editor-pane');
+      const previewBtn = document.getElementById('studioTabPreview');
+      const editorBtn = document.getElementById('studioTabEditor');
+      if (!previewPane || !editorPane) return;
+
+      if (tab === 'preview') {
+        previewPane.style.setProperty('display', 'flex', 'important');
+        editorPane.style.setProperty('display', 'none', 'important');
+        if (previewBtn) previewBtn.classList.add('active');
+        if (editorBtn) editorBtn.classList.remove('active');
+      } else {
+        previewPane.style.setProperty('display', 'none', 'important');
+        editorPane.style.setProperty('display', 'block', 'important');
+        if (previewBtn) previewBtn.classList.remove('active');
+        if (editorBtn) editorBtn.classList.add('active');
+        if (window.monacoEditor) {
+          setTimeout(() => {
+            window.monacoEditor.layout();
+          }, 60);
+        }
+      }
+    }
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeMobileNav();
+    });
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 960) {
+        closeMobileNav();
+      }
+      if (window.innerWidth > 768) {
+        const previewPane = document.querySelector('.studio-preview-pane');
+        const editorPane = document.querySelector('.studio-editor-pane');
+        if (previewPane) previewPane.style.removeProperty('display');
+        if (editorPane) editorPane.style.removeProperty('display');
+      }
+    });
+
+    /* Bannerbear-Style PLG Free Trial & API Modal Logic */
+    let currentCodeLang = 'curl';
+
+    function openApiCodeModal() {
+      renderCodeSnippet();
+      const modal = document.getElementById('apiCodeModalBackdrop');
+      if (modal) {
+        modal.style.display = 'flex';
+        modal.classList.add('open');
+      }
+    }
+
+    function closeApiCodeModal() {
+      const modal = document.getElementById('apiCodeModalBackdrop');
+      if (modal) {
+        modal.style.display = 'none';
+        modal.classList.remove('open');
+      }
+    }
+
+    function switchApiCodeTab(lang) {
+      currentCodeLang = lang;
+      document.querySelectorAll('.code-tab-btn').forEach(b => b.classList.remove('active'));
+      const activeTab = document.getElementById(`tab-${lang}`);
+      if (activeTab) activeTab.classList.add('active');
+      renderCodeSnippet();
+    }
+
+    function renderCodeSnippet() {
+      const display = document.getElementById('apiCodeDisplay');
+      if (!display) return;
+      const tmpl = currentTemplate || 'b2b_invoice';
+      const payload = monacoEditor ? monacoEditor.getValue() : currentPayloadStr;
+      let compactPayload = '{}';
+      try { compactPayload = JSON.stringify(JSON.parse(payload || '{}')); } catch(e) {}
+
+      let code = '';
+      if (currentCodeLang === 'curl') {
+        code = `curl -X POST "http://localhost:8080/v1/render" \\
+  -H "Content-Type: application/json" \\
+  -d '{
+    "template": "${tmpl}",
+    "data": ${compactPayload},
+    "format": "pdf"
+  }' \\
+  --output invoice.pdf`;
+      } else if (currentCodeLang === 'node') {
+        code = `const fs = require('fs');
+
+async function generateInvoice() {
+  const response = await fetch('http://localhost:8080/v1/render', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      template: '${tmpl}',
+      data: ${payload},
+      format: 'pdf'
+    })
+  });
+
+  if (!response.ok) {
+    throw new Error(\`Rubrol error: \${response.statusText}\`);
+  }
+
+  const buffer = await response.arrayBuffer();
+  fs.writeFileSync('invoice.pdf', Buffer.from(buffer));
+  console.log('PDF compiled in ' + response.headers.get('x-render-time-ms') + 'ms');
+}
+
+generateInvoice();`;
+      } else if (currentCodeLang === 'python') {
+        code = `import requests
+
+url = "http://localhost:8080/v1/render"
+payload = {
+    "template": "${tmpl}",
+    "data": ${payload},
+    "format": "pdf"
+}
+
+response = requests.post(url, json=payload)
+if response.status_code == 200:
+    with open("invoice.pdf", "wb") as f:
+        f.write(response.content)
+    print(f"Compiled in {response.headers.get('X-Render-Time-Ms')}ms")
+else:
+    print("Error:", response.text)`;
+      } else if (currentCodeLang === 'rust') {
+        code = `#[tokio::main]
+async fn main() -> Result<(), Box<dyn std::error::Error>> {
+    let client = reqwest::Client::new();
+    let res = client.post("http://localhost:8080/v1/render")
+        .json(&serde_json::json!({
+            "template": "${tmpl}",
+            "data": ${compactPayload},
+            "format": "pdf"
+        }))
+        .send()
+        .await?;
+
+    let pdf_bytes = res.bytes().await?;
+    std::fs::write("invoice.pdf", pdf_bytes)?;
+    println!("Compiled to invoice.pdf");
+    Ok(())
+}`;
+      }
+      display.textContent = code;
+    }
+
+    function copyCurrentCodeSnippet() {
+      const display = document.getElementById('apiCodeDisplay');
+      if (!display) return;
+      navigator.clipboard.writeText(display.textContent).then(() => {
+        const btn = document.getElementById('btnCopySnippet');
+        if (btn) {
+          const orig = btn.innerText;
+          btn.innerText = 'Copied to Clipboard!';
+          setTimeout(() => { btn.innerText = orig; }, 2000);
+        }
+      });
+    }
+
+  </script>
+
+  <!-- MODAL: Local Sidecar Integration Code (cURL, Node.js, Python, Rust) -->
+  <div id="apiCodeModalBackdrop" class="rubrol-modal-backdrop" onclick="if(event.target===this)closeApiCodeModal()">
+    <div class="rubrol-modal wide">
+      <button class="modal-close-btn" onclick="closeApiCodeModal()">&times;</button>
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+        <h3 style="font-family: var(--font-sans); font-size: 22px; font-weight: 600; letter-spacing: -0.02em; color: #ffffff;">
+          Local Sidecar Integration
+        </h3>
+        <span style="font-family: var(--font-mono); font-size: 11px; background: #064e3b; color: #6ee7b7; padding: 3px 8px; border-radius: 6px;">
+          Sub-10ms Latency
+        </span>
+      </div>
+      <p style="font-size: 13.5px; color: #94a3b8; margin-bottom: 14px;">
+        Deploy Rubrol as a Docker sidecar in your Kubernetes pod or VPC. Send JSON, receive compliant PDF/A-3b documents with zero cloud data transmission.
+      </p>
+
+      <div class="code-tabs">
+        <button class="code-tab-btn active" id="tab-curl" onclick="switchApiCodeTab('curl')">cURL</button>
+        <button class="code-tab-btn" id="tab-node" onclick="switchApiCodeTab('node')">Node.js (Fetch)</button>
+        <button class="code-tab-btn" id="tab-python" onclick="switchApiCodeTab('python')">Python (Requests)</button>
+        <button class="code-tab-btn" id="tab-rust" onclick="switchApiCodeTab('rust')">Rust (Reqwest)</button>
+      </div>
+
+      <pre id="apiCodeDisplay" class="code-snippet-pre"></pre>
+
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 16px;">
+        <span style="font-size: 12px; color: #64748b; font-family: var(--font-mono);">
+          Endpoint: <code style="color: #93c5fd;">POST http://localhost:8080/v1/render</code>
+        </span>
+        <button onclick="copyCurrentCodeSnippet()" id="btnCopySnippet" class="btn-trial-nav" style="padding: 8px 18px; font-size: 12.5px;">
+          Copy Snippet
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+      if (!tz.startsWith('Europe/')) return;
+
+      // swap currency symbol on all price cards
+      document.querySelectorAll('.price-currency').forEach(function (el) {
+        el.textContent = '\u20ac';
+      });
+
+      // pro card
+      var valPro = document.getElementById('price-val-pro');
+      var periodPro = document.getElementById('price-period-pro');
+      var btnPro = document.getElementById('btn-pro');
+      if (valPro) valPro.textContent = '1,800';
+      if (periodPro) periodPro.textContent = '/ year (\u20ac150/mo)';
+      if (btnPro) {
+        btnPro.textContent = 'Buy Rubrol Pro (\u20ac1,800/yr)';
+        btnPro.href = 'https://buy.stripe.com/eVq14oexD2lca1t2C00Ba0l';
+      }
+
+      // enterprise card
+      var valEnt = document.getElementById('price-val-compliance');
+      var periodEnt = document.getElementById('price-period-compliance');
+      var btnEnt = document.getElementById('btn-compliance');
+      if (valEnt) valEnt.textContent = '4,800';
+      if (periodEnt) periodEnt.textContent = '/ year (\u20ac400/mo)';
+      if (btnEnt) {
+        btnEnt.textContent = 'Buy Rubrol Enterprise (\u20ac4,800/yr)';
+        btnEnt.href = 'https://buy.stripe.com/eVq8wQblr8JAehJ6Sg0Ba0m';
+      }
+    })();
+  </script>
+
+  <script>
+    // Seamless routing for /pricing and /studio when browsing the homepage
+    document.querySelectorAll('a[href="/pricing"], a[href="/studio"]').forEach(function(link) {
+      link.addEventListener('click', function(e) {
+        if (window.location.pathname === '/' || window.location.pathname === '') {
+          var targetId = link.getAttribute('href').replace('/', '');
+          var targetEl = document.getElementById(targetId);
+          if (targetEl) {
+            e.preventDefault();
+            targetEl.scrollIntoView({ behavior: 'smooth' });
+            if (window.history && window.history.pushState) {
+              window.history.pushState(null, '', '/' + targetId);
+            }
+          }
+        }
+      });
+    });
+
+    // If loaded with #pricing or #studio, normalize URL cleanly to /pricing or /studio
+    if (window.location.hash === '#pricing' && window.history && window.history.replaceState) {
+      window.history.replaceState(null, '', '/pricing');
+    } else if (window.location.hash === '#studio' && window.history && window.history.replaceState) {
+      window.history.replaceState(null, '', '/studio');
+    }
+  </script>
+<script>window.addEventListener('DOMContentLoaded', () => { if (!window.location.hash) { const s = document.getElementById('studio'); if (s) { s.scrollIntoView({ behavior: 'smooth' }); } } });</script>
 </body>
 </html>

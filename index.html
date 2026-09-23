@@ -3916,7 +3916,7 @@
       </div>
 
       <h1 class="hero-title">
-        PDF generation is <span class="hero-title-muted">no longer a background job.</span>
+        PDF generation is no longer a background job.
       </h1>
 
       <p class="hero-subtitle">
@@ -5914,6 +5914,9 @@ ${err.message}</div>`;
           c.classList.add('tier-dimmed');
         }
       });
+      [ribbonDev, ribbonPro, ribbonComp].forEach(r => {
+        if (r) r.style.display = 'none';
+      });
       [roiDev, roiPro, roiComp].forEach(ro => {
         if (ro) ro.style.display = 'none';
       });
@@ -5924,6 +5927,7 @@ ${err.message}</div>`;
           cardDev.classList.add('tier-active');
           cardDev.classList.remove('tier-dimmed');
         }
+        if (ribbonDev) ribbonDev.style.display = 'inline-flex';
         if (roiDev) roiDev.style.display = 'block';
         calcRecPlan.innerText = "Rubrol Community ($0 Free)";
         calcRecPlan.style.color = "#10b981";
@@ -5937,6 +5941,7 @@ ${err.message}</div>`;
           cardPro.classList.add('tier-active');
           cardPro.classList.remove('tier-dimmed');
         }
+        if (ribbonPro) ribbonPro.style.display = 'inline-flex';
         if (roiPro) {
           roiPro.style.display = 'block';
           const netTco = totalTcoSaved - 1800;
@@ -5955,6 +5960,7 @@ ${err.message}</div>`;
           cardComp.classList.add('tier-active');
           cardComp.classList.remove('tier-dimmed');
         }
+        if (ribbonComp) ribbonComp.style.display = 'inline-flex';
         if (roiComp) {
           roiComp.style.display = 'block';
           const netTco = totalTcoSaved - 4800;
