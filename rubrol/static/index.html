@@ -1826,37 +1826,6 @@
       border-color: rgba(255, 255, 255, 0.2);
     }
 
-    .tier-rec-pill {
-      display: none;
-      align-items: center;
-      gap: 6px;
-      font-family: var(--font-mono);
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      color: #34d399;
-      background: rgba(16, 185, 129, 0.12);
-      border: 1px solid rgba(16, 185, 129, 0.3);
-      padding: 3px 10px;
-      border-radius: 9999px;
-      margin-bottom: 14px;
-      align-self: flex-start;
-      animation: rec-badge-pop 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .rec-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: #10b981;
-      box-shadow: 0 0 8px rgba(16, 185, 129, 0.9);
-      animation: pulse-dot 2s infinite ease-in-out;
-    }
-
-    .price-card.tier-active .tier-rec-pill {
-      display: inline-flex;
-    }
-
     .price-card.featured {
       border: 1px solid rgba(255, 255, 255, 0.24);
       box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.16), 0 20px 50px rgba(0, 0, 0, 0.7);
@@ -5340,10 +5309,6 @@
       <div class="pricing-deck">
         <!-- Tier 1: Rubrol Community -->
         <div id="card-developer" class="price-card">
-          <div class="tier-rec-pill">
-            <span class="rec-dot"></span>
-            <span>Recommended</span>
-          </div>
           <span id="ribbon-developer" class="featured-ribbon" style="display: none;">Community Core</span>
           <div>
             <h3 class="price-plan-name">Rubrol Community</h3>
@@ -5371,10 +5336,6 @@
 
         <!-- Tier 2: Rubrol Pro -->
         <div id="card-pro" class="price-card">
-          <div class="tier-rec-pill">
-            <span class="rec-dot"></span>
-            <span>Recommended</span>
-          </div>
           <span id="ribbon-pro" class="featured-ribbon" style="display: none;">Commercial License</span>
           <div>
             <h3 class="price-plan-name">Rubrol Pro</h3>
@@ -5404,10 +5365,6 @@
 
         <!-- Tier 3: Rubrol Enterprise -->
         <div id="card-compliance" class="price-card">
-          <div class="tier-rec-pill">
-            <span class="rec-dot"></span>
-            <span>Recommended</span>
-          </div>
           <span id="ribbon-compliance" class="featured-ribbon" style="display: none;">Regulatory Standard</span>
           <div>
             <h3 class="price-plan-name">Rubrol Enterprise</h3>
