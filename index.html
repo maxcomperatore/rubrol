@@ -3196,6 +3196,116 @@
       gap: 16px;
     }
 
+    /* USE CASES & INDUSTRIES SHOWCASE (SEO VERTICALS) */
+    .section-use-cases {
+      position: relative;
+    }
+    .use-cases-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .use-case-card {
+      background: #141722;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 28px 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+    }
+    .use-case-card:hover {
+      background: #181c2a;
+      border-color: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+      box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.6);
+    }
+    .use-case-badge-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+    .use-case-pill {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+    .pill-amber { background: rgba(245, 158, 11, 0.15); color: #f59e0b; border: 1px solid rgba(245, 158, 11, 0.3); }
+    .pill-emerald { background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3); }
+    .pill-blue { background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); }
+    .pill-purple { background: rgba(192, 132, 252, 0.15); color: #c084fc; border: 1px solid rgba(192, 132, 252, 0.3); }
+    .pill-cyan { background: rgba(6, 182, 212, 0.15); color: #22d3ee; border: 1px solid rgba(6, 182, 212, 0.3); }
+    .pill-rose { background: rgba(244, 63, 94, 0.15); color: #fb7185; border: 1px solid rgba(244, 63, 94, 0.3); }
+    .use-case-stat {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: #94a3b8;
+    }
+    .use-case-title {
+      font-family: var(--font-sans);
+      font-size: 19px;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: -0.015em;
+      margin-bottom: 10px;
+    }
+    .use-case-desc {
+      font-size: 13.5px;
+      line-height: 1.55;
+      color: #94a3b8;
+      margin-bottom: 16px;
+    }
+    .use-case-features {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 20px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .use-case-features li {
+      font-size: 12px;
+      color: #cbd5e1;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .use-case-features li::before {
+      content: "✓";
+      color: #10b981;
+      font-weight: 700;
+      font-size: 11px;
+    }
+    .use-case-footer {
+      padding-top: 14px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      font-size: 12px;
+    }
+    .use-case-tech {
+      font-family: var(--font-mono);
+      color: #64748b;
+      font-size: 11px;
+    }
+    .use-case-link {
+      font-family: var(--font-mono);
+      color: var(--amber-light);
+      font-size: 12px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+    .use-case-link:hover {
+      color: #ffffff;
+    }
+
     /* Media Queries: Breakpoint 960px */
     @media (max-width: 960px) {
       .nav-links,
@@ -3232,6 +3342,10 @@
         border-top: 1px solid rgba(255, 255, 255, 0.1);
         padding-left: 0;
         padding-top: 24px;
+      }
+      .use-cases-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 16px !important;
       }
     }
 
@@ -3468,6 +3582,13 @@
       }
       .pillar-card {
         padding: 18px 16px;
+      }
+      .use-cases-grid {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+      }
+      .use-case-card {
+        padding: 22px 18px !important;
       }
       .guides-grid {
         grid-template-columns: 1fr;
@@ -4228,10 +4349,175 @@
       </a>
 
       <div class="nav-links">
-        <!-- 0. Why Rubrol Direct Link -->
-        <a href="#benchmarks" class="nav-link">Why Rubrol</a>
+        <!-- 1. Solutions: Use Cases & Industries Dropdown -->
+        <div class="nav-item-dropdown align-left">
+          <div class="nav-dropdown-bridge"></div>
+          <button class="nav-dropdown-trigger" aria-haspopup="true" aria-expanded="false">
+            Solutions <svg class="nav-chevron" viewBox="0 0 10 10"><path d="M2.5 3.75L5 6.25L7.5 3.75"/></svg>
+          </button>
+          <div class="g2i-mega-menu" role="menu">
+            <!-- Left Column: High-Intent Use Cases -->
+            <div class="mega-col">
+              <div class="mega-col-header">High-Intent Use Cases</div>
+              <div class="mega-col-list">
+                <a href="#use-cases" class="mega-item-row">
+                  <div class="mega-thumb">
+                    <svg viewBox="0 0 52 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <rect width="52" height="36" rx="6" fill="#0d1117"/>
+                      <rect x="10" y="7" width="22" height="22" rx="2" fill="#161b22" stroke="#38bdf8" stroke-width="1"/>
+                      <line x1="14" y1="12" x2="24" y2="12" stroke="#38bdf8" stroke-width="1.2" stroke-linecap="round"/>
+                      <line x1="14" y1="16" x2="28" y2="16" stroke="#94a3b8" stroke-width="1" stroke-linecap="round"/>
+                      <line x1="14" y1="20" x2="26" y2="20" stroke="#94a3b8" stroke-width="1" stroke-linecap="round"/>
+                      <circle cx="37" cy="18" r="6" fill="#10b981" fill-opacity="0.2" stroke="#10b981" stroke-width="1"/>
+                      <path d="M35 18L36.5 19.5L39 16.5" stroke="#10b981" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </div>
+                  <div class="mega-item-info">
+                    <div class="mega-item-title">
+                      B2B SaaS Invoicing <span class="mega-badge-pill mega-badge-emerald">High Volume</span>
+                    </div>
+                    <div class="mega-item-desc">Multi-tenant recurring billing, dynamic line items &amp; tax tables</div>
+                  </div>
+                </a>
 
-        <!-- 1. Benchmarks & Teardowns Dropdown (Active in User's Screenshot) -->
+                <a href="articles/stripe-facturx-zugferd.html" class="mega-item-row">
+                  <div class="mega-thumb">
+                    <svg viewBox="0 0 52 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <rect width="52" height="36" rx="6" fill="#0c141c"/>
+                      <rect x="10" y="7" width="20" height="22" rx="2" fill="#1e293b" stroke="#38bdf8" stroke-width="1"/>
+                      <rect x="24" y="15" width="16" height="14" rx="2" fill="#047857" stroke="#34d399" stroke-width="1"/>
+                      <text x="32" y="24" font-family="'JetBrains Mono', monospace" font-size="6" font-weight="700" fill="#ffffff" text-anchor="middle">XML</text>
+                      <path d="M14 12H22M14 15H20" stroke="#94a3b8" stroke-width="1" stroke-linecap="round"/>
+                    </svg>
+                  </div>
+                  <div class="mega-item-info">
+                    <div class="mega-item-title">
+                      Factur-X &amp; ZUGFeRD <span class="mega-badge-pill mega-badge-emerald">EN 16931</span>
+                    </div>
+                    <div class="mega-item-desc">French &amp; German legally compliant hybrid e-invoicing</div>
+                  </div>
+                </a>
+
+                <a href="#use-cases" class="mega-item-row">
+                  <div class="mega-thumb">
+                    <svg viewBox="0 0 52 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <rect width="52" height="36" rx="6" fill="#11131a"/>
+                      <rect x="9" y="8" width="34" height="20" rx="2" fill="#1a1d29" stroke="#6366f1" stroke-width="1"/>
+                      <line x1="9" y1="14" x2="43" y2="14" stroke="#4338ca" stroke-width="1"/>
+                      <line x1="20" y1="8" x2="20" y2="28" stroke="#4338ca" stroke-width="1"/>
+                      <line x1="31" y1="8" x2="31" y2="28" stroke="#4338ca" stroke-width="1"/>
+                      <rect x="23" y="17" width="5" height="2" rx="0.5" fill="#38bdf8"/>
+                      <rect x="34" y="17" width="6" height="2" rx="0.5" fill="#10b981"/>
+                      <rect x="12" y="21" width="5" height="2" rx="0.5" fill="#94a3b8"/>
+                      <rect x="34" y="21" width="6" height="2" rx="0.5" fill="#10b981"/>
+                    </svg>
+                  </div>
+                  <div class="mega-item-info">
+                    <div class="mega-item-title">
+                      Financial Statements &amp; Ledgers <span class="mega-badge-pill mega-badge-amber">Audit</span>
+                    </div>
+                    <div class="mega-item-desc">Multi-page balance sheets, P&amp;L ledgers &amp; zero layout shifts</div>
+                  </div>
+                </a>
+
+                <a href="/studio" class="mega-item-row">
+                  <div class="mega-thumb">
+                    <svg viewBox="0 0 52 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <rect width="52" height="36" rx="6" fill="#141109"/>
+                      <rect x="14" y="6" width="24" height="24" rx="2" fill="#24190c" stroke="#f59e0b" stroke-width="1"/>
+                      <rect x="18" y="10" width="6" height="6" fill="#f59e0b"/>
+                      <rect x="28" y="10" width="6" height="6" fill="#f59e0b"/>
+                      <rect x="18" y="20" width="6" height="6" fill="#f59e0b"/>
+                      <rect x="28" y="20" width="6" height="2" fill="#fbbf24"/>
+                      <rect x="28" y="24" width="6" height="2" fill="#fbbf24"/>
+                    </svg>
+                  </div>
+                  <div class="mega-item-info">
+                    <div class="mega-item-title">
+                      Instant Receipts &amp; POS Slips <span class="mega-badge-pill mega-badge-emerald">5.8ms</span>
+                    </div>
+                    <div class="mega-item-desc">High-speed transactional slips, dynamic barcodes &amp; QR codes</div>
+                  </div>
+                </a>
+              </div>
+            </div>
+
+            <!-- Right Column: Vertical Industries -->
+            <div class="mega-col">
+              <div class="mega-col-header">Industry Verticals</div>
+              <div class="mega-col-list">
+                <a href="#use-cases" class="mega-item-row">
+                  <div class="mega-icon-sq">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="12" y1="1" x2="12" y2="23"/>
+                      <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                    </svg>
+                  </div>
+                  <div class="mega-item-info">
+                    <div class="mega-item-title">FinTech &amp; Neo-Banks</div>
+                    <div class="mega-item-desc">Real-time banking statements &amp; PCI-compliant sidecar</div>
+                  </div>
+                </a>
+
+                <a href="#use-cases" class="mega-item-row">
+                  <div class="mega-icon-sq">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="9" cy="21" r="1"/>
+                      <circle cx="20" cy="21" r="1"/>
+                      <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+                    </svg>
+                  </div>
+                  <div class="mega-item-info">
+                    <div class="mega-item-title">E-Commerce &amp; Marketplaces</div>
+                    <div class="mega-item-desc">Multi-vendor splits, credit notes &amp; packing manifests</div>
+                  </div>
+                </a>
+
+                <a href="#use-cases" class="mega-item-row">
+                  <div class="mega-icon-sq">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c084fc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                    </svg>
+                  </div>
+                  <div class="mega-item-info">
+                    <div class="mega-item-title">Healthcare &amp; Life Sciences</div>
+                    <div class="mega-item-desc">Air-gapped lab reports &amp; HIPAA zero-PII data privacy</div>
+                  </div>
+                </a>
+
+                <a href="#use-cases" class="mega-item-row">
+                  <div class="mega-icon-sq">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="1" y="3" width="15" height="13"/>
+                      <polygon points="16 8 20 8 23 11 23 16 16 16 8"/>
+                      <circle cx="5.5" cy="18.5" r="2.5"/>
+                      <circle cx="18.5" cy="18.5" r="2.5"/>
+                    </svg>
+                  </div>
+                  <div class="mega-item-info">
+                    <div class="mega-item-title">Logistics &amp; Supply Chain</div>
+                    <div class="mega-item-desc">Automated bills of lading, freight orders &amp; customs forms</div>
+                  </div>
+                </a>
+
+                <a href="#use-cases" class="mega-item-row">
+                  <div class="mega-icon-sq">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e2e8f0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                      <path d="M9 12l2 2 4-4"/>
+                    </svg>
+                  </div>
+                  <div class="mega-item-info">
+                    <div class="mega-item-title">LegalTech &amp; RegTech</div>
+                    <div class="mega-item-desc">Certified ISO 19005 archival, audit trails &amp; contracts</div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Benchmarks Dropdown -->
         <div class="nav-item-dropdown align-center">
           <div class="nav-dropdown-bridge"></div>
           <button class="nav-dropdown-trigger" aria-haspopup="true" aria-expanded="false">
@@ -4606,6 +4892,64 @@
     <!-- Mobile Navigation Drawer -->
     <div class="mobile-nav-drawer" id="mobileNavDrawer" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
       <div class="mobile-nav-inner">
+        <!-- Section 0: Solutions & Industries -->
+        <div class="mobile-nav-section">
+          <div class="mobile-nav-group-title">Solutions &amp; Industries</div>
+          <div class="mobile-nav-card-group">
+            <a href="#use-cases" class="mobile-nav-link" onclick="closeMobileNav()">
+              <div class="mobile-nav-link-left">
+                <span>B2B SaaS Invoicing</span>
+              </div>
+              <div class="mobile-nav-link-right">
+                <span class="mobile-nav-badge">High Volume</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mobile-nav-chevron"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </div>
+            </a>
+            <a href="articles/stripe-facturx-zugferd.html" class="mobile-nav-link" onclick="closeMobileNav()">
+              <div class="mobile-nav-link-left">
+                <span>Factur-X &amp; ZUGFeRD E-Invoicing</span>
+              </div>
+              <div class="mobile-nav-link-right">
+                <span class="mobile-nav-badge">EN 16931</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mobile-nav-chevron"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </div>
+            </a>
+            <a href="#use-cases" class="mobile-nav-link" onclick="closeMobileNav()">
+              <div class="mobile-nav-link-left">
+                <span>FinTech &amp; Banking Statements</span>
+              </div>
+              <div class="mobile-nav-link-right">
+                <span class="mobile-nav-badge">5.8ms</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mobile-nav-chevron"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </div>
+            </a>
+            <a href="#use-cases" class="mobile-nav-link" onclick="closeMobileNav()">
+              <div class="mobile-nav-link-left">
+                <span>E-Commerce &amp; Packing Slips</span>
+              </div>
+              <div class="mobile-nav-link-right">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mobile-nav-chevron"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </div>
+            </a>
+            <a href="#use-cases" class="mobile-nav-link" onclick="closeMobileNav()">
+              <div class="mobile-nav-link-left">
+                <span>Healthcare &amp; MedTech (HIPAA)</span>
+              </div>
+              <div class="mobile-nav-link-right">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mobile-nav-chevron"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </div>
+            </a>
+            <a href="#use-cases" class="mobile-nav-link" onclick="closeMobileNav()">
+              <div class="mobile-nav-link-left">
+                <span>Logistics &amp; Customs Manifests</span>
+              </div>
+              <div class="mobile-nav-link-right">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mobile-nav-chevron"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </div>
+            </a>
+          </div>
+        </div>
+
         <!-- Section 1 -->
         <div class="mobile-nav-section">
           <div class="mobile-nav-group-title">Engine &amp; Workstation</div>
@@ -5212,6 +5556,155 @@
         <div class="pillar-card">
           <h4 class="pillar-title">Zero Memory Leaks</h4>
           <p class="pillar-text">Written in memory-safe compiled Rust. No V8 garbage collection storms, no lingering zombie Chrome renderer processes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENTERPRISE USE CASES & VERTICAL INDUSTRIES (HIGH-INTENT SEO SUITE) -->
+  <section id="use-cases" class="section-use-cases" style="background: #0d0f17; padding: 100px 0; border-bottom: 1px solid var(--bg-obsidian-border);">
+    <div class="container">
+      <div style="text-align: center; margin-bottom: 56px;">
+        <span class="editorial-label" style="color: var(--amber-light);">ENTERPRISE SOLUTIONS &amp; VERTICALS</span>
+        <h2 style="font-family: var(--font-sans); font-size: 42px; font-weight: 700; color: #ffffff; margin-bottom: 16px; letter-spacing: -0.03em;">
+          Engineered for High-Throughput Document Workloads
+        </h2>
+        <p style="font-size: 16px; color: #94a3b8; max-width: 720px; margin: 0 auto;">
+          From regulated French and German Factur-X e-invoicing to real-time FinTech banking statements. Built for high-scale architectures that cannot tolerate headless browser crashes or memory leaks.
+        </p>
+      </div>
+
+      <div class="use-cases-grid">
+        <!-- Card 1: B2B SaaS Invoicing -->
+        <div class="use-case-card">
+          <div>
+            <div class="use-case-badge-row">
+              <span class="use-case-pill pill-amber">B2B SaaS</span>
+              <span class="use-case-stat">&lt;6ms P99</span>
+            </div>
+            <h3 class="use-case-title">High-Volume SaaS Invoicing</h3>
+            <p class="use-case-desc">
+              Multi-tenant customer billing, metered usage calculations, dynamic coupon tiers, and automatic VAT breakdowns with sub-10ms latency.
+            </p>
+            <ul class="use-case-features">
+              <li>Deterministic line-item pagination</li>
+              <li>Multi-currency formatting (EUR, USD, GBP, JPY)</li>
+              <li>Zero V8 garbage collection spikes</li>
+            </ul>
+          </div>
+          <div class="use-case-footer">
+            <span class="use-case-tech">REST API &bull; Docker Sidecar</span>
+          </div>
+        </div>
+
+        <!-- Card 2: Factur-X & ZUGFeRD -->
+        <div class="use-case-card">
+          <div>
+            <div class="use-case-badge-row">
+              <span class="use-case-pill pill-emerald">European Compliance</span>
+              <span class="use-case-stat">EN 16931</span>
+            </div>
+            <h3 class="use-case-title">Turnkey Factur-X &amp; ZUGFeRD</h3>
+            <p class="use-case-desc">
+              French 2026-2027 e-invoicing mandate &amp; German B2B regulatory compliance. Embeds UN/CEFACT CII XML into ISO 19005-3 PDF/A-3b containers.
+            </p>
+            <ul class="use-case-features">
+              <li>Built-in Schematron rule assertions</li>
+              <li>DIN 5008 &amp; Chorus Pro verified</li>
+              <li>Automated tax arithmetic validation</li>
+            </ul>
+          </div>
+          <div class="use-case-footer">
+            <a href="articles/stripe-facturx-zugferd.html" class="use-case-link">Read Stripe to Factur-X Guide &rarr;</a>
+          </div>
+        </div>
+
+        <!-- Card 3: FinTech & Banking -->
+        <div class="use-case-card">
+          <div>
+            <div class="use-case-badge-row">
+              <span class="use-case-pill pill-blue">FinTech &amp; Neo-Banks</span>
+              <span class="use-case-stat">1,200 req/s</span>
+            </div>
+            <h3 class="use-case-title">Core Banking Statements &amp; Ledgers</h3>
+            <p class="use-case-desc">
+              Monthly account balances, investment portfolios, and transaction histories compiled without external cloud dependency or customer PII leaks.
+            </p>
+            <ul class="use-case-features">
+              <li>100% on-premise VPC execution</li>
+              <li>Multi-page transaction ledger tables</li>
+              <li>Pixel-perfect kerning and font embedding</li>
+            </ul>
+          </div>
+          <div class="use-case-footer">
+            <span class="use-case-tech">Zero-Data Retention Sidecar</span>
+          </div>
+        </div>
+
+        <!-- Card 4: Receipts & POS -->
+        <div class="use-case-card">
+          <div>
+            <div class="use-case-badge-row">
+              <span class="use-case-pill pill-purple">Point-of-Sale</span>
+              <span class="use-case-stat">5.8ms</span>
+            </div>
+            <h3 class="use-case-title">Real-Time Receipts &amp; Order Slips</h3>
+            <p class="use-case-desc">
+              Instant customer receipts with dynamic QR codes, barcodes, and digital payment confirmations generated synchronously at transaction time.
+            </p>
+            <ul class="use-case-features">
+              <li>Synchronous HTTP response (no async queue)</li>
+              <li>Native vector QR &amp; barcode rendering</li>
+              <li>Lightweight 24MB RAM footprint</li>
+            </ul>
+          </div>
+          <div class="use-case-footer">
+            <a href="/studio" class="use-case-link">Test in Live Studio &rarr;</a>
+          </div>
+        </div>
+
+        <!-- Card 5: E-Commerce -->
+        <div class="use-case-card">
+          <div>
+            <div class="use-case-badge-row">
+              <span class="use-case-pill pill-cyan">E-Commerce &amp; Retail</span>
+              <span class="use-case-stat">413x Speed</span>
+            </div>
+            <h3 class="use-case-title">Packing Slips &amp; Customs Manifests</h3>
+            <p class="use-case-desc">
+              Multi-vendor order fulfillment, automated credit memos, return shipping labels, and cross-border commercial customs declarations.
+            </p>
+            <ul class="use-case-features">
+              <li>Batch rendering via local CLI or Docker</li>
+              <li>Custom vendor logo and color branding</li>
+              <li>Eliminates headless Chrome OOM kills</li>
+            </ul>
+          </div>
+          <div class="use-case-footer">
+            <span class="use-case-tech">High-Concurrency Workers</span>
+          </div>
+        </div>
+
+        <!-- Card 6: Healthcare & Logistics -->
+        <div class="use-case-card">
+          <div>
+            <div class="use-case-badge-row">
+              <span class="use-case-pill pill-rose">MedTech &amp; Logistics</span>
+              <span class="use-case-stat">Air-Gapped</span>
+            </div>
+            <h3 class="use-case-title">Regulated Reports &amp; Bills of Lading</h3>
+            <p class="use-case-desc">
+              Clinical diagnostic reports and logistics freight manifests requiring tamper-evident archival, audit trails, and strict data governance.
+            </p>
+            <ul class="use-case-features">
+              <li>HIPAA &amp; GDPR compliant architecture</li>
+              <li>Certified ISO 19005-2 PDF/A-2b archival</li>
+              <li>Offline Ed25519 license validation</li>
+            </ul>
+          </div>
+          <div class="use-case-footer">
+            <a href="/pricing" class="use-case-link">View Commercial Suite &rarr;</a>
+          </div>
         </div>
       </div>
     </div>
