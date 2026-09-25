@@ -1,0 +1,94 @@
+{
+  "version": "v1.1.0",
+  "entity": {
+    "type": "individual",
+    "role": "owner",
+    "name": "Max Comperatore",
+    "email": "maxcomperatore@gmail.com",
+    "description": "Software engineer and systems builder from Argentina. Creator and maintainer of Rubrol, an open-source Rust document generation engine powered by Typst.",
+    "webpageUrl": {
+      "url": "https://rubrol.com"
+    }
+  },
+  "projects": [
+    {
+      "guid": "rubrol",
+      "name": "Rubrol",
+      "description": "Open-source, sub-10ms native Rust document engine powered by Typst to replace headless Chromium/Puppeteer for high-throughput PDF generation and European e-invoicing compliance (PDF/A-3b, Factur-X, ZUGFeRD, EN 16931).",
+      "webpageUrl": {
+        "url": "https://rubrol.com"
+      },
+      "repositoryUrl": {
+        "url": "https://github.com/maxcomperatore/rubrol"
+      },
+      "licenses": [
+        "spdx:LGPL-3.0-only"
+      ],
+      "tags": [
+        "developer-tools",
+        "rust",
+        "pdf",
+        "typst",
+        "invoicing",
+        "compliance",
+        "factur-x"
+      ]
+    }
+  ],
+  "funding": {
+    "channels": [
+      {
+        "guid": "github-sponsors",
+        "type": "payment-provider",
+        "address": "https://github.com/sponsors/maxcomperatore",
+        "description": "GitHub Sponsors program"
+      },
+      {
+        "guid": "mercury-bank",
+        "type": "bank",
+        "address": "Available on request",
+        "description": "US ACH and domestic wire via Mercury"
+      }
+    ],
+    "plans": [
+      {
+        "guid": "supporter",
+        "status": "active",
+        "name": "Open Source Supporter",
+        "description": "Support ongoing open-source development, maintenance, and bug fixes.",
+        "amount": 25,
+        "currency": "USD",
+        "frequency": "monthly",
+        "channels": [
+          "github-sponsors"
+        ]
+      },
+      {
+        "guid": "infra-sponsor",
+        "status": "active",
+        "name": "Infrastructure & Test Bench Sponsor",
+        "description": "Sponsor CI/CD test runners, multi-arch benchmark nodes, and KoSIT/veraPDF compliance suites.",
+        "amount": 250,
+        "currency": "USD",
+        "frequency": "monthly",
+        "channels": [
+          "github-sponsors",
+          "mercury-bank"
+        ]
+      },
+      {
+        "guid": "floss-grant",
+        "status": "active",
+        "name": "FLOSS/Fund Grant",
+        "description": "Grant to support full-time core Rust development, typst compiler integrations, and European e-invoicing standardization.",
+        "amount": 10000,
+        "currency": "USD",
+        "frequency": "one-time",
+        "channels": [
+          "mercury-bank",
+          "github-sponsors"
+        ]
+      }
+    ]
+  }
+}
