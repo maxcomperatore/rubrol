@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free HTML to Typst Online Converter - Syntax Translator - Rubrol</title>
+  <meta name="description" content="Convert HTML and CSS markup into clean, native Typst code in real time. Translate tables, formatting, headings, and stylesheets instantly in your browser.">
+  <link rel="icon" type="image/png" href="/assets/logo.png">
+
+  <link rel="canonical" href="https://rubrol.com/tools/html-to-typst">
+  <meta name="keywords" content="html to typst, convert html to typst online, typst table generator, typst converter, html css to typst">
+  <meta name="author" content="Rubrol Engineering Team">
+  <meta name="robots" content="index, follow">
+
+  <!-- OpenGraph -->
+  <meta property="og:site_name" content="Rubrol">
+  <meta property="og:title" content="Free HTML to Typst Online Converter">
+  <meta property="og:description" content="Convert HTML and CSS into clean, declarative Typst code in real time. 100% client-side.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://rubrol.com/tools/html-to-typst">
+  <meta property="og:image" content="https://rubrol.com/assets/og_image.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-dark: #08090c;
+      --bg-card: #10121a;
+      --border: rgba(255, 255, 255, 0.09);
+      --amber: #f59e0b;
+      --green: #10b981;
+      --text-main: #f8fafc;
+      --text-body: #cbd5e1;
+      --text-muted: #64748b;
+      --font-display: 'Instrument Serif', Georgia, serif;
+      --font-sans: 'Inter', -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', Consolas, monospace;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg-dark); color: var(--text-body);
+      font-family: var(--font-sans); font-size: 15px; line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--amber); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(8, 9, 12, 0.92); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border); padding: 14px 24px;
+    }
+    .nav-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo { display: flex; align-items: center; gap: 10px; color: var(--text-main); font-weight: 700; font-size: 18px; }
+    .logo img { width: 28px; height: 28px; border-radius: 6px; }
+    .btn-nav {
+      background: rgba(245, 158, 11, 0.12); color: var(--amber);
+      border: 1px solid rgba(245, 158, 11, 0.3); padding: 7px 14px;
+      border-radius: 7px; font-size: 13px; font-weight: 600;
+    }
+
+    .tool-header { text-align: center; max-width: 760px; margin: 40px auto 24px; padding: 0 20px; }
+    h1 {
+      font-family: var(--font-display); font-size: clamp(32px, 5vw, 46px);
+      color: var(--text-main); line-height: 1.15; font-weight: 400; margin-bottom: 12px;
+    }
+    .tool-header p { font-size: 16px; color: var(--text-muted); }
+
+    .app-container { max-width: 1200px; margin: 0 auto; padding: 0 20px 60px; }
+    .presets-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 12px; margin-bottom: 16px;
+    }
+    .preset-btns { display: flex; gap: 8px; }
+    .btn-preset {
+      background: var(--bg-card); border: 1px solid var(--border); color: var(--text-body);
+      font-size: 12px; font-weight: 600; padding: 6px 14px; border-radius: 6px; cursor: pointer;
+    }
+    .btn-preset:hover { border-color: var(--amber); color: var(--amber); }
+
+    .editor-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px; min-height: 520px;
+    }
+    @media (max-width: 820px) { .editor-grid { grid-template-columns: 1fr; } }
+
+    .pane {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 12px; display: flex; flex-direction: column; overflow: hidden;
+    }
+    .pane-header {
+      padding: 12px 18px; border-bottom: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.02);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .pane-title { font-size: 13px; font-weight: 600; color: var(--text-main); font-family: var(--font-mono); }
+    textarea, .typst-output {
+      flex: 1; width: 100%; border: none; background: transparent;
+      padding: 16px; color: #f1f5f9; font-family: var(--font-mono);
+      font-size: 13px; line-height: 1.6; resize: none; outline: none;
+      white-space: pre; overflow: auto; min-height: 440px;
+    }
+    .typst-output { color: #fde68a; }
+
+    .action-btn {
+      background: rgba(245, 158, 11, 0.12); color: var(--amber);
+      border: 1px solid rgba(245, 158, 11, 0.3); font-size: 12px; font-weight: 600;
+      padding: 5px 12px; border-radius: 6px; cursor: pointer;
+    }
+    .action-btn:hover { background: rgba(245, 158, 11, 0.2); }
+
+    .bottom-cta {
+      margin-top: 36px; padding: 28px; background: var(--bg-card);
+      border: 1px solid var(--border); border-radius: 12px;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 16px;
+    }
+    .btn-studio {
+      background: var(--amber); color: #08090c; font-weight: 700;
+      font-size: 14px; padding: 10px 22px; border-radius: 8px;
+    }
+    .btn-studio:hover { background: #fbbf24; text-decoration: none; }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="/" class="logo">
+        <img src="/assets/logo.png" alt="Rubrol Logo">
+        <span>Rubrol</span>
+      </a>
+      <a href="/#studio" class="btn-nav">Studio Playground</a>
+    </div>
+  </nav>
+
+  <header class="tool-header">
+    <h1>HTML to Typst Online Converter</h1>
+    <p>Paste HTML templates, tables, or text on the left. Get clean, declarative Typst markup on the right for sub-10ms native PDF compilation.</p>
+  </header>
+
+  <main class="app-container">
+    <div class="presets-bar">
+      <div class="preset-btns">
+        <span style="font-size: 12px; color: var(--text-muted); align-self: center;">Try sample:</span>
+        <button class="btn-preset" onclick="loadSample('table')">Billing Table</button>
+        <button class="btn-preset" onclick="loadSample('invoice')">Full Invoice</button>
+        <button class="btn-preset" onclick="loadSample('report')">Executive Report</button>
+      </div>
+      <div>
+        <button class="action-btn" id="copyBtn">Copy Typst Code</button>
+      </div>
+    </div>
+
+    <div class="editor-grid">
+      <div class="pane">
+        <div class="pane-header">
+          <span class="pane-title">&lt;HTML / CSS&gt;</span>
+          <span style="font-size: 11px; color: var(--text-muted);">Paste or edit</span>
+        </div>
+        <textarea id="htmlInput" placeholder="Paste your HTML here..."></textarea>
+      </div>
+
+      <div class="pane">
+        <div class="pane-header">
+          <span class="pane-title">typst (Output)</span>
+          <span style="font-size: 11px; color: var(--green);">Real-time converted</span>
+        </div>
+        <div class="typst-output" id="typstOutput"></div>
+      </div>
+    </div>
+
+    <div class="bottom-cta">
+      <div>
+        <h3 style="color: var(--text-main); font-size: 18px; margin-bottom: 4px;">Compile This Code in Under 10ms</h3>
+        <p style="color: var(--text-muted); font-size: 14px;">Open this Typst template inside Rubrol Studio and generate real PDF/A-3b documents instantly.</p>
+      </div>
+      <a href="/#studio" class="btn-studio">Open in Studio Playground →</a>
+    </div>
+  </main>
+
+  <script>
+    const htmlInput = document.getElementById('htmlInput');
+    const typstOutput = document.getElementById('typstOutput');
+    const copyBtn = document.getElementById('copyBtn');
+
+    const samples = {
+      table: `<table border="1">
+  <thead>
+    <tr>
+      <th>Description</th>
+      <th>Qty</th>
+      <th>Rate</th>
+      <th>Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Rubrol Cloud Cluster</td>
+      <td>1</td>
+      <td>$450.00</td>
+      <td>$450.00</td>
+    </tr>
+    <tr>
+      <td>Factur-X Compliance Add-on</td>
+      <td>1</td>
+      <td>$120.00</td>
+      <td>$120.00</td>
+    </tr>
+  </tbody>
+</table>`,
+      invoice: `<div class="invoice">
+  <h1>INVOICE #INV-2026-99</h1>
+  <p><strong>Billed To:</strong> Acme Corporation</p>
+  <p><em>Issue Date:</em> 2026-09-25</p>
+  <hr>
+  <h2>Summary of Charges</h2>
+  <table border="1">
+    <tr>
+      <th>Service</th>
+      <th>Amount</th>
+    </tr>
+    <tr>
+      <td>High-Throughput PDF Sidecar</td>
+      <td>$1,250.00</td>
+    </tr>
+  </table>
+  <p><strong>Grand Total: $1,250.00</strong></p>
+</div>`,
+      report: `<h1>Q3 Executive Performance Report</h1>
+<p>This report summarizes backend document infrastructure metrics.</p>
+<h2>Key Achievements</h2>
+<ul>
+  <li>Migrated from Puppeteer to Rubrol in production.</li>
+  <li>Reduced server memory consumption by <strong>94%</strong>.</li>
+  <li>Achieved sub-10ms P99 compilation latency.</li>
+</ul>
+<blockquote>"Switching to native Typst eliminated all OOM container crashes."</blockquote>`
+    };
+
+    function loadSample(key) {
+      htmlInput.value = samples[key];
+      convert();
+    }
+
+    function convert() {
+      const html = htmlInput.value;
+      if (!html.trim()) {
+        typstOutput.innerText = "// Typst code will appear here in real time...";
+        return;
+      }
+
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, 'text/html');
+      let out = "";
+
+      // Document setup
+      out += `#set page(paper: "a4", margin: 2cm)\n`;
+      out += `#set text(font: "Inter", size: 10pt)\n\n`;
+
+      function walk(node) {
+        if (node.nodeType === Node.TEXT_NODE) {
+          const txt = node.textContent.trim();
+          if (txt) out += txt + " ";
+          return;
+        }
+
+        if (node.nodeType !== Node.ELEMENT_NODE) return;
+        const tag = node.tagName.toLowerCase();
+
+        if (tag === 'h1') { out += `\n= `; walkChildren(node); out += `\n\n`; return; }
+        if (tag === 'h2') { out += `\n== `; walkChildren(node); out += `\n\n`; return; }
+        if (tag === 'h3') { out += `\n=== `; walkChildren(node); out += `\n\n`; return; }
+        if (tag === 'p') { walkChildren(node); out += `\n\n`; return; }
+        if (tag === 'strong' || tag === 'b') { out += `*`; walkChildren(node); out += `* `; return; }
+        if (tag === 'em' || tag === 'i') { out += `_`; walkChildren(node); out += `_ `; return; }
+        if (tag === 'code') { out += `\``; walkChildren(node); out += `\` `; return; }
+        if (tag === 'hr') { out += `#line(length: 100%, stroke: 0.5pt + luma(180))\n\n`; return; }
+        if (tag === 'blockquote') { out += `#quote[`; walkChildren(node); out += `]\n\n`; return; }
+
+        if (tag === 'ul') {
+          node.querySelectorAll(':scope > li').forEach(li => {
+            out += `- ${li.textContent.trim()}\n`;
+          });
+          out += `\n`;
+          return;
+        }
+
+        if (tag === 'ol') {
+          node.querySelectorAll(':scope > li').forEach(li => {
+            out += `+ ${li.textContent.trim()}\n`;
+          });
+          out += `\n`;
+          return;
+        }
+
+        if (tag === 'table') {
+          const rows = Array.from(node.querySelectorAll('tr'));
+          if (rows.length > 0) {
+            const firstRowCells = rows[0].querySelectorAll('th, td');
+            const colCount = firstRowCells.length || 2;
+            out += `#table(\n  columns: (${Array(colCount).fill('1fr').join(', ')}),\n  align: (col, row) => left,\n`;
+            rows.forEach(r => {
+              const cells = Array.from(r.querySelectorAll('th, td'));
+              cells.forEach(c => {
+                const isHeader = c.tagName.toLowerCase() === 'th';
+                const cellText = c.textContent.trim();
+                if (isHeader) {
+                  out += `  [*${cellText}*],\n`;
+                } else {
+                  out += `  [${cellText}],\n`;
+                }
+              });
+            });
+            out += `)\n\n`;
+          }
+          return;
+        }
+
+        walkChildren(node);
+      }
+
+      function walkChildren(parent) {
+        parent.childNodes.forEach(c => walk(c));
+      }
+
+      doc.body.childNodes.forEach(c => walk(c));
+      typstOutput.innerText = out.trim();
+    }
+
+    function walkChildren(parent) {
+      parent.childNodes.forEach(c => walk(c));
+    }
+
+    htmlInput.addEventListener('input', convert);
+    loadSample('table');
+
+    copyBtn.addEventListener('click', () => {
+      navigator.clipboard.writeText(typstOutput.innerText).then(() => {
+        copyBtn.innerText = "Copied!";
+        setTimeout(() => copyBtn.innerText = "Copy Typst Code", 2000);
+      });
+    });
+  </script>
+</body>
+</html>

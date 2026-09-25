@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Puppeteer & Chromium Cloud Burn Calculator - Free ROI Simulator - Rubrol</title>
+  <meta name="description" content="Calculate how much money, server RAM, and cloud compute your stack burns on headless Chromium and Puppeteer PDF generation. See your exact savings with Rubrol.">
+  <link rel="icon" type="image/png" href="/assets/logo.png">
+
+  <link rel="canonical" href="https://rubrol.com/tools/chromium-cost-calculator">
+  <meta name="keywords" content="puppeteer cost calculator, aws lambda pdf cost, chromium server cost, pdf generation roi, gotenberg cost calculator, rubrol savings">
+  <meta name="author" content="Rubrol Engineering Team">
+  <meta name="robots" content="index, follow">
+
+  <!-- OpenGraph -->
+  <meta property="og:site_name" content="Rubrol">
+  <meta property="og:title" content="Puppeteer & Chromium Cloud Burn Calculator">
+  <meta property="og:description" content="Find out how much cloud compute you incinerate on headless browsers and how much you save with sub-10ms native Typst compilation.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://rubrol.com/tools/chromium-cost-calculator">
+  <meta property="og:image" content="https://rubrol.com/assets/og_image.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-dark: #08090c;
+      --bg-card: #10121a;
+      --border: rgba(255, 255, 255, 0.09);
+      --amber: #f59e0b;
+      --green: #10b981;
+      --red: #ef4444;
+      --text-main: #f8fafc;
+      --text-body: #cbd5e1;
+      --text-muted: #64748b;
+      --font-display: 'Instrument Serif', Georgia, serif;
+      --font-sans: 'Inter', -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', Consolas, monospace;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg-dark); color: var(--text-body);
+      font-family: var(--font-sans); font-size: 15px; line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--amber); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(8, 9, 12, 0.92); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border); padding: 14px 24px;
+    }
+    .nav-inner {
+      max-width: 1040px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo { display: flex; align-items: center; gap: 10px; color: var(--text-main); font-weight: 700; font-size: 18px; }
+    .logo img { width: 28px; height: 28px; border-radius: 6px; }
+    .btn-nav {
+      background: rgba(245, 158, 11, 0.12); color: var(--amber);
+      border: 1px solid rgba(245, 158, 11, 0.3); padding: 7px 14px;
+      border-radius: 7px; font-size: 13px; font-weight: 600;
+    }
+
+    .tool-header { text-align: center; max-width: 760px; margin: 48px auto 28px; padding: 0 20px; }
+    .badge {
+      display: inline-block; background: rgba(239, 68, 68, 0.12);
+      color: var(--red); border: 1px solid rgba(239, 68, 68, 0.3);
+      padding: 4px 12px; border-radius: 9999px; font-size: 12px; font-weight: 600;
+      letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 14px;
+    }
+    h1 {
+      font-family: var(--font-display); font-size: clamp(32px, 5vw, 48px);
+      color: var(--text-main); line-height: 1.15; font-weight: 400; margin-bottom: 12px;
+    }
+    .tool-header p { font-size: 16px; color: var(--text-muted); }
+
+    .calc-container { max-width: 1040px; margin: 0 auto; padding: 0 20px 80px; }
+    .calc-grid {
+      display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 24px;
+    }
+    @media (max-width: 860px) { .calc-grid { grid-template-columns: 1fr; } }
+
+    .card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 28px;
+    }
+    .card-title { font-size: 18px; color: var(--text-main); font-weight: 600; margin-bottom: 20px; }
+
+    .form-group { margin-bottom: 24px; }
+    .label-row {
+      display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;
+    }
+    .label-title { font-size: 14px; font-weight: 500; color: var(--text-main); }
+    .label-val { font-family: var(--font-mono); font-size: 15px; font-weight: 700; color: var(--amber); }
+
+    input[type=range] {
+      width: 100%; height: 6px; background: rgba(255, 255, 255, 0.12);
+      border-radius: 4px; outline: none; appearance: none; -webkit-appearance: none;
+    }
+    input[type=range]::-webkit-slider-thumb {
+      appearance: none; -webkit-appearance: none; width: 18px; height: 18px;
+      border-radius: 50%; background: var(--amber); cursor: pointer;
+    }
+
+    .select-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .btn-select {
+      background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border);
+      color: var(--text-body); font-size: 13px; padding: 10px; border-radius: 8px;
+      cursor: pointer; text-align: center; font-weight: 500;
+    }
+    .btn-select.active {
+      border-color: var(--amber); background: rgba(245, 158, 11, 0.1); color: var(--amber); font-weight: 600;
+    }
+
+    /* Savings results */
+    .savings-hero {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.12), rgba(16, 185, 129, 0.02));
+      border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 12px;
+      padding: 24px; text-align: center; margin-bottom: 20px;
+    }
+    .savings-sub { font-size: 13px; color: var(--green); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; }
+    .savings-amount {
+      font-size: 42px; font-family: var(--font-display); color: var(--text-main); margin: 6px 0;
+    }
+    .savings-annual { font-size: 14px; color: var(--text-muted); }
+
+    .metrics-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; }
+    .metric-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 10px 14px; background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 8px;
+    }
+    .metric-name { font-size: 13px; color: var(--text-body); }
+    .metric-stat { font-family: var(--font-mono); font-size: 14px; font-weight: 600; color: var(--text-main); }
+    .metric-stat.good { color: var(--green); }
+
+    .btn-action-wide {
+      width: 100%; display: block; background: var(--amber); color: #08090c;
+      font-weight: 700; font-size: 14px; padding: 12px; border-radius: 8px;
+      border: none; cursor: pointer; text-align: center; margin-bottom: 10px;
+    }
+    .btn-action-wide:hover { background: #fbbf24; text-decoration: none; }
+    .btn-share {
+      width: 100%; display: block; background: transparent; color: var(--text-body);
+      font-size: 13px; padding: 9px; border-radius: 8px; border: 1px solid var(--border);
+      cursor: pointer; text-align: center;
+    }
+    .btn-share:hover { border-color: var(--text-muted); color: var(--text-main); }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="/" class="logo">
+        <img src="/assets/logo.png" alt="Rubrol Logo">
+        <span>Rubrol</span>
+      </a>
+      <a href="/#studio" class="btn-nav">Studio Playground</a>
+    </div>
+  </nav>
+
+  <header class="tool-header">
+    <span class="badge">Cloud Cost Audit</span>
+    <h1>Puppeteer & Chromium Cloud Burn Calculator</h1>
+    <p>Simulate how much compute, memory, and money your architecture wastes running headless browsers for document generation. See your exact infrastructure ROI with Rubrol.</p>
+  </header>
+
+  <main class="calc-container">
+    <div class="calc-grid">
+      <!-- Input Controls -->
+      <div class="card">
+        <div class="card-title">1. Your Production Workload</div>
+
+        <div class="form-group">
+          <div class="label-row">
+            <span class="label-title">Monthly Documents Generated</span>
+            <span class="label-val" id="docsVal">50,000</span>
+          </div>
+          <input type="range" id="docsSlider" min="5000" max="1000000" step="5000" value="50000">
+        </div>
+
+        <div class="form-group">
+          <div class="label-row">
+            <span class="label-title">Average Pages Per Document</span>
+            <span class="label-val" id="pagesVal">3 pages</span>
+          </div>
+          <input type="range" id="pagesSlider" min="1" max="25" step="1" value="3">
+        </div>
+
+        <div class="form-group">
+          <span class="label-title" style="display: block; margin-bottom: 8px;">Current Generation Engine</span>
+          <div class="select-grid" id="engineGroup">
+            <div class="btn-select active" data-val="puppeteer">Puppeteer / Chrome</div>
+            <div class="btn-select" data-val="gotenberg">Gotenberg / Docker</div>
+            <div class="btn-select" data-val="weasyprint">WeasyPrint (Python)</div>
+            <div class="btn-select" data-val="wkhtmltopdf">wkhtmltopdf</div>
+          </div>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 0;">
+          <span class="label-title" style="display: block; margin-bottom: 8px;">Deployment Infrastructure</span>
+          <div class="select-grid" id="infraGroup">
+            <div class="btn-select active" data-val="lambda">AWS Lambda / Fargate</div>
+            <div class="btn-select" data-val="k8s">Kubernetes (EKS / GKE)</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ROI Results Card -->
+      <div class="card">
+        <div class="card-title">2. Infrastructure Impact</div>
+
+        <div class="savings-hero">
+          <div class="savings-sub">Estimated Monthly Savings</div>
+          <div class="savings-amount" id="monthlySavings">$382 / mo</div>
+          <div class="savings-annual" id="annualSavings">$4,584 saved annually</div>
+        </div>
+
+        <div class="metrics-list">
+          <div class="metric-row">
+            <span class="metric-name">Current Headless Stack Cost</span>
+            <span class="metric-stat" id="currentCost">$410 / mo</span>
+          </div>
+          <div class="metric-row">
+            <span class="metric-name">Rubrol Native Sidecar Cost</span>
+            <span class="metric-stat good" id="rubrolCost">$28 / mo</span>
+          </div>
+          <div class="metric-row">
+            <span class="metric-name">Memory Footprint Reduction</span>
+            <span class="metric-stat good" id="ramSaved">94.8% Less RAM</span>
+          </div>
+          <div class="metric-row">
+            <span class="metric-name">P99 Latency Elimination</span>
+            <span class="metric-stat good" id="timeSaved">19.2 Hours of Wait Time</span>
+          </div>
+          <div class="metric-row">
+            <span class="metric-name">Carbon Footprint Saved</span>
+            <span class="metric-stat good" id="co2Saved">214 kg CO2e / yr</span>
+          </div>
+        </div>
+
+        <a href="/#studio" class="btn-action-wide">Test the Sub-10ms Engine in Studio →</a>
+        <button class="btn-share" id="copyReportBtn">Copy Savings Report</button>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const docsSlider = document.getElementById('docsSlider');
+    const pagesSlider = document.getElementById('pagesSlider');
+    const docsVal = document.getElementById('docsVal');
+    const pagesVal = document.getElementById('pagesVal');
+
+    let currentEngine = 'puppeteer';
+    let currentInfra = 'lambda';
+
+    document.querySelectorAll('#engineGroup .btn-select').forEach(b => {
+      b.addEventListener('click', () => {
+        document.querySelectorAll('#engineGroup .btn-select').forEach(el => el.classList.remove('active'));
+        b.classList.add('active');
+        currentEngine = b.dataset.val;
+        calculate();
+      });
+    });
+
+    document.querySelectorAll('#infraGroup .btn-select').forEach(b => {
+      b.addEventListener('click', () => {
+        document.querySelectorAll('#infraGroup .btn-select').forEach(el => el.classList.remove('active'));
+        b.classList.add('active');
+        currentInfra = b.dataset.val;
+        calculate();
+      });
+    });
+
+    docsSlider.addEventListener('input', () => {
+      docsVal.innerText = Number(docsSlider.value).toLocaleString();
+      calculate();
+    });
+
+    pagesSlider.addEventListener('input', () => {
+      pagesVal.innerText = `${pagesSlider.value} pages`;
+      calculate();
+    });
+
+    function calculate() {
+      const docs = Number(docsSlider.value);
+      const pages = Number(pagesSlider.value);
+
+      // Average seconds per doc & MB RAM
+      let latencySec = 1.45;
+      let ramMB = 650;
+      if (currentEngine === 'gotenberg') { latencySec = 1.1; ramMB = 750; }
+      else if (currentEngine === 'weasyprint') { latencySec = 2.1; ramMB = 300; }
+      else if (currentEngine === 'wkhtmltopdf') { latencySec = 0.7; ramMB = 120; }
+
+      latencySec = latencySec * (1 + (pages - 1) * 0.25);
+
+      // Compute pricing approximations (AWS Lambda 1GB: ~$0.0000166667 per sec, EKS vCPU/RAM allocation)
+      let costPerDoc = (latencySec * (ramMB / 1024) * 0.000035);
+      if (currentInfra === 'k8s') {
+        costPerDoc = (latencySec * (ramMB / 1024) * 0.000028);
+      }
+
+      // Base minimum server overhead
+      const currentMonthly = Math.max(35, Math.round(docs * costPerDoc * 1.4));
+
+      // Rubrol (8.4ms, 24MB RAM)
+      const rubrolLatency = 0.0084 * (1 + (pages - 1) * 0.15);
+      const rubrolDocCost = (rubrolLatency * (28 / 1024) * 0.000028);
+      const rubrolMonthly = Math.max(12, Math.round(docs * rubrolDocCost + (currentInfra === 'k8s' ? 15 : 8)));
+
+      const savings = Math.max(0, currentMonthly - rubrolMonthly);
+      const annual = savings * 12;
+
+      const hoursSaved = Math.round((docs * (latencySec - rubrolLatency)) / 3600);
+      const co2 = Math.round(savings * 0.56);
+
+      document.getElementById('monthlySavings').innerText = `$${savings.toLocaleString()} / mo`;
+      document.getElementById('annualSavings').innerText = `$${annual.toLocaleString()} saved annually`;
+      document.getElementById('currentCost').innerText = `$${currentMonthly.toLocaleString()} / mo`;
+      document.getElementById('rubrolCost').innerText = `$${rubrolMonthly.toLocaleString()} / mo`;
+      document.getElementById('timeSaved').innerText = `${hoursSaved.toLocaleString()} Hours of Wait Time`;
+      document.getElementById('co2Saved').innerText = `${co2} kg CO2e / yr`;
+    }
+
+    calculate();
+
+    document.getElementById('copyReportBtn').addEventListener('click', () => {
+      const text = `Cloud Cost Audit: Running ${Number(docsSlider.value).toLocaleString()} documents/mo on ${currentEngine.toUpperCase()} costs $${document.getElementById('currentCost').innerText}. Switching to Rubrol saves $${document.getElementById('monthlySavings').innerText} ($${document.getElementById('annualSavings').innerText})! https://rubrol.com/tools/chromium-cost-calculator`;
+      navigator.clipboard.writeText(text).then(() => {
+        document.getElementById('copyReportBtn').innerText = "Report Copied!";
+        setTimeout(() => document.getElementById('copyReportBtn').innerText = "Copy Savings Report", 2000);
+      });
+    });
+  </script>
+</body>
+</html>

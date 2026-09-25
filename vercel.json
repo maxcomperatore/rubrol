@@ -35,6 +35,10 @@
       "destination": "/rubrol/static/articles/:slug.html"
     },
     {
+      "source": "/tools/:slug",
+      "destination": "/rubrol/static/tools/:slug.html"
+    },
+    {
       "source": "/:path*",
       "destination": "/rubrol/static/:path*"
     }

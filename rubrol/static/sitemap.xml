@@ -74,4 +74,22 @@
     <changefreq>weekly</changefreq>
     <priority>0.88</priority>
   </url>
+  <url>
+    <loc>https://rubrol.com/tools/facturx-validator</loc>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://rubrol.com/tools/html-to-typst</loc>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://rubrol.com/tools/chromium-cost-calculator</loc>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
 </urlset>
