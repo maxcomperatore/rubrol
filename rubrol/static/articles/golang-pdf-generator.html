@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>High-Throughput Go PDF Generation: Sub-10ms Typst Without CGO - Rubrol</title>
+  <meta name="description" content="Generate high-volume PDFs and invoices in Golang with microsecond latency. Rubrol provides a zero-CGO sidecar architecture powered by native Typst.">
+  <link rel="icon" type="image/png" href="/assets/logo.png">
+
+  <link rel="canonical" href="https://rubrol.com/articles/golang-pdf-generator">
+  <meta name="keywords" content="golang pdf generator, go generate pdf without cgo, go pdf microservice, gotenberg alternative go, go factur-x pdf, go typst">
+  <meta name="author" content="Rubrol Engineering Team">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+  <!-- OpenGraph -->
+  <meta property="og:site_name" content="Rubrol">
+  <meta property="og:title" content="High-Throughput Go PDF Generation: Sub-10ms Typst Without CGO">
+  <meta property="og:description" content="Discover how to build high-scale document generation microservices in Go with zero CGO dependencies and sub-10ms render latencies.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://rubrol.com/articles/golang-pdf-generator">
+  <meta property="og:image" content="https://rubrol.com/assets/og_image.png">
+  <meta property="article:published_time" content="2026-09-25T12:00:00Z">
+  <meta property="article:author" content="Rubrol Engineering Team">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="High-Throughput Go PDF Generation: Sub-10ms Typst Without CGO">
+  <meta name="twitter:description" content="Discover how to build high-scale document generation microservices in Go with zero CGO dependencies and sub-10ms render latencies.">
+  <meta name="twitter:image" content="https://rubrol.com/assets/og_image.png">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "TechArticle",
+        "headline": "High-Throughput Go PDF Generation: Sub-10ms Typst Without CGO",
+        "description": "Architectural guide for Go developers building high-throughput document and invoice generation pipelines without CGO bloat.",
+        "url": "https://rubrol.com/articles/golang-pdf-generator",
+        "image": "https://rubrol.com/assets/og_image.png",
+        "datePublished": "2026-09-25T12:00:00Z",
+        "dateModified": "2026-09-25T12:00:00Z",
+        "author": {
+          "@type": "Organization",
+          "name": "Rubrol Engineering Team"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Rubrol",
+          "url": "https://rubrol.com"
+        },
+        "mainEntityOfPage": "https://rubrol.com/articles/golang-pdf-generator"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://rubrol.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Articles",
+            "item": "https://rubrol.com/#use-cases"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Golang PDF Generator",
+            "item": "https://rubrol.com/articles/golang-pdf-generator"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-dark: #08090c;
+      --bg-card: #10121a;
+      --border: rgba(255, 255, 255, 0.09);
+      --amber: #f59e0b;
+      --text-main: #f8fafc;
+      --text-body: #cbd5e1;
+      --text-muted: #64748b;
+      --font-serif: 'Playfair Display', Georgia, serif;
+      --font-display: 'Instrument Serif', Georgia, serif;
+      --font-sans: 'Inter', -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', Consolas, monospace;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg-dark); color: var(--text-body);
+      font-family: var(--font-sans); font-size: 16px; line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--amber); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(8, 9, 12, 0.92); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border); padding: 16px 24px;
+    }
+    .nav-inner {
+      max-width: 860px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo { display: flex; align-items: center; gap: 10px; color: var(--text-main); font-weight: 700; font-size: 18px; }
+    .logo img { width: 28px; height: 28px; border-radius: 6px; }
+    .btn-nav {
+      background: rgba(245, 158, 11, 0.12); color: var(--amber);
+      border: 1px solid rgba(245, 158, 11, 0.3); padding: 8px 16px;
+      border-radius: 8px; font-size: 13px; font-weight: 600;
+    }
+    .btn-nav:hover { background: rgba(245, 158, 11, 0.2); text-decoration: none; }
+    .article-container { max-width: 860px; margin: 0 auto; padding: 48px 24px 96px; }
+    .badge {
+      display: inline-block; background: rgba(245, 158, 11, 0.15);
+      color: var(--amber); border: 1px solid rgba(245, 158, 11, 0.3);
+      padding: 4px 12px; border-radius: 9999px; font-size: 12px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 20px;
+    }
+    h1 {
+      font-family: var(--font-display); font-size: clamp(32px, 5vw, 48px);
+      color: var(--text-main); line-height: 1.15; margin-bottom: 20px; font-weight: 400;
+    }
+    .meta {
+      display: flex; align-items: center; gap: 16px; color: var(--text-muted);
+      font-size: 14px; margin-bottom: 40px; padding-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+    h2 { font-family: var(--font-serif); font-size: 26px; color: var(--text-main); margin: 40px 0 16px; font-weight: 600; }
+    p { margin-bottom: 20px; }
+    pre {
+      background: #0d0f14; border: 1px solid var(--border); border-radius: 10px;
+      padding: 20px; overflow-x: auto; font-family: var(--font-mono);
+      font-size: 13px; line-height: 1.6; margin: 24px 0; color: #e2e8f0;
+    }
+    code { font-family: var(--font-mono); font-size: 13px; color: var(--amber); }
+    .cta-box {
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.08), rgba(245, 158, 11, 0.02));
+      border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 12px;
+      padding: 36px; margin: 48px 0; text-align: center;
+    }
+    .cta-box h3 { font-size: 24px; margin-bottom: 12px; }
+    .btn-cta {
+      display: inline-block; background: var(--amber); color: #08090c;
+      padding: 12px 28px; border-radius: 8px; font-weight: 700; font-size: 15px; margin-top: 16px;
+    }
+    .btn-cta:hover { background: #fbbf24; text-decoration: none; }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="/" class="logo">
+        <img src="/assets/logo.png" alt="Rubrol Logo">
+        <span>Rubrol</span>
+      </a>
+      <a href="/#studio" class="btn-nav">Open Studio Playground</a>
+    </div>
+  </nav>
+
+  <main class="article-container">
+    <span class="badge">Microservices</span>
+    <h1>High-Throughput Go PDF Generation: Sub-10ms Typst Without CGO</h1>
+    <div class="meta">
+      <span>By Rubrol Engineering Team</span>
+      <span>•</span>
+      <span>5 min read</span>
+      <span>•</span>
+      <span>Updated September 2026</span>
+    </div>
+
+    <p>Go microservices are celebrated for their raw concurrency, low memory footprint, and single-binary deployments. However, the moment a Go service needs to generate dynamic PDF invoices or statements, architecture teams hit an ugly wall:</p>
+
+    <ul>
+      <li>Pure Go libraries (like <code>gofpdf</code> or <code>maroto</code>) require tedious, low-level coordinate mathematics for layout.</li>
+      <li>CGO wrappers (like <code>wkhtmltopdf</code> bindings) break cross-compilation and create memory leaks.</li>
+      <li>Gotenberg or Chromium microservices require 500MB+ containers and introduce second-long HTTP latency hops.</li>
+    </ul>
+
+    <h2>The Zero-CGO Sidecar Solution</h2>
+    <p>Rubrol deploys as an ultra-lean Rust sidecar (under 40MB image size) that communicates with your Go service over a local Unix Domain Socket or HTTP connection. Your Go application sends JSON data, and Rubrol returns a compiled PDF/A-3b document in <strong>sub-10ms with zero CGO overhead</strong>.</p>
+
+    <h2>Go Implementation Snippet</h2>
+    <pre><code>package main
+
+import (
+	"bytes"
+	"encoding/json"
+	"io"
+	"log"
+	"net/http"
+	"os"
+)
+
+type InvoicePayload struct {
+	Template   string                 `json:"template"`
+	Data       map[string]interface{} `json:"data"`
+	Compliance string                 `json:"compliance"`
+}
+
+func GenerateInvoice(invoiceID string, amount float64) ([]byte, error) {
+	payload := InvoicePayload{
+		Template: "enterprise_receipt",
+		Data: map[string]interface{}{
+			"id":     invoiceID,
+			"amount": amount,
+		},
+		Compliance: "factur-x",
+	}
+
+	body, _ := json.Marshal(payload)
+	resp, err := http.Post("http://localhost:8080/v1/compile", "application/json", bytes.NewBuffer(body))
+	if err != nil {
+		return nil, err
+	}
+	defer resp.Body.Close()
+
+	return io.ReadAll(resp.Body)
+}
+
+func main() {
+	pdfBytes, err := GenerateInvoice("INV-8821", 1250.50)
+	if err != nil {
+		log.Fatalf("Compilation failed: %v", err)
+	}
+	os.WriteFile("invoice.pdf", pdfBytes, 0644)
+	log.Println("Invoice compiled in sub-10ms!")
+}</code></pre>
+
+    <div class="cta-box">
+      <h3>Ready for Microsecond Document Latency?</h3>
+      <p>Test the Rubrol compiler live in the browser studio.</p>
+      <a href="/#studio" class="btn-cta">Open Live Studio</a>
+    </div>
+
+  </main>
+</body>
+</html>
