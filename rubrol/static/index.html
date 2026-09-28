@@ -97,7 +97,8 @@
             "@type": "Review",
             "author": {
               "@type": "Person",
-              "name": "Marc Cizeron"
+              "name": "Marc Cizeron",
+              "image": "https://rubrol.com/assets/avatars/marc-cizeron.jpg"
             },
             "datePublished": "2026-08-18",
             "reviewBody": "Replacing our Puppeteer cluster with Rubrol slashed our invoice generation latency from 1.8s to under 8ms and solved all our EN 16931 PDF/A-3b compliance requirements.",
@@ -111,7 +112,8 @@
             "@type": "Review",
             "author": {
               "@type": "Person",
-              "name": "Julian Vance"
+              "name": "Julian Vance",
+              "image": "https://rubrol.com/assets/avatars/julian-vance.jpg"
             },
             "datePublished": "2026-09-02",
             "reviewBody": "57x less memory than Chromium. We run Rubrol as a local sidecar in AWS ECS without OOM spikes during monthly batch billing runs.",
@@ -125,7 +127,8 @@
             "@type": "Review",
             "author": {
               "@type": "Person",
-              "name": "Liam Thorne"
+              "name": "Liam Thorne",
+              "image": "https://rubrol.com/assets/avatars/liam-thorne.jpg"
             },
             "datePublished": "2026-09-15",
             "reviewBody": "The Typst engine layout guarantees zero layout shifts and instant multi-page table pagination. Dropping the sidecar container into our stack took 10 minutes.",
@@ -2705,17 +2708,14 @@
       gap: 12px;
     }
     .author-avatar {
-      width: 36px;
-      height: 36px;
+      width: 42px;
+      height: 42px;
       border-radius: 50%;
       background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 12.5px;
-      color: #f8fafc;
+      border: 1.5px solid rgba(255, 255, 255, 0.18);
+      object-fit: cover;
+      display: block;
+      flex-shrink: 0;
     }
     .author-info {
       display: flex;
@@ -5552,7 +5552,7 @@
           <div class="review-stars">★★★★★</div>
           <p class="review-quote">"Replacing our Puppeteer cluster with Rubrol slashed our invoice generation latency from 1.8s down to under 8ms and solved all our French EN 16931 &amp; Factur-X PDF/A-3b compliance requirements."</p>
           <div class="review-author">
-            <div class="author-avatar">MC</div>
+            <img src="/assets/avatars/marc-cizeron.jpg" alt="Marc Cizeron" class="author-avatar" width="42" height="42" loading="lazy">
             <div class="author-info">
               <span class="author-name">Marc Cizeron</span>
               <span class="author-role">Senior Software Engineer • SaaS &amp; E-Invoicing</span>
@@ -5564,7 +5564,7 @@
           <div class="review-stars">★★★★★</div>
           <p class="review-quote">"57x less memory footprint than Headless Chrome. We run Rubrol as a local sidecar in AWS ECS without OOM spikes or runaway zombie processes during monthly batch billing runs."</p>
           <div class="review-author">
-            <div class="author-avatar">JV</div>
+            <img src="/assets/avatars/julian-vance.jpg" alt="Julian Vance" class="author-avatar" width="42" height="42" loading="lazy">
             <div class="author-info">
               <span class="author-name">Julian Vance</span>
               <span class="author-role">Staff Infrastructure Lead • FinTech Billing</span>
@@ -5576,7 +5576,7 @@
           <div class="review-stars">★★★★★</div>
           <p class="review-quote">"The Typst engine layout guarantees zero layout shifts and instant multi-page table pagination. Dropping the Docker sidecar container into our stack took 10 minutes."</p>
           <div class="review-author">
-            <div class="author-avatar">LT</div>
+            <img src="/assets/avatars/liam-thorne.jpg" alt="Liam Thorne" class="author-avatar" width="42" height="42" loading="lazy">
             <div class="author-info">
               <span class="author-name">Liam Thorne</span>
               <span class="author-role">Senior Backend Engineer • Logistics &amp; ERP</span>
