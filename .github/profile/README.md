@@ -10,10 +10,10 @@
 [![Rust](https://img.shields.io/badge/built%20with-Rust-orange.svg)](https://www.rust-lang.org/)
 [![Engine](https://img.shields.io/badge/powered%20by-Typst-239dad.svg)](https://typst.app/)
 [![Compliance](https://img.shields.io/badge/standards-PDF%2FA--3b%20%7C%20Factur--X%20%7C%20ZUGFeRD-success.svg)](https://rubrol.com/#compliance)
-[![Latency](https://img.shields.io/badge/p99%20latency-%3C10ms-brightgreen.svg)](https://rubrol.com/#studio)
+[![Latency](https://img.shields.io/badge/p99%20latency-%3C10ms-brightgreen.svg)](https://rubrol.com/studio)
 [![Memory](https://img.shields.io/badge/RAM-%3C28MB-blueviolet.svg)](https://rubrol.com/#benchmarks)
 
-[Website](https://rubrol.com) • [Live Studio](https://rubrol.com/#studio) • [Benchmarks](https://rubrol.com/#benchmarks) • [Documentation](https://rubrol.com/docs) • [Sponsor](https://github.com/sponsors/maxcomperatore)
+[Website](https://rubrol.com) • [Live Studio](https://rubrol.com/studio) • [Benchmarks](https://rubrol.com/#benchmarks) • [Documentation](https://rubrol.com/docs) • [Sponsor](https://github.com/sponsors/maxcomperatore)
 
 </div>
 
@@ -100,7 +100,7 @@ curl -X POST http://localhost:8080/v1/compile \
 
 ## 🌐 Community & Ecosystem
 
-- **Documentation & Playground:** [rubrol.com/#studio](https://rubrol.com/#studio)
+- **Documentation & Playground:** [rubrol.com/studio](https://rubrol.com/studio)
 - **Bug Reports & Feature Requests:** [GitHub Issues](https://github.com/maxcomperatore/rubrol/issues)
 - **Security Inquiries:** [SECURITY.md](https://github.com/maxcomperatore/rubrol/blob/main/SECURITY.md)
 - **Sponsorship & Enterprise Inquiries:** [funding.json](https://github.com/maxcomperatore/rubrol/blob/main/funding.json) or email `maxcomperatore@gmail.com`

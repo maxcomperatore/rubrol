@@ -1535,6 +1535,7 @@
       color: var(--text-primary);
       padding: 96px 0;
       border-bottom: 1px solid var(--border-subtle);
+      scroll-margin-top: 76px;
     }
 
     .calculator-box {
@@ -6479,7 +6480,43 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     } else if (window.location.hash === '#studio' && window.history && window.history.replaceState) {
       window.history.replaceState(null, '', '/studio');
     }
+
+    (function() {
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+      }
+
+      var userInteracted = false;
+      ['wheel', 'touchmove', 'pointerdown'].forEach(function(evt) {
+        window.addEventListener(evt, function() { userInteracted = true; }, { passive: true, once: true });
+      });
+
+      function scrollToPricing(smooth) {
+        if (userInteracted) return;
+        var pricing = document.getElementById('pricing');
+        if (!pricing) return;
+        var navHeight = 72;
+        var y = pricing.getBoundingClientRect().top + (window.pageYOffset || document.documentElement.scrollTop) - navHeight;
+        window.scrollTo({
+          top: Math.max(0, y),
+          behavior: smooth ? 'smooth' : 'auto'
+        });
+      }
+
+      if (document.readyState === 'complete' || document.readyState === 'interactive') {
+        scrollToPricing(false);
+      }
+
+      document.addEventListener('DOMContentLoaded', function() {
+        scrollToPricing(false);
+        setTimeout(function() { scrollToPricing(true); }, 120);
+        setTimeout(function() { scrollToPricing(true); }, 350);
+      });
+
+      window.addEventListener('load', function() {
+        setTimeout(function() { scrollToPricing(true); }, 100);
+      });
+    })();
   </script>
-<script>window.addEventListener('DOMContentLoaded', () => { if (!window.location.hash) { const p = document.getElementById('pricing'); if (p) { p.scrollIntoView({ behavior: 'smooth' }); } } });</script>
 </body>
 </html>

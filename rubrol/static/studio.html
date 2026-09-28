@@ -1294,6 +1294,7 @@
       background: #0b0c10;
       padding: 108px 0;
       border-bottom: 1px solid var(--bg-obsidian-border);
+      scroll-margin-top: 76px;
     }
 
     .studio-console-card {
@@ -6338,7 +6339,44 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     } else if (window.location.hash === '#studio' && window.history && window.history.replaceState) {
       window.history.replaceState(null, '', '/studio');
     }
+
+    (function() {
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+      }
+
+      var userInteracted = false;
+      ['wheel', 'touchmove', 'pointerdown'].forEach(function(evt) {
+        window.addEventListener(evt, function() { userInteracted = true; }, { passive: true, once: true });
+      });
+
+      function scrollToStudio(smooth) {
+        if (userInteracted) return;
+        var studio = document.getElementById('studio');
+        if (!studio) return;
+        var navHeight = 72;
+        var y = studio.getBoundingClientRect().top + (window.pageYOffset || document.documentElement.scrollTop) - navHeight;
+        window.scrollTo({
+          top: Math.max(0, y),
+          behavior: smooth ? 'smooth' : 'auto'
+        });
+      }
+
+      if (document.readyState === 'complete' || document.readyState === 'interactive') {
+        scrollToStudio(false);
+      }
+
+      document.addEventListener('DOMContentLoaded', function() {
+        scrollToStudio(false);
+        setTimeout(function() { scrollToStudio(true); }, 120);
+        setTimeout(function() { scrollToStudio(true); }, 350);
+        setTimeout(function() { scrollToStudio(true); }, 750);
+      });
+
+      window.addEventListener('load', function() {
+        setTimeout(function() { scrollToStudio(true); }, 100);
+      });
+    })();
   </script>
-<script>window.addEventListener('DOMContentLoaded', () => { if (!window.location.hash) { const s = document.getElementById('studio'); if (s) { s.scrollIntoView({ behavior: 'smooth' }); } } });</script>
 </body>
 </html>

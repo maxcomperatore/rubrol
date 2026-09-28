@@ -8179,11 +8179,15 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
       });
     });
 
-    // If loaded with #pricing or #studio, normalize URL cleanly to /pricing or /studio
-    if (window.location.hash === '#pricing' && window.history && window.history.replaceState) {
-      window.history.replaceState(null, '', '/pricing');
-    } else if (window.location.hash === '#studio' && window.history && window.history.replaceState) {
-      window.history.replaceState(null, '', '/studio');
+    // If loaded with #pricing or #studio, scroll to section and normalize URL cleanly to /pricing or /studio
+    if (window.location.hash === '#pricing') {
+      var p = document.getElementById('pricing');
+      if (p) setTimeout(function() { p.scrollIntoView({ behavior: 'smooth' }); }, 100);
+      if (window.history && window.history.replaceState) window.history.replaceState(null, '', '/pricing');
+    } else if (window.location.hash === '#studio') {
+      var s = document.getElementById('studio');
+      if (s) setTimeout(function() { s.scrollIntoView({ behavior: 'smooth' }); }, 100);
+      if (window.history && window.history.replaceState) window.history.replaceState(null, '', '/studio');
     }
   </script>
 </body>
