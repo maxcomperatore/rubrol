@@ -2721,14 +2721,34 @@
 
     /* Media Queries: Breakpoint 960px */
     @media (max-width: 960px) {
-      .nav-links {
+      .nav-links,
+      .btn-github,
+      .btn-pill-primary {
         display: none !important;
       }
+      .nav-bar {
+        height: 64px !important;
+      }
+      .nav-actions {
+        gap: 10px !important;
+      }
+      .btn-trial-nav {
+        padding: 7px 14px !important;
+        font-size: 12.5px !important;
+        height: 38px !important;
+        min-height: 38px !important;
+        border-radius: 9999px !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+      }
       .mobile-nav-toggle {
-        display: flex;
+        display: flex !important;
       }
       .mobile-nav-drawer {
         display: block;
+        top: 64px !important;
+        height: calc(100dvh - 64px) !important;
       }
       .container {
         padding: 0 20px;
@@ -2836,6 +2856,31 @@
     @media (max-width: 640px) {
       .container {
         padding: 0 16px;
+      }
+      .brand-title {
+        font-size: 17px !important;
+      }
+      .brand-group {
+        gap: 10px !important;
+      }
+      .brand-logo-img {
+        width: 28px !important;
+        height: 28px !important;
+      }
+      .nav-actions {
+        gap: 8px !important;
+      }
+      .btn-trial-nav {
+        padding: 6px 12px !important;
+        font-size: 12px !important;
+        height: 34px !important;
+        min-height: 34px !important;
+      }
+      .mobile-nav-toggle {
+        width: 38px !important;
+        height: 38px !important;
+        min-width: 38px !important;
+        min-height: 38px !important;
       }
       .hero-section {
         padding: 56px 0 44px 0;
