@@ -1,0 +1,53 @@
+# Rubrol
+
+> Fast, memory-safe PDF/A-3b & Factur-X/ZUGFeRD generation sidecar engine powered by native Typst. Replaces headless Chrome, Puppeteer, and Gotenberg with sub-10ms compilation, 95% less RAM, and zero JVM overhead.
+
+## Overview
+Rubrol is a lightweight, drop-in document generation sidecar and CLI engine. It compiles declarative Typst templates into PDF/A-3b documents with embedded EN 16931-compliant XML in under 10 milliseconds.
+
+## Core Capabilities
+- **Sub-10ms PDF Generation**: Native Rust/Typst engine compiles PDFs in 8.4ms vs 1,500ms+ for Puppeteer/Headless Chrome.
+- **Microscopic Memory Footprint**: Uses <30MB RAM compared to 500MB–1GB required by Chromium instances.
+- **European E-Invoicing Compliance**: Native ISO 19005-3 (PDF/A-3b) and EN 16931 support (Factur-X, ZUGFeRD, Chorus Pro, XRechnung) with automated /AFRelationship attachment dictionaries.
+- **Drop-in HTTP Sidecar**: Run alongside your Node.js, Go, Python, or Ruby backend via Docker or serverless containers.
+- **Live Interactive Studio**: Real-time browser playground with split-pane Typst editing and sub-10ms WebAssembly PDF preview.
+
+## Key Links & Resources
+- [Rubrol Homepage](https://rubrol.com): Features, benchmarks, and architectural overview.
+- [Interactive Studio Playground](https://rubrol.com/studio): Test Typst templates and live PDF preview directly in the browser.
+- [Pricing & Cloud Calculator](https://rubrol.com/pricing): Predictable usage tiers and enterprise self-hosting options.
+- [Factur-X & ZUGFeRD XML Validator](https://rubrol.com/tools/facturx-validator): Free client-side tool to inspect, extract, and validate embedded XML in PDF/A-3b invoices.
+- [HTML to Typst Converter](https://rubrol.com/tools/html-to-typst): Free real-time converter mapping HTML/CSS into Typst syntax.
+- [Puppeteer Cloud Cost Calculator](https://rubrol.com/tools/chromium-cost-calculator): Compute cloud ROI and memory savings when replacing headless Chrome.
+
+## API Quickstart
+Send a POST request to `/v1/render`:
+```bash
+curl -X POST https://api.rubrol.com/v1/render \
+  -H "Authorization: Bearer <API_KEY>" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "template": "= Invoice #1024\nTotal: 120.00 EUR",
+    "format": "pdfa-3b"
+  }'
+```
+
+Factur-X / ZUGFeRD generation via `/v1/facturx/render`:
+```bash
+curl -X POST https://api.rubrol.com/v1/facturx/render \
+  -H "Authorization: Bearer <API_KEY>" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "template": "= Factur-X Invoice\nAmount: 500 EUR",
+    "xml": "<rsm:CrossIndustryInvoice>...</rsm:CrossIndustryInvoice>",
+    "profile": "EN16931"
+  }'
+```
+
+## Comparisons & Benchmarks
+- [Why Puppeteer Fails EN 16931 Compliance](https://rubrol.com/articles/why-puppeteer-fails-en16931): Deep dive into PDF/A-3b specification violations in headless Chrome.
+- [Rubrol vs Gotenberg](https://rubrol.com/articles/rubrol-vs-gotenberg): Performance and memory comparison between Chromium/LibreOffice containers and native Typst.
+- [Rubrol vs Mustangproject](https://rubrol.com/articles/rubrol-vs-mustangproject): JVM memory overhead vs zero-overhead native Rust sidecar.
+- [Rubrol vs Ghostscript](https://rubrol.com/articles/rubrol-vs-ghostscript): Color profile pitfalls, licensing issues, and speed benchmarks.
+- [Wkhtmltopdf Alternative Guide](https://rubrol.com/articles/wkhtmltopdf-alternative): Migrating unmaintained wkhtmltopdf pipelines to modern Typst.
+- [Puppeteer PDF Alternative Guide](https://rubrol.com/articles/puppeteer-pdf-alternative): Why modern engineering teams are ditching Chrome for native document compilation.

@@ -20,6 +20,72 @@
   <meta property="og:url" content="https://rubrol.com/tools/html-to-typst">
   <meta property="og:image" content="https://rubrol.com/assets/og_image.png">
 
+  <!-- Schema.org WebApplication & FAQPage JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "HTML to Typst Online Converter",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "All",
+        "url": "https://rubrol.com/tools/html-to-typst",
+        "description": "Free real-time developer tool to convert HTML tables, typography, and CSS layouts into clean, declarative Typst markup.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://rubrol.com"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Free Tools",
+            "item": "https://rubrol.com/#tools"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "HTML to Typst Converter",
+            "item": "https://rubrol.com/tools/html-to-typst"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Why convert HTML to Typst?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Typst is a modern, memory-safe document markup language that compiles directly into high-fidelity PDF/A documents in under 10ms with zero layout shifts, eliminating the need for 500MB headless browser instances."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does this tool upload my HTML to any server?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. The parser runs 100% locally in your browser using DOMParser and regex AST mapping. Your markup and templates remain completely private."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">

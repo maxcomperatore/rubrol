@@ -20,6 +20,72 @@
   <meta property="og:url" content="https://rubrol.com/tools/chromium-cost-calculator">
   <meta property="og:image" content="https://rubrol.com/assets/og_image.png">
 
+  <!-- Schema.org WebApplication, BreadcrumbList & FAQPage JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Puppeteer & Chromium Cloud Burn Calculator",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "All",
+        "url": "https://rubrol.com/tools/chromium-cost-calculator",
+        "description": "Free cloud infrastructure ROI calculator comparing headless Chromium, Puppeteer, and Gotenberg server memory and latency costs with Rubrol's native Typst compiler.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://rubrol.com"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Free Tools",
+            "item": "https://rubrol.com/#tools"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Chromium Cloud Burn Calculator",
+            "item": "https://rubrol.com/tools/chromium-cost-calculator"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How much memory does headless Chromium consume for PDF generation?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Headless Chromium processes typically require between 500MB and 1GB of RAM per concurrent instance and take 1 to 3 seconds to spin up, whereas Rubrol's Typst-based engine runs in under 30MB of RAM and compiles in less than 10 milliseconds."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How does Rubrol reduce serverless and cloud compute costs?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "By reducing memory allocation from 1024MB to 128MB on AWS Lambda and cutting execution duration from 1500ms to 8ms, Rubrol slashes cloud compute charges by up to 90% while preventing out-of-memory container crashes."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
