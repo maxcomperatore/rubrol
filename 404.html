@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 - Document Not Found | Rubrol</title>
+  <meta name="description" content="The requested page or document could not be compiled. Return to Rubrol homepage or launch the Live Studio.">
+  <link rel="icon" type="image/png" href="/assets/logo.png">
+  <link rel="canonical" href="https://rubrol.com/404">
+  <meta name="robots" content="noindex, follow">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-dark: #08090c;
+      --bg-card: #10121a;
+      --border: rgba(255, 255, 255, 0.09);
+      --amber: #f59e0b;
+      --amber-hover: #fbbf24;
+      --text-main: #f8fafc;
+      --text-body: #94a3b8;
+      --text-muted: #64748b;
+      --font-display: 'Instrument Serif', Georgia, serif;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', Consolas, monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-body);
+      font-family: var(--font-sans);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      text-align: center;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 580px;
+      width: 100%;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 48px 32px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    }
+
+    .brand-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--text-main);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 18px;
+      margin-bottom: 28px;
+    }
+
+    .brand-link img {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+    }
+
+    .status-code {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--amber);
+      background: rgba(245, 158, 11, 0.1);
+      border: 1px solid rgba(245, 158, 11, 0.25);
+      padding: 4px 12px;
+      border-radius: 999px;
+      display: inline-block;
+      margin-bottom: 16px;
+      letter-spacing: 0.05em;
+    }
+
+    h1 {
+      font-family: var(--font-display);
+      font-size: 44px;
+      font-weight: 400;
+      color: var(--text-main);
+      line-height: 1.15;
+      margin-bottom: 14px;
+    }
+
+    p {
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--text-body);
+      margin-bottom: 32px;
+    }
+
+    .actions {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .btn-primary {
+      background: var(--amber);
+      color: #08090c;
+      font-weight: 700;
+      font-size: 14px;
+      padding: 12px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background 0.15s ease;
+      display: block;
+    }
+
+    .btn-primary:hover {
+      background: var(--amber-hover);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text-main);
+      border: 1px solid var(--border);
+      font-weight: 600;
+      font-size: 14px;
+      padding: 11px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: border-color 0.15s ease, background 0.15s ease;
+      display: block;
+    }
+
+    .btn-secondary:hover {
+      border-color: rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.07);
+    }
+
+    .footer-note {
+      margin-top: 36px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .footer-note a {
+      color: var(--amber);
+      text-decoration: none;
+    }
+
+    .footer-note a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="/" class="brand-link">
+      <img src="/assets/logo.png" alt="Rubrol">
+      <span>Rubrol</span>
+    </a>
+
+    <div>
+      <span class="status-code">404 COMPILATION ERROR</span>
+      <h1>Document Not Found</h1>
+      <p>The page or resource you requested could not be resolved by our server router. Head back to safety or test your templates in our live engine.</p>
+    </div>
+
+    <div class="actions">
+      <a href="/studio" class="btn-primary">Launch Live Studio Playground →</a>
+      <a href="/tools/facturx-validator" class="btn-secondary">Free Factur-X / ZUGFeRD Inspector</a>
+      <a href="/tools/chromium-cost-calculator" class="btn-secondary">Puppeteer Cloud Burn Calculator</a>
+      <a href="/" class="btn-secondary">Return to Rubrol Homepage</a>
+    </div>
+
+    <div class="footer-note">
+      Need assistance? Contact our engineering team at <a href="mailto:support@rubrol.com">support@rubrol.com</a>.
+    </div>
+  </div>
+</body>
+</html>

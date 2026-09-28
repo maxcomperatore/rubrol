@@ -1,0 +1,16 @@
+{
+  "name": "Rubrol - Sub-millisecond PDF Engine",
+  "short_name": "Rubrol",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#08090c",
+  "theme_color": "#08090c",
+  "description": "High-throughput, sub-10ms document engine and EU Factur-X / EN 16931 suite.",
+  "icons": [
+    {
+      "src": "/assets/logo.png",
+      "sizes": "192x192 512x512",
+      "type": "image/png"
+    }
+  ]
+}
