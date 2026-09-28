@@ -30,11 +30,15 @@ class APIKeyManager:
         self._init_db()
 
     def _get_conn(self) -> sqlite3.Connection:
-        conn = sqlite3.connect(str(self.db_path), timeout=10.0)
+        conn = sqlite3.connect(str(self.db_path), timeout=15.0)
         conn.row_factory = sqlite3.Row
-        # Enable WAL mode for high concurrency
+        # Enable WAL mode and high-throughput production pragmas
         conn.execute("PRAGMA journal_mode=WAL;")
         conn.execute("PRAGMA synchronous=NORMAL;")
+        conn.execute("PRAGMA busy_timeout=5000;")
+        conn.execute("PRAGMA temp_store=MEMORY;")
+        conn.execute("PRAGMA mmap_size=67108864;")
+        conn.execute("PRAGMA cache_size=-64000;")
         return conn
 
     def _init_db(self):
@@ -56,6 +60,7 @@ class APIKeyManager:
             """)
             conn.execute("CREATE INDEX IF NOT EXISTS idx_api_key ON api_keys(api_key);")
             conn.execute("CREATE INDEX IF NOT EXISTS idx_email ON api_keys(email);")
+            conn.execute("CREATE INDEX IF NOT EXISTS idx_stripe_cust ON api_keys(stripe_customer_id);")
             conn.commit()
 
     def create_trial_key(self, email: str = "") -> Dict[str, Any]:
@@ -171,13 +176,25 @@ class APIKeyManager:
                 }
                 return False, info, "quota_exceeded"
 
-            # Atomically increment used quota
-            conn.execute("""
+            # Atomically increment used quota with concurrency guard
+            cursor = conn.execute("""
                 UPDATE api_keys
                 SET quota_used = quota_used + ?, last_used_at = ?
-                WHERE id = ?
-            """, (cost, now, row["id"]))
+                WHERE id = ? AND (quota_used + ?) <= quota_limit
+            """, (cost, now, row["id"], cost))
             conn.commit()
+
+            if cursor.rowcount == 0:
+                # Quota was consumed concurrently by parallel requests
+                fresh = conn.execute("SELECT * FROM api_keys WHERE id = ?", (row["id"],)).fetchone()
+                info = {
+                    "api_key": clean_key,
+                    "tier": row["tier"],
+                    "quota_limit": fresh["quota_limit"] if fresh else limit,
+                    "quota_used": fresh["quota_used"] if fresh else limit,
+                    "quota_remaining": 0
+                }
+                return False, info, "quota_exceeded"
 
             new_used = used + cost
             info = {

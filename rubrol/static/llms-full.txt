@@ -1,0 +1,196 @@
+# Rubrol — Full Developer & Integration Reference
+
+> Fast, memory-safe PDF/A-3b & Factur-X/ZUGFeRD generation sidecar engine powered by native Typst. Replaces headless Chrome, Puppeteer, and Gotenberg with sub-10ms compilation, 95% less RAM, and zero JVM overhead.
+
+## Architecture & Overview
+Rubrol runs as an ultra-low-latency HTTP sidecar or standalone CLI. It accepts Typst templates and JSON payload contexts, and compiles them directly into byte-perfect ISO 19005-3 (PDF/A-3b) documents with embedded XML attachments (Factur-X / ZUGFeRD / EN 16931) in under 10 milliseconds.
+
+- **Engine**: Native Typst (Rust) + Ed25519 offline licensing + Embedded PDF/A-3b injector
+- **Memory Footprint**: ~24MB resident RAM (vs 500MB+ for Headless Chrome)
+- **Cold Start**: <15ms (instant container start)
+- **Compliance**: ISO 19005-3, European EN 16931, Chorus Pro, ZUGFeRD 2.2, Factur-X 1.0.07
+
+---
+
+## HTTP API Specification
+
+### Base URL
+- Production / Cloud: `https://api.rubrol.com`
+- Local Docker Sidecar: `http://localhost:8080`
+
+### Authentication
+Include the `Authorization` header with your API key:
+`Authorization: Bearer <API_KEY>`
+
+---
+
+### Endpoint 1: `/v1/render`
+Compile standard Typst markup or templates into PDF/A-3b or standard PDF.
+
+**Method**: `POST`  
+**Headers**:
+- `Content-Type: application/json`
+- `Authorization: Bearer <API_KEY>`
+
+**Request Body**:
+```json
+{
+  "template": "= Invoice #{{ invoice_number }}\n\nDate: {{ date }}\nTotal: {{ total_amount }} EUR",
+  "data": {
+    "invoice_number": "INV-2026-001",
+    "date": "2026-09-28",
+    "total_amount": "1,250.00"
+  },
+  "format": "pdfa-3b"
+}
+```
+
+**Response**:
+Binary PDF stream (`Content-Type: application/pdf`).
+
+---
+
+### Endpoint 2: `/v1/facturx/render`
+Compile a template into an EN 16931 compliant PDF/A-3b invoice with embedded CrossIndustryInvoice (CII) XML.
+
+**Method**: `POST`  
+**Headers**:
+- `Content-Type: application/json`
+- `Authorization: Bearer <API_KEY>`
+
+**Request Body**:
+```json
+{
+  "template": "= Factur-X Commercial Invoice\n\nBuyer: Acme Corp\nTotal: 450.00 EUR",
+  "xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><rsm:CrossIndustryInvoice xmlns:rsm=\"urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100\" ...>...</rsm:CrossIndustryInvoice>",
+  "profile": "EN16931"
+}
+```
+
+---
+
+## Code Examples
+
+### 1. Python
+```python
+import requests
+
+def generate_pdf(template: str, data: dict, api_key: str) -> bytes:
+    response = requests.post(
+        "https://api.rubrol.com/v1/render",
+        headers={"Authorization": f"Bearer {api_key}"},
+        json={"template": template, "data": data, "format": "pdfa-3b"},
+        timeout=5.0
+    )
+    response.raise_for_status()
+    return response.content
+
+# Usage
+pdf_bytes = generate_pdf(
+    template="= Quarterly Statement\nTotal: {{ total }}",
+    data={"total": "$14,200"},
+    api_key="rbl_live_..."
+)
+with open("statement.pdf", "wb") as f:
+    f.write(pdf_bytes)
+```
+
+### 2. Node.js / TypeScript
+```typescript
+import axios from 'axios';
+import fs from 'fs/promises';
+
+async function generateInvoice(template: string, data: Record<string, any>, apiKey: string): Promise<Buffer> {
+  const res = await axios.post(
+    'https://api.rubrol.com/v1/render',
+    { template, data, format: 'pdfa-3b' },
+    {
+      headers: { Authorization: `Bearer ${apiKey}` },
+      responseType: 'arraybuffer',
+      timeout: 5000,
+    }
+  );
+  return Buffer.from(res.data);
+}
+
+// Usage
+const pdf = await generateInvoice(
+  '= Billing Receipt\nCustomer: {{ customer }}',
+  { customer: 'Stripe, Inc.' },
+  process.env.RUBROL_API_KEY!
+);
+await fs.writeFile('receipt.pdf', pdf);
+```
+
+### 3. Go
+```go
+package main
+
+import (
+	"bytes"
+	"encoding/json"
+	"io"
+	"net/http"
+	"os"
+	"time"
+)
+
+type RenderRequest struct {
+	Template string                 `json:"template"`
+	Data     map[string]interface{} `json:"data"`
+	Format   string                 `json:"format"`
+}
+
+func GeneratePDF(template string, data map[string]interface{}, apiKey string) ([]byte, error) {
+	reqBody, err := json.Marshal(RenderRequest{
+		Template: template,
+		Data:     data,
+		Format:   "pdfa-3b",
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", "https://api.rubrol.com/v1/render", bytes.NewBuffer(reqBody))
+	if err != nil {
+		return nil, err
+	}
+	req.Header.Set("Authorization", "Bearer "+apiKey)
+	req.Header.Set("Content-Type", "application/json")
+
+	client := &http.Client{Timeout: 5 * time.Second}
+	resp, err := client.Do(req)
+	if err != nil {
+		return nil, err
+	}
+	defer resp.Body.Close()
+
+	return io.ReadAll(resp.Body)
+}
+```
+
+---
+
+## Deployment & Docker Quickstart
+
+Run Rubrol sidecar locally or on AWS ECS / Google Cloud Run / Kubernetes:
+```bash
+docker run -d \
+  -p 8080:8080 \
+  --name rubrol-engine \
+  ghcr.io/maxcomperatore/rubrol:latest
+```
+
+Check health:
+```bash
+curl http://localhost:8080/health
+# {"status":"healthy","service":"rubrol-engine","version":"1.0.0"}
+```
+
+---
+
+## Free Web Tools
+- **Live Studio Playground**: https://rubrol.com/studio
+- **Factur-X & ZUGFeRD Validator**: https://rubrol.com/tools/facturx-validator
+- **HTML to Typst Converter**: https://rubrol.com/tools/html-to-typst
+- **Puppeteer & Chromium Cost Calculator**: https://rubrol.com/tools/chromium-cost-calculator
