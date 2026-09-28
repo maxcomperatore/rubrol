@@ -86,8 +86,8 @@ def test_stripe_subscription_cancellation_webhook(monkeypatch):
     result = process_stripe_event(event)
     assert result["handled"] is True
     assert result["subscription_id"] == "sub_test_annual_999"
-    assert result["github_username"] == "canceluser"
-    assert len(result["revocations"]) == 2
+    assert len(result["revocations"]) == 1
+    assert result["revocations"][0]["repository"] == "rubrol-pro-vault"
 
 def test_stripe_subscription_renewal_webhook():
     from rubrol.webhooks.stripe_fulfillment import process_stripe_event

@@ -753,12 +753,12 @@ Rubrol operates on the transparent **Sidekiq commercial open-core model**:
 | :--- | :--- | :--- | :--- |
 | **Rubrol Community** | **$0 / Free Forever** | Open Source (GNU LGPLv3) | Local developer CLI, Docker evaluation container, standard B2B SaaS Typst templates, community GitHub support. |
 | **Rubrol Pro** | **$1,800 / year** | Annual Commercial License | Unlimited local Docker sidecar execution (no doc limits), commercial rights replacing LGPLv3, SaaS billing and receipt templates, standard ISO 19005-2 PDF/A-2b compilation, private GitHub vault access (`rubrol-pro-vault`), 1-year offline cryptographic license key. |
-| **Rubrol Enterprise** | **$4,800 / year** | Annual Enterprise Suite | Turnkey EU compliance suite with certified ISO 19005-3 PDF/A-3b + Factur-X / ZUGFeRD 2.2, Schematron semantic validator (EN 16931 & XRechnung 3.0), German DIN 5008 & French Chorus Pro templates, dual vault access (`rubrol-pro-vault` + `rubrol-enterprise-vault`), 2025-2028 legal update feed, priority support. |
+| **Rubrol Enterprise** | **$4,800 / year** | Annual Enterprise Suite | Turnkey EU compliance suite with certified ISO 19005-3 PDF/A-3b + Factur-X / ZUGFeRD 2.2, Schematron semantic validator (EN 16931 & XRechnung 3.0), German DIN 5008 & French Chorus Pro templates, full private template vault access (`rubrol-pro-vault`), 2025-2028 legal update feed, priority support. |
 
 * **[Buy Rubrol Pro ($1,800/yr via Stripe Checkout)](https://buy.stripe.com/fZu5kEcpvcZQehJdgE0Ba0j)**
 * **[Buy Rubrol Enterprise ($4,800/yr via Stripe Checkout)](https://buy.stripe.com/7sY28sahn0d41uX5Oc0Ba0k)**
 
-*Note: Upon purchase, you will receive an immediate signed 1-year offline cryptographic key (`RUBROL_LICENSE_KEY=RBL-LIC-...`) and automated GitHub collaborator invitations to the private vaults.*
+*Note: Upon purchase, you will receive an immediate signed 1-year offline cryptographic key (`RUBROL_LICENSE_KEY=RBL-LIC-...`) and automated GitHub collaborator invitations to the private vault.*
 
 ---
 
@@ -780,7 +780,7 @@ The open-source core is licensed under the **GNU Lesser General Public License v
 Every organization running Rubrol in production for commercial SaaS applications must purchase an annual subscription ($1,800/yr). There is no limit to the number of Docker containers, Kubernetes pods, CPU cores, or developer machines used by that organization. Your subscription renews automatically each year.
 
 ### How does Enterprise licensing work?
-Every organization deploying Rubrol for European e-invoicing compliance (EN 16931) must purchase a Rubrol Enterprise subscription ($4,800/yr). It includes the complete turnkey compliance suite: certified ISO 19005-3 PDF/A-3b container generation, embedded Factur-X / ZUGFeRD 2.2 XML, built-in Schematron semantic validation (XRechnung 3.0), French Chorus Pro and German DIN 5008 templates, dual vault repository access (`rubrol-pro-vault` + `rubrol-enterprise-vault`), guaranteed regulatory update feeds for 2025-2028 EU mandates, and priority Slack/email support.
+Every organization deploying Rubrol for European e-invoicing compliance (EN 16931) must purchase a Rubrol Enterprise subscription ($4,800/yr). It includes the complete turnkey compliance suite: certified ISO 19005-3 PDF/A-3b container generation, embedded Factur-X / ZUGFeRD 2.2 XML, built-in Schematron semantic validation (XRechnung 3.0), French Chorus Pro and German DIN 5008 templates, private template vault repository access (`rubrol-pro-vault`), guaranteed regulatory update feeds for 2025-2028 EU mandates, and priority Slack/email support.
 
 ### How do I purchase?
 You can purchase in seconds via Stripe Checkout:

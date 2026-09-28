@@ -37,7 +37,7 @@ def create_checkout_session(
         description = (
             "Complete enterprise e-invoicing suite. Everything in Pro plus certified ISO 19005-3 PDF/A-3b & "
             "Factur-X / ZUGFeRD 2.2 Schematron semantic validator, German DIN 5008 & French Chorus Pro XML/PDF, "
-            "dual vault access (rubrol-enterprise-vault), guaranteed compliance updates for 2025-2028 EU mandates, "
+            "full private template vault access (rubrol-pro-vault), guaranteed compliance updates for 2025-2028 EU mandates, "
             "air-gapped license key, and direct priority engineering support."
         )
         amount = 480000  # $4,800.00 USD in cents

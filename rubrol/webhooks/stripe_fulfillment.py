@@ -3,9 +3,8 @@
 Rubrol Stripe Fulfillment & License Key Provisioning Webhook.
 Listens for checkout.session.completed events, extracts the GitHub username
 from checkout custom_fields, issues a signed 1-year offline cryptographic license key,
-and automatically invites the customer to private GitHub vaults:
-- Pro Sidecar: maxcomperatore/rubrol-pro-vault
-- EU Enterprise: maxcomperatore/rubrol-pro-vault + maxcomperatore/rubrol-enterprise-vault
+and automatically invites the customer to the private GitHub template vault:
+- Pro Sidecar & EU Enterprise: maxcomperatore/rubrol-pro-vault (all 11 production & compliance templates)
 """
 import os
 import sys
@@ -23,7 +22,7 @@ logger = logging.getLogger("rubrol.webhooks.stripe")
 
 VAULT_OWNER = os.environ.get("RUBROL_VAULT_OWNER", "maxcomperatore")
 PRO_VAULT_REPO = os.environ.get("RUBROL_PRO_VAULT_REPO", "rubrol-pro-vault")
-ENTERPRISE_VAULT_REPO = os.environ.get("RUBROL_ENTERPRISE_VAULT_REPO", "rubrol-enterprise-vault")
+ENTERPRISE_VAULT_REPO = os.environ.get("RUBROL_ENTERPRISE_VAULT_REPO", PRO_VAULT_REPO)
 
 
 def get_github_token() -> Optional[str]:
@@ -155,7 +154,7 @@ def process_stripe_event(event: Dict[str, Any]) -> Dict[str, Any]:
         
         if "enterprise" in raw_tier or "compliance" in raw_tier or amount_total >= 400000:
             tier = "eu_enterprise"
-            target_repos = [PRO_VAULT_REPO, ENTERPRISE_VAULT_REPO]
+            target_repos = [PRO_VAULT_REPO]
         else:
             tier = "pro_sidecar"
             target_repos = [PRO_VAULT_REPO]
@@ -219,7 +218,7 @@ def process_stripe_event(event: Dict[str, Any]) -> Dict[str, Any]:
         # Revoke access to GitHub vaults
         revocation_results = []
         if github_username:
-            for repo in [PRO_VAULT_REPO, ENTERPRISE_VAULT_REPO]:
+            for repo in [PRO_VAULT_REPO]:
                 res = remove_github_user_from_repo(github_username, repo)
                 revocation_results.append(res)
 
