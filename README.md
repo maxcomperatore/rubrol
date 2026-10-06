@@ -6,7 +6,7 @@
   <p>Sub-8ms dynamic PDF/A documents powered by native Typst. Universal document engine for SaaS invoices, executive reports, and payment receipts. No Headless Chrome. No Chromium bloat.</p>
 
   <p>
-    <a href="LICENSE"><img src="https://img.shields.io/badge/License-LGPL_3.0-blue.svg" alt="License" /></a>
+    <a href="LICENSE"><img src="https://img.shields.io/badge/License-Apache_2.0-blue.svg" alt="License" /></a>
     <a href="https://typst.app/"><img src="https://img.shields.io/badge/Typst-Native-orange.svg" alt="Typst" /></a>
     <img src="https://img.shields.io/badge/Latency-5.8ms-brightgreen.svg" alt="Latency" />
     <img src="https://img.shields.io/badge/RAM-%3C28MB-green.svg" alt="RAM" />
@@ -113,7 +113,7 @@ Adopting Rubrol is not just about replacing a rendering library; it fundamentall
 
 * **The Villain:** Headless Chrome, Puppeteer, and Playwright consume 1.5GB to 2GB of RAM per process, suffer cold starts $>1,500\text{ms}$, and frequently trigger Out-Of-Memory (OOM) crashes across Kubernetes clusters during batch billing runs.
 * **The Legacy Trap:** Monolithic HTML-to-PDF renderers (WeasyPrint, Gotenberg, wkhtmltopdf) suffer from brittle CSS Paged Media pagination, broken table page breaks, and complex foreign library dependencies.
-* **The Solution (Rubrol):** 100% Open Source GNU LGPLv3 core engine with commercial licensing (Sidekiq model). Compiles documents using native Typst in **$< 8\text{ms}$** with **$< 28\text{MB}$ RAM**, running as a stateless universal HTTP sidecar next to any backend service.
+* **The Solution (Rubrol):** 100% Permissive Open Source (Apache 2.0). Compiles documents using native Typst in **$< 8\text{ms}$** with **$< 28\text{MB}$ RAM**, running as a stateless universal HTTP sidecar next to any backend service.
 
 ---
 
@@ -751,8 +751,8 @@ Rubrol operates on the transparent **Sidekiq commercial open-core model**:
 
 | Tier | Price | Model | Deliverables & Rights |
 | :--- | :--- | :--- | :--- |
-| **Rubrol Community** | **$0 / Free Forever** | Open Source (GNU LGPLv3) | Local developer CLI, Docker evaluation container, standard B2B SaaS Typst templates, community GitHub support. |
-| **Rubrol Pro** | **$1,800 / year** | Annual Commercial License | Unlimited local Docker sidecar execution (no doc limits), commercial rights replacing LGPLv3, SaaS billing and receipt templates, standard ISO 19005-2 PDF/A-2b compilation, private GitHub vault access (`rubrol-pro-vault`), 1-year offline cryptographic license key. |
+| **Rubrol Community** | **$0 / Free Forever** | Permissive Open Source (Apache 2.0) | Local developer CLI, Docker sidecar container, unlimited documents, standard B2B SaaS Typst templates, community GitHub support. |
+| **Rubrol Pro** | **$1,800 / year** | Annual Pro Support & Vault | Full production support SLA, private GitHub template vault access (`rubrol-pro-vault`), advanced SaaS billing and receipt templates, standard ISO 19005-2 PDF/A-2b compilation, offline license key. |
 | **Rubrol Enterprise** | **$4,800 / year** | Annual Enterprise Suite | Turnkey EU compliance suite with certified ISO 19005-3 PDF/A-3b + Factur-X / ZUGFeRD 2.2, Schematron semantic validator (EN 16931 & XRechnung 3.0), German DIN 5008 & French Chorus Pro templates, full private template vault access (`rubrol-pro-vault`), 2025-2028 legal update feed, priority support. |
 
 * **[Buy Rubrol Pro ($1,800/yr via Stripe Checkout)](https://buy.stripe.com/fZu5kEcpvcZQehJdgE0Ba0j)**
@@ -765,16 +765,16 @@ Rubrol operates on the transparent **Sidekiq commercial open-core model**:
 ## Commercial Licensing FAQ
 
 ### What are Rubrol Pro and Rubrol Enterprise?
-Rubrol Pro and Rubrol Enterprise are commercial extensions and licensing agreements for the Rubrol engine. They provide production commercial rights (replacing the GNU LGPLv3), private GitHub template vault access, cryptographic 1-year offline license keys, turnkey EU Factur-X / Schematron compliance suites, and direct developer support.
+Rubrol Pro and Rubrol Enterprise are commercial extensions and support agreements for the Rubrol engine. They provide private GitHub template vault access, cryptographic 1-year offline license keys, turnkey EU Factur-X / Schematron compliance suites, and direct developer SLA support.
 
 ### Is there a trial version?
-We do not have pre-sales demos or trial keys. Rubrol Community is 100% free, open-source, and available on GitHub for evaluation and local development under the GNU LGPLv3. If Rubrol meets your performance needs, you can purchase Rubrol Pro or Enterprise. If you are not satisfied with the result, write to support@rubrol.com within 14 days and we will issue a full refund.
+We do not have pre-sales demos or trial keys. Rubrol Community is 100% free, open-source, and available on GitHub for evaluation and production development under the Apache 2.0 license. If you require advanced enterprise templates, regulatory feeds, or dedicated SLA support, you can purchase Rubrol Pro or Enterprise. If you are not satisfied with the result, write to support@rubrol.com within 14 days and we will issue a full refund.
 
 ### Can I get a discount?
 For Rubrol Pro ($1,800/yr), pricing is fixed and flat with zero discounts or special deals. For Rubrol Enterprise ($4,800/yr), multi-year commitments or custom cluster volume agreements are available for high-throughput organizations. Contact enterprise@rubrol.com for quotes.
 
 ### What is the license?
-The open-source core is licensed under the **GNU Lesser General Public License v3.0 (LGPLv3)**. Rubrol Pro and Rubrol Enterprise are commercial licenses that replace the LGPLv3 with a traditional proprietary commercial agreement for production SaaS deployments, removing open-source linking obligations.
+The core engine is licensed under the **Apache License 2.0**. It is 100% permissive open source: you can freely use, modify, distribute, and embed Rubrol in internal systems, commercial SaaS platforms, or on-premise deployments with zero copyleft restrictions or linking obligations. Rubrol Pro and Enterprise add optional commercial support agreements, legal update guarantees, and private vault template libraries.
 
 ### How does Pro licensing work?
 Every organization running Rubrol in production for commercial SaaS applications must purchase an annual subscription ($1,800/yr). There is no limit to the number of Docker containers, Kubernetes pods, CPU cores, or developer machines used by that organization. Your subscription renews automatically each year.
@@ -869,5 +869,5 @@ Yes. The Python server uses `ThreadedHTTPServer` and each Typst compilation work
 ---
 
 <div align="center">
-  <sub>Engineered by the Rubrol Team. GNU LGPLv3 Open Source Core with Commercial Dual Licensing (Sidekiq Model).</sub>
+  <sub>Engineered by the Rubrol Team. Apache 2.0 Permissive Open Source License.</sub>
 </div>
