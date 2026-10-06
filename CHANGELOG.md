@@ -16,7 +16,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Built-in telemetry headers (`X-Engine`, `X-Render-Time-Ms`, `X-Memory-Alloc-MB`).
 - Docker container specification with unprivileged execution.
 - Comprehensive test suite covering Factur-X XML packaging, PDF/A-3 attachments, and Schematron validation.
-- Standardized open-source community policies (LGPLv3 license, Contributor Covenant v2.1, Security Policy, Conventional Commits).
+- Standardized open-source community policies (Apache 2.0 license, Contributor Covenant v2.1, Security Policy, Conventional Commits).
 
 ### Performance
 - Sub-10ms mean compilation latency on standard business documents.

@@ -1,6 +1,6 @@
 # Rubrol Open Core Templates
 
-This directory contains the default open-source document templates included with Rubrol under the **GNU LGPLv3 License**:
+This directory contains the default open-source document templates included with Rubrol under the **Apache 2.0 License**:
 
 * **b2b_invoice.typ** - Stripe SaaS Billing Invoice
 * **saas_receipt.typ** - Consumer & Developer Receipt

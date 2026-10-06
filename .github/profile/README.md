@@ -6,7 +6,7 @@
 
 **Sub-10ms Native Rust Document Engine Powered by Typst. Zero Headless Browsers. Pure Deterministic Performance.**
 
-[![GitHub License](https://img.shields.io/badge/license-LGPL--3.0-blue.svg)](https://github.com/maxcomperatore/rubrol/blob/main/LICENSE)
+[![GitHub License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](https://github.com/maxcomperatore/rubrol/blob/main/LICENSE)
 [![Rust](https://img.shields.io/badge/built%20with-Rust-orange.svg)](https://www.rust-lang.org/)
 [![Engine](https://img.shields.io/badge/powered%20by-Typst-239dad.svg)](https://typst.app/)
 [![Compliance](https://img.shields.io/badge/standards-PDF%2FA--3b%20%7C%20Factur--X%20%7C%20ZUGFeRD-success.svg)](https://rubrol.com/#compliance)

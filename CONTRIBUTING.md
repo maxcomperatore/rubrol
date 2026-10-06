@@ -137,8 +137,8 @@ Every contributor who submits an accepted pull request or publishes an ecosystem
 ## Contributor Terms & License Grant
 
 By submitting a pull request, patch, or contribution to Rubrol:
-1. **GNU LGPLv3 Inbound License**: You grant Rubrol, its maintainers, and its users an irrevocable, perpetual, worldwide, royalty-free license under the GNU Lesser General Public License v3.0 (LGPLv3).
-2. **Developer Certificate of Origin (DCO 1.1)**: You certify that you authored the contribution in its entirety or otherwise have the full legal right and authority to license it under the GNU LGPLv3.
+1. **Apache 2.0 Inbound License**: You grant Rubrol, its maintainers, and its users an irrevocable, perpetual, worldwide, royalty-free license under the Apache License 2.0.
+2. **Developer Certificate of Origin (DCO 1.1)**: You certify that you authored the contribution in its entirety or otherwise have the full legal right and authority to license it under the Apache 2.0.
 
 ---
 
