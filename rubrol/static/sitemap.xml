@@ -63,6 +63,12 @@
     <priority>0.92</priority>
   </url>
   <url>
+    <loc>https://rubrol.com/articles/why-headless-chromium-in-kubernetes-is-an-architectural-mistake</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
     <loc>https://rubrol.com/articles/python-pdf-generator</loc>
     <lastmod>2026-09-25</lastmod>
     <changefreq>weekly</changefreq>
