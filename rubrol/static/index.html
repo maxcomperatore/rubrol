@@ -6590,7 +6590,7 @@
           </div>
 
           <div style="margin-top: 14px;">
-            <a id="calcCtaBtn" href="https://buy.stripe.com/fZu5kEcpvcZQehJdgE0Ba0j" target="_blank" class="btn-pricing btn-pricing-primary" style="padding: 10px 24px; font-size: 13px; display: inline-flex; align-items: center; justify-content: center; gap: 6px; width: 100%;">
+            <a id="calcCtaBtn" href="https://buy.stripe.com/7sYfZidtz1h86PhfoM0Ba0n" target="_blank" class="btn-pricing btn-pricing-primary" style="padding: 10px 24px; font-size: 13px; display: inline-flex; align-items: center; justify-content: center; gap: 6px; width: 100%;">
               <span>Proceed to Stripe Checkout</span>
             </a>
           </div>
@@ -6667,7 +6667,7 @@
               <li>Direct Developer Email &amp; Discord Support</li>
             </ul>
           </div>
-          <a href="https://buy.stripe.com/fZu5kEcpvcZQehJdgE0Ba0j" target="_blank" class="btn-pricing btn-pricing-primary" id="btn-pro" style="background: #f59e0b; color: #000; font-weight: 700;">
+          <a href="https://buy.stripe.com/7sYfZidtz1h86PhfoM0Ba0n" target="_blank" class="btn-pricing btn-pricing-primary" id="btn-pro" style="background: #f59e0b; color: #000; font-weight: 700;">
             Get Template Vault ($199 Lifetime)
           </a>
         </div>
@@ -6696,7 +6696,7 @@
               <li>Priority Issue Triage &amp; Architecture Review</li>
             </ul>
           </div>
-          <a href="https://buy.stripe.com/fZu5kEcpvcZQehJdgE0Ba0j" target="_blank" class="btn-pricing btn-pricing-primary" id="btn-scale">
+          <a href="https://buy.stripe.com/9B600k1KR7Fw6Ph2C00Ba0o" target="_blank" class="btn-pricing btn-pricing-primary" id="btn-scale">
             Deploy Team Sidecar ($99/mo)
           </a>
         </div>
@@ -6725,7 +6725,7 @@
               <li>Dedicated Slack Channel &amp; 99.9% Uptime SLA</li>
             </ul>
           </div>
-          <a href="https://buy.stripe.com/7sY28sahn0d41uX5Oc0Ba0k" target="_blank" class="btn-pricing btn-pricing-primary" id="btn-compliance">
+          <a href="https://buy.stripe.com/4gM00kahn3pgehJ4K80Ba0p" target="_blank" class="btn-pricing btn-pricing-primary" id="btn-compliance">
             Buy Enterprise ($3,600/yr)
           </a>
         </div>
@@ -6837,9 +6837,9 @@
           <div class="faq-answer">
             <p>You can purchase in seconds via Stripe Checkout:</p>
             <p style="margin-top: 6px;">
-              • <a href="https://buy.stripe.com/fZu5kEcpvcZQehJdgE0Ba0j" target="_blank"><strong>Get Pro Template Vault ($199 Lifetime Pass)</strong></a><br>
-              • <a href="https://buy.stripe.com/fZu5kEcpvcZQehJdgE0Ba0j" target="_blank"><strong>Deploy Team Sidecar ($99/mo)</strong></a><br>
-              • <a href="https://buy.stripe.com/7sY28sahn0d41uX5Oc0Ba0k" target="_blank"><strong>Buy Enterprise Compliance ($3,600/yr)</strong></a>
+              • <a href="https://buy.stripe.com/7sYfZidtz1h86PhfoM0Ba0n" target="_blank"><strong>Get Pro Template Vault ($199 Lifetime Pass)</strong></a><br>
+              • <a href="https://buy.stripe.com/9B600k1KR7Fw6Ph2C00Ba0o" target="_blank"><strong>Deploy Team Sidecar ($99/mo)</strong></a><br>
+              • <a href="https://buy.stripe.com/4gM00kahn3pgehJ4K80Ba0p" target="_blank"><strong>Buy Enterprise Compliance ($3,600/yr)</strong></a>
             </p>
             <p style="margin-top: 6px;">Enter your <strong>GitHub Username</strong> during checkout. You will automatically receive an invitation granting access to the private template vault, and a signed cryptographic license key will be issued immediately.</p>
           </div>
@@ -7822,8 +7822,9 @@ ${err.message}</div>`;
     const priceValScale = document.getElementById('price-val-scale');
     const pricePeriodScale = document.getElementById('price-period-scale');
 
-    const STRIPE_PRO_ANNUAL_URL = "https://buy.stripe.com/fZu5kEcpvcZQehJdgE0Ba0j";
-    const STRIPE_COMPLIANCE_ANNUAL_URL = "https://buy.stripe.com/7sY28sahn0d41uX5Oc0Ba0k";
+    const STRIPE_PRO_VAULT_URL = "https://buy.stripe.com/7sYfZidtz1h86PhfoM0Ba0n";
+    const STRIPE_TEAM_SIDECAR_URL = "https://buy.stripe.com/9B600k1KR7Fw6Ph2C00Ba0o";
+    const STRIPE_COMPLIANCE_ANNUAL_URL = "https://buy.stripe.com/4gM00kahn3pgehJ4K80Ba0p";
     const GITHUB_REPO_URL = "https://github.com/maxcomperatore/rubrol";
     const ENTERPRISE_CONTACT_URL = "mailto:enterprise@rubrol.com?subject=Enterprise%20Rubrol%20Deployment";
 
@@ -7883,7 +7884,7 @@ ${err.message}</div>`;
         calcRecPlan.innerText = "Pro Template Vault ($199 Lifetime)";
         calcRecPlan.style.color = "var(--amber-primary)";
         calcRecRoi.innerHTML = `Zero design time: +$${totalTcoSaved.toLocaleString()} / year saved + 11 production templates`;
-        calcCtaBtn.href = STRIPE_PRO_ANNUAL_URL;
+        calcCtaBtn.href = STRIPE_PRO_VAULT_URL;
         calcCtaBtn.innerHTML = "<span>Get Lifetime Vault Pass ($199)</span>";
       }
       // Tier 3: Team Sidecar (60,000 - 150,000 docs/mo)
@@ -7893,7 +7894,7 @@ ${err.message}</div>`;
         calcRecPlan.style.color = "#3b82f6";
         const netTco = totalTcoSaved - (99 * 12);
         calcRecRoi.innerHTML = `Net Positive TCO ROI: +$${netTco.toLocaleString()} / year saved after sidecar license`;
-        calcCtaBtn.href = STRIPE_PRO_ANNUAL_URL;
+        calcCtaBtn.href = STRIPE_TEAM_SIDECAR_URL;
         calcCtaBtn.innerHTML = "<span>Deploy Team Sidecar ($99/mo)</span>";
       }
       // Tier 4: Enterprise Compliance (>= 150,000 docs/mo)
