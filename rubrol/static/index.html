@@ -145,23 +145,32 @@
             "name": "Rubrol Community",
             "price": "0",
             "priceCurrency": "USD",
-            "description": "Open-source Apache 2.0 core with local developer CLI, sidecar container, and standard templates."
+            "description": "Open-source Apache 2.0 core with local developer CLI, sidecar container, and standard templates. Free forever."
           },
           {
             "@type": "Offer",
-            "name": "Rubrol Pro",
-            "price": "1800",
+            "name": "Rubrol Pro Template Vault",
+            "price": "199",
             "priceCurrency": "USD",
             "priceValidUntil": "2027-12-31",
-            "description": "Annual commercial support and vault access, unlimited local Docker sidecar, B2B SaaS invoice and receipt templates, ISO 19005-2 PDF/A-2b compilation, and private GitHub vault access."
+            "description": "Lifetime access to private GitHub vault (rubrol-pro-vault) with 11+ turnkey production Typst templates (DIN 5008, Factur-X, SaaS invoices, board decks, packing slips) and all future template drops."
           },
           {
             "@type": "Offer",
-            "name": "Rubrol Enterprise",
-            "price": "4800",
+            "name": "Rubrol Team Sidecar",
+            "price": "99",
+            "priceCurrency": "USD",
+            "billingDuration": "P1M",
+            "priceValidUntil": "2027-12-31",
+            "description": "Production multi-tenant Docker sidecars, prometheus metrics, hot-reloading daemon, zero Chromium memory leaks, and private container registry access."
+          },
+          {
+            "@type": "Offer",
+            "name": "Rubrol Enterprise Compliance",
+            "price": "3600",
             "priceCurrency": "USD",
             "priceValidUntil": "2027-12-31",
-            "description": "Turnkey EU compliance suite with certified ISO 19005-3 PDF/A-3b, Factur-X / ZUGFeRD 2.2, EN 16931 & XRechnung 3.0 Schematron validation, DIN 5008 & Chorus Pro templates, and priority support."
+            "description": "Turnkey EU compliance suite with certified ISO 19005-3 PDF/A-3b, Factur-X / ZUGFeRD 2.2, EN 16931 & XRechnung 3.0 Schematron validation, DIN 5008 & Chorus Pro templates, SLA, and priority support."
           }
         ],
         "author": {
@@ -1976,13 +1985,29 @@
       line-height: 1.5;
     }
 
-    /* 3-Tier Deck */
+    /* 4-Tier Deck */
     .pricing-deck {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
       width: 100%;
       align-items: stretch;
+    }
+
+    @media (max-width: 1180px) {
+      .pricing-deck {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 780px;
+        margin: 0 auto;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .pricing-deck {
+        grid-template-columns: 1fr;
+        max-width: 480px;
+        margin: 0 auto;
+      }
     }
 
     .price-card {
@@ -2041,7 +2066,21 @@
     }
 
     .featured-ribbon {
-      display: none !important;
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, var(--amber-primary), #d97706);
+      color: #0b0c10;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-family: var(--font-mono);
+      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.35);
+      white-space: nowrap;
     }
 
     .price-plan-name {
@@ -3037,16 +3076,24 @@
   
     .pricing-deck {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 28px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
       width: 100%;
       align-items: stretch;
     }
 
-    @media (max-width: 1024px) {
+    @media (max-width: 1180px) {
+      .pricing-deck {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 780px;
+        margin: 0 auto;
+      }
+    }
+
+    @media (max-width: 680px) {
       .pricing-deck {
         grid-template-columns: 1fr;
-        max-width: 520px;
+        max-width: 480px;
         margin: 0 auto;
       }
     }
@@ -6535,10 +6582,10 @@
           <div style="margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--border-subtle); text-align: left;">
             <div style="display: flex; justify-content: space-between; align-items: center;">
               <span style="font-size: 12px; font-weight: 600; color: var(--text-light-head);">Recommended Tier:</span>
-              <span id="calcRecPlan" style="font-family: var(--font-mono); font-size: 13px; font-weight: 700; color: #f59e0b;">Rubrol Pro ($1,800/yr)</span>
+              <span id="calcRecPlan" style="font-family: var(--font-mono); font-size: 13px; font-weight: 700; color: #f59e0b;">Pro Template Vault ($199 Lifetime)</span>
             </div>
             <div id="calcRecRoi" class="quant-roi-badge">
-              Net Positive ROI: +$17,280 / year saved after license cost
+              Zero design time: +$19,080 / year saved + 11 production templates
             </div>
           </div>
 
@@ -6553,38 +6600,38 @@
       <!-- Annual Commercial Licensing Banner -->
       <div style="display: flex; justify-content: center; margin-bottom: 24px;">
         <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(255, 255, 255, 0.04); border: 1px solid var(--border-subtle); border-radius: 24px; padding: 6px 18px; font-family: var(--font-mono); font-size: 11.5px; font-weight: 600; color: var(--text-secondary);">
-          <span>ANNUAL COMMERCIAL LICENSES</span>
+          <span>COMMERCIAL LICENSES</span>
           <span style="opacity: 0.3;">/</span>
-          <span>ON-PREMISE SIDECAR</span>
+          <span>TEMPLATE VAULT</span>
           <span style="opacity: 0.3;">/</span>
           <span>ZERO CLOUD DATA PRIVACY RISK</span>
         </div>
       </div>
       <div style="text-align: center; font-family: var(--font-mono); font-size: 11.5px; color: var(--text-muted); margin: -12px 0 32px 0;">
-        Flat annual pricing. Billed annually upfront. Zero hidden fees.
+        Transparent developer &amp; enterprise options. One-time Template Vault, Monthly Sidecar, or Enterprise Compliance.
       </div>
 
-      <!-- 3-Tier Commercial Open-Core Deck (Sidekiq Model) -->
+      <!-- 4-Tier Commercial Deck (Tailwind + Sidekiq Model) -->
       <div class="pricing-deck">
         <!-- Tier 1: Rubrol Community -->
         <div id="card-developer" class="price-card">
           <span id="ribbon-developer" class="featured-ribbon" style="display: none;">Community Core</span>
           <div>
-            <h3 class="price-plan-name">Rubrol Community</h3>
+            <h3 class="price-plan-name">Community</h3>
             <p class="price-plan-desc">Open-source vector engine for local CLI development &amp; Docker evaluation.</p>
             <div class="price-plan-num">
               <span class="price-currency">$</span>
               <span class="price-figure">0</span>
               <span class="price-period">/ Free Forever</span>
             </div>
-            <div id="roi-developer" style="font-size: 11.5px; color: #10b981; font-family: var(--font-mono); margin: -10px 0 16px 0;">
-              ● 100% Free Permissive Core (Apache 2.0)
+            <div id="roi-developer" style="font-size: 11px; color: #10b981; font-family: var(--font-mono); margin: -10px 0 16px 0;">
+              ● 100% Free Open-Source Core (Apache 2.0)
             </div>
             <ul class="price-features">
               <li>Sub-10ms Mean Compile Latency</li>
               <li>Local Developer CLI &amp; Docker Container</li>
-              <li>100 Documents / Month (Evaluation Build)</li>
-              <li>Standard B2B &amp; SaaS Typst Templates</li>
+              <li>Standard B2B Invoice &amp; SaaS Receipt Templates</li>
+              <li>Unlimited Local Documents</li>
               <li>Open-Source Community GitHub Support</li>
             </ul>
           </div>
@@ -6593,61 +6640,93 @@
           </a>
         </div>
 
-        <!-- Tier 2: Rubrol Pro -->
-        <div id="card-pro" class="price-card">
-          <span id="ribbon-pro" class="featured-ribbon" style="display: none;">Commercial License</span>
+        <!-- Tier 2: Pro Template Vault (Featured - The Tailwind UI Model) -->
+        <div id="card-pro" class="price-card featured-tier" style="border: 1px solid rgba(245, 158, 11, 0.6); box-shadow: 0 0 25px rgba(245, 158, 11, 0.15);">
+          <span id="ribbon-pro" class="featured-ribbon" style="display: block; background: #f59e0b; color: #000; font-weight: 700;">★ MOST POPULAR &bull; DEV PASS</span>
           <div>
-            <h3 class="price-plan-name">Rubrol Pro</h3>
-            <p class="price-plan-desc">Annual commercial license for SaaS startups &amp; high-throughput billing systems.</p>
+            <h3 class="price-plan-name">Pro Template Vault</h3>
+            <p class="price-plan-desc">Turnkey B2B document vault. The Tailwind UI model: copy, paste JSON, and ship.</p>
             <div class="price-plan-num">
               <span class="price-currency">$</span>
-              <span class="price-figure" id="price-val-pro">1,800</span>
-              <span class="price-period" id="price-period-pro">/ year ($150/mo)</span>
+              <span class="price-figure" id="price-val-pro">199</span>
+              <span class="price-period" id="price-period-pro">/ Lifetime Pass</span>
             </div>
-            <div id="roi-pro" style="font-size: 11px; color: #10b981; font-family: var(--font-mono); margin: -10px 0 16px 0;">
-              ● Unlimited Local Nodes • Apache 2.0
+            <div id="roi-pro" style="font-size: 11px; color: #f59e0b; font-family: var(--font-mono); margin: -10px 0 16px 0;">
+              ● One-Time Payment &bull; Or $29 / month
             </div>
             <ul class="price-features">
-              <li>Unlimited Local Sidecar Execution (No Limits)</li>
-              <li>Full Commercial Production License Grant</li>
-              <li>Pre-Built B2B SaaS Invoice &amp; Receipt Templates</li>
-              <li>Standard ISO 19005-2 PDF/A-2b Compilation</li>
-              <li>Private GitHub Vault (rubrol-pro-vault) Access</li>
-              <li>Cryptographic 1-Year Offline License Key</li>
-              <li>Direct Developer Email Support</li>
+              <li><strong>Private GitHub Vault (rubrol-pro-vault) Access</strong></li>
+              <li><strong>11+ Turnkey Production Templates</strong>:</li>
+              <li style="padding-left: 8px; font-size: 12px; color: var(--text-secondary);">&bull; German DIN 5008 (§ 14 UStG compliant)</li>
+              <li style="padding-left: 8px; font-size: 12px; color: var(--text-secondary);">&bull; French Factur-X / Chorus Pro XML/PDF</li>
+              <li style="padding-left: 8px; font-size: 12px; color: var(--text-secondary);">&bull; B2B SaaS Invoices &amp; Receipts</li>
+              <li style="padding-left: 8px; font-size: 12px; color: var(--text-secondary);">&bull; Board &amp; Executive Financial Statements</li>
+              <li style="padding-left: 8px; font-size: 12px; color: var(--text-secondary);">&bull; Logistics Waybills &amp; Packing Slips</li>
+              <li>Unlimited Commercial Projects &amp; Client Apps</li>
+              <li>Signed Offline Cryptographic Developer License</li>
+              <li>Direct Developer Email &amp; Discord Support</li>
             </ul>
           </div>
-          <a href="https://buy.stripe.com/fZu5kEcpvcZQehJdgE0Ba0j" target="_blank" class="btn-pricing btn-pricing-primary" id="btn-pro">
-            Buy Rubrol Pro ($1,800/yr)
+          <a href="https://buy.stripe.com/fZu5kEcpvcZQehJdgE0Ba0j" target="_blank" class="btn-pricing btn-pricing-primary" id="btn-pro" style="background: #f59e0b; color: #000; font-weight: 700;">
+            Get Template Vault ($199 Lifetime)
           </a>
         </div>
 
-        <!-- Tier 3: Rubrol Enterprise -->
+        <!-- Tier 3: Team Sidecar -->
+        <div id="card-scale" class="price-card">
+          <span id="ribbon-scale" class="featured-ribbon" style="display: none;">Production Scale</span>
+          <div>
+            <h3 class="price-plan-name">Team Sidecar</h3>
+            <p class="price-plan-desc">Production-grade sidecar for scaling startups &amp; high-volume billing pipelines.</p>
+            <div class="price-plan-num">
+              <span class="price-currency">$</span>
+              <span class="price-figure" id="price-val-scale">99</span>
+              <span class="price-period" id="price-period-scale">/ month ($990/yr)</span>
+            </div>
+            <div id="roi-scale" style="font-size: 11px; color: #10b981; font-family: var(--font-mono); margin: -10px 0 16px 0;">
+              ● Unlimited Sidecar Nodes &bull; &lt;28MB RAM
+            </div>
+            <ul class="price-features">
+              <li>Everything in Pro Template Vault</li>
+              <li>Unlimited Multi-Tenant Docker Sidecars</li>
+              <li>High-Concurrency Worker Threadpool (&gt;450 docs/sec)</li>
+              <li>Prometheus Metrics (<code>/metrics</code>) &amp; Health Telemetry</li>
+              <li>In-Memory Template Hot-Reloading</li>
+              <li>Zero Chromium Leaks &bull; No Pod OOM Crashes</li>
+              <li>Priority Issue Triage &amp; Architecture Review</li>
+            </ul>
+          </div>
+          <a href="https://buy.stripe.com/fZu5kEcpvcZQehJdgE0Ba0j" target="_blank" class="btn-pricing btn-pricing-primary" id="btn-scale">
+            Deploy Team Sidecar ($99/mo)
+          </a>
+        </div>
+
+        <!-- Tier 4: Enterprise Compliance -->
         <div id="card-compliance" class="price-card">
           <span id="ribbon-compliance" class="featured-ribbon" style="display: none;">Regulatory Standard</span>
           <div>
-            <h3 class="price-plan-name">Rubrol Enterprise</h3>
-            <p class="price-plan-desc">Turnkey EU compliance suite with certified EN 16931 &amp; Schematron validation.</p>
+            <h3 class="price-plan-name">Enterprise Compliance</h3>
+            <p class="price-plan-desc">Turnkey EU e-invoicing compliance suite with Schematron validation &amp; SLA.</p>
             <div class="price-plan-num">
               <span class="price-currency">$</span>
-              <span class="price-figure" id="price-val-compliance">4,800</span>
-              <span class="price-period" id="price-period-compliance">/ year ($400/mo)</span>
+              <span class="price-figure" id="price-val-compliance">3,600</span>
+              <span class="price-period" id="price-period-compliance">/ year ($300/mo)</span>
             </div>
             <div id="roi-compliance" style="font-size: 11px; color: #10b981; font-family: var(--font-mono); margin: -10px 0 16px 0;">
               ● Turnkey EN 16931 &amp; Schematron Engine
             </div>
             <ul class="price-features">
               <li>Certified ISO 19005-3 PDF/A-3b + Factur-X / ZUGFeRD 2.2</li>
-              <li>Built-in Schematron Semantic Validator (XRechnung 3.0)</li>
-              <li>German DIN 5008 &amp; French Chorus Pro XML/PDF Templates</li>
+              <li>Built-in Schematron Validator (XRechnung 3.0 / Peppol)</li>
+              <li>German DIN 5008 &amp; French Chorus Pro XML/PDF</li>
               <li>Full Private Template Vault Access (rubrol-pro-vault)</li>
-              <li>Guaranteed Compliance Updates for 2025-2028 EU Mandates</li>
-              <li>Private Container Registry &amp; Air-Gapped License Key</li>
-              <li>Priority Engineering Slack Channel &amp; Direct Support</li>
+              <li>Guaranteed Compliance Updates for 2025–2028 Mandates</li>
+              <li>Private Container Registry &amp; Air-Gapped License Keys</li>
+              <li>Dedicated Slack Channel &amp; 99.9% Uptime SLA</li>
             </ul>
           </div>
           <a href="https://buy.stripe.com/7sY28sahn0d41uX5Oc0Ba0k" target="_blank" class="btn-pricing btn-pricing-primary" id="btn-compliance">
-            Buy Rubrol Enterprise ($4,800/yr)
+            Buy Enterprise ($3,600/yr)
           </a>
         </div>
       </div>
@@ -6724,7 +6803,7 @@
         <div class="faq-card">
           <h3 class="faq-question">Can I get a discount?</h3>
           <div class="faq-answer">
-            <p>For <strong>Rubrol Pro ($1,800/yr)</strong>, pricing is flat and transparent with zero discounts or promotions. For <strong>Rubrol Enterprise ($4,800/yr)</strong>, multi-year commitments or custom cluster volume agreements are available for high-throughput organizations. Email <a href="mailto:enterprise@rubrol.com">enterprise@rubrol.com</a> for custom quotes.</p>
+            <p>For <strong>Pro Template Vault ($199 Lifetime)</strong> and <strong>Team Sidecar ($99/mo)</strong>, pricing is flat, developer-first, and transparent with zero hidden fees. For <strong>Enterprise Compliance ($3,600/yr)</strong>, multi-year commitments or custom cluster volume agreements are available for high-throughput organizations. Email <a href="mailto:enterprise@rubrol.com">enterprise@rubrol.com</a> for custom quotes.</p>
           </div>
         </div>
 
@@ -6732,23 +6811,23 @@
         <div class="faq-card">
           <h3 class="faq-question">What is the license?</h3>
           <div class="faq-answer">
-            <p>The open-source core is licensed under the <strong>Apache License 2.0</strong>. Rubrol Pro and Enterprise are commercial licenses that under Apache 2.0 with a traditional proprietary agreement for production SaaS deployments, removing open-source linking obligations.</p>
+            <p>The open-source core is licensed under the <strong>Apache License 2.0</strong>. Pro Template Vault, Team Sidecar, and Enterprise Compliance are commercial licenses that grant proprietary usage, private repository access, and production SLA support.</p>
           </div>
         </div>
 
         <!-- Q5 -->
         <div class="faq-card">
-          <h3 class="faq-question">How does Pro licensing work?</h3>
+          <h3 class="faq-question">How does Pro Template Vault access work?</h3>
           <div class="faq-answer">
-            <p>Every organization running Rubrol in production for commercial SaaS applications must purchase an annual subscription ($1,800/yr). There is no limit to the number of Docker containers, Kubernetes pods, CPU cores, or developer machines used by that organization. Your subscription renews automatically each year.</p>
+            <p>The Pro Template Vault ($199 Lifetime Pass or $29/mo) grants immediate access to the private GitHub repository <code>rubrol-pro-vault</code> with 11+ turnkey Typst templates (DIN 5008, Factur-X, B2B SaaS invoices, board decks, packing slips) and all future template releases. Use them across unlimited client projects and production apps with zero recurring lock-in.</p>
           </div>
         </div>
 
         <!-- Q6 -->
         <div class="faq-card">
-          <h3 class="faq-question">How does Enterprise licensing work?</h3>
+          <h3 class="faq-question">How does Team Sidecar &amp; Enterprise licensing work?</h3>
           <div class="faq-answer">
-            <p>Every organization deploying Rubrol for European e-invoicing compliance (EN 16931) must purchase an Enterprise subscription ($4,800/yr). It includes certified ISO 19005-3 PDF/A-3b container generation, embedded Factur-X / ZUGFeRD 2.2 XML, built-in Schematron semantic validation (XRechnung 3.0), French Chorus Pro and German DIN 5008 templates, private template vault access (<code>rubrol-pro-vault</code>), 2025-2028 regulatory updates, and priority Slack/email support.</p>
+            <p><strong>Team Sidecar ($99/mo)</strong> gives your engineering team unlimited multi-tenant Docker sidecars with prometheus telemetry, high-concurrency threadpool (&gt;450 docs/sec), and zero Chromium leaks (&lt;28MB RAM). <strong>Enterprise Compliance ($3,600/yr)</strong> includes certified ISO 19005-3 PDF/A-3b container generation, embedded Factur-X / ZUGFeRD 2.2 XML, built-in Schematron semantic validation (XRechnung 3.0 / Peppol), regulatory updates for 2025–2028 mandates, and a dedicated Slack channel with 99.9% SLA.</p>
           </div>
         </div>
 
@@ -6758,10 +6837,11 @@
           <div class="faq-answer">
             <p>You can purchase in seconds via Stripe Checkout:</p>
             <p style="margin-top: 6px;">
-              • <a href="https://buy.stripe.com/fZu5kEcpvcZQehJdgE0Ba0j" target="_blank"><strong>Buy Rubrol Pro ($1,800/yr)</strong></a><br>
-              • <a href="https://buy.stripe.com/7sY28sahn0d41uX5Oc0Ba0k" target="_blank"><strong>Buy Rubrol Enterprise ($4,800/yr)</strong></a>
+              • <a href="https://buy.stripe.com/fZu5kEcpvcZQehJdgE0Ba0j" target="_blank"><strong>Get Pro Template Vault ($199 Lifetime Pass)</strong></a><br>
+              • <a href="https://buy.stripe.com/fZu5kEcpvcZQehJdgE0Ba0j" target="_blank"><strong>Deploy Team Sidecar ($99/mo)</strong></a><br>
+              • <a href="https://buy.stripe.com/7sY28sahn0d41uX5Oc0Ba0k" target="_blank"><strong>Buy Enterprise Compliance ($3,600/yr)</strong></a>
             </p>
-            <p style="margin-top: 6px;">Enter your <strong>GitHub Username</strong> during checkout. You will automatically receive an invitation granting access to the private template vault, and a signed 1-year cryptographic license key (<code>RUBROL_LICENSE_KEY=RBL-LIC-...</code>) will be issued immediately.</p>
+            <p style="margin-top: 6px;">Enter your <strong>GitHub Username</strong> during checkout. You will automatically receive an invitation granting access to the private template vault, and a signed cryptographic license key will be issued immediately.</p>
           </div>
         </div>
 
@@ -7776,7 +7856,7 @@ ${err.message}</div>`;
       quantTcoTotal.innerText = `$${totalTcoSaved.toLocaleString()}/yr`;
 
       function setActiveTier(activeCard) {
-        [cardDev, cardPro, cardComp].forEach(c => {
+        [cardDev, cardPro, cardScale, cardComp].forEach(c => {
           if (!c) return;
           if (c === activeCard) {
             c.classList.add('tier-active');
@@ -7788,35 +7868,43 @@ ${err.message}</div>`;
         });
       }
 
-      // Tier recommendations for calculator box and pricing deck
-      // Tier 1: Rubrol Community (< 20,000 docs/mo)
-      if (val < 20000) {
+      // Tier 1: Rubrol Community (< 15,000 docs/mo)
+      if (val < 15000) {
         setActiveTier(cardDev);
         calcRecPlan.innerText = "Rubrol Community ($0 Free)";
         calcRecPlan.style.color = "#10b981";
-        calcRecRoi.innerHTML = "100% Free Permissive Core (Apache 2.0) • Run unlimited locally or in Docker for evaluation";
+        calcRecRoi.innerHTML = "100% Free Open-Source Core (Apache 2.0) • Run unlimited locally or in Docker for evaluation";
         calcCtaBtn.href = GITHUB_REPO_URL;
         calcCtaBtn.innerHTML = "<span>Clone on GitHub (Free)</span>";
       }
-      // Tier 2: Rubrol Pro (20,000 - 100,000 docs/mo)
-      else if (val < 100000) {
+      // Tier 2: Pro Template Vault (15,000 - 60,000 docs/mo)
+      else if (val < 60000) {
         setActiveTier(cardPro);
-        calcRecPlan.innerText = "Rubrol Pro ($1,800/yr)";
+        calcRecPlan.innerText = "Pro Template Vault ($199 Lifetime)";
         calcRecPlan.style.color = "var(--amber-primary)";
-        const netTco = totalTcoSaved - 1800;
-        calcRecRoi.innerHTML = `Net Positive TCO ROI: +$${netTco.toLocaleString()} / year saved after license cost`;
+        calcRecRoi.innerHTML = `Zero design time: +$${totalTcoSaved.toLocaleString()} / year saved + 11 production templates`;
         calcCtaBtn.href = STRIPE_PRO_ANNUAL_URL;
-        calcCtaBtn.innerHTML = "<span>Buy Rubrol Pro ($1,800/yr)</span>";
+        calcCtaBtn.innerHTML = "<span>Get Lifetime Vault Pass ($199)</span>";
       }
-      // Tier 3: Rubrol Enterprise (>= 100,000 docs/mo)
+      // Tier 3: Team Sidecar (60,000 - 150,000 docs/mo)
+      else if (val < 150000) {
+        setActiveTier(cardScale);
+        calcRecPlan.innerText = "Team Sidecar ($99/mo)";
+        calcRecPlan.style.color = "#3b82f6";
+        const netTco = totalTcoSaved - (99 * 12);
+        calcRecRoi.innerHTML = `Net Positive TCO ROI: +$${netTco.toLocaleString()} / year saved after sidecar license`;
+        calcCtaBtn.href = STRIPE_PRO_ANNUAL_URL;
+        calcCtaBtn.innerHTML = "<span>Deploy Team Sidecar ($99/mo)</span>";
+      }
+      // Tier 4: Enterprise Compliance (>= 150,000 docs/mo)
       else {
         setActiveTier(cardComp);
-        calcRecPlan.innerText = "Rubrol Enterprise ($4,800/yr)";
+        calcRecPlan.innerText = "Enterprise Compliance ($3,600/yr)";
         calcRecPlan.style.color = "#ea580c";
-        const netTco = totalTcoSaved - 4800;
+        const netTco = totalTcoSaved - 3600;
         calcRecRoi.innerHTML = `Net Positive TCO ROI: +$${netTco.toLocaleString()} / year saved + EN 16931 certified`;
         calcCtaBtn.href = STRIPE_COMPLIANCE_ANNUAL_URL;
-        calcCtaBtn.innerHTML = "<span>Buy Rubrol Enterprise ($4,800/yr)</span>";
+        calcCtaBtn.innerHTML = "<span>Buy Enterprise Compliance ($3,600/yr)</span>";
       }
     }
 
@@ -7841,8 +7929,17 @@ ${err.message}</div>`;
       cardPro.addEventListener('click', (e) => {
         if (e.target.closest('a')) return;
         if (docSlider) {
-          docSlider.value = 50000;
-          updatePricingCalculator(50000);
+          docSlider.value = 35000;
+          updatePricingCalculator(35000);
+        }
+      });
+    }
+    if (cardScale) {
+      cardScale.addEventListener('click', (e) => {
+        if (e.target.closest('a')) return;
+        if (docSlider) {
+          docSlider.value = 100000;
+          updatePricingCalculator(100000);
         }
       });
     }
@@ -8151,25 +8248,34 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         el.textContent = '\u20ac';
       });
 
-      // pro card
+      // pro template vault card
       var valPro = document.getElementById('price-val-pro');
       var periodPro = document.getElementById('price-period-pro');
       var btnPro = document.getElementById('btn-pro');
-      if (valPro) valPro.textContent = '1,800';
-      if (periodPro) periodPro.textContent = '/ year (\u20ac150/mo)';
+      if (valPro) valPro.textContent = '199';
+      if (periodPro) periodPro.textContent = '/ Lifetime Pass';
       if (btnPro) {
-        btnPro.textContent = 'Buy Rubrol Pro (\u20ac1,800/yr)';
-        btnPro.href = 'https://buy.stripe.com/eVq14oexD2lca1t2C00Ba0l';
+        btnPro.textContent = 'Get Template Vault (\u20ac199 Lifetime)';
+      }
+
+      // team sidecar card
+      var valScale = document.getElementById('price-val-scale');
+      var periodScale = document.getElementById('price-period-scale');
+      var btnScale = document.getElementById('btn-scale');
+      if (valScale) valScale.textContent = '99';
+      if (periodScale) periodScale.textContent = '/ month (\u20ac990/yr)';
+      if (btnScale) {
+        btnScale.textContent = 'Deploy Team Sidecar (\u20ac99/mo)';
       }
 
       // enterprise card
       var valEnt = document.getElementById('price-val-compliance');
       var periodEnt = document.getElementById('price-period-compliance');
       var btnEnt = document.getElementById('btn-compliance');
-      if (valEnt) valEnt.textContent = '4,800';
-      if (periodEnt) periodEnt.textContent = '/ year (\u20ac400/mo)';
+      if (valEnt) valEnt.textContent = '3,600';
+      if (periodEnt) periodEnt.textContent = '/ year (\u20ac300/mo)';
       if (btnEnt) {
-        btnEnt.textContent = 'Buy Rubrol Enterprise (\u20ac4,800/yr)';
+        btnEnt.textContent = 'Buy Enterprise (\u20ac3,600/yr)';
         btnEnt.href = 'https://buy.stripe.com/eVq8wQblr8JAehJ6Sg0Ba0m';
       }
     })();
